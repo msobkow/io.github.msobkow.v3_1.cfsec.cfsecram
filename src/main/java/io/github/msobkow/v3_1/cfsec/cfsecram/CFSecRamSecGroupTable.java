@@ -81,21 +81,21 @@ public class CFSecRamSecGroupTable
 		schema = argSchema;
 	}
 
-	public void createSecGroup( ICFSecAuthorization Authorization,
+	public ICFSecSecGroup createSecGroup( ICFSecAuthorization Authorization,
 		ICFSecSecGroup Buff )
 	{
 		final String S_ProcName = "createSecGroup";
-		CFLibDbKeyHash256 pkey = schema.getFactorySecGroup().newPKey();
-		pkey.setRequiredSecGroupId( schema.nextSecGroupIdGen() );
-		Buff.setRequiredSecGroupId( pkey.getRequiredSecGroupId() );
-		CFSecBuffSecGroupByClusterIdxKey keyClusterIdx = schema.getFactorySecGroup().newClusterIdxKey();
+		CFLibDbKeyHash256 pkey;
+		pkey = schema.nextSecGroupIdGen();
+		Buff.setRequiredSecGroupId( pkey );
+		CFSecBuffSecGroupByClusterIdxKey keyClusterIdx = (CFSecBuffSecGroupByClusterIdxKey)schema.getFactorySecGroup().newByClusterIdxKey();
 		keyClusterIdx.setRequiredClusterId( Buff.getRequiredClusterId() );
 
-		CFSecBuffSecGroupByClusterVisIdxKey keyClusterVisIdx = schema.getFactorySecGroup().newClusterVisIdxKey();
+		CFSecBuffSecGroupByClusterVisIdxKey keyClusterVisIdx = (CFSecBuffSecGroupByClusterVisIdxKey)schema.getFactorySecGroup().newByClusterVisIdxKey();
 		keyClusterVisIdx.setRequiredClusterId( Buff.getRequiredClusterId() );
 		keyClusterVisIdx.setRequiredIsVisible( Buff.getRequiredIsVisible() );
 
-		CFSecBuffSecGroupByUNameIdxKey keyUNameIdx = schema.getFactorySecGroup().newUNameIdxKey();
+		CFSecBuffSecGroupByUNameIdxKey keyUNameIdx = (CFSecBuffSecGroupByUNameIdxKey)schema.getFactorySecGroup().newByUNameIdxKey();
 		keyUNameIdx.setRequiredClusterId( Buff.getRequiredClusterId() );
 		keyUNameIdx.setRequiredName( Buff.getRequiredName() );
 
@@ -108,6 +108,7 @@ public class CFSecRamSecGroupTable
 		if( dictByUNameIdx.containsKey( keyUNameIdx ) ) {
 			throw new CFLibUniqueIndexViolationException( getClass(),
 				S_ProcName,
+				"SecGroupUNameIdx",
 				"SecGroupUNameIdx",
 				keyUNameIdx );
 		}
@@ -157,6 +158,7 @@ public class CFSecRamSecGroupTable
 
 		dictByUNameIdx.put( keyUNameIdx, Buff );
 
+		return( Buff );
 	}
 
 	public ICFSecSecGroup readDerived( ICFSecAuthorization Authorization,
@@ -177,11 +179,9 @@ public class CFSecRamSecGroupTable
 		CFLibDbKeyHash256 PKey )
 	{
 		final String S_ProcName = "CFSecRamSecGroup.readDerived";
-		CFLibDbKeyHash256 key = schema.getFactorySecGroup().newPKey();
-		key.setRequiredSecGroupId( PKey.getRequiredSecGroupId() );
 		ICFSecSecGroup buff;
-		if( dictByPKey.containsKey( key ) ) {
-			buff = dictByPKey.get( key );
+		if( dictByPKey.containsKey( PKey ) ) {
+			buff = dictByPKey.get( PKey );
 		}
 		else {
 			buff = null;
@@ -204,7 +204,7 @@ public class CFSecRamSecGroupTable
 		long ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSecGroup.readDerivedByClusterIdx";
-		CFSecBuffSecGroupByClusterIdxKey key = schema.getFactorySecGroup().newClusterIdxKey();
+		CFSecBuffSecGroupByClusterIdxKey key = (CFSecBuffSecGroupByClusterIdxKey)schema.getFactorySecGroup().newByClusterIdxKey();
 		key.setRequiredClusterId( ClusterId );
 
 		ICFSecSecGroup[] recArray;
@@ -232,7 +232,7 @@ public class CFSecRamSecGroupTable
 		boolean IsVisible )
 	{
 		final String S_ProcName = "CFSecRamSecGroup.readDerivedByClusterVisIdx";
-		CFSecBuffSecGroupByClusterVisIdxKey key = schema.getFactorySecGroup().newClusterVisIdxKey();
+		CFSecBuffSecGroupByClusterVisIdxKey key = (CFSecBuffSecGroupByClusterVisIdxKey)schema.getFactorySecGroup().newByClusterVisIdxKey();
 		key.setRequiredClusterId( ClusterId );
 		key.setRequiredIsVisible( IsVisible );
 
@@ -261,7 +261,7 @@ public class CFSecRamSecGroupTable
 		String Name )
 	{
 		final String S_ProcName = "CFSecRamSecGroup.readDerivedByUNameIdx";
-		CFSecBuffSecGroupByUNameIdxKey key = schema.getFactorySecGroup().newUNameIdxKey();
+		CFSecBuffSecGroupByUNameIdxKey key = (CFSecBuffSecGroupByUNameIdxKey)schema.getFactorySecGroup().newByUNameIdxKey();
 		key.setRequiredClusterId( ClusterId );
 		key.setRequiredName( Name );
 
@@ -279,12 +279,9 @@ public class CFSecRamSecGroupTable
 		CFLibDbKeyHash256 SecGroupId )
 	{
 		final String S_ProcName = "CFSecRamSecGroup.readDerivedByIdIdx() ";
-		CFLibDbKeyHash256 key = schema.getFactorySecGroup().newPKey();
-		key.setRequiredSecGroupId( SecGroupId );
-
 		ICFSecSecGroup buff;
-		if( dictByPKey.containsKey( key ) ) {
-			buff = dictByPKey.get( key );
+		if( dictByPKey.containsKey( SecGroupId ) ) {
+			buff = dictByPKey.get( SecGroupId );
 		}
 		else {
 			buff = null;
@@ -297,7 +294,7 @@ public class CFSecRamSecGroupTable
 	{
 		final String S_ProcName = "CFSecRamSecGroup.readBuff";
 		ICFSecSecGroup buff = readDerived( Authorization, PKey );
-		if( ( buff != null ) && ( ! buff.getClassCode().equals( "a00c" ) ) ) {
+		if( ( buff != null ) && ( buff.getClassCode() != ICFSecSecGroup.CLASS_CODE ) ) {
 			buff = null;
 		}
 		return( buff );
@@ -308,7 +305,7 @@ public class CFSecRamSecGroupTable
 	{
 		final String S_ProcName = "lockBuff";
 		ICFSecSecGroup buff = readDerived( Authorization, PKey );
-		if( ( buff != null ) && ( ! buff.getClassCode().equals( "a00c" ) ) ) {
+		if( ( buff != null ) && ( buff.getClassCode() != ICFSecSecGroup.CLASS_CODE ) ) {
 			buff = null;
 		}
 		return( buff );
@@ -322,7 +319,7 @@ public class CFSecRamSecGroupTable
 		ICFSecSecGroup[] buffList = readAllDerived( Authorization );
 		for( int idx = 0; idx < buffList.length; idx ++ ) {
 			buff = buffList[idx];
-			if( ( buff != null ) && buff.getClassCode().equals( "a00c" ) ) {
+			if( ( buff != null ) && ( buff.getClassCode() == ICFSecSecGroup.CLASS_CODE ) ) {
 				filteredList.add( buff );
 			}
 		}
@@ -335,7 +332,7 @@ public class CFSecRamSecGroupTable
 		final String S_ProcName = "CFSecRamSecGroup.readBuffByIdIdx() ";
 		ICFSecSecGroup buff = readDerivedByIdIdx( Authorization,
 			SecGroupId );
-		if( ( buff != null ) && buff.getClassCode().equals( "a00c" ) ) {
+		if( ( buff != null ) && ( buff.getClassCode() == ICFSecSecGroup.CLASS_CODE ) ) {
 			return( (ICFSecSecGroup)buff );
 		}
 		else {
@@ -353,7 +350,7 @@ public class CFSecRamSecGroupTable
 			ClusterId );
 		for( int idx = 0; idx < buffList.length; idx ++ ) {
 			buff = buffList[idx];
-			if( ( buff != null ) && buff.getClassCode().equals( "a00c" ) ) {
+			if( ( buff != null ) && ( buff.getClassCode() == ICFSecSecGroup.CLASS_CODE ) ) {
 				filteredList.add( (ICFSecSecGroup)buff );
 			}
 		}
@@ -372,7 +369,7 @@ public class CFSecRamSecGroupTable
 			IsVisible );
 		for( int idx = 0; idx < buffList.length; idx ++ ) {
 			buff = buffList[idx];
-			if( ( buff != null ) && buff.getClassCode().equals( "a00c" ) ) {
+			if( ( buff != null ) && ( buff.getClassCode() == ICFSecSecGroup.CLASS_CODE ) ) {
 				filteredList.add( (ICFSecSecGroup)buff );
 			}
 		}
@@ -387,7 +384,7 @@ public class CFSecRamSecGroupTable
 		ICFSecSecGroup buff = readDerivedByUNameIdx( Authorization,
 			ClusterId,
 			Name );
-		if( ( buff != null ) && buff.getClassCode().equals( "a00c" ) ) {
+		if( ( buff != null ) && ( buff.getClassCode() == ICFSecSecGroup.CLASS_CODE ) ) {
 			return( (ICFSecSecGroup)buff );
 		}
 		else {
@@ -395,11 +392,10 @@ public class CFSecRamSecGroupTable
 		}
 	}
 
-	public void updateSecGroup( ICFSecAuthorization Authorization,
+	public ICFSecSecGroup updateSecGroup( ICFSecAuthorization Authorization,
 		ICFSecSecGroup Buff )
 	{
-		CFLibDbKeyHash256 pkey = schema.getFactorySecGroup().newPKey();
-		pkey.setRequiredSecGroupId( Buff.getRequiredSecGroupId() );
+		CFLibDbKeyHash256 pkey = Buff.getPKey();
 		ICFSecSecGroup existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
@@ -414,25 +410,25 @@ public class CFSecRamSecGroupTable
 				pkey );
 		}
 		Buff.setRequiredRevision( Buff.getRequiredRevision() + 1 );
-		CFSecBuffSecGroupByClusterIdxKey existingKeyClusterIdx = schema.getFactorySecGroup().newClusterIdxKey();
+		CFSecBuffSecGroupByClusterIdxKey existingKeyClusterIdx = (CFSecBuffSecGroupByClusterIdxKey)schema.getFactorySecGroup().newByClusterIdxKey();
 		existingKeyClusterIdx.setRequiredClusterId( existing.getRequiredClusterId() );
 
-		CFSecBuffSecGroupByClusterIdxKey newKeyClusterIdx = schema.getFactorySecGroup().newClusterIdxKey();
+		CFSecBuffSecGroupByClusterIdxKey newKeyClusterIdx = (CFSecBuffSecGroupByClusterIdxKey)schema.getFactorySecGroup().newByClusterIdxKey();
 		newKeyClusterIdx.setRequiredClusterId( Buff.getRequiredClusterId() );
 
-		CFSecBuffSecGroupByClusterVisIdxKey existingKeyClusterVisIdx = schema.getFactorySecGroup().newClusterVisIdxKey();
+		CFSecBuffSecGroupByClusterVisIdxKey existingKeyClusterVisIdx = (CFSecBuffSecGroupByClusterVisIdxKey)schema.getFactorySecGroup().newByClusterVisIdxKey();
 		existingKeyClusterVisIdx.setRequiredClusterId( existing.getRequiredClusterId() );
 		existingKeyClusterVisIdx.setRequiredIsVisible( existing.getRequiredIsVisible() );
 
-		CFSecBuffSecGroupByClusterVisIdxKey newKeyClusterVisIdx = schema.getFactorySecGroup().newClusterVisIdxKey();
+		CFSecBuffSecGroupByClusterVisIdxKey newKeyClusterVisIdx = (CFSecBuffSecGroupByClusterVisIdxKey)schema.getFactorySecGroup().newByClusterVisIdxKey();
 		newKeyClusterVisIdx.setRequiredClusterId( Buff.getRequiredClusterId() );
 		newKeyClusterVisIdx.setRequiredIsVisible( Buff.getRequiredIsVisible() );
 
-		CFSecBuffSecGroupByUNameIdxKey existingKeyUNameIdx = schema.getFactorySecGroup().newUNameIdxKey();
+		CFSecBuffSecGroupByUNameIdxKey existingKeyUNameIdx = (CFSecBuffSecGroupByUNameIdxKey)schema.getFactorySecGroup().newByUNameIdxKey();
 		existingKeyUNameIdx.setRequiredClusterId( existing.getRequiredClusterId() );
 		existingKeyUNameIdx.setRequiredName( existing.getRequiredName() );
 
-		CFSecBuffSecGroupByUNameIdxKey newKeyUNameIdx = schema.getFactorySecGroup().newUNameIdxKey();
+		CFSecBuffSecGroupByUNameIdxKey newKeyUNameIdx = (CFSecBuffSecGroupByUNameIdxKey)schema.getFactorySecGroup().newByUNameIdxKey();
 		newKeyUNameIdx.setRequiredClusterId( Buff.getRequiredClusterId() );
 		newKeyUNameIdx.setRequiredName( Buff.getRequiredName() );
 
@@ -442,6 +438,7 @@ public class CFSecRamSecGroupTable
 			if( dictByUNameIdx.containsKey( newKeyUNameIdx ) ) {
 				throw new CFLibUniqueIndexViolationException( getClass(),
 					"updateSecGroup",
+					"SecGroupUNameIdx",
 					"SecGroupUNameIdx",
 					newKeyUNameIdx );
 			}
@@ -502,6 +499,7 @@ public class CFSecRamSecGroupTable
 		dictByUNameIdx.remove( existingKeyUNameIdx );
 		dictByUNameIdx.put( newKeyUNameIdx, Buff );
 
+		return(Buff);
 	}
 
 	public void deleteSecGroup( ICFSecAuthorization Authorization,
@@ -527,14 +525,14 @@ public class CFSecRamSecGroupTable
 						existing.getRequiredSecGroupId() );
 					schema.getTableSecGrpInc().deleteSecGrpIncByGroupIdx( Authorization,
 						existing.getRequiredSecGroupId() );
-		CFSecBuffSecGroupByClusterIdxKey keyClusterIdx = schema.getFactorySecGroup().newClusterIdxKey();
+		CFSecBuffSecGroupByClusterIdxKey keyClusterIdx = (CFSecBuffSecGroupByClusterIdxKey)schema.getFactorySecGroup().newByClusterIdxKey();
 		keyClusterIdx.setRequiredClusterId( existing.getRequiredClusterId() );
 
-		CFSecBuffSecGroupByClusterVisIdxKey keyClusterVisIdx = schema.getFactorySecGroup().newClusterVisIdxKey();
+		CFSecBuffSecGroupByClusterVisIdxKey keyClusterVisIdx = (CFSecBuffSecGroupByClusterVisIdxKey)schema.getFactorySecGroup().newByClusterVisIdxKey();
 		keyClusterVisIdx.setRequiredClusterId( existing.getRequiredClusterId() );
 		keyClusterVisIdx.setRequiredIsVisible( existing.getRequiredIsVisible() );
 
-		CFSecBuffSecGroupByUNameIdxKey keyUNameIdx = schema.getFactorySecGroup().newUNameIdxKey();
+		CFSecBuffSecGroupByUNameIdxKey keyUNameIdx = (CFSecBuffSecGroupByUNameIdxKey)schema.getFactorySecGroup().newByUNameIdxKey();
 		keyUNameIdx.setRequiredClusterId( existing.getRequiredClusterId() );
 		keyUNameIdx.setRequiredName( existing.getRequiredName() );
 
@@ -554,14 +552,6 @@ public class CFSecRamSecGroupTable
 		dictByUNameIdx.remove( keyUNameIdx );
 
 	}
-	public void deleteSecGroupByIdIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 argSecGroupId )
-	{
-		CFLibDbKeyHash256 key = schema.getFactorySecGroup().newPKey();
-		key.setRequiredSecGroupId( argSecGroupId );
-		deleteSecGroupByIdIdx( Authorization, key );
-	}
-
 	public void deleteSecGroupByIdIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 argKey )
 	{
@@ -591,7 +581,7 @@ public class CFSecRamSecGroupTable
 	public void deleteSecGroupByClusterIdx( ICFSecAuthorization Authorization,
 		long argClusterId )
 	{
-		CFSecBuffSecGroupByClusterIdxKey key = schema.getFactorySecGroup().newClusterIdxKey();
+		CFSecBuffSecGroupByClusterIdxKey key = (CFSecBuffSecGroupByClusterIdxKey)schema.getFactorySecGroup().newByClusterIdxKey();
 		key.setRequiredClusterId( argClusterId );
 		deleteSecGroupByClusterIdx( Authorization, key );
 	}
@@ -626,7 +616,7 @@ public class CFSecRamSecGroupTable
 		long argClusterId,
 		boolean argIsVisible )
 	{
-		CFSecBuffSecGroupByClusterVisIdxKey key = schema.getFactorySecGroup().newClusterVisIdxKey();
+		CFSecBuffSecGroupByClusterVisIdxKey key = (CFSecBuffSecGroupByClusterVisIdxKey)schema.getFactorySecGroup().newByClusterVisIdxKey();
 		key.setRequiredClusterId( argClusterId );
 		key.setRequiredIsVisible( argIsVisible );
 		deleteSecGroupByClusterVisIdx( Authorization, key );
@@ -663,7 +653,7 @@ public class CFSecRamSecGroupTable
 		long argClusterId,
 		String argName )
 	{
-		CFSecBuffSecGroupByUNameIdxKey key = schema.getFactorySecGroup().newUNameIdxKey();
+		CFSecBuffSecGroupByUNameIdxKey key = (CFSecBuffSecGroupByUNameIdxKey)schema.getFactorySecGroup().newByUNameIdxKey();
 		key.setRequiredClusterId( argClusterId );
 		key.setRequiredName( argName );
 		deleteSecGroupByUNameIdx( Authorization, key );

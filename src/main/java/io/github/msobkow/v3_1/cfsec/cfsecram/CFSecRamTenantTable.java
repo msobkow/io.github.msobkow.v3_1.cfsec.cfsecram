@@ -75,17 +75,17 @@ public class CFSecRamTenantTable
 		schema = argSchema;
 	}
 
-	public void createTenant( ICFSecAuthorization Authorization,
+	public ICFSecTenant createTenant( ICFSecAuthorization Authorization,
 		ICFSecTenant Buff )
 	{
 		final String S_ProcName = "createTenant";
-		CFLibDbKeyHash256 pkey = schema.getFactoryTenant().newPKey();
-		pkey.setRequiredId( schema.nextTenantIdGen() );
-		Buff.setRequiredId( pkey.getRequiredId() );
-		CFSecBuffTenantByClusterIdxKey keyClusterIdx = schema.getFactoryTenant().newClusterIdxKey();
+		CFLibDbKeyHash256 pkey;
+		pkey = schema.nextTenantIdGen();
+		Buff.setRequiredId( pkey );
+		CFSecBuffTenantByClusterIdxKey keyClusterIdx = (CFSecBuffTenantByClusterIdxKey)schema.getFactoryTenant().newByClusterIdxKey();
 		keyClusterIdx.setRequiredClusterId( Buff.getRequiredClusterId() );
 
-		CFSecBuffTenantByUNameIdxKey keyUNameIdx = schema.getFactoryTenant().newUNameIdxKey();
+		CFSecBuffTenantByUNameIdxKey keyUNameIdx = (CFSecBuffTenantByUNameIdxKey)schema.getFactoryTenant().newByUNameIdxKey();
 		keyUNameIdx.setRequiredClusterId( Buff.getRequiredClusterId() );
 		keyUNameIdx.setRequiredTenantName( Buff.getRequiredTenantName() );
 
@@ -98,6 +98,7 @@ public class CFSecRamTenantTable
 		if( dictByUNameIdx.containsKey( keyUNameIdx ) ) {
 			throw new CFLibUniqueIndexViolationException( getClass(),
 				S_ProcName,
+				"TenantUNameIdx",
 				"TenantUNameIdx",
 				keyUNameIdx );
 		}
@@ -137,6 +138,7 @@ public class CFSecRamTenantTable
 
 		dictByUNameIdx.put( keyUNameIdx, Buff );
 
+		return( Buff );
 	}
 
 	public ICFSecTenant readDerived( ICFSecAuthorization Authorization,
@@ -157,11 +159,9 @@ public class CFSecRamTenantTable
 		CFLibDbKeyHash256 PKey )
 	{
 		final String S_ProcName = "CFSecRamTenant.readDerived";
-		CFLibDbKeyHash256 key = schema.getFactoryTenant().newPKey();
-		key.setRequiredId( PKey.getRequiredId() );
 		ICFSecTenant buff;
-		if( dictByPKey.containsKey( key ) ) {
-			buff = dictByPKey.get( key );
+		if( dictByPKey.containsKey( PKey ) ) {
+			buff = dictByPKey.get( PKey );
 		}
 		else {
 			buff = null;
@@ -184,7 +184,7 @@ public class CFSecRamTenantTable
 		long ClusterId )
 	{
 		final String S_ProcName = "CFSecRamTenant.readDerivedByClusterIdx";
-		CFSecBuffTenantByClusterIdxKey key = schema.getFactoryTenant().newClusterIdxKey();
+		CFSecBuffTenantByClusterIdxKey key = (CFSecBuffTenantByClusterIdxKey)schema.getFactoryTenant().newByClusterIdxKey();
 		key.setRequiredClusterId( ClusterId );
 
 		ICFSecTenant[] recArray;
@@ -212,7 +212,7 @@ public class CFSecRamTenantTable
 		String TenantName )
 	{
 		final String S_ProcName = "CFSecRamTenant.readDerivedByUNameIdx";
-		CFSecBuffTenantByUNameIdxKey key = schema.getFactoryTenant().newUNameIdxKey();
+		CFSecBuffTenantByUNameIdxKey key = (CFSecBuffTenantByUNameIdxKey)schema.getFactoryTenant().newByUNameIdxKey();
 		key.setRequiredClusterId( ClusterId );
 		key.setRequiredTenantName( TenantName );
 
@@ -230,12 +230,9 @@ public class CFSecRamTenantTable
 		CFLibDbKeyHash256 Id )
 	{
 		final String S_ProcName = "CFSecRamTenant.readDerivedByIdIdx() ";
-		CFLibDbKeyHash256 key = schema.getFactoryTenant().newPKey();
-		key.setRequiredId( Id );
-
 		ICFSecTenant buff;
-		if( dictByPKey.containsKey( key ) ) {
-			buff = dictByPKey.get( key );
+		if( dictByPKey.containsKey( Id ) ) {
+			buff = dictByPKey.get( Id );
 		}
 		else {
 			buff = null;
@@ -248,7 +245,7 @@ public class CFSecRamTenantTable
 	{
 		final String S_ProcName = "CFSecRamTenant.readBuff";
 		ICFSecTenant buff = readDerived( Authorization, PKey );
-		if( ( buff != null ) && ( ! buff.getClassCode().equals( "a015" ) ) ) {
+		if( ( buff != null ) && ( buff.getClassCode() != ICFSecTenant.CLASS_CODE ) ) {
 			buff = null;
 		}
 		return( buff );
@@ -259,7 +256,7 @@ public class CFSecRamTenantTable
 	{
 		final String S_ProcName = "lockBuff";
 		ICFSecTenant buff = readDerived( Authorization, PKey );
-		if( ( buff != null ) && ( ! buff.getClassCode().equals( "a015" ) ) ) {
+		if( ( buff != null ) && ( buff.getClassCode() != ICFSecTenant.CLASS_CODE ) ) {
 			buff = null;
 		}
 		return( buff );
@@ -273,7 +270,7 @@ public class CFSecRamTenantTable
 		ICFSecTenant[] buffList = readAllDerived( Authorization );
 		for( int idx = 0; idx < buffList.length; idx ++ ) {
 			buff = buffList[idx];
-			if( ( buff != null ) && buff.getClassCode().equals( "a015" ) ) {
+			if( ( buff != null ) && ( buff.getClassCode() == ICFSecTenant.CLASS_CODE ) ) {
 				filteredList.add( buff );
 			}
 		}
@@ -300,7 +297,7 @@ public class CFSecRamTenantTable
 		final String S_ProcName = "CFSecRamTenant.readBuffByIdIdx() ";
 		ICFSecTenant buff = readDerivedByIdIdx( Authorization,
 			Id );
-		if( ( buff != null ) && buff.getClassCode().equals( "a015" ) ) {
+		if( ( buff != null ) && ( buff.getClassCode() == ICFSecTenant.CLASS_CODE ) ) {
 			return( (ICFSecTenant)buff );
 		}
 		else {
@@ -318,7 +315,7 @@ public class CFSecRamTenantTable
 			ClusterId );
 		for( int idx = 0; idx < buffList.length; idx ++ ) {
 			buff = buffList[idx];
-			if( ( buff != null ) && buff.getClassCode().equals( "a015" ) ) {
+			if( ( buff != null ) && ( buff.getClassCode() == ICFSecTenant.CLASS_CODE ) ) {
 				filteredList.add( (ICFSecTenant)buff );
 			}
 		}
@@ -333,7 +330,7 @@ public class CFSecRamTenantTable
 		ICFSecTenant buff = readDerivedByUNameIdx( Authorization,
 			ClusterId,
 			TenantName );
-		if( ( buff != null ) && buff.getClassCode().equals( "a015" ) ) {
+		if( ( buff != null ) && ( buff.getClassCode() == ICFSecTenant.CLASS_CODE ) ) {
 			return( (ICFSecTenant)buff );
 		}
 		else {
@@ -360,11 +357,10 @@ public class CFSecRamTenantTable
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 
-	public void updateTenant( ICFSecAuthorization Authorization,
+	public ICFSecTenant updateTenant( ICFSecAuthorization Authorization,
 		ICFSecTenant Buff )
 	{
-		CFLibDbKeyHash256 pkey = schema.getFactoryTenant().newPKey();
-		pkey.setRequiredId( Buff.getRequiredId() );
+		CFLibDbKeyHash256 pkey = Buff.getPKey();
 		ICFSecTenant existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
@@ -379,17 +375,17 @@ public class CFSecRamTenantTable
 				pkey );
 		}
 		Buff.setRequiredRevision( Buff.getRequiredRevision() + 1 );
-		CFSecBuffTenantByClusterIdxKey existingKeyClusterIdx = schema.getFactoryTenant().newClusterIdxKey();
+		CFSecBuffTenantByClusterIdxKey existingKeyClusterIdx = (CFSecBuffTenantByClusterIdxKey)schema.getFactoryTenant().newByClusterIdxKey();
 		existingKeyClusterIdx.setRequiredClusterId( existing.getRequiredClusterId() );
 
-		CFSecBuffTenantByClusterIdxKey newKeyClusterIdx = schema.getFactoryTenant().newClusterIdxKey();
+		CFSecBuffTenantByClusterIdxKey newKeyClusterIdx = (CFSecBuffTenantByClusterIdxKey)schema.getFactoryTenant().newByClusterIdxKey();
 		newKeyClusterIdx.setRequiredClusterId( Buff.getRequiredClusterId() );
 
-		CFSecBuffTenantByUNameIdxKey existingKeyUNameIdx = schema.getFactoryTenant().newUNameIdxKey();
+		CFSecBuffTenantByUNameIdxKey existingKeyUNameIdx = (CFSecBuffTenantByUNameIdxKey)schema.getFactoryTenant().newByUNameIdxKey();
 		existingKeyUNameIdx.setRequiredClusterId( existing.getRequiredClusterId() );
 		existingKeyUNameIdx.setRequiredTenantName( existing.getRequiredTenantName() );
 
-		CFSecBuffTenantByUNameIdxKey newKeyUNameIdx = schema.getFactoryTenant().newUNameIdxKey();
+		CFSecBuffTenantByUNameIdxKey newKeyUNameIdx = (CFSecBuffTenantByUNameIdxKey)schema.getFactoryTenant().newByUNameIdxKey();
 		newKeyUNameIdx.setRequiredClusterId( Buff.getRequiredClusterId() );
 		newKeyUNameIdx.setRequiredTenantName( Buff.getRequiredTenantName() );
 
@@ -399,6 +395,7 @@ public class CFSecRamTenantTable
 			if( dictByUNameIdx.containsKey( newKeyUNameIdx ) ) {
 				throw new CFLibUniqueIndexViolationException( getClass(),
 					"updateTenant",
+					"TenantUNameIdx",
 					"TenantUNameIdx",
 					newKeyUNameIdx );
 			}
@@ -446,6 +443,7 @@ public class CFSecRamTenantTable
 		dictByUNameIdx.remove( existingKeyUNameIdx );
 		dictByUNameIdx.put( newKeyUNameIdx, Buff );
 
+		return(Buff);
 	}
 
 	public void deleteTenant( ICFSecAuthorization Authorization,
@@ -491,10 +489,10 @@ public class CFSecRamTenantTable
 		}
 					schema.getTableTSecGroup().deleteTSecGroupByTenantIdx( Authorization,
 						existing.getRequiredId() );
-		CFSecBuffTenantByClusterIdxKey keyClusterIdx = schema.getFactoryTenant().newClusterIdxKey();
+		CFSecBuffTenantByClusterIdxKey keyClusterIdx = (CFSecBuffTenantByClusterIdxKey)schema.getFactoryTenant().newByClusterIdxKey();
 		keyClusterIdx.setRequiredClusterId( existing.getRequiredClusterId() );
 
-		CFSecBuffTenantByUNameIdxKey keyUNameIdx = schema.getFactoryTenant().newUNameIdxKey();
+		CFSecBuffTenantByUNameIdxKey keyUNameIdx = (CFSecBuffTenantByUNameIdxKey)schema.getFactoryTenant().newByUNameIdxKey();
 		keyUNameIdx.setRequiredClusterId( existing.getRequiredClusterId() );
 		keyUNameIdx.setRequiredTenantName( existing.getRequiredTenantName() );
 
@@ -511,14 +509,6 @@ public class CFSecRamTenantTable
 		dictByUNameIdx.remove( keyUNameIdx );
 
 	}
-	public void deleteTenantByIdIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 argId )
-	{
-		CFLibDbKeyHash256 key = schema.getFactoryTenant().newPKey();
-		key.setRequiredId( argId );
-		deleteTenantByIdIdx( Authorization, key );
-	}
-
 	public void deleteTenantByIdIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 argKey )
 	{
@@ -548,7 +538,7 @@ public class CFSecRamTenantTable
 	public void deleteTenantByClusterIdx( ICFSecAuthorization Authorization,
 		long argClusterId )
 	{
-		CFSecBuffTenantByClusterIdxKey key = schema.getFactoryTenant().newClusterIdxKey();
+		CFSecBuffTenantByClusterIdxKey key = (CFSecBuffTenantByClusterIdxKey)schema.getFactoryTenant().newByClusterIdxKey();
 		key.setRequiredClusterId( argClusterId );
 		deleteTenantByClusterIdx( Authorization, key );
 	}
@@ -583,7 +573,7 @@ public class CFSecRamTenantTable
 		long argClusterId,
 		String argTenantName )
 	{
-		CFSecBuffTenantByUNameIdxKey key = schema.getFactoryTenant().newUNameIdxKey();
+		CFSecBuffTenantByUNameIdxKey key = (CFSecBuffTenantByUNameIdxKey)schema.getFactoryTenant().newByUNameIdxKey();
 		key.setRequiredClusterId( argClusterId );
 		key.setRequiredTenantName( argTenantName );
 		deleteTenantByUNameIdx( Authorization, key );

@@ -81,21 +81,21 @@ public class CFSecRamTSecGroupTable
 		schema = argSchema;
 	}
 
-	public void createTSecGroup( ICFSecAuthorization Authorization,
+	public ICFSecTSecGroup createTSecGroup( ICFSecAuthorization Authorization,
 		ICFSecTSecGroup Buff )
 	{
 		final String S_ProcName = "createTSecGroup";
-		CFLibDbKeyHash256 pkey = schema.getFactoryTSecGroup().newPKey();
-		pkey.setRequiredTSecGroupId( schema.nextTSecGroupIdGen() );
-		Buff.setRequiredTSecGroupId( pkey.getRequiredTSecGroupId() );
-		CFSecBuffTSecGroupByTenantIdxKey keyTenantIdx = schema.getFactoryTSecGroup().newTenantIdxKey();
+		CFLibDbKeyHash256 pkey;
+		pkey = schema.nextTSecGroupIdGen();
+		Buff.setRequiredTSecGroupId( pkey );
+		CFSecBuffTSecGroupByTenantIdxKey keyTenantIdx = (CFSecBuffTSecGroupByTenantIdxKey)schema.getFactoryTSecGroup().newByTenantIdxKey();
 		keyTenantIdx.setRequiredTenantId( Buff.getRequiredTenantId() );
 
-		CFSecBuffTSecGroupByTenantVisIdxKey keyTenantVisIdx = schema.getFactoryTSecGroup().newTenantVisIdxKey();
+		CFSecBuffTSecGroupByTenantVisIdxKey keyTenantVisIdx = (CFSecBuffTSecGroupByTenantVisIdxKey)schema.getFactoryTSecGroup().newByTenantVisIdxKey();
 		keyTenantVisIdx.setRequiredTenantId( Buff.getRequiredTenantId() );
 		keyTenantVisIdx.setRequiredIsVisible( Buff.getRequiredIsVisible() );
 
-		CFSecBuffTSecGroupByUNameIdxKey keyUNameIdx = schema.getFactoryTSecGroup().newUNameIdxKey();
+		CFSecBuffTSecGroupByUNameIdxKey keyUNameIdx = (CFSecBuffTSecGroupByUNameIdxKey)schema.getFactoryTSecGroup().newByUNameIdxKey();
 		keyUNameIdx.setRequiredTenantId( Buff.getRequiredTenantId() );
 		keyUNameIdx.setRequiredName( Buff.getRequiredName() );
 
@@ -108,6 +108,7 @@ public class CFSecRamTSecGroupTable
 		if( dictByUNameIdx.containsKey( keyUNameIdx ) ) {
 			throw new CFLibUniqueIndexViolationException( getClass(),
 				S_ProcName,
+				"TSecGroupUNameIdx",
 				"TSecGroupUNameIdx",
 				keyUNameIdx );
 		}
@@ -157,6 +158,7 @@ public class CFSecRamTSecGroupTable
 
 		dictByUNameIdx.put( keyUNameIdx, Buff );
 
+		return( Buff );
 	}
 
 	public ICFSecTSecGroup readDerived( ICFSecAuthorization Authorization,
@@ -177,11 +179,9 @@ public class CFSecRamTSecGroupTable
 		CFLibDbKeyHash256 PKey )
 	{
 		final String S_ProcName = "CFSecRamTSecGroup.readDerived";
-		CFLibDbKeyHash256 key = schema.getFactoryTSecGroup().newPKey();
-		key.setRequiredTSecGroupId( PKey.getRequiredTSecGroupId() );
 		ICFSecTSecGroup buff;
-		if( dictByPKey.containsKey( key ) ) {
-			buff = dictByPKey.get( key );
+		if( dictByPKey.containsKey( PKey ) ) {
+			buff = dictByPKey.get( PKey );
 		}
 		else {
 			buff = null;
@@ -204,7 +204,7 @@ public class CFSecRamTSecGroupTable
 		CFLibDbKeyHash256 TenantId )
 	{
 		final String S_ProcName = "CFSecRamTSecGroup.readDerivedByTenantIdx";
-		CFSecBuffTSecGroupByTenantIdxKey key = schema.getFactoryTSecGroup().newTenantIdxKey();
+		CFSecBuffTSecGroupByTenantIdxKey key = (CFSecBuffTSecGroupByTenantIdxKey)schema.getFactoryTSecGroup().newByTenantIdxKey();
 		key.setRequiredTenantId( TenantId );
 
 		ICFSecTSecGroup[] recArray;
@@ -232,7 +232,7 @@ public class CFSecRamTSecGroupTable
 		boolean IsVisible )
 	{
 		final String S_ProcName = "CFSecRamTSecGroup.readDerivedByTenantVisIdx";
-		CFSecBuffTSecGroupByTenantVisIdxKey key = schema.getFactoryTSecGroup().newTenantVisIdxKey();
+		CFSecBuffTSecGroupByTenantVisIdxKey key = (CFSecBuffTSecGroupByTenantVisIdxKey)schema.getFactoryTSecGroup().newByTenantVisIdxKey();
 		key.setRequiredTenantId( TenantId );
 		key.setRequiredIsVisible( IsVisible );
 
@@ -261,7 +261,7 @@ public class CFSecRamTSecGroupTable
 		String Name )
 	{
 		final String S_ProcName = "CFSecRamTSecGroup.readDerivedByUNameIdx";
-		CFSecBuffTSecGroupByUNameIdxKey key = schema.getFactoryTSecGroup().newUNameIdxKey();
+		CFSecBuffTSecGroupByUNameIdxKey key = (CFSecBuffTSecGroupByUNameIdxKey)schema.getFactoryTSecGroup().newByUNameIdxKey();
 		key.setRequiredTenantId( TenantId );
 		key.setRequiredName( Name );
 
@@ -279,12 +279,9 @@ public class CFSecRamTSecGroupTable
 		CFLibDbKeyHash256 TSecGroupId )
 	{
 		final String S_ProcName = "CFSecRamTSecGroup.readDerivedByIdIdx() ";
-		CFLibDbKeyHash256 key = schema.getFactoryTSecGroup().newPKey();
-		key.setRequiredTSecGroupId( TSecGroupId );
-
 		ICFSecTSecGroup buff;
-		if( dictByPKey.containsKey( key ) ) {
-			buff = dictByPKey.get( key );
+		if( dictByPKey.containsKey( TSecGroupId ) ) {
+			buff = dictByPKey.get( TSecGroupId );
 		}
 		else {
 			buff = null;
@@ -297,7 +294,7 @@ public class CFSecRamTSecGroupTable
 	{
 		final String S_ProcName = "CFSecRamTSecGroup.readBuff";
 		ICFSecTSecGroup buff = readDerived( Authorization, PKey );
-		if( ( buff != null ) && ( ! buff.getClassCode().equals( "a016" ) ) ) {
+		if( ( buff != null ) && ( buff.getClassCode() != ICFSecTSecGroup.CLASS_CODE ) ) {
 			buff = null;
 		}
 		return( buff );
@@ -308,7 +305,7 @@ public class CFSecRamTSecGroupTable
 	{
 		final String S_ProcName = "lockBuff";
 		ICFSecTSecGroup buff = readDerived( Authorization, PKey );
-		if( ( buff != null ) && ( ! buff.getClassCode().equals( "a016" ) ) ) {
+		if( ( buff != null ) && ( buff.getClassCode() != ICFSecTSecGroup.CLASS_CODE ) ) {
 			buff = null;
 		}
 		return( buff );
@@ -322,7 +319,7 @@ public class CFSecRamTSecGroupTable
 		ICFSecTSecGroup[] buffList = readAllDerived( Authorization );
 		for( int idx = 0; idx < buffList.length; idx ++ ) {
 			buff = buffList[idx];
-			if( ( buff != null ) && buff.getClassCode().equals( "a016" ) ) {
+			if( ( buff != null ) && ( buff.getClassCode() == ICFSecTSecGroup.CLASS_CODE ) ) {
 				filteredList.add( buff );
 			}
 		}
@@ -335,7 +332,7 @@ public class CFSecRamTSecGroupTable
 		final String S_ProcName = "CFSecRamTSecGroup.readBuffByIdIdx() ";
 		ICFSecTSecGroup buff = readDerivedByIdIdx( Authorization,
 			TSecGroupId );
-		if( ( buff != null ) && buff.getClassCode().equals( "a016" ) ) {
+		if( ( buff != null ) && ( buff.getClassCode() == ICFSecTSecGroup.CLASS_CODE ) ) {
 			return( (ICFSecTSecGroup)buff );
 		}
 		else {
@@ -353,7 +350,7 @@ public class CFSecRamTSecGroupTable
 			TenantId );
 		for( int idx = 0; idx < buffList.length; idx ++ ) {
 			buff = buffList[idx];
-			if( ( buff != null ) && buff.getClassCode().equals( "a016" ) ) {
+			if( ( buff != null ) && ( buff.getClassCode() == ICFSecTSecGroup.CLASS_CODE ) ) {
 				filteredList.add( (ICFSecTSecGroup)buff );
 			}
 		}
@@ -372,7 +369,7 @@ public class CFSecRamTSecGroupTable
 			IsVisible );
 		for( int idx = 0; idx < buffList.length; idx ++ ) {
 			buff = buffList[idx];
-			if( ( buff != null ) && buff.getClassCode().equals( "a016" ) ) {
+			if( ( buff != null ) && ( buff.getClassCode() == ICFSecTSecGroup.CLASS_CODE ) ) {
 				filteredList.add( (ICFSecTSecGroup)buff );
 			}
 		}
@@ -387,7 +384,7 @@ public class CFSecRamTSecGroupTable
 		ICFSecTSecGroup buff = readDerivedByUNameIdx( Authorization,
 			TenantId,
 			Name );
-		if( ( buff != null ) && buff.getClassCode().equals( "a016" ) ) {
+		if( ( buff != null ) && ( buff.getClassCode() == ICFSecTSecGroup.CLASS_CODE ) ) {
 			return( (ICFSecTSecGroup)buff );
 		}
 		else {
@@ -395,11 +392,10 @@ public class CFSecRamTSecGroupTable
 		}
 	}
 
-	public void updateTSecGroup( ICFSecAuthorization Authorization,
+	public ICFSecTSecGroup updateTSecGroup( ICFSecAuthorization Authorization,
 		ICFSecTSecGroup Buff )
 	{
-		CFLibDbKeyHash256 pkey = schema.getFactoryTSecGroup().newPKey();
-		pkey.setRequiredTSecGroupId( Buff.getRequiredTSecGroupId() );
+		CFLibDbKeyHash256 pkey = Buff.getPKey();
 		ICFSecTSecGroup existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
@@ -414,25 +410,25 @@ public class CFSecRamTSecGroupTable
 				pkey );
 		}
 		Buff.setRequiredRevision( Buff.getRequiredRevision() + 1 );
-		CFSecBuffTSecGroupByTenantIdxKey existingKeyTenantIdx = schema.getFactoryTSecGroup().newTenantIdxKey();
+		CFSecBuffTSecGroupByTenantIdxKey existingKeyTenantIdx = (CFSecBuffTSecGroupByTenantIdxKey)schema.getFactoryTSecGroup().newByTenantIdxKey();
 		existingKeyTenantIdx.setRequiredTenantId( existing.getRequiredTenantId() );
 
-		CFSecBuffTSecGroupByTenantIdxKey newKeyTenantIdx = schema.getFactoryTSecGroup().newTenantIdxKey();
+		CFSecBuffTSecGroupByTenantIdxKey newKeyTenantIdx = (CFSecBuffTSecGroupByTenantIdxKey)schema.getFactoryTSecGroup().newByTenantIdxKey();
 		newKeyTenantIdx.setRequiredTenantId( Buff.getRequiredTenantId() );
 
-		CFSecBuffTSecGroupByTenantVisIdxKey existingKeyTenantVisIdx = schema.getFactoryTSecGroup().newTenantVisIdxKey();
+		CFSecBuffTSecGroupByTenantVisIdxKey existingKeyTenantVisIdx = (CFSecBuffTSecGroupByTenantVisIdxKey)schema.getFactoryTSecGroup().newByTenantVisIdxKey();
 		existingKeyTenantVisIdx.setRequiredTenantId( existing.getRequiredTenantId() );
 		existingKeyTenantVisIdx.setRequiredIsVisible( existing.getRequiredIsVisible() );
 
-		CFSecBuffTSecGroupByTenantVisIdxKey newKeyTenantVisIdx = schema.getFactoryTSecGroup().newTenantVisIdxKey();
+		CFSecBuffTSecGroupByTenantVisIdxKey newKeyTenantVisIdx = (CFSecBuffTSecGroupByTenantVisIdxKey)schema.getFactoryTSecGroup().newByTenantVisIdxKey();
 		newKeyTenantVisIdx.setRequiredTenantId( Buff.getRequiredTenantId() );
 		newKeyTenantVisIdx.setRequiredIsVisible( Buff.getRequiredIsVisible() );
 
-		CFSecBuffTSecGroupByUNameIdxKey existingKeyUNameIdx = schema.getFactoryTSecGroup().newUNameIdxKey();
+		CFSecBuffTSecGroupByUNameIdxKey existingKeyUNameIdx = (CFSecBuffTSecGroupByUNameIdxKey)schema.getFactoryTSecGroup().newByUNameIdxKey();
 		existingKeyUNameIdx.setRequiredTenantId( existing.getRequiredTenantId() );
 		existingKeyUNameIdx.setRequiredName( existing.getRequiredName() );
 
-		CFSecBuffTSecGroupByUNameIdxKey newKeyUNameIdx = schema.getFactoryTSecGroup().newUNameIdxKey();
+		CFSecBuffTSecGroupByUNameIdxKey newKeyUNameIdx = (CFSecBuffTSecGroupByUNameIdxKey)schema.getFactoryTSecGroup().newByUNameIdxKey();
 		newKeyUNameIdx.setRequiredTenantId( Buff.getRequiredTenantId() );
 		newKeyUNameIdx.setRequiredName( Buff.getRequiredName() );
 
@@ -442,6 +438,7 @@ public class CFSecRamTSecGroupTable
 			if( dictByUNameIdx.containsKey( newKeyUNameIdx ) ) {
 				throw new CFLibUniqueIndexViolationException( getClass(),
 					"updateTSecGroup",
+					"TSecGroupUNameIdx",
 					"TSecGroupUNameIdx",
 					newKeyUNameIdx );
 			}
@@ -502,6 +499,7 @@ public class CFSecRamTSecGroupTable
 		dictByUNameIdx.remove( existingKeyUNameIdx );
 		dictByUNameIdx.put( newKeyUNameIdx, Buff );
 
+		return(Buff);
 	}
 
 	public void deleteTSecGroup( ICFSecAuthorization Authorization,
@@ -527,14 +525,14 @@ public class CFSecRamTSecGroupTable
 						existing.getRequiredTSecGroupId() );
 					schema.getTableTSecGrpInc().deleteTSecGrpIncByGroupIdx( Authorization,
 						existing.getRequiredTSecGroupId() );
-		CFSecBuffTSecGroupByTenantIdxKey keyTenantIdx = schema.getFactoryTSecGroup().newTenantIdxKey();
+		CFSecBuffTSecGroupByTenantIdxKey keyTenantIdx = (CFSecBuffTSecGroupByTenantIdxKey)schema.getFactoryTSecGroup().newByTenantIdxKey();
 		keyTenantIdx.setRequiredTenantId( existing.getRequiredTenantId() );
 
-		CFSecBuffTSecGroupByTenantVisIdxKey keyTenantVisIdx = schema.getFactoryTSecGroup().newTenantVisIdxKey();
+		CFSecBuffTSecGroupByTenantVisIdxKey keyTenantVisIdx = (CFSecBuffTSecGroupByTenantVisIdxKey)schema.getFactoryTSecGroup().newByTenantVisIdxKey();
 		keyTenantVisIdx.setRequiredTenantId( existing.getRequiredTenantId() );
 		keyTenantVisIdx.setRequiredIsVisible( existing.getRequiredIsVisible() );
 
-		CFSecBuffTSecGroupByUNameIdxKey keyUNameIdx = schema.getFactoryTSecGroup().newUNameIdxKey();
+		CFSecBuffTSecGroupByUNameIdxKey keyUNameIdx = (CFSecBuffTSecGroupByUNameIdxKey)schema.getFactoryTSecGroup().newByUNameIdxKey();
 		keyUNameIdx.setRequiredTenantId( existing.getRequiredTenantId() );
 		keyUNameIdx.setRequiredName( existing.getRequiredName() );
 
@@ -554,14 +552,6 @@ public class CFSecRamTSecGroupTable
 		dictByUNameIdx.remove( keyUNameIdx );
 
 	}
-	public void deleteTSecGroupByIdIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 argTSecGroupId )
-	{
-		CFLibDbKeyHash256 key = schema.getFactoryTSecGroup().newPKey();
-		key.setRequiredTSecGroupId( argTSecGroupId );
-		deleteTSecGroupByIdIdx( Authorization, key );
-	}
-
 	public void deleteTSecGroupByIdIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 argKey )
 	{
@@ -591,7 +581,7 @@ public class CFSecRamTSecGroupTable
 	public void deleteTSecGroupByTenantIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 argTenantId )
 	{
-		CFSecBuffTSecGroupByTenantIdxKey key = schema.getFactoryTSecGroup().newTenantIdxKey();
+		CFSecBuffTSecGroupByTenantIdxKey key = (CFSecBuffTSecGroupByTenantIdxKey)schema.getFactoryTSecGroup().newByTenantIdxKey();
 		key.setRequiredTenantId( argTenantId );
 		deleteTSecGroupByTenantIdx( Authorization, key );
 	}
@@ -626,7 +616,7 @@ public class CFSecRamTSecGroupTable
 		CFLibDbKeyHash256 argTenantId,
 		boolean argIsVisible )
 	{
-		CFSecBuffTSecGroupByTenantVisIdxKey key = schema.getFactoryTSecGroup().newTenantVisIdxKey();
+		CFSecBuffTSecGroupByTenantVisIdxKey key = (CFSecBuffTSecGroupByTenantVisIdxKey)schema.getFactoryTSecGroup().newByTenantVisIdxKey();
 		key.setRequiredTenantId( argTenantId );
 		key.setRequiredIsVisible( argIsVisible );
 		deleteTSecGroupByTenantVisIdx( Authorization, key );
@@ -663,7 +653,7 @@ public class CFSecRamTSecGroupTable
 		CFLibDbKeyHash256 argTenantId,
 		String argName )
 	{
-		CFSecBuffTSecGroupByUNameIdxKey key = schema.getFactoryTSecGroup().newUNameIdxKey();
+		CFSecBuffTSecGroupByUNameIdxKey key = (CFSecBuffTSecGroupByUNameIdxKey)schema.getFactoryTSecGroup().newByUNameIdxKey();
 		key.setRequiredTenantId( argTenantId );
 		key.setRequiredName( argName );
 		deleteTSecGroupByUNameIdx( Authorization, key );
