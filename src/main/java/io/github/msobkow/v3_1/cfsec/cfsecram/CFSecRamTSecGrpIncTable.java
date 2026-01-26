@@ -38,13 +38,14 @@ package io.github.msobkow.v3_1.cfsec.cfsecram;
 import java.math.*;
 import java.sql.*;
 import java.text.*;
+import java.time.*;
 import java.util.*;
 import org.apache.commons.codec.binary.Base64;
 import io.github.msobkow.v3_1.cflib.*;
 import io.github.msobkow.v3_1.cflib.dbutil.*;
 
 import io.github.msobkow.v3_1.cfsec.cfsec.*;
-import io.github.msobkow.v3_1.cfsec.cfsecobj.*;
+import io.github.msobkow.v3_1.cfsec.cfsec.buff.*;
 import io.github.msobkow.v3_1.cfsec.cfsecobj.*;
 
 /*
@@ -55,54 +56,54 @@ public class CFSecRamTSecGrpIncTable
 	implements ICFSecTSecGrpIncTable
 {
 	private ICFSecSchema schema;
-	private Map< CFSecTSecGrpIncPKey,
-				CFSecTSecGrpIncBuff > dictByPKey
-		= new HashMap< CFSecTSecGrpIncPKey,
-				CFSecTSecGrpIncBuff >();
-	private Map< CFSecTSecGrpIncByTenantIdxKey,
-				Map< CFSecTSecGrpIncPKey,
-					CFSecTSecGrpIncBuff >> dictByTenantIdx
-		= new HashMap< CFSecTSecGrpIncByTenantIdxKey,
-				Map< CFSecTSecGrpIncPKey,
-					CFSecTSecGrpIncBuff >>();
-	private Map< CFSecTSecGrpIncByGroupIdxKey,
-				Map< CFSecTSecGrpIncPKey,
-					CFSecTSecGrpIncBuff >> dictByGroupIdx
-		= new HashMap< CFSecTSecGrpIncByGroupIdxKey,
-				Map< CFSecTSecGrpIncPKey,
-					CFSecTSecGrpIncBuff >>();
-	private Map< CFSecTSecGrpIncByIncludeIdxKey,
-				Map< CFSecTSecGrpIncPKey,
-					CFSecTSecGrpIncBuff >> dictByIncludeIdx
-		= new HashMap< CFSecTSecGrpIncByIncludeIdxKey,
-				Map< CFSecTSecGrpIncPKey,
-					CFSecTSecGrpIncBuff >>();
-	private Map< CFSecTSecGrpIncByUIncludeIdxKey,
-			CFSecTSecGrpIncBuff > dictByUIncludeIdx
-		= new HashMap< CFSecTSecGrpIncByUIncludeIdxKey,
-			CFSecTSecGrpIncBuff >();
+	private Map< CFLibDbKeyHash256,
+				CFSecBuffTSecGrpInc > dictByPKey
+		= new HashMap< CFLibDbKeyHash256,
+				CFSecBuffTSecGrpInc >();
+	private Map< CFSecBuffTSecGrpIncByTenantIdxKey,
+				Map< CFLibDbKeyHash256,
+					CFSecBuffTSecGrpInc >> dictByTenantIdx
+		= new HashMap< CFSecBuffTSecGrpIncByTenantIdxKey,
+				Map< CFLibDbKeyHash256,
+					CFSecBuffTSecGrpInc >>();
+	private Map< CFSecBuffTSecGrpIncByGroupIdxKey,
+				Map< CFLibDbKeyHash256,
+					CFSecBuffTSecGrpInc >> dictByGroupIdx
+		= new HashMap< CFSecBuffTSecGrpIncByGroupIdxKey,
+				Map< CFLibDbKeyHash256,
+					CFSecBuffTSecGrpInc >>();
+	private Map< CFSecBuffTSecGrpIncByIncludeIdxKey,
+				Map< CFLibDbKeyHash256,
+					CFSecBuffTSecGrpInc >> dictByIncludeIdx
+		= new HashMap< CFSecBuffTSecGrpIncByIncludeIdxKey,
+				Map< CFLibDbKeyHash256,
+					CFSecBuffTSecGrpInc >>();
+	private Map< CFSecBuffTSecGrpIncByUIncludeIdxKey,
+			CFSecBuffTSecGrpInc > dictByUIncludeIdx
+		= new HashMap< CFSecBuffTSecGrpIncByUIncludeIdxKey,
+			CFSecBuffTSecGrpInc >();
 
 	public CFSecRamTSecGrpIncTable( ICFSecSchema argSchema ) {
 		schema = argSchema;
 	}
 
-	public void createTSecGrpInc( CFSecAuthorization Authorization,
-		CFSecTSecGrpIncBuff Buff )
+	public void createTSecGrpInc( ICFSecAuthorization Authorization,
+		ICFSecTSecGrpInc Buff )
 	{
 		final String S_ProcName = "createTSecGrpInc";
-		CFSecTSecGrpIncPKey pkey = schema.getFactoryTSecGrpInc().newPKey();
+		CFLibDbKeyHash256 pkey = schema.getFactoryTSecGrpInc().newPKey();
 		pkey.setRequiredTSecGrpIncId( schema.nextTSecGrpIncIdGen() );
 		Buff.setRequiredTSecGrpIncId( pkey.getRequiredTSecGrpIncId() );
-		CFSecTSecGrpIncByTenantIdxKey keyTenantIdx = schema.getFactoryTSecGrpInc().newTenantIdxKey();
+		CFSecBuffTSecGrpIncByTenantIdxKey keyTenantIdx = schema.getFactoryTSecGrpInc().newTenantIdxKey();
 		keyTenantIdx.setRequiredTenantId( Buff.getRequiredTenantId() );
 
-		CFSecTSecGrpIncByGroupIdxKey keyGroupIdx = schema.getFactoryTSecGrpInc().newGroupIdxKey();
+		CFSecBuffTSecGrpIncByGroupIdxKey keyGroupIdx = schema.getFactoryTSecGrpInc().newGroupIdxKey();
 		keyGroupIdx.setRequiredTSecGroupId( Buff.getRequiredTSecGroupId() );
 
-		CFSecTSecGrpIncByIncludeIdxKey keyIncludeIdx = schema.getFactoryTSecGrpInc().newIncludeIdxKey();
+		CFSecBuffTSecGrpIncByIncludeIdxKey keyIncludeIdx = schema.getFactoryTSecGrpInc().newIncludeIdxKey();
 		keyIncludeIdx.setRequiredIncludeGroupId( Buff.getRequiredIncludeGroupId() );
 
-		CFSecTSecGrpIncByUIncludeIdxKey keyUIncludeIdx = schema.getFactoryTSecGrpInc().newUIncludeIdxKey();
+		CFSecBuffTSecGrpIncByUIncludeIdxKey keyUIncludeIdx = schema.getFactoryTSecGrpInc().newUIncludeIdxKey();
 		keyUIncludeIdx.setRequiredTenantId( Buff.getRequiredTenantId() );
 		keyUIncludeIdx.setRequiredTSecGroupId( Buff.getRequiredTSecGroupId() );
 		keyUIncludeIdx.setRequiredIncludeGroupId( Buff.getRequiredIncludeGroupId() );
@@ -160,32 +161,32 @@ public class CFSecRamTSecGrpIncTable
 
 		dictByPKey.put( pkey, Buff );
 
-		Map< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff > subdictTenantIdx;
+		Map< CFLibDbKeyHash256, CFSecBuffTSecGrpInc > subdictTenantIdx;
 		if( dictByTenantIdx.containsKey( keyTenantIdx ) ) {
 			subdictTenantIdx = dictByTenantIdx.get( keyTenantIdx );
 		}
 		else {
-			subdictTenantIdx = new HashMap< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff >();
+			subdictTenantIdx = new HashMap< CFLibDbKeyHash256, CFSecBuffTSecGrpInc >();
 			dictByTenantIdx.put( keyTenantIdx, subdictTenantIdx );
 		}
 		subdictTenantIdx.put( pkey, Buff );
 
-		Map< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff > subdictGroupIdx;
+		Map< CFLibDbKeyHash256, CFSecBuffTSecGrpInc > subdictGroupIdx;
 		if( dictByGroupIdx.containsKey( keyGroupIdx ) ) {
 			subdictGroupIdx = dictByGroupIdx.get( keyGroupIdx );
 		}
 		else {
-			subdictGroupIdx = new HashMap< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff >();
+			subdictGroupIdx = new HashMap< CFLibDbKeyHash256, CFSecBuffTSecGrpInc >();
 			dictByGroupIdx.put( keyGroupIdx, subdictGroupIdx );
 		}
 		subdictGroupIdx.put( pkey, Buff );
 
-		Map< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff > subdictIncludeIdx;
+		Map< CFLibDbKeyHash256, CFSecBuffTSecGrpInc > subdictIncludeIdx;
 		if( dictByIncludeIdx.containsKey( keyIncludeIdx ) ) {
 			subdictIncludeIdx = dictByIncludeIdx.get( keyIncludeIdx );
 		}
 		else {
-			subdictIncludeIdx = new HashMap< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff >();
+			subdictIncludeIdx = new HashMap< CFLibDbKeyHash256, CFSecBuffTSecGrpInc >();
 			dictByIncludeIdx.put( keyIncludeIdx, subdictIncludeIdx );
 		}
 		subdictIncludeIdx.put( pkey, Buff );
@@ -194,13 +195,27 @@ public class CFSecRamTSecGrpIncTable
 
 	}
 
-	public CFSecTSecGrpIncBuff readDerived( CFSecAuthorization Authorization,
-		CFSecTSecGrpIncPKey PKey )
+	public ICFSecTSecGrpInc readDerived( ICFSecAuthorization Authorization,
+		CFLibDbKeyHash256 PKey )
 	{
 		final String S_ProcName = "CFSecRamTSecGrpInc.readDerived";
-		CFSecTSecGrpIncPKey key = schema.getFactoryTSecGrpInc().newPKey();
+		ICFSecTSecGrpInc buff;
+		if( dictByPKey.containsKey( PKey ) ) {
+			buff = dictByPKey.get( PKey );
+		}
+		else {
+			buff = null;
+		}
+		return( buff );
+	}
+
+	public ICFSecTSecGrpInc lockDerived( ICFSecAuthorization Authorization,
+		CFLibDbKeyHash256 PKey )
+	{
+		final String S_ProcName = "CFSecRamTSecGrpInc.readDerived";
+		CFLibDbKeyHash256 key = schema.getFactoryTSecGrpInc().newPKey();
 		key.setRequiredTSecGrpIncId( PKey.getRequiredTSecGrpIncId() );
-		CFSecTSecGrpIncBuff buff;
+		ICFSecTSecGrpInc buff;
 		if( dictByPKey.containsKey( key ) ) {
 			buff = dictByPKey.get( key );
 		}
@@ -210,26 +225,10 @@ public class CFSecRamTSecGrpIncTable
 		return( buff );
 	}
 
-	public CFSecTSecGrpIncBuff lockDerived( CFSecAuthorization Authorization,
-		CFSecTSecGrpIncPKey PKey )
-	{
-		final String S_ProcName = "CFSecRamTSecGrpInc.readDerived";
-		CFSecTSecGrpIncPKey key = schema.getFactoryTSecGrpInc().newPKey();
-		key.setRequiredTSecGrpIncId( PKey.getRequiredTSecGrpIncId() );
-		CFSecTSecGrpIncBuff buff;
-		if( dictByPKey.containsKey( key ) ) {
-			buff = dictByPKey.get( key );
-		}
-		else {
-			buff = null;
-		}
-		return( buff );
-	}
-
-	public CFSecTSecGrpIncBuff[] readAllDerived( CFSecAuthorization Authorization ) {
+	public ICFSecTSecGrpInc[] readAllDerived( ICFSecAuthorization Authorization ) {
 		final String S_ProcName = "CFSecRamTSecGrpInc.readAllDerived";
-		CFSecTSecGrpIncBuff[] retList = new CFSecTSecGrpIncBuff[ dictByPKey.values().size() ];
-		Iterator< CFSecTSecGrpIncBuff > iter = dictByPKey.values().iterator();
+		ICFSecTSecGrpInc[] retList = new ICFSecTSecGrpInc[ dictByPKey.values().size() ];
+		Iterator< ICFSecTSecGrpInc > iter = dictByPKey.values().iterator();
 		int idx = 0;
 		while( iter.hasNext() ) {
 			retList[ idx++ ] = iter.next();
@@ -237,99 +236,99 @@ public class CFSecRamTSecGrpIncTable
 		return( retList );
 	}
 
-	public CFSecTSecGrpIncBuff[] readDerivedByTenantIdx( CFSecAuthorization Authorization,
+	public ICFSecTSecGrpInc[] readDerivedByTenantIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 TenantId )
 	{
 		final String S_ProcName = "CFSecRamTSecGrpInc.readDerivedByTenantIdx";
-		CFSecTSecGrpIncByTenantIdxKey key = schema.getFactoryTSecGrpInc().newTenantIdxKey();
+		CFSecBuffTSecGrpIncByTenantIdxKey key = schema.getFactoryTSecGrpInc().newTenantIdxKey();
 		key.setRequiredTenantId( TenantId );
 
-		CFSecTSecGrpIncBuff[] recArray;
+		ICFSecTSecGrpInc[] recArray;
 		if( dictByTenantIdx.containsKey( key ) ) {
-			Map< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff > subdictTenantIdx
+			Map< CFLibDbKeyHash256, CFSecBuffTSecGrpInc > subdictTenantIdx
 				= dictByTenantIdx.get( key );
-			recArray = new CFSecTSecGrpIncBuff[ subdictTenantIdx.size() ];
-			Iterator< CFSecTSecGrpIncBuff > iter = subdictTenantIdx.values().iterator();
+			recArray = new ICFSecTSecGrpInc[ subdictTenantIdx.size() ];
+			Iterator< ICFSecTSecGrpInc > iter = subdictTenantIdx.values().iterator();
 			int idx = 0;
 			while( iter.hasNext() ) {
 				recArray[ idx++ ] = iter.next();
 			}
 		}
 		else {
-			Map< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff > subdictTenantIdx
-				= new HashMap< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff >();
+			Map< CFLibDbKeyHash256, CFSecBuffTSecGrpInc > subdictTenantIdx
+				= new HashMap< CFLibDbKeyHash256, CFSecBuffTSecGrpInc >();
 			dictByTenantIdx.put( key, subdictTenantIdx );
-			recArray = new CFSecTSecGrpIncBuff[0];
+			recArray = new ICFSecTSecGrpInc[0];
 		}
 		return( recArray );
 	}
 
-	public CFSecTSecGrpIncBuff[] readDerivedByGroupIdx( CFSecAuthorization Authorization,
+	public ICFSecTSecGrpInc[] readDerivedByGroupIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 TSecGroupId )
 	{
 		final String S_ProcName = "CFSecRamTSecGrpInc.readDerivedByGroupIdx";
-		CFSecTSecGrpIncByGroupIdxKey key = schema.getFactoryTSecGrpInc().newGroupIdxKey();
+		CFSecBuffTSecGrpIncByGroupIdxKey key = schema.getFactoryTSecGrpInc().newGroupIdxKey();
 		key.setRequiredTSecGroupId( TSecGroupId );
 
-		CFSecTSecGrpIncBuff[] recArray;
+		ICFSecTSecGrpInc[] recArray;
 		if( dictByGroupIdx.containsKey( key ) ) {
-			Map< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff > subdictGroupIdx
+			Map< CFLibDbKeyHash256, CFSecBuffTSecGrpInc > subdictGroupIdx
 				= dictByGroupIdx.get( key );
-			recArray = new CFSecTSecGrpIncBuff[ subdictGroupIdx.size() ];
-			Iterator< CFSecTSecGrpIncBuff > iter = subdictGroupIdx.values().iterator();
+			recArray = new ICFSecTSecGrpInc[ subdictGroupIdx.size() ];
+			Iterator< ICFSecTSecGrpInc > iter = subdictGroupIdx.values().iterator();
 			int idx = 0;
 			while( iter.hasNext() ) {
 				recArray[ idx++ ] = iter.next();
 			}
 		}
 		else {
-			Map< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff > subdictGroupIdx
-				= new HashMap< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff >();
+			Map< CFLibDbKeyHash256, CFSecBuffTSecGrpInc > subdictGroupIdx
+				= new HashMap< CFLibDbKeyHash256, CFSecBuffTSecGrpInc >();
 			dictByGroupIdx.put( key, subdictGroupIdx );
-			recArray = new CFSecTSecGrpIncBuff[0];
+			recArray = new ICFSecTSecGrpInc[0];
 		}
 		return( recArray );
 	}
 
-	public CFSecTSecGrpIncBuff[] readDerivedByIncludeIdx( CFSecAuthorization Authorization,
+	public ICFSecTSecGrpInc[] readDerivedByIncludeIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 IncludeGroupId )
 	{
 		final String S_ProcName = "CFSecRamTSecGrpInc.readDerivedByIncludeIdx";
-		CFSecTSecGrpIncByIncludeIdxKey key = schema.getFactoryTSecGrpInc().newIncludeIdxKey();
+		CFSecBuffTSecGrpIncByIncludeIdxKey key = schema.getFactoryTSecGrpInc().newIncludeIdxKey();
 		key.setRequiredIncludeGroupId( IncludeGroupId );
 
-		CFSecTSecGrpIncBuff[] recArray;
+		ICFSecTSecGrpInc[] recArray;
 		if( dictByIncludeIdx.containsKey( key ) ) {
-			Map< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff > subdictIncludeIdx
+			Map< CFLibDbKeyHash256, CFSecBuffTSecGrpInc > subdictIncludeIdx
 				= dictByIncludeIdx.get( key );
-			recArray = new CFSecTSecGrpIncBuff[ subdictIncludeIdx.size() ];
-			Iterator< CFSecTSecGrpIncBuff > iter = subdictIncludeIdx.values().iterator();
+			recArray = new ICFSecTSecGrpInc[ subdictIncludeIdx.size() ];
+			Iterator< ICFSecTSecGrpInc > iter = subdictIncludeIdx.values().iterator();
 			int idx = 0;
 			while( iter.hasNext() ) {
 				recArray[ idx++ ] = iter.next();
 			}
 		}
 		else {
-			Map< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff > subdictIncludeIdx
-				= new HashMap< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff >();
+			Map< CFLibDbKeyHash256, CFSecBuffTSecGrpInc > subdictIncludeIdx
+				= new HashMap< CFLibDbKeyHash256, CFSecBuffTSecGrpInc >();
 			dictByIncludeIdx.put( key, subdictIncludeIdx );
-			recArray = new CFSecTSecGrpIncBuff[0];
+			recArray = new ICFSecTSecGrpInc[0];
 		}
 		return( recArray );
 	}
 
-	public CFSecTSecGrpIncBuff readDerivedByUIncludeIdx( CFSecAuthorization Authorization,
+	public ICFSecTSecGrpInc readDerivedByUIncludeIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 TenantId,
 		CFLibDbKeyHash256 TSecGroupId,
 		CFLibDbKeyHash256 IncludeGroupId )
 	{
 		final String S_ProcName = "CFSecRamTSecGrpInc.readDerivedByUIncludeIdx";
-		CFSecTSecGrpIncByUIncludeIdxKey key = schema.getFactoryTSecGrpInc().newUIncludeIdxKey();
+		CFSecBuffTSecGrpIncByUIncludeIdxKey key = schema.getFactoryTSecGrpInc().newUIncludeIdxKey();
 		key.setRequiredTenantId( TenantId );
 		key.setRequiredTSecGroupId( TSecGroupId );
 		key.setRequiredIncludeGroupId( IncludeGroupId );
 
-		CFSecTSecGrpIncBuff buff;
+		ICFSecTSecGrpInc buff;
 		if( dictByUIncludeIdx.containsKey( key ) ) {
 			buff = dictByUIncludeIdx.get( key );
 		}
@@ -339,14 +338,14 @@ public class CFSecRamTSecGrpIncTable
 		return( buff );
 	}
 
-	public CFSecTSecGrpIncBuff readDerivedByIdIdx( CFSecAuthorization Authorization,
+	public ICFSecTSecGrpInc readDerivedByIdIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 TSecGrpIncId )
 	{
 		final String S_ProcName = "CFSecRamTSecGrpInc.readDerivedByIdIdx() ";
-		CFSecTSecGrpIncPKey key = schema.getFactoryTSecGrpInc().newPKey();
+		CFLibDbKeyHash256 key = schema.getFactoryTSecGrpInc().newPKey();
 		key.setRequiredTSecGrpIncId( TSecGrpIncId );
 
-		CFSecTSecGrpIncBuff buff;
+		ICFSecTSecGrpInc buff;
 		if( dictByPKey.containsKey( key ) ) {
 			buff = dictByPKey.get( key );
 		}
@@ -356,41 +355,41 @@ public class CFSecRamTSecGrpIncTable
 		return( buff );
 	}
 
-	public CFSecTSecGrpIncBuff readBuff( CFSecAuthorization Authorization,
-		CFSecTSecGrpIncPKey PKey )
+	public ICFSecTSecGrpInc readBuff( ICFSecAuthorization Authorization,
+		CFLibDbKeyHash256 PKey )
 	{
 		final String S_ProcName = "CFSecRamTSecGrpInc.readBuff";
-		CFSecTSecGrpIncBuff buff = readDerived( Authorization, PKey );
+		ICFSecTSecGrpInc buff = readDerived( Authorization, PKey );
 		if( ( buff != null ) && ( ! buff.getClassCode().equals( "a017" ) ) ) {
 			buff = null;
 		}
 		return( buff );
 	}
 
-	public CFSecTSecGrpIncBuff lockBuff( CFSecAuthorization Authorization,
-		CFSecTSecGrpIncPKey PKey )
+	public ICFSecTSecGrpInc lockBuff( ICFSecAuthorization Authorization,
+		CFLibDbKeyHash256 PKey )
 	{
 		final String S_ProcName = "lockBuff";
-		CFSecTSecGrpIncBuff buff = readDerived( Authorization, PKey );
+		ICFSecTSecGrpInc buff = readDerived( Authorization, PKey );
 		if( ( buff != null ) && ( ! buff.getClassCode().equals( "a017" ) ) ) {
 			buff = null;
 		}
 		return( buff );
 	}
 
-	public CFSecTSecGrpIncBuff[] readAllBuff( CFSecAuthorization Authorization )
+	public ICFSecTSecGrpInc[] readAllBuff( ICFSecAuthorization Authorization )
 	{
 		final String S_ProcName = "CFSecRamTSecGrpInc.readAllBuff";
-		CFSecTSecGrpIncBuff buff;
-		ArrayList<CFSecTSecGrpIncBuff> filteredList = new ArrayList<CFSecTSecGrpIncBuff>();
-		CFSecTSecGrpIncBuff[] buffList = readAllDerived( Authorization );
+		ICFSecTSecGrpInc buff;
+		ArrayList<ICFSecTSecGrpInc> filteredList = new ArrayList<ICFSecTSecGrpInc>();
+		ICFSecTSecGrpInc[] buffList = readAllDerived( Authorization );
 		for( int idx = 0; idx < buffList.length; idx ++ ) {
 			buff = buffList[idx];
 			if( ( buff != null ) && buff.getClassCode().equals( "a017" ) ) {
 				filteredList.add( buff );
 			}
 		}
-		return( filteredList.toArray( new CFSecTSecGrpIncBuff[0] ) );
+		return( filteredList.toArray( new ICFSecTSecGrpInc[0] ) );
 	}
 
 	/**
@@ -400,90 +399,90 @@ public class CFSecRamTSecGrpIncTable
 	 *
 	 *	@return All the specific TSecGrpInc instances in the database accessible for the Authorization.
 	 */
-	public CFSecTSecGrpIncBuff[] pageAllBuff( CFSecAuthorization Authorization,
+	public ICFSecTSecGrpInc[] pageAllBuff( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 priorTSecGrpIncId )
 	{
 		final String S_ProcName = "pageAllBuff";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 
-	public CFSecTSecGrpIncBuff readBuffByIdIdx( CFSecAuthorization Authorization,
+	public ICFSecTSecGrpInc readBuffByIdIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 TSecGrpIncId )
 	{
 		final String S_ProcName = "CFSecRamTSecGrpInc.readBuffByIdIdx() ";
-		CFSecTSecGrpIncBuff buff = readDerivedByIdIdx( Authorization,
+		ICFSecTSecGrpInc buff = readDerivedByIdIdx( Authorization,
 			TSecGrpIncId );
 		if( ( buff != null ) && buff.getClassCode().equals( "a017" ) ) {
-			return( (CFSecTSecGrpIncBuff)buff );
+			return( (ICFSecTSecGrpInc)buff );
 		}
 		else {
 			return( null );
 		}
 	}
 
-	public CFSecTSecGrpIncBuff[] readBuffByTenantIdx( CFSecAuthorization Authorization,
+	public ICFSecTSecGrpInc[] readBuffByTenantIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 TenantId )
 	{
 		final String S_ProcName = "CFSecRamTSecGrpInc.readBuffByTenantIdx() ";
-		CFSecTSecGrpIncBuff buff;
-		ArrayList<CFSecTSecGrpIncBuff> filteredList = new ArrayList<CFSecTSecGrpIncBuff>();
-		CFSecTSecGrpIncBuff[] buffList = readDerivedByTenantIdx( Authorization,
+		ICFSecTSecGrpInc buff;
+		ArrayList<ICFSecTSecGrpInc> filteredList = new ArrayList<ICFSecTSecGrpInc>();
+		ICFSecTSecGrpInc[] buffList = readDerivedByTenantIdx( Authorization,
 			TenantId );
 		for( int idx = 0; idx < buffList.length; idx ++ ) {
 			buff = buffList[idx];
 			if( ( buff != null ) && buff.getClassCode().equals( "a017" ) ) {
-				filteredList.add( (CFSecTSecGrpIncBuff)buff );
+				filteredList.add( (ICFSecTSecGrpInc)buff );
 			}
 		}
-		return( filteredList.toArray( new CFSecTSecGrpIncBuff[0] ) );
+		return( filteredList.toArray( new ICFSecTSecGrpInc[0] ) );
 	}
 
-	public CFSecTSecGrpIncBuff[] readBuffByGroupIdx( CFSecAuthorization Authorization,
+	public ICFSecTSecGrpInc[] readBuffByGroupIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 TSecGroupId )
 	{
 		final String S_ProcName = "CFSecRamTSecGrpInc.readBuffByGroupIdx() ";
-		CFSecTSecGrpIncBuff buff;
-		ArrayList<CFSecTSecGrpIncBuff> filteredList = new ArrayList<CFSecTSecGrpIncBuff>();
-		CFSecTSecGrpIncBuff[] buffList = readDerivedByGroupIdx( Authorization,
+		ICFSecTSecGrpInc buff;
+		ArrayList<ICFSecTSecGrpInc> filteredList = new ArrayList<ICFSecTSecGrpInc>();
+		ICFSecTSecGrpInc[] buffList = readDerivedByGroupIdx( Authorization,
 			TSecGroupId );
 		for( int idx = 0; idx < buffList.length; idx ++ ) {
 			buff = buffList[idx];
 			if( ( buff != null ) && buff.getClassCode().equals( "a017" ) ) {
-				filteredList.add( (CFSecTSecGrpIncBuff)buff );
+				filteredList.add( (ICFSecTSecGrpInc)buff );
 			}
 		}
-		return( filteredList.toArray( new CFSecTSecGrpIncBuff[0] ) );
+		return( filteredList.toArray( new ICFSecTSecGrpInc[0] ) );
 	}
 
-	public CFSecTSecGrpIncBuff[] readBuffByIncludeIdx( CFSecAuthorization Authorization,
+	public ICFSecTSecGrpInc[] readBuffByIncludeIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 IncludeGroupId )
 	{
 		final String S_ProcName = "CFSecRamTSecGrpInc.readBuffByIncludeIdx() ";
-		CFSecTSecGrpIncBuff buff;
-		ArrayList<CFSecTSecGrpIncBuff> filteredList = new ArrayList<CFSecTSecGrpIncBuff>();
-		CFSecTSecGrpIncBuff[] buffList = readDerivedByIncludeIdx( Authorization,
+		ICFSecTSecGrpInc buff;
+		ArrayList<ICFSecTSecGrpInc> filteredList = new ArrayList<ICFSecTSecGrpInc>();
+		ICFSecTSecGrpInc[] buffList = readDerivedByIncludeIdx( Authorization,
 			IncludeGroupId );
 		for( int idx = 0; idx < buffList.length; idx ++ ) {
 			buff = buffList[idx];
 			if( ( buff != null ) && buff.getClassCode().equals( "a017" ) ) {
-				filteredList.add( (CFSecTSecGrpIncBuff)buff );
+				filteredList.add( (ICFSecTSecGrpInc)buff );
 			}
 		}
-		return( filteredList.toArray( new CFSecTSecGrpIncBuff[0] ) );
+		return( filteredList.toArray( new ICFSecTSecGrpInc[0] ) );
 	}
 
-	public CFSecTSecGrpIncBuff readBuffByUIncludeIdx( CFSecAuthorization Authorization,
+	public ICFSecTSecGrpInc readBuffByUIncludeIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 TenantId,
 		CFLibDbKeyHash256 TSecGroupId,
 		CFLibDbKeyHash256 IncludeGroupId )
 	{
 		final String S_ProcName = "CFSecRamTSecGrpInc.readBuffByUIncludeIdx() ";
-		CFSecTSecGrpIncBuff buff = readDerivedByUIncludeIdx( Authorization,
+		ICFSecTSecGrpInc buff = readDerivedByUIncludeIdx( Authorization,
 			TenantId,
 			TSecGroupId,
 			IncludeGroupId );
 		if( ( buff != null ) && buff.getClassCode().equals( "a017" ) ) {
-			return( (CFSecTSecGrpIncBuff)buff );
+			return( (ICFSecTSecGrpInc)buff );
 		}
 		else {
 			return( null );
@@ -501,7 +500,7 @@ public class CFSecRamTSecGrpIncTable
 	 *
 	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
 	 */
-	public CFSecTSecGrpIncBuff[] pageBuffByTenantIdx( CFSecAuthorization Authorization,
+	public ICFSecTSecGrpInc[] pageBuffByTenantIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 TenantId,
 		CFLibDbKeyHash256 priorTSecGrpIncId )
 	{
@@ -520,7 +519,7 @@ public class CFSecRamTSecGrpIncTable
 	 *
 	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
 	 */
-	public CFSecTSecGrpIncBuff[] pageBuffByGroupIdx( CFSecAuthorization Authorization,
+	public ICFSecTSecGrpInc[] pageBuffByGroupIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 TSecGroupId,
 		CFLibDbKeyHash256 priorTSecGrpIncId )
 	{
@@ -539,7 +538,7 @@ public class CFSecRamTSecGrpIncTable
 	 *
 	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
 	 */
-	public CFSecTSecGrpIncBuff[] pageBuffByIncludeIdx( CFSecAuthorization Authorization,
+	public ICFSecTSecGrpInc[] pageBuffByIncludeIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 IncludeGroupId,
 		CFLibDbKeyHash256 priorTSecGrpIncId )
 	{
@@ -547,12 +546,12 @@ public class CFSecRamTSecGrpIncTable
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 
-	public void updateTSecGrpInc( CFSecAuthorization Authorization,
-		CFSecTSecGrpIncBuff Buff )
+	public void updateTSecGrpInc( ICFSecAuthorization Authorization,
+		ICFSecTSecGrpInc Buff )
 	{
-		CFSecTSecGrpIncPKey pkey = schema.getFactoryTSecGrpInc().newPKey();
+		CFLibDbKeyHash256 pkey = schema.getFactoryTSecGrpInc().newPKey();
 		pkey.setRequiredTSecGrpIncId( Buff.getRequiredTSecGrpIncId() );
-		CFSecTSecGrpIncBuff existing = dictByPKey.get( pkey );
+		ICFSecTSecGrpInc existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
 				"updateTSecGrpInc",
@@ -566,30 +565,30 @@ public class CFSecRamTSecGrpIncTable
 				pkey );
 		}
 		Buff.setRequiredRevision( Buff.getRequiredRevision() + 1 );
-		CFSecTSecGrpIncByTenantIdxKey existingKeyTenantIdx = schema.getFactoryTSecGrpInc().newTenantIdxKey();
+		CFSecBuffTSecGrpIncByTenantIdxKey existingKeyTenantIdx = schema.getFactoryTSecGrpInc().newTenantIdxKey();
 		existingKeyTenantIdx.setRequiredTenantId( existing.getRequiredTenantId() );
 
-		CFSecTSecGrpIncByTenantIdxKey newKeyTenantIdx = schema.getFactoryTSecGrpInc().newTenantIdxKey();
+		CFSecBuffTSecGrpIncByTenantIdxKey newKeyTenantIdx = schema.getFactoryTSecGrpInc().newTenantIdxKey();
 		newKeyTenantIdx.setRequiredTenantId( Buff.getRequiredTenantId() );
 
-		CFSecTSecGrpIncByGroupIdxKey existingKeyGroupIdx = schema.getFactoryTSecGrpInc().newGroupIdxKey();
+		CFSecBuffTSecGrpIncByGroupIdxKey existingKeyGroupIdx = schema.getFactoryTSecGrpInc().newGroupIdxKey();
 		existingKeyGroupIdx.setRequiredTSecGroupId( existing.getRequiredTSecGroupId() );
 
-		CFSecTSecGrpIncByGroupIdxKey newKeyGroupIdx = schema.getFactoryTSecGrpInc().newGroupIdxKey();
+		CFSecBuffTSecGrpIncByGroupIdxKey newKeyGroupIdx = schema.getFactoryTSecGrpInc().newGroupIdxKey();
 		newKeyGroupIdx.setRequiredTSecGroupId( Buff.getRequiredTSecGroupId() );
 
-		CFSecTSecGrpIncByIncludeIdxKey existingKeyIncludeIdx = schema.getFactoryTSecGrpInc().newIncludeIdxKey();
+		CFSecBuffTSecGrpIncByIncludeIdxKey existingKeyIncludeIdx = schema.getFactoryTSecGrpInc().newIncludeIdxKey();
 		existingKeyIncludeIdx.setRequiredIncludeGroupId( existing.getRequiredIncludeGroupId() );
 
-		CFSecTSecGrpIncByIncludeIdxKey newKeyIncludeIdx = schema.getFactoryTSecGrpInc().newIncludeIdxKey();
+		CFSecBuffTSecGrpIncByIncludeIdxKey newKeyIncludeIdx = schema.getFactoryTSecGrpInc().newIncludeIdxKey();
 		newKeyIncludeIdx.setRequiredIncludeGroupId( Buff.getRequiredIncludeGroupId() );
 
-		CFSecTSecGrpIncByUIncludeIdxKey existingKeyUIncludeIdx = schema.getFactoryTSecGrpInc().newUIncludeIdxKey();
+		CFSecBuffTSecGrpIncByUIncludeIdxKey existingKeyUIncludeIdx = schema.getFactoryTSecGrpInc().newUIncludeIdxKey();
 		existingKeyUIncludeIdx.setRequiredTenantId( existing.getRequiredTenantId() );
 		existingKeyUIncludeIdx.setRequiredTSecGroupId( existing.getRequiredTSecGroupId() );
 		existingKeyUIncludeIdx.setRequiredIncludeGroupId( existing.getRequiredIncludeGroupId() );
 
-		CFSecTSecGrpIncByUIncludeIdxKey newKeyUIncludeIdx = schema.getFactoryTSecGrpInc().newUIncludeIdxKey();
+		CFSecBuffTSecGrpIncByUIncludeIdxKey newKeyUIncludeIdx = schema.getFactoryTSecGrpInc().newUIncludeIdxKey();
 		newKeyUIncludeIdx.setRequiredTenantId( Buff.getRequiredTenantId() );
 		newKeyUIncludeIdx.setRequiredTSecGroupId( Buff.getRequiredTSecGroupId() );
 		newKeyUIncludeIdx.setRequiredIncludeGroupId( Buff.getRequiredIncludeGroupId() );
@@ -643,7 +642,7 @@ public class CFSecRamTSecGrpIncTable
 
 		// Update is valid
 
-		Map< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff > subdict;
+		Map< CFLibDbKeyHash256, CFSecBuffTSecGrpInc > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -656,7 +655,7 @@ public class CFSecRamTSecGrpIncTable
 			subdict = dictByTenantIdx.get( newKeyTenantIdx );
 		}
 		else {
-			subdict = new HashMap< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff >();
+			subdict = new HashMap< CFLibDbKeyHash256, CFSecBuffTSecGrpInc >();
 			dictByTenantIdx.put( newKeyTenantIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -669,7 +668,7 @@ public class CFSecRamTSecGrpIncTable
 			subdict = dictByGroupIdx.get( newKeyGroupIdx );
 		}
 		else {
-			subdict = new HashMap< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff >();
+			subdict = new HashMap< CFLibDbKeyHash256, CFSecBuffTSecGrpInc >();
 			dictByGroupIdx.put( newKeyGroupIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -682,7 +681,7 @@ public class CFSecRamTSecGrpIncTable
 			subdict = dictByIncludeIdx.get( newKeyIncludeIdx );
 		}
 		else {
-			subdict = new HashMap< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff >();
+			subdict = new HashMap< CFLibDbKeyHash256, CFSecBuffTSecGrpInc >();
 			dictByIncludeIdx.put( newKeyIncludeIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -692,14 +691,14 @@ public class CFSecRamTSecGrpIncTable
 
 	}
 
-	public void deleteTSecGrpInc( CFSecAuthorization Authorization,
-		CFSecTSecGrpIncBuff Buff )
+	public void deleteTSecGrpInc( ICFSecAuthorization Authorization,
+		ICFSecTSecGrpInc Buff )
 	{
 		final String S_ProcName = "CFSecRamTSecGrpIncTable.deleteTSecGrpInc() ";
 		String classCode;
-		CFSecTSecGrpIncPKey pkey = schema.getFactoryTSecGrpInc().newPKey();
+		CFLibDbKeyHash256 pkey = schema.getFactoryTSecGrpInc().newPKey();
 		pkey.setRequiredTSecGrpIncId( Buff.getRequiredTSecGrpIncId() );
-		CFSecTSecGrpIncBuff existing = dictByPKey.get( pkey );
+		ICFSecTSecGrpInc existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
 		}
@@ -709,16 +708,16 @@ public class CFSecRamTSecGrpIncTable
 				"deleteTSecGrpInc",
 				pkey );
 		}
-		CFSecTSecGrpIncByTenantIdxKey keyTenantIdx = schema.getFactoryTSecGrpInc().newTenantIdxKey();
+		CFSecBuffTSecGrpIncByTenantIdxKey keyTenantIdx = schema.getFactoryTSecGrpInc().newTenantIdxKey();
 		keyTenantIdx.setRequiredTenantId( existing.getRequiredTenantId() );
 
-		CFSecTSecGrpIncByGroupIdxKey keyGroupIdx = schema.getFactoryTSecGrpInc().newGroupIdxKey();
+		CFSecBuffTSecGrpIncByGroupIdxKey keyGroupIdx = schema.getFactoryTSecGrpInc().newGroupIdxKey();
 		keyGroupIdx.setRequiredTSecGroupId( existing.getRequiredTSecGroupId() );
 
-		CFSecTSecGrpIncByIncludeIdxKey keyIncludeIdx = schema.getFactoryTSecGrpInc().newIncludeIdxKey();
+		CFSecBuffTSecGrpIncByIncludeIdxKey keyIncludeIdx = schema.getFactoryTSecGrpInc().newIncludeIdxKey();
 		keyIncludeIdx.setRequiredIncludeGroupId( existing.getRequiredIncludeGroupId() );
 
-		CFSecTSecGrpIncByUIncludeIdxKey keyUIncludeIdx = schema.getFactoryTSecGrpInc().newUIncludeIdxKey();
+		CFSecBuffTSecGrpIncByUIncludeIdxKey keyUIncludeIdx = schema.getFactoryTSecGrpInc().newUIncludeIdxKey();
 		keyUIncludeIdx.setRequiredTenantId( existing.getRequiredTenantId() );
 		keyUIncludeIdx.setRequiredTSecGroupId( existing.getRequiredTSecGroupId() );
 		keyUIncludeIdx.setRequiredIncludeGroupId( existing.getRequiredIncludeGroupId() );
@@ -726,7 +725,7 @@ public class CFSecRamTSecGrpIncTable
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< CFSecTSecGrpIncPKey, CFSecTSecGrpIncBuff > subdict;
+		Map< CFLibDbKeyHash256, CFSecBuffTSecGrpInc > subdict;
 
 		dictByPKey.remove( pkey );
 
@@ -742,32 +741,32 @@ public class CFSecRamTSecGrpIncTable
 		dictByUIncludeIdx.remove( keyUIncludeIdx );
 
 	}
-	public void deleteTSecGrpIncByIdIdx( CFSecAuthorization Authorization,
+	public void deleteTSecGrpIncByIdIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 argTSecGrpIncId )
 	{
-		CFSecTSecGrpIncPKey key = schema.getFactoryTSecGrpInc().newPKey();
+		CFLibDbKeyHash256 key = schema.getFactoryTSecGrpInc().newPKey();
 		key.setRequiredTSecGrpIncId( argTSecGrpIncId );
 		deleteTSecGrpIncByIdIdx( Authorization, key );
 	}
 
-	public void deleteTSecGrpIncByIdIdx( CFSecAuthorization Authorization,
-		CFSecTSecGrpIncPKey argKey )
+	public void deleteTSecGrpIncByIdIdx( ICFSecAuthorization Authorization,
+		CFLibDbKeyHash256 argKey )
 	{
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		CFSecTSecGrpIncBuff cur;
-		LinkedList<CFSecTSecGrpIncBuff> matchSet = new LinkedList<CFSecTSecGrpIncBuff>();
-		Iterator<CFSecTSecGrpIncBuff> values = dictByPKey.values().iterator();
+		ICFSecTSecGrpInc cur;
+		LinkedList<ICFSecTSecGrpInc> matchSet = new LinkedList<ICFSecTSecGrpInc>();
+		Iterator<ICFSecTSecGrpInc> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<CFSecTSecGrpIncBuff> iterMatch = matchSet.iterator();
+		Iterator<ICFSecTSecGrpInc> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
 			cur = schema.getTableTSecGrpInc().readDerivedByIdIdx( Authorization,
@@ -776,32 +775,32 @@ public class CFSecRamTSecGrpIncTable
 		}
 	}
 
-	public void deleteTSecGrpIncByTenantIdx( CFSecAuthorization Authorization,
+	public void deleteTSecGrpIncByTenantIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 argTenantId )
 	{
-		CFSecTSecGrpIncByTenantIdxKey key = schema.getFactoryTSecGrpInc().newTenantIdxKey();
+		CFSecBuffTSecGrpIncByTenantIdxKey key = schema.getFactoryTSecGrpInc().newTenantIdxKey();
 		key.setRequiredTenantId( argTenantId );
 		deleteTSecGrpIncByTenantIdx( Authorization, key );
 	}
 
-	public void deleteTSecGrpIncByTenantIdx( CFSecAuthorization Authorization,
-		CFSecTSecGrpIncByTenantIdxKey argKey )
+	public void deleteTSecGrpIncByTenantIdx( ICFSecAuthorization Authorization,
+		ICFSecTSecGrpIncByTenantIdxKey argKey )
 	{
-		CFSecTSecGrpIncBuff cur;
+		ICFSecTSecGrpInc cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<CFSecTSecGrpIncBuff> matchSet = new LinkedList<CFSecTSecGrpIncBuff>();
-		Iterator<CFSecTSecGrpIncBuff> values = dictByPKey.values().iterator();
+		LinkedList<ICFSecTSecGrpInc> matchSet = new LinkedList<ICFSecTSecGrpInc>();
+		Iterator<ICFSecTSecGrpInc> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<CFSecTSecGrpIncBuff> iterMatch = matchSet.iterator();
+		Iterator<ICFSecTSecGrpInc> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
 			cur = schema.getTableTSecGrpInc().readDerivedByIdIdx( Authorization,
@@ -810,32 +809,32 @@ public class CFSecRamTSecGrpIncTable
 		}
 	}
 
-	public void deleteTSecGrpIncByGroupIdx( CFSecAuthorization Authorization,
+	public void deleteTSecGrpIncByGroupIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 argTSecGroupId )
 	{
-		CFSecTSecGrpIncByGroupIdxKey key = schema.getFactoryTSecGrpInc().newGroupIdxKey();
+		CFSecBuffTSecGrpIncByGroupIdxKey key = schema.getFactoryTSecGrpInc().newGroupIdxKey();
 		key.setRequiredTSecGroupId( argTSecGroupId );
 		deleteTSecGrpIncByGroupIdx( Authorization, key );
 	}
 
-	public void deleteTSecGrpIncByGroupIdx( CFSecAuthorization Authorization,
-		CFSecTSecGrpIncByGroupIdxKey argKey )
+	public void deleteTSecGrpIncByGroupIdx( ICFSecAuthorization Authorization,
+		ICFSecTSecGrpIncByGroupIdxKey argKey )
 	{
-		CFSecTSecGrpIncBuff cur;
+		ICFSecTSecGrpInc cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<CFSecTSecGrpIncBuff> matchSet = new LinkedList<CFSecTSecGrpIncBuff>();
-		Iterator<CFSecTSecGrpIncBuff> values = dictByPKey.values().iterator();
+		LinkedList<ICFSecTSecGrpInc> matchSet = new LinkedList<ICFSecTSecGrpInc>();
+		Iterator<ICFSecTSecGrpInc> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<CFSecTSecGrpIncBuff> iterMatch = matchSet.iterator();
+		Iterator<ICFSecTSecGrpInc> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
 			cur = schema.getTableTSecGrpInc().readDerivedByIdIdx( Authorization,
@@ -844,32 +843,32 @@ public class CFSecRamTSecGrpIncTable
 		}
 	}
 
-	public void deleteTSecGrpIncByIncludeIdx( CFSecAuthorization Authorization,
+	public void deleteTSecGrpIncByIncludeIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 argIncludeGroupId )
 	{
-		CFSecTSecGrpIncByIncludeIdxKey key = schema.getFactoryTSecGrpInc().newIncludeIdxKey();
+		CFSecBuffTSecGrpIncByIncludeIdxKey key = schema.getFactoryTSecGrpInc().newIncludeIdxKey();
 		key.setRequiredIncludeGroupId( argIncludeGroupId );
 		deleteTSecGrpIncByIncludeIdx( Authorization, key );
 	}
 
-	public void deleteTSecGrpIncByIncludeIdx( CFSecAuthorization Authorization,
-		CFSecTSecGrpIncByIncludeIdxKey argKey )
+	public void deleteTSecGrpIncByIncludeIdx( ICFSecAuthorization Authorization,
+		ICFSecTSecGrpIncByIncludeIdxKey argKey )
 	{
-		CFSecTSecGrpIncBuff cur;
+		ICFSecTSecGrpInc cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<CFSecTSecGrpIncBuff> matchSet = new LinkedList<CFSecTSecGrpIncBuff>();
-		Iterator<CFSecTSecGrpIncBuff> values = dictByPKey.values().iterator();
+		LinkedList<ICFSecTSecGrpInc> matchSet = new LinkedList<ICFSecTSecGrpInc>();
+		Iterator<ICFSecTSecGrpInc> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<CFSecTSecGrpIncBuff> iterMatch = matchSet.iterator();
+		Iterator<ICFSecTSecGrpInc> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
 			cur = schema.getTableTSecGrpInc().readDerivedByIdIdx( Authorization,
@@ -878,22 +877,22 @@ public class CFSecRamTSecGrpIncTable
 		}
 	}
 
-	public void deleteTSecGrpIncByUIncludeIdx( CFSecAuthorization Authorization,
+	public void deleteTSecGrpIncByUIncludeIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 argTenantId,
 		CFLibDbKeyHash256 argTSecGroupId,
 		CFLibDbKeyHash256 argIncludeGroupId )
 	{
-		CFSecTSecGrpIncByUIncludeIdxKey key = schema.getFactoryTSecGrpInc().newUIncludeIdxKey();
+		CFSecBuffTSecGrpIncByUIncludeIdxKey key = schema.getFactoryTSecGrpInc().newUIncludeIdxKey();
 		key.setRequiredTenantId( argTenantId );
 		key.setRequiredTSecGroupId( argTSecGroupId );
 		key.setRequiredIncludeGroupId( argIncludeGroupId );
 		deleteTSecGrpIncByUIncludeIdx( Authorization, key );
 	}
 
-	public void deleteTSecGrpIncByUIncludeIdx( CFSecAuthorization Authorization,
-		CFSecTSecGrpIncByUIncludeIdxKey argKey )
+	public void deleteTSecGrpIncByUIncludeIdx( ICFSecAuthorization Authorization,
+		ICFSecTSecGrpIncByUIncludeIdxKey argKey )
 	{
-		CFSecTSecGrpIncBuff cur;
+		ICFSecTSecGrpInc cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		anyNotNull = true;
@@ -901,15 +900,15 @@ public class CFSecRamTSecGrpIncTable
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<CFSecTSecGrpIncBuff> matchSet = new LinkedList<CFSecTSecGrpIncBuff>();
-		Iterator<CFSecTSecGrpIncBuff> values = dictByPKey.values().iterator();
+		LinkedList<ICFSecTSecGrpInc> matchSet = new LinkedList<ICFSecTSecGrpInc>();
+		Iterator<ICFSecTSecGrpInc> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<CFSecTSecGrpIncBuff> iterMatch = matchSet.iterator();
+		Iterator<ICFSecTSecGrpInc> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
 			cur = schema.getTableTSecGrpInc().readDerivedByIdIdx( Authorization,

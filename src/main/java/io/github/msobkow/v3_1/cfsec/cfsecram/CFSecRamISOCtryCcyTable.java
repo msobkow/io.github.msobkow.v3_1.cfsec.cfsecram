@@ -38,13 +38,14 @@ package io.github.msobkow.v3_1.cfsec.cfsecram;
 import java.math.*;
 import java.sql.*;
 import java.text.*;
+import java.time.*;
 import java.util.*;
 import org.apache.commons.codec.binary.Base64;
 import io.github.msobkow.v3_1.cflib.*;
 import io.github.msobkow.v3_1.cflib.dbutil.*;
 
 import io.github.msobkow.v3_1.cfsec.cfsec.*;
-import io.github.msobkow.v3_1.cfsec.cfsecobj.*;
+import io.github.msobkow.v3_1.cfsec.cfsec.buff.*;
 import io.github.msobkow.v3_1.cfsec.cfsecobj.*;
 
 /*
@@ -55,40 +56,40 @@ public class CFSecRamISOCtryCcyTable
 	implements ICFSecISOCtryCcyTable
 {
 	private ICFSecSchema schema;
-	private Map< CFSecISOCtryCcyPKey,
-				CFSecISOCtryCcyBuff > dictByPKey
-		= new HashMap< CFSecISOCtryCcyPKey,
-				CFSecISOCtryCcyBuff >();
-	private Map< CFSecISOCtryCcyByCtryIdxKey,
-				Map< CFSecISOCtryCcyPKey,
-					CFSecISOCtryCcyBuff >> dictByCtryIdx
-		= new HashMap< CFSecISOCtryCcyByCtryIdxKey,
-				Map< CFSecISOCtryCcyPKey,
-					CFSecISOCtryCcyBuff >>();
-	private Map< CFSecISOCtryCcyByCcyIdxKey,
-				Map< CFSecISOCtryCcyPKey,
-					CFSecISOCtryCcyBuff >> dictByCcyIdx
-		= new HashMap< CFSecISOCtryCcyByCcyIdxKey,
-				Map< CFSecISOCtryCcyPKey,
-					CFSecISOCtryCcyBuff >>();
+	private Map< ICFSecISOCtryCcyPKey,
+				CFSecBuffISOCtryCcy > dictByPKey
+		= new HashMap< ICFSecISOCtryCcyPKey,
+				CFSecBuffISOCtryCcy >();
+	private Map< CFSecBuffISOCtryCcyByCtryIdxKey,
+				Map< CFSecBuffISOCtryCcyPKey,
+					CFSecBuffISOCtryCcy >> dictByCtryIdx
+		= new HashMap< CFSecBuffISOCtryCcyByCtryIdxKey,
+				Map< CFSecBuffISOCtryCcyPKey,
+					CFSecBuffISOCtryCcy >>();
+	private Map< CFSecBuffISOCtryCcyByCcyIdxKey,
+				Map< CFSecBuffISOCtryCcyPKey,
+					CFSecBuffISOCtryCcy >> dictByCcyIdx
+		= new HashMap< CFSecBuffISOCtryCcyByCcyIdxKey,
+				Map< CFSecBuffISOCtryCcyPKey,
+					CFSecBuffISOCtryCcy >>();
 
 	public CFSecRamISOCtryCcyTable( ICFSecSchema argSchema ) {
 		schema = argSchema;
 	}
 
-	public void createISOCtryCcy( CFSecAuthorization Authorization,
-		CFSecISOCtryCcyBuff Buff )
+	public void createISOCtryCcy( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcy Buff )
 	{
 		final String S_ProcName = "createISOCtryCcy";
-		CFSecISOCtryCcyPKey pkey = schema.getFactoryISOCtryCcy().newPKey();
+		ICFSecISOCtryCcyPKey pkey = schema.getFactoryISOCtryCcy().newPKey();
 		pkey.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
 		pkey.setRequiredISOCcyId( Buff.getRequiredISOCcyId() );
 		Buff.setRequiredISOCtryId( pkey.getRequiredISOCtryId() );
 		Buff.setRequiredISOCcyId( pkey.getRequiredISOCcyId() );
-		CFSecISOCtryCcyByCtryIdxKey keyCtryIdx = schema.getFactoryISOCtryCcy().newCtryIdxKey();
+		CFSecBuffISOCtryCcyByCtryIdxKey keyCtryIdx = schema.getFactoryISOCtryCcy().newCtryIdxKey();
 		keyCtryIdx.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
 
-		CFSecISOCtryCcyByCcyIdxKey keyCcyIdx = schema.getFactoryISOCtryCcy().newCcyIdxKey();
+		CFSecBuffISOCtryCcyByCcyIdxKey keyCcyIdx = schema.getFactoryISOCtryCcy().newCcyIdxKey();
 		keyCcyIdx.setRequiredISOCcyId( Buff.getRequiredISOCcyId() );
 
 		// Validate unique indexes
@@ -120,36 +121,36 @@ public class CFSecRamISOCtryCcyTable
 
 		dictByPKey.put( pkey, Buff );
 
-		Map< CFSecISOCtryCcyPKey, CFSecISOCtryCcyBuff > subdictCtryIdx;
+		Map< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdictCtryIdx;
 		if( dictByCtryIdx.containsKey( keyCtryIdx ) ) {
 			subdictCtryIdx = dictByCtryIdx.get( keyCtryIdx );
 		}
 		else {
-			subdictCtryIdx = new HashMap< CFSecISOCtryCcyPKey, CFSecISOCtryCcyBuff >();
+			subdictCtryIdx = new HashMap< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy >();
 			dictByCtryIdx.put( keyCtryIdx, subdictCtryIdx );
 		}
 		subdictCtryIdx.put( pkey, Buff );
 
-		Map< CFSecISOCtryCcyPKey, CFSecISOCtryCcyBuff > subdictCcyIdx;
+		Map< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdictCcyIdx;
 		if( dictByCcyIdx.containsKey( keyCcyIdx ) ) {
 			subdictCcyIdx = dictByCcyIdx.get( keyCcyIdx );
 		}
 		else {
-			subdictCcyIdx = new HashMap< CFSecISOCtryCcyPKey, CFSecISOCtryCcyBuff >();
+			subdictCcyIdx = new HashMap< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy >();
 			dictByCcyIdx.put( keyCcyIdx, subdictCcyIdx );
 		}
 		subdictCcyIdx.put( pkey, Buff );
 
 	}
 
-	public CFSecISOCtryCcyBuff readDerived( CFSecAuthorization Authorization,
-		CFSecISOCtryCcyPKey PKey )
+	public ICFSecISOCtryCcy readDerived( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcyPKey PKey )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcy.readDerived";
-		CFSecISOCtryCcyPKey key = schema.getFactoryISOCtryCcy().newPKey();
+		ICFSecISOCtryCcyPKey key = schema.getFactoryISOCtryCcy().newPKey();
 		key.setRequiredISOCtryId( PKey.getRequiredISOCtryId() );
 		key.setRequiredISOCcyId( PKey.getRequiredISOCcyId() );
-		CFSecISOCtryCcyBuff buff;
+		ICFSecISOCtryCcy buff;
 		if( dictByPKey.containsKey( key ) ) {
 			buff = dictByPKey.get( key );
 		}
@@ -159,14 +160,14 @@ public class CFSecRamISOCtryCcyTable
 		return( buff );
 	}
 
-	public CFSecISOCtryCcyBuff lockDerived( CFSecAuthorization Authorization,
-		CFSecISOCtryCcyPKey PKey )
+	public ICFSecISOCtryCcy lockDerived( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcyPKey PKey )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcy.readDerived";
-		CFSecISOCtryCcyPKey key = schema.getFactoryISOCtryCcy().newPKey();
+		CFSecBuffISOCtryCcyPKey key = schema.getFactoryISOCtryCcy().newPKey();
 		key.setRequiredISOCtryId( PKey.getRequiredISOCtryId() );
 		key.setRequiredISOCcyId( PKey.getRequiredISOCcyId() );
-		CFSecISOCtryCcyBuff buff;
+		ICFSecISOCtryCcy buff;
 		if( dictByPKey.containsKey( key ) ) {
 			buff = dictByPKey.get( key );
 		}
@@ -176,10 +177,10 @@ public class CFSecRamISOCtryCcyTable
 		return( buff );
 	}
 
-	public CFSecISOCtryCcyBuff[] readAllDerived( CFSecAuthorization Authorization ) {
+	public ICFSecISOCtryCcy[] readAllDerived( ICFSecAuthorization Authorization ) {
 		final String S_ProcName = "CFSecRamISOCtryCcy.readAllDerived";
-		CFSecISOCtryCcyBuff[] retList = new CFSecISOCtryCcyBuff[ dictByPKey.values().size() ];
-		Iterator< CFSecISOCtryCcyBuff > iter = dictByPKey.values().iterator();
+		ICFSecISOCtryCcy[] retList = new ICFSecISOCtryCcy[ dictByPKey.values().size() ];
+		Iterator< ICFSecISOCtryCcy > iter = dictByPKey.values().iterator();
 		int idx = 0;
 		while( iter.hasNext() ) {
 			retList[ idx++ ] = iter.next();
@@ -187,70 +188,70 @@ public class CFSecRamISOCtryCcyTable
 		return( retList );
 	}
 
-	public CFSecISOCtryCcyBuff[] readDerivedByCtryIdx( CFSecAuthorization Authorization,
+	public ICFSecISOCtryCcy[] readDerivedByCtryIdx( ICFSecAuthorization Authorization,
 		short ISOCtryId )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcy.readDerivedByCtryIdx";
-		CFSecISOCtryCcyByCtryIdxKey key = schema.getFactoryISOCtryCcy().newCtryIdxKey();
+		CFSecBuffISOCtryCcyByCtryIdxKey key = schema.getFactoryISOCtryCcy().newCtryIdxKey();
 		key.setRequiredISOCtryId( ISOCtryId );
 
-		CFSecISOCtryCcyBuff[] recArray;
+		ICFSecISOCtryCcy[] recArray;
 		if( dictByCtryIdx.containsKey( key ) ) {
-			Map< CFSecISOCtryCcyPKey, CFSecISOCtryCcyBuff > subdictCtryIdx
+			Map< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdictCtryIdx
 				= dictByCtryIdx.get( key );
-			recArray = new CFSecISOCtryCcyBuff[ subdictCtryIdx.size() ];
-			Iterator< CFSecISOCtryCcyBuff > iter = subdictCtryIdx.values().iterator();
+			recArray = new ICFSecISOCtryCcy[ subdictCtryIdx.size() ];
+			Iterator< ICFSecISOCtryCcy > iter = subdictCtryIdx.values().iterator();
 			int idx = 0;
 			while( iter.hasNext() ) {
 				recArray[ idx++ ] = iter.next();
 			}
 		}
 		else {
-			Map< CFSecISOCtryCcyPKey, CFSecISOCtryCcyBuff > subdictCtryIdx
-				= new HashMap< CFSecISOCtryCcyPKey, CFSecISOCtryCcyBuff >();
+			Map< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdictCtryIdx
+				= new HashMap< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy >();
 			dictByCtryIdx.put( key, subdictCtryIdx );
-			recArray = new CFSecISOCtryCcyBuff[0];
+			recArray = new ICFSecISOCtryCcy[0];
 		}
 		return( recArray );
 	}
 
-	public CFSecISOCtryCcyBuff[] readDerivedByCcyIdx( CFSecAuthorization Authorization,
+	public ICFSecISOCtryCcy[] readDerivedByCcyIdx( ICFSecAuthorization Authorization,
 		short ISOCcyId )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcy.readDerivedByCcyIdx";
-		CFSecISOCtryCcyByCcyIdxKey key = schema.getFactoryISOCtryCcy().newCcyIdxKey();
+		CFSecBuffISOCtryCcyByCcyIdxKey key = schema.getFactoryISOCtryCcy().newCcyIdxKey();
 		key.setRequiredISOCcyId( ISOCcyId );
 
-		CFSecISOCtryCcyBuff[] recArray;
+		ICFSecISOCtryCcy[] recArray;
 		if( dictByCcyIdx.containsKey( key ) ) {
-			Map< CFSecISOCtryCcyPKey, CFSecISOCtryCcyBuff > subdictCcyIdx
+			Map< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdictCcyIdx
 				= dictByCcyIdx.get( key );
-			recArray = new CFSecISOCtryCcyBuff[ subdictCcyIdx.size() ];
-			Iterator< CFSecISOCtryCcyBuff > iter = subdictCcyIdx.values().iterator();
+			recArray = new ICFSecISOCtryCcy[ subdictCcyIdx.size() ];
+			Iterator< ICFSecISOCtryCcy > iter = subdictCcyIdx.values().iterator();
 			int idx = 0;
 			while( iter.hasNext() ) {
 				recArray[ idx++ ] = iter.next();
 			}
 		}
 		else {
-			Map< CFSecISOCtryCcyPKey, CFSecISOCtryCcyBuff > subdictCcyIdx
-				= new HashMap< CFSecISOCtryCcyPKey, CFSecISOCtryCcyBuff >();
+			Map< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdictCcyIdx
+				= new HashMap< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy >();
 			dictByCcyIdx.put( key, subdictCcyIdx );
-			recArray = new CFSecISOCtryCcyBuff[0];
+			recArray = new ICFSecISOCtryCcy[0];
 		}
 		return( recArray );
 	}
 
-	public CFSecISOCtryCcyBuff readDerivedByIdIdx( CFSecAuthorization Authorization,
+	public ICFSecISOCtryCcy readDerivedByIdIdx( ICFSecAuthorization Authorization,
 		short ISOCtryId,
 		short ISOCcyId )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcy.readDerivedByIdIdx() ";
-		CFSecISOCtryCcyPKey key = schema.getFactoryISOCtryCcy().newPKey();
+		CFSecBuffISOCtryCcyPKey key = schema.getFactoryISOCtryCcy().newPKey();
 		key.setRequiredISOCtryId( ISOCtryId );
 		key.setRequiredISOCcyId( ISOCcyId );
 
-		CFSecISOCtryCcyBuff buff;
+		ICFSecISOCtryCcy buff;
 		if( dictByPKey.containsKey( key ) ) {
 			buff = dictByPKey.get( key );
 		}
@@ -260,100 +261,100 @@ public class CFSecRamISOCtryCcyTable
 		return( buff );
 	}
 
-	public CFSecISOCtryCcyBuff readBuff( CFSecAuthorization Authorization,
-		CFSecISOCtryCcyPKey PKey )
+	public ICFSecISOCtryCcy readBuff( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcyPKey PKey )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcy.readBuff";
-		CFSecISOCtryCcyBuff buff = readDerived( Authorization, PKey );
+		ICFSecISOCtryCcy buff = readDerived( Authorization, PKey );
 		if( ( buff != null ) && ( ! buff.getClassCode().equals( "a005" ) ) ) {
 			buff = null;
 		}
 		return( buff );
 	}
 
-	public CFSecISOCtryCcyBuff lockBuff( CFSecAuthorization Authorization,
-		CFSecISOCtryCcyPKey PKey )
+	public ICFSecISOCtryCcy lockBuff( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcyPKey PKey )
 	{
 		final String S_ProcName = "lockBuff";
-		CFSecISOCtryCcyBuff buff = readDerived( Authorization, PKey );
+		ICFSecISOCtryCcy buff = readDerived( Authorization, PKey );
 		if( ( buff != null ) && ( ! buff.getClassCode().equals( "a005" ) ) ) {
 			buff = null;
 		}
 		return( buff );
 	}
 
-	public CFSecISOCtryCcyBuff[] readAllBuff( CFSecAuthorization Authorization )
+	public ICFSecISOCtryCcy[] readAllBuff( ICFSecAuthorization Authorization )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcy.readAllBuff";
-		CFSecISOCtryCcyBuff buff;
-		ArrayList<CFSecISOCtryCcyBuff> filteredList = new ArrayList<CFSecISOCtryCcyBuff>();
-		CFSecISOCtryCcyBuff[] buffList = readAllDerived( Authorization );
+		ICFSecISOCtryCcy buff;
+		ArrayList<ICFSecISOCtryCcy> filteredList = new ArrayList<ICFSecISOCtryCcy>();
+		ICFSecISOCtryCcy[] buffList = readAllDerived( Authorization );
 		for( int idx = 0; idx < buffList.length; idx ++ ) {
 			buff = buffList[idx];
 			if( ( buff != null ) && buff.getClassCode().equals( "a005" ) ) {
 				filteredList.add( buff );
 			}
 		}
-		return( filteredList.toArray( new CFSecISOCtryCcyBuff[0] ) );
+		return( filteredList.toArray( new ICFSecISOCtryCcy[0] ) );
 	}
 
-	public CFSecISOCtryCcyBuff readBuffByIdIdx( CFSecAuthorization Authorization,
+	public ICFSecISOCtryCcy readBuffByIdIdx( ICFSecAuthorization Authorization,
 		short ISOCtryId,
 		short ISOCcyId )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcy.readBuffByIdIdx() ";
-		CFSecISOCtryCcyBuff buff = readDerivedByIdIdx( Authorization,
+		ICFSecISOCtryCcy buff = readDerivedByIdIdx( Authorization,
 			ISOCtryId,
 			ISOCcyId );
 		if( ( buff != null ) && buff.getClassCode().equals( "a005" ) ) {
-			return( (CFSecISOCtryCcyBuff)buff );
+			return( (ICFSecISOCtryCcy)buff );
 		}
 		else {
 			return( null );
 		}
 	}
 
-	public CFSecISOCtryCcyBuff[] readBuffByCtryIdx( CFSecAuthorization Authorization,
+	public ICFSecISOCtryCcy[] readBuffByCtryIdx( ICFSecAuthorization Authorization,
 		short ISOCtryId )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcy.readBuffByCtryIdx() ";
-		CFSecISOCtryCcyBuff buff;
-		ArrayList<CFSecISOCtryCcyBuff> filteredList = new ArrayList<CFSecISOCtryCcyBuff>();
-		CFSecISOCtryCcyBuff[] buffList = readDerivedByCtryIdx( Authorization,
+		ICFSecISOCtryCcy buff;
+		ArrayList<ICFSecISOCtryCcy> filteredList = new ArrayList<ICFSecISOCtryCcy>();
+		ICFSecISOCtryCcy[] buffList = readDerivedByCtryIdx( Authorization,
 			ISOCtryId );
 		for( int idx = 0; idx < buffList.length; idx ++ ) {
 			buff = buffList[idx];
 			if( ( buff != null ) && buff.getClassCode().equals( "a005" ) ) {
-				filteredList.add( (CFSecISOCtryCcyBuff)buff );
+				filteredList.add( (ICFSecISOCtryCcy)buff );
 			}
 		}
-		return( filteredList.toArray( new CFSecISOCtryCcyBuff[0] ) );
+		return( filteredList.toArray( new ICFSecISOCtryCcy[0] ) );
 	}
 
-	public CFSecISOCtryCcyBuff[] readBuffByCcyIdx( CFSecAuthorization Authorization,
+	public ICFSecISOCtryCcy[] readBuffByCcyIdx( ICFSecAuthorization Authorization,
 		short ISOCcyId )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcy.readBuffByCcyIdx() ";
-		CFSecISOCtryCcyBuff buff;
-		ArrayList<CFSecISOCtryCcyBuff> filteredList = new ArrayList<CFSecISOCtryCcyBuff>();
-		CFSecISOCtryCcyBuff[] buffList = readDerivedByCcyIdx( Authorization,
+		ICFSecISOCtryCcy buff;
+		ArrayList<ICFSecISOCtryCcy> filteredList = new ArrayList<ICFSecISOCtryCcy>();
+		ICFSecISOCtryCcy[] buffList = readDerivedByCcyIdx( Authorization,
 			ISOCcyId );
 		for( int idx = 0; idx < buffList.length; idx ++ ) {
 			buff = buffList[idx];
 			if( ( buff != null ) && buff.getClassCode().equals( "a005" ) ) {
-				filteredList.add( (CFSecISOCtryCcyBuff)buff );
+				filteredList.add( (ICFSecISOCtryCcy)buff );
 			}
 		}
-		return( filteredList.toArray( new CFSecISOCtryCcyBuff[0] ) );
+		return( filteredList.toArray( new ICFSecISOCtryCcy[0] ) );
 	}
 
-	public void updateISOCtryCcy( CFSecAuthorization Authorization,
-		CFSecISOCtryCcyBuff Buff )
+	public void updateISOCtryCcy( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcy Buff )
 	{
-		CFSecISOCtryCcyPKey pkey = schema.getFactoryISOCtryCcy().newPKey();
+		ICFSecISOCtryCcyPKey pkey = schema.getFactoryISOCtryCcy().newPKey();
 		pkey.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
 		pkey.setRequiredISOCcyId( Buff.getRequiredISOCcyId() );
-		CFSecISOCtryCcyBuff existing = dictByPKey.get( pkey );
+		ICFSecISOCtryCcy existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
 				"updateISOCtryCcy",
@@ -367,16 +368,16 @@ public class CFSecRamISOCtryCcyTable
 				pkey );
 		}
 		Buff.setRequiredRevision( Buff.getRequiredRevision() + 1 );
-		CFSecISOCtryCcyByCtryIdxKey existingKeyCtryIdx = schema.getFactoryISOCtryCcy().newCtryIdxKey();
+		CFSecBuffISOCtryCcyByCtryIdxKey existingKeyCtryIdx = schema.getFactoryISOCtryCcy().newCtryIdxKey();
 		existingKeyCtryIdx.setRequiredISOCtryId( existing.getRequiredISOCtryId() );
 
-		CFSecISOCtryCcyByCtryIdxKey newKeyCtryIdx = schema.getFactoryISOCtryCcy().newCtryIdxKey();
+		CFSecBuffISOCtryCcyByCtryIdxKey newKeyCtryIdx = schema.getFactoryISOCtryCcy().newCtryIdxKey();
 		newKeyCtryIdx.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
 
-		CFSecISOCtryCcyByCcyIdxKey existingKeyCcyIdx = schema.getFactoryISOCtryCcy().newCcyIdxKey();
+		CFSecBuffISOCtryCcyByCcyIdxKey existingKeyCcyIdx = schema.getFactoryISOCtryCcy().newCcyIdxKey();
 		existingKeyCcyIdx.setRequiredISOCcyId( existing.getRequiredISOCcyId() );
 
-		CFSecISOCtryCcyByCcyIdxKey newKeyCcyIdx = schema.getFactoryISOCtryCcy().newCcyIdxKey();
+		CFSecBuffISOCtryCcyByCcyIdxKey newKeyCcyIdx = schema.getFactoryISOCtryCcy().newCcyIdxKey();
 		newKeyCcyIdx.setRequiredISOCcyId( Buff.getRequiredISOCcyId() );
 
 		// Check unique indexes
@@ -402,7 +403,7 @@ public class CFSecRamISOCtryCcyTable
 
 		// Update is valid
 
-		Map< CFSecISOCtryCcyPKey, CFSecISOCtryCcyBuff > subdict;
+		Map< ICFSecISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -415,7 +416,7 @@ public class CFSecRamISOCtryCcyTable
 			subdict = dictByCtryIdx.get( newKeyCtryIdx );
 		}
 		else {
-			subdict = new HashMap< CFSecISOCtryCcyPKey, CFSecISOCtryCcyBuff >();
+			subdict = new HashMap< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy >();
 			dictByCtryIdx.put( newKeyCtryIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -428,22 +429,22 @@ public class CFSecRamISOCtryCcyTable
 			subdict = dictByCcyIdx.get( newKeyCcyIdx );
 		}
 		else {
-			subdict = new HashMap< CFSecISOCtryCcyPKey, CFSecISOCtryCcyBuff >();
+			subdict = new HashMap< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy >();
 			dictByCcyIdx.put( newKeyCcyIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
 
 	}
 
-	public void deleteISOCtryCcy( CFSecAuthorization Authorization,
-		CFSecISOCtryCcyBuff Buff )
+	public void deleteISOCtryCcy( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcy Buff )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcyTable.deleteISOCtryCcy() ";
 		String classCode;
-		CFSecISOCtryCcyPKey pkey = schema.getFactoryISOCtryCcy().newPKey();
+		ICFSecISOCtryCcyPKey pkey = schema.getFactoryISOCtryCcy().newPKey();
 		pkey.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
 		pkey.setRequiredISOCcyId( Buff.getRequiredISOCcyId() );
-		CFSecISOCtryCcyBuff existing = dictByPKey.get( pkey );
+		ICFSecISOCtryCcy existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
 		}
@@ -453,16 +454,16 @@ public class CFSecRamISOCtryCcyTable
 				"deleteISOCtryCcy",
 				pkey );
 		}
-		CFSecISOCtryCcyByCtryIdxKey keyCtryIdx = schema.getFactoryISOCtryCcy().newCtryIdxKey();
+		CFSecBuffISOCtryCcyByCtryIdxKey keyCtryIdx = schema.getFactoryISOCtryCcy().newCtryIdxKey();
 		keyCtryIdx.setRequiredISOCtryId( existing.getRequiredISOCtryId() );
 
-		CFSecISOCtryCcyByCcyIdxKey keyCcyIdx = schema.getFactoryISOCtryCcy().newCcyIdxKey();
+		CFSecBuffISOCtryCcyByCcyIdxKey keyCcyIdx = schema.getFactoryISOCtryCcy().newCcyIdxKey();
 		keyCcyIdx.setRequiredISOCcyId( existing.getRequiredISOCcyId() );
 
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< CFSecISOCtryCcyPKey, CFSecISOCtryCcyBuff > subdict;
+		Map< ICFSecISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdict;
 
 		dictByPKey.remove( pkey );
 
@@ -473,18 +474,18 @@ public class CFSecRamISOCtryCcyTable
 		subdict.remove( pkey );
 
 	}
-	public void deleteISOCtryCcyByIdIdx( CFSecAuthorization Authorization,
+	public void deleteISOCtryCcyByIdIdx( ICFSecAuthorization Authorization,
 		short argISOCtryId,
 		short argISOCcyId )
 	{
-		CFSecISOCtryCcyPKey key = schema.getFactoryISOCtryCcy().newPKey();
+		CFSecBuffISOCtryCcyPKey key = schema.getFactoryISOCtryCcy().newPKey();
 		key.setRequiredISOCtryId( argISOCtryId );
 		key.setRequiredISOCcyId( argISOCcyId );
 		deleteISOCtryCcyByIdIdx( Authorization, key );
 	}
 
-	public void deleteISOCtryCcyByIdIdx( CFSecAuthorization Authorization,
-		CFSecISOCtryCcyPKey argKey )
+	public void deleteISOCtryCcyByIdIdx( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcyPKey argKey )
 	{
 		boolean anyNotNull = false;
 		anyNotNull = true;
@@ -492,16 +493,16 @@ public class CFSecRamISOCtryCcyTable
 		if( ! anyNotNull ) {
 			return;
 		}
-		CFSecISOCtryCcyBuff cur;
-		LinkedList<CFSecISOCtryCcyBuff> matchSet = new LinkedList<CFSecISOCtryCcyBuff>();
-		Iterator<CFSecISOCtryCcyBuff> values = dictByPKey.values().iterator();
+		ICFSecISOCtryCcy cur;
+		LinkedList<ICFSecISOCtryCcy> matchSet = new LinkedList<ICFSecISOCtryCcy>();
+		Iterator<ICFSecISOCtryCcy> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<CFSecISOCtryCcyBuff> iterMatch = matchSet.iterator();
+		Iterator<ICFSecISOCtryCcy> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
 			cur = schema.getTableISOCtryCcy().readDerivedByIdIdx( Authorization,
@@ -511,32 +512,32 @@ public class CFSecRamISOCtryCcyTable
 		}
 	}
 
-	public void deleteISOCtryCcyByCtryIdx( CFSecAuthorization Authorization,
+	public void deleteISOCtryCcyByCtryIdx( ICFSecAuthorization Authorization,
 		short argISOCtryId )
 	{
-		CFSecISOCtryCcyByCtryIdxKey key = schema.getFactoryISOCtryCcy().newCtryIdxKey();
+		CFSecBuffISOCtryCcyByCtryIdxKey key = schema.getFactoryISOCtryCcy().newCtryIdxKey();
 		key.setRequiredISOCtryId( argISOCtryId );
 		deleteISOCtryCcyByCtryIdx( Authorization, key );
 	}
 
-	public void deleteISOCtryCcyByCtryIdx( CFSecAuthorization Authorization,
-		CFSecISOCtryCcyByCtryIdxKey argKey )
+	public void deleteISOCtryCcyByCtryIdx( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcyByCtryIdxKey argKey )
 	{
-		CFSecISOCtryCcyBuff cur;
+		ICFSecISOCtryCcy cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<CFSecISOCtryCcyBuff> matchSet = new LinkedList<CFSecISOCtryCcyBuff>();
-		Iterator<CFSecISOCtryCcyBuff> values = dictByPKey.values().iterator();
+		LinkedList<ICFSecISOCtryCcy> matchSet = new LinkedList<ICFSecISOCtryCcy>();
+		Iterator<ICFSecISOCtryCcy> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<CFSecISOCtryCcyBuff> iterMatch = matchSet.iterator();
+		Iterator<ICFSecISOCtryCcy> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
 			cur = schema.getTableISOCtryCcy().readDerivedByIdIdx( Authorization,
@@ -546,32 +547,32 @@ public class CFSecRamISOCtryCcyTable
 		}
 	}
 
-	public void deleteISOCtryCcyByCcyIdx( CFSecAuthorization Authorization,
+	public void deleteISOCtryCcyByCcyIdx( ICFSecAuthorization Authorization,
 		short argISOCcyId )
 	{
-		CFSecISOCtryCcyByCcyIdxKey key = schema.getFactoryISOCtryCcy().newCcyIdxKey();
+		CFSecBuffISOCtryCcyByCcyIdxKey key = schema.getFactoryISOCtryCcy().newCcyIdxKey();
 		key.setRequiredISOCcyId( argISOCcyId );
 		deleteISOCtryCcyByCcyIdx( Authorization, key );
 	}
 
-	public void deleteISOCtryCcyByCcyIdx( CFSecAuthorization Authorization,
-		CFSecISOCtryCcyByCcyIdxKey argKey )
+	public void deleteISOCtryCcyByCcyIdx( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcyByCcyIdxKey argKey )
 	{
-		CFSecISOCtryCcyBuff cur;
+		ICFSecISOCtryCcy cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<CFSecISOCtryCcyBuff> matchSet = new LinkedList<CFSecISOCtryCcyBuff>();
-		Iterator<CFSecISOCtryCcyBuff> values = dictByPKey.values().iterator();
+		LinkedList<ICFSecISOCtryCcy> matchSet = new LinkedList<ICFSecISOCtryCcy>();
+		Iterator<ICFSecISOCtryCcy> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<CFSecISOCtryCcyBuff> iterMatch = matchSet.iterator();
+		Iterator<ICFSecISOCtryCcy> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
 			cur = schema.getTableISOCtryCcy().readDerivedByIdIdx( Authorization,

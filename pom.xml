@@ -91,6 +91,11 @@
         <artifactId>io.github.msobkow.v3_1.cfsec.cfsecbuff</artifactId>
         <version>3.1</version>
     </dependency>
+    <dependency>
+        <groupId>io.github.msobkow.v3_1</groupId>
+        <artifactId>io.github.msobkow.v3_1.cfsec.cfsecsaxloader</artifactId>
+        <version>3.1</version>
+    </dependency>
   </dependencies>
 
   <build>

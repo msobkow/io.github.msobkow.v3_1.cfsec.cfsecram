@@ -44,17 +44,18 @@ import io.github.msobkow.v3_1.cflib.dbutil.*;
 
 import io.github.msobkow.v3_1.cfsec.cfsec.*;
 import io.github.msobkow.v3_1.cfsec.cfsecobj.*;
-import io.github.msobkow.v3_1.cfsec.CFSecSaxLoader.*;
+import io.github.msobkow.v3_1.cfsec.cfsec.buff.*;
+import io.github.msobkow.v3_1.cfsec.cfsecsaxloader.*;
 
 public class CFSecRamSchema
-	extends CFSecSchema
+	extends CFSecBuffSchema
 	implements ICFSecSchema
 {
-		protected short nextISOCcyIdGenValue = 1;
-		protected short nextISOCtryIdGenValue = 1;
-		protected short nextISOLangIdGenValue = 1;
-		protected short nextISOTZoneIdGenValue = 1;
-		protected long nextClusterIdGenValue = 1;
+	protected short nextISOCcyIdGenValue = 1;
+	protected short nextISOCtryIdGenValue = 1;
+	protected short nextISOLangIdGenValue = 1;
+	protected short nextISOTZoneIdGenValue = 1;
+	protected long nextClusterIdGenValue = 1;
 
 
 	public CFSecRamSchema() {
@@ -80,132 +81,6 @@ public class CFSecRamSchema
 		tableTSecGrpInc = new CFSecRamTSecGrpIncTable( this );
 		tableTSecGrpMemb = new CFSecRamTSecGrpMembTable( this );
 		tableTenant = new CFSecRamTenantTable( this );
-	}
-
-	protected boolean sessConnected = false;
-
-	public boolean isConnected() {
-		return( sessConnected );
-	}
-
-	public boolean connect() {
-		if( sessConnected ) {
-			return( false );
-		}
-		else {
-			sessConnected = true;
-			tranOpen = false;
-			return( true );
-		}
-	}
-
-	public boolean connect( String username, String password ) {
-		final String S_ProcName = "connect";
-		if( ( username == null ) || ( username.length() <= 0 ) ) {
-			throw new CFLibNullArgumentException( getClass(),
-				S_ProcName,
-				1,
-				"username" );
-		}
-		if( password == null ) {
-			throw new CFLibNullArgumentException( getClass(),
-				S_ProcName,
-				2,
-				"password" );
-		}
-		if( ! username.equals( "system" ) ) {
-			throw new CFLibRuntimeException( getClass(),
-				S_ProcName,
-				"Only 'system' is authorized to use a RAM database" );
-		}
-		if( sessConnected ) {
-			return( false );
-		}
-		else {
-			sessConnected = true;
-			tranOpen = false;
-			return( true );
-		}
-	}
-
-	public boolean connect( String loginId, String password, String clusterName, String tenantName ) {
-		final String S_ProcName = "connect";
-		if( ( loginId == null ) || ( loginId.length() <= 0 ) ) {
-			throw new CFLibNullArgumentException( getClass(),
-				S_ProcName,
-				1,
-				"loginId" );
-		}
-		if( password == null ) {
-			throw new CFLibNullArgumentException( getClass(),
-				S_ProcName,
-				2,
-				"password" );
-		}
-		if( clusterName == null ) {
-			throw new CFLibNullArgumentException( getClass(),
-				S_ProcName,
-				3,
-				"clusterName" );
-		}
-		if( tenantName == null ) {
-			throw new CFLibNullArgumentException( getClass(),
-				S_ProcName,
-				4,
-				"tenantName" );
-		}
-		if( ! loginId.equals( "system" ) ) {
-			throw new CFLibRuntimeException( getClass(),
-				S_ProcName,
-				"Only 'system' is authorized to use a RAM database" );
-		}
-		if( ! clusterName.equals( "system" ) ) {
-			throw new CFLibRuntimeException( getClass(),
-				S_ProcName,
-				"Only the 'system' Cluster is authorized to use a RAM database" );
-		}
-		if( ! tenantName.equals( "system" ) ) {
-			throw new CFLibRuntimeException( getClass(),
-				S_ProcName,
-				"Only the 'system' Tenant is authorized to use a RAM database" );
-		}
-		if( sessConnected ) {
-			return( false );
-		}
-		else {
-			sessConnected = true;
-			tranOpen = false;
-			return( true );
-		}
-	}
-
-	public void disconnect( boolean doCommit ) {
-		tranOpen = false;
-		sessConnected = false;
-	}
-
-	//	Transactions are not supported, so pretend there is always one open
-
-	protected boolean tranOpen = false;
-
-	public boolean isTransactionOpen() {
-		return( tranOpen );
-	}
-
-	public boolean beginTransaction() {
-		if( tranOpen ) {
-			return( false );
-		}
-		tranOpen = true;
-		return( true );
-	}
-
-	public void commit() {
-		tranOpen = false;
-	}
-
-	public void rollback() {
-		tranOpen = false;
 	}
 
 	public ICFSecSchema newSchema() {
@@ -237,9 +112,6 @@ public class CFSecRamSchema
 		return( next );
 	}
 
-	public void releasePreparedStatements() {
-	}
-
 	public String fileImport( CFSecAuthorization Authorization,
 		String fileName,
 		String fileContent )
@@ -260,7 +132,7 @@ public class CFSecRamSchema
 
 		CFSecSaxLoader saxLoader = new CFSecSaxLoader();
 		ICFSecSchemaObj schemaObj = new CFSecSchemaObj();
-		schemaObj.setBackingStore( this );
+		schemaObj.setCFSecBackingStore( this );
 		saxLoader.setSchemaObj( schemaObj );
 		ICFSecClusterObj useCluster = schemaObj.getClusterTableObj().readClusterByIdIdx( Authorization.getSecClusterId() );
 		ICFSecTenantObj useTenant = schemaObj.getTenantTableObj().readTenantByIdIdx( Authorization.getSecTenantId() );
