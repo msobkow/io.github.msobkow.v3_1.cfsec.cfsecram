@@ -87,10 +87,27 @@ public class CFSecRamSecGrpIncTable
 		schema = argSchema;
 	}
 
+	public CFSecBuffSecGrpInc ensureRec(ICFSecSecGrpInc rec) {
+		if (rec == null) {
+			return( null );
+		}
+		else {
+			int classCode = rec.getClassCode();
+			if (classCode == ICFSecSecGrpInc.CLASS_CODE) {
+				return( ((CFSecBuffSecGrpIncDefaultFactory)(schema.getFactorySecGrpInc())).ensureRec(rec) );
+			}
+			else {
+				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", 1, "rec", "Not " + Integer.toString(classCode));
+			}
+		}
+	}
+
 	public ICFSecSecGrpInc createSecGrpInc( ICFSecAuthorization Authorization,
-		ICFSecSecGrpInc Buff )
+		ICFSecSecGrpInc iBuff )
 	{
 		final String S_ProcName = "createSecGrpInc";
+		
+		CFSecBuffSecGrpInc Buff = ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey;
 		pkey = schema.nextSecGrpIncIdGen();
 		Buff.setRequiredSecGrpIncId( pkey );
@@ -194,7 +211,20 @@ public class CFSecRamSecGrpIncTable
 
 		dictByUIncludeIdx.put( keyUIncludeIdx, Buff );
 
-		return( Buff );
+		if (Buff == null) {
+			return( null );
+		}
+		else {
+			int classCode = Buff.getClassCode();
+			if (classCode == ICFSecSecGrpInc.CLASS_CODE) {
+				CFSecBuffSecGrpInc retbuff = ((CFSecBuffSecGrpInc)(schema.getFactorySecGrpInc().newRec()));
+				retbuff.set(Buff);
+				return( retbuff );
+			}
+			else {
+				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, 0, "-create-buff-cloning-", "Not " + Integer.toString(classCode));
+			}
+		}
 	}
 
 	public ICFSecSecGrpInc readDerived( ICFSecAuthorization Authorization,

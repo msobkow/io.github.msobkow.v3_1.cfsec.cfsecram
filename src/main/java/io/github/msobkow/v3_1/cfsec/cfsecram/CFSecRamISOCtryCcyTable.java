@@ -77,10 +77,27 @@ public class CFSecRamISOCtryCcyTable
 		schema = argSchema;
 	}
 
+	public CFSecBuffISOCtryCcy ensureRec(ICFSecISOCtryCcy rec) {
+		if (rec == null) {
+			return( null );
+		}
+		else {
+			int classCode = rec.getClassCode();
+			if (classCode == ICFSecISOCtryCcy.CLASS_CODE) {
+				return( ((CFSecBuffISOCtryCcyDefaultFactory)(schema.getFactoryISOCtryCcy())).ensureRec(rec) );
+			}
+			else {
+				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", 1, "rec", "Not " + Integer.toString(classCode));
+			}
+		}
+	}
+
 	public ICFSecISOCtryCcy createISOCtryCcy( ICFSecAuthorization Authorization,
-		ICFSecISOCtryCcy Buff )
+		ICFSecISOCtryCcy iBuff )
 	{
 		final String S_ProcName = "createISOCtryCcy";
+		
+		CFSecBuffISOCtryCcy Buff = ensureRec(iBuff);
 		ICFSecISOCtryCcyPKey pkey = schema.getFactoryISOCtryCcy().newPKey();
 		pkey.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
 		pkey.setRequiredISOCcyId( Buff.getRequiredISOCcyId() );
@@ -141,7 +158,20 @@ public class CFSecRamISOCtryCcyTable
 		}
 		subdictCcyIdx.put( pkey, Buff );
 
-		return( Buff );
+		if (Buff == null) {
+			return( null );
+		}
+		else {
+			int classCode = Buff.getClassCode();
+			if (classCode == ICFSecISOCtryCcy.CLASS_CODE) {
+				CFSecBuffISOCtryCcy retbuff = ((CFSecBuffISOCtryCcy)(schema.getFactoryISOCtryCcy().newRec()));
+				retbuff.set(Buff);
+				return( retbuff );
+			}
+			else {
+				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, 0, "-create-buff-cloning-", "Not " + Integer.toString(classCode));
+			}
+		}
 	}
 
 	public ICFSecISOCtryCcy readDerived( ICFSecAuthorization Authorization,

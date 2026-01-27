@@ -77,10 +77,27 @@ public class CFSecRamISOCtryLangTable
 		schema = argSchema;
 	}
 
+	public CFSecBuffISOCtryLang ensureRec(ICFSecISOCtryLang rec) {
+		if (rec == null) {
+			return( null );
+		}
+		else {
+			int classCode = rec.getClassCode();
+			if (classCode == ICFSecISOCtryLang.CLASS_CODE) {
+				return( ((CFSecBuffISOCtryLangDefaultFactory)(schema.getFactoryISOCtryLang())).ensureRec(rec) );
+			}
+			else {
+				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", 1, "rec", "Not " + Integer.toString(classCode));
+			}
+		}
+	}
+
 	public ICFSecISOCtryLang createISOCtryLang( ICFSecAuthorization Authorization,
-		ICFSecISOCtryLang Buff )
+		ICFSecISOCtryLang iBuff )
 	{
 		final String S_ProcName = "createISOCtryLang";
+		
+		CFSecBuffISOCtryLang Buff = ensureRec(iBuff);
 		ICFSecISOCtryLangPKey pkey = schema.getFactoryISOCtryLang().newPKey();
 		pkey.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
 		pkey.setRequiredISOLangId( Buff.getRequiredISOLangId() );
@@ -141,7 +158,20 @@ public class CFSecRamISOCtryLangTable
 		}
 		subdictLangIdx.put( pkey, Buff );
 
-		return( Buff );
+		if (Buff == null) {
+			return( null );
+		}
+		else {
+			int classCode = Buff.getClassCode();
+			if (classCode == ICFSecISOCtryLang.CLASS_CODE) {
+				CFSecBuffISOCtryLang retbuff = ((CFSecBuffISOCtryLang)(schema.getFactoryISOCtryLang().newRec()));
+				retbuff.set(Buff);
+				return( retbuff );
+			}
+			else {
+				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, 0, "-create-buff-cloning-", "Not " + Integer.toString(classCode));
+			}
+		}
 	}
 
 	public ICFSecISOCtryLang readDerived( ICFSecAuthorization Authorization,

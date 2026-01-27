@@ -75,10 +75,27 @@ public class CFSecRamISOLangTable
 		schema = argSchema;
 	}
 
+	public CFSecBuffISOLang ensureRec(ICFSecISOLang rec) {
+		if (rec == null) {
+			return( null );
+		}
+		else {
+			int classCode = rec.getClassCode();
+			if (classCode == ICFSecISOLang.CLASS_CODE) {
+				return( ((CFSecBuffISOLangDefaultFactory)(schema.getFactoryISOLang())).ensureRec(rec) );
+			}
+			else {
+				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", 1, "rec", "Not " + Integer.toString(classCode));
+			}
+		}
+	}
+
 	public ICFSecISOLang createISOLang( ICFSecAuthorization Authorization,
-		ICFSecISOLang Buff )
+		ICFSecISOLang iBuff )
 	{
 		final String S_ProcName = "createISOLang";
+		
+		CFSecBuffISOLang Buff = ensureRec(iBuff);
 		Short pkey;
 		pkey = schema.nextISOLangIdGen();
 		Buff.setRequiredISOLangId( pkey );
@@ -120,7 +137,20 @@ public class CFSecRamISOLangTable
 		}
 		subdictCode2Idx.put( pkey, Buff );
 
-		return( Buff );
+		if (Buff == null) {
+			return( null );
+		}
+		else {
+			int classCode = Buff.getClassCode();
+			if (classCode == ICFSecISOLang.CLASS_CODE) {
+				CFSecBuffISOLang retbuff = ((CFSecBuffISOLang)(schema.getFactoryISOLang().newRec()));
+				retbuff.set(Buff);
+				return( retbuff );
+			}
+			else {
+				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, 0, "-create-buff-cloning-", "Not " + Integer.toString(classCode));
+			}
+		}
 	}
 
 	public ICFSecISOLang readDerived( ICFSecAuthorization Authorization,

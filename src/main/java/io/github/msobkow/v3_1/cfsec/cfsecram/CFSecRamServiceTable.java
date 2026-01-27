@@ -91,10 +91,27 @@ public class CFSecRamServiceTable
 		schema = argSchema;
 	}
 
+	public CFSecBuffService ensureRec(ICFSecService rec) {
+		if (rec == null) {
+			return( null );
+		}
+		else {
+			int classCode = rec.getClassCode();
+			if (classCode == ICFSecService.CLASS_CODE) {
+				return( ((CFSecBuffServiceDefaultFactory)(schema.getFactoryService())).ensureRec(rec) );
+			}
+			else {
+				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", 1, "rec", "Not " + Integer.toString(classCode));
+			}
+		}
+	}
+
 	public ICFSecService createService( ICFSecAuthorization Authorization,
-		ICFSecService Buff )
+		ICFSecService iBuff )
 	{
 		final String S_ProcName = "createService";
+		
+		CFSecBuffService Buff = ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey;
 		pkey = schema.nextServiceIdGen();
 		Buff.setRequiredServiceId( pkey );
@@ -196,7 +213,20 @@ public class CFSecRamServiceTable
 
 		dictByUHostPortIdx.put( keyUHostPortIdx, Buff );
 
-		return( Buff );
+		if (Buff == null) {
+			return( null );
+		}
+		else {
+			int classCode = Buff.getClassCode();
+			if (classCode == ICFSecService.CLASS_CODE) {
+				CFSecBuffService retbuff = ((CFSecBuffService)(schema.getFactoryService().newRec()));
+				retbuff.set(Buff);
+				return( retbuff );
+			}
+			else {
+				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, 0, "-create-buff-cloning-", "Not " + Integer.toString(classCode));
+			}
+		}
 	}
 
 	public ICFSecService readDerived( ICFSecAuthorization Authorization,

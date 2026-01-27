@@ -81,10 +81,27 @@ public class CFSecRamISOTZoneTable
 		schema = argSchema;
 	}
 
+	public CFSecBuffISOTZone ensureRec(ICFSecISOTZone rec) {
+		if (rec == null) {
+			return( null );
+		}
+		else {
+			int classCode = rec.getClassCode();
+			if (classCode == ICFSecISOTZone.CLASS_CODE) {
+				return( ((CFSecBuffISOTZoneDefaultFactory)(schema.getFactoryISOTZone())).ensureRec(rec) );
+			}
+			else {
+				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", 1, "rec", "Not " + Integer.toString(classCode));
+			}
+		}
+	}
+
 	public ICFSecISOTZone createISOTZone( ICFSecAuthorization Authorization,
-		ICFSecISOTZone Buff )
+		ICFSecISOTZone iBuff )
 	{
 		final String S_ProcName = "createISOTZone";
+		
+		CFSecBuffISOTZone Buff = ensureRec(iBuff);
 		Short pkey;
 		pkey = schema.nextISOTZoneIdGen();
 		Buff.setRequiredISOTZoneId( pkey );
@@ -140,7 +157,20 @@ public class CFSecRamISOTZoneTable
 		}
 		subdictIso8601Idx.put( pkey, Buff );
 
-		return( Buff );
+		if (Buff == null) {
+			return( null );
+		}
+		else {
+			int classCode = Buff.getClassCode();
+			if (classCode == ICFSecISOTZone.CLASS_CODE) {
+				CFSecBuffISOTZone retbuff = ((CFSecBuffISOTZone)(schema.getFactoryISOTZone().newRec()));
+				retbuff.set(Buff);
+				return( retbuff );
+			}
+			else {
+				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, 0, "-create-buff-cloning-", "Not " + Integer.toString(classCode));
+			}
+		}
 	}
 
 	public ICFSecISOTZone readDerived( ICFSecAuthorization Authorization,

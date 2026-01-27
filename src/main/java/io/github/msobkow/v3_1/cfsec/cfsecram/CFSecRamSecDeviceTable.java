@@ -75,10 +75,27 @@ public class CFSecRamSecDeviceTable
 		schema = argSchema;
 	}
 
+	public CFSecBuffSecDevice ensureRec(ICFSecSecDevice rec) {
+		if (rec == null) {
+			return( null );
+		}
+		else {
+			int classCode = rec.getClassCode();
+			if (classCode == ICFSecSecDevice.CLASS_CODE) {
+				return( ((CFSecBuffSecDeviceDefaultFactory)(schema.getFactorySecDevice())).ensureRec(rec) );
+			}
+			else {
+				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", 1, "rec", "Not " + Integer.toString(classCode));
+			}
+		}
+	}
+
 	public ICFSecSecDevice createSecDevice( ICFSecAuthorization Authorization,
-		ICFSecSecDevice Buff )
+		ICFSecSecDevice iBuff )
 	{
 		final String S_ProcName = "createSecDevice";
+		
+		CFSecBuffSecDevice Buff = ensureRec(iBuff);
 		ICFSecSecDevicePKey pkey = schema.getFactorySecDevice().newPKey();
 		pkey.setRequiredSecUserId( Buff.getRequiredSecUserId() );
 		pkey.setRequiredDevName( Buff.getRequiredDevName() );
@@ -140,7 +157,20 @@ public class CFSecRamSecDeviceTable
 		}
 		subdictUserIdx.put( pkey, Buff );
 
-		return( Buff );
+		if (Buff == null) {
+			return( null );
+		}
+		else {
+			int classCode = Buff.getClassCode();
+			if (classCode == ICFSecSecDevice.CLASS_CODE) {
+				CFSecBuffSecDevice retbuff = ((CFSecBuffSecDevice)(schema.getFactorySecDevice().newRec()));
+				retbuff.set(Buff);
+				return( retbuff );
+			}
+			else {
+				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, 0, "-create-buff-cloning-", "Not " + Integer.toString(classCode));
+			}
+		}
 	}
 
 	public ICFSecSecDevice readDerived( ICFSecAuthorization Authorization,

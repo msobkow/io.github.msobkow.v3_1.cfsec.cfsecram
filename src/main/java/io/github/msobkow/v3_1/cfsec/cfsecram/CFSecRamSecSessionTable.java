@@ -93,10 +93,27 @@ public class CFSecRamSecSessionTable
 		schema = argSchema;
 	}
 
+	public CFSecBuffSecSession ensureRec(ICFSecSecSession rec) {
+		if (rec == null) {
+			return( null );
+		}
+		else {
+			int classCode = rec.getClassCode();
+			if (classCode == ICFSecSecSession.CLASS_CODE) {
+				return( ((CFSecBuffSecSessionDefaultFactory)(schema.getFactorySecSession())).ensureRec(rec) );
+			}
+			else {
+				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", 1, "rec", "Not " + Integer.toString(classCode));
+			}
+		}
+	}
+
 	public ICFSecSecSession createSecSession( ICFSecAuthorization Authorization,
-		ICFSecSecSession Buff )
+		ICFSecSecSession iBuff )
 	{
 		final String S_ProcName = "createSecSession";
+		
+		CFSecBuffSecSession Buff = ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey;
 		pkey = schema.nextSecSessionIdGen();
 		Buff.setRequiredSecSessionId( pkey );
@@ -197,7 +214,20 @@ public class CFSecRamSecSessionTable
 		}
 		subdictSecProxyIdx.put( pkey, Buff );
 
-		return( Buff );
+		if (Buff == null) {
+			return( null );
+		}
+		else {
+			int classCode = Buff.getClassCode();
+			if (classCode == ICFSecSecSession.CLASS_CODE) {
+				CFSecBuffSecSession retbuff = ((CFSecBuffSecSession)(schema.getFactorySecSession().newRec()));
+				retbuff.set(Buff);
+				return( retbuff );
+			}
+			else {
+				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, 0, "-create-buff-cloning-", "Not " + Integer.toString(classCode));
+			}
+		}
 	}
 
 	public ICFSecSecSession readDerived( ICFSecAuthorization Authorization,
