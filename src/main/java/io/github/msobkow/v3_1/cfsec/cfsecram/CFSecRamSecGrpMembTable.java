@@ -388,10 +388,10 @@ public class CFSecRamSecGrpMembTable
 		return( buff );
 	}
 
-	public ICFSecSecGrpMemb readBuff( ICFSecAuthorization Authorization,
+	public ICFSecSecGrpMemb readRec( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 PKey )
 	{
-		final String S_ProcName = "CFSecRamSecGrpMemb.readBuff";
+		final String S_ProcName = "CFSecRamSecGrpMemb.readRec";
 		ICFSecSecGrpMemb buff = readDerived( Authorization, PKey );
 		if( ( buff != null ) && ( buff.getClassCode() != ICFSecSecGrpMemb.CLASS_CODE ) ) {
 			buff = null;
@@ -399,10 +399,10 @@ public class CFSecRamSecGrpMembTable
 		return( buff );
 	}
 
-	public ICFSecSecGrpMemb lockBuff( ICFSecAuthorization Authorization,
+	public ICFSecSecGrpMemb lockRec( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 PKey )
 	{
-		final String S_ProcName = "lockBuff";
+		final String S_ProcName = "lockRec";
 		ICFSecSecGrpMemb buff = readDerived( Authorization, PKey );
 		if( ( buff != null ) && ( buff.getClassCode() != ICFSecSecGrpMemb.CLASS_CODE ) ) {
 			buff = null;
@@ -410,9 +410,9 @@ public class CFSecRamSecGrpMembTable
 		return( buff );
 	}
 
-	public ICFSecSecGrpMemb[] readAllBuff( ICFSecAuthorization Authorization )
+	public ICFSecSecGrpMemb[] readAllRec( ICFSecAuthorization Authorization )
 	{
-		final String S_ProcName = "CFSecRamSecGrpMemb.readAllBuff";
+		final String S_ProcName = "CFSecRamSecGrpMemb.readAllRec";
 		ICFSecSecGrpMemb buff;
 		ArrayList<ICFSecSecGrpMemb> filteredList = new ArrayList<ICFSecSecGrpMemb>();
 		ICFSecSecGrpMemb[] buffList = readAllDerived( Authorization );
@@ -432,17 +432,17 @@ public class CFSecRamSecGrpMembTable
 	 *
 	 *	@return All the specific SecGrpMemb instances in the database accessible for the Authorization.
 	 */
-	public ICFSecSecGrpMemb[] pageAllBuff( ICFSecAuthorization Authorization,
+	public ICFSecSecGrpMemb[] pageAllRec( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 priorSecGrpMembId )
 	{
-		final String S_ProcName = "pageAllBuff";
+		final String S_ProcName = "pageAllRec";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 
-	public ICFSecSecGrpMemb readBuffByIdIdx( ICFSecAuthorization Authorization,
+	public ICFSecSecGrpMemb readRecByIdIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 SecGrpMembId )
 	{
-		final String S_ProcName = "CFSecRamSecGrpMemb.readBuffByIdIdx() ";
+		final String S_ProcName = "CFSecRamSecGrpMemb.readRecByIdIdx() ";
 		ICFSecSecGrpMemb buff = readDerivedByIdIdx( Authorization,
 			SecGrpMembId );
 		if( ( buff != null ) && ( buff.getClassCode() == ICFSecSecGrpMemb.CLASS_CODE ) ) {
@@ -453,10 +453,10 @@ public class CFSecRamSecGrpMembTable
 		}
 	}
 
-	public ICFSecSecGrpMemb[] readBuffByClusterIdx( ICFSecAuthorization Authorization,
+	public ICFSecSecGrpMemb[] readRecByClusterIdx( ICFSecAuthorization Authorization,
 		long ClusterId )
 	{
-		final String S_ProcName = "CFSecRamSecGrpMemb.readBuffByClusterIdx() ";
+		final String S_ProcName = "CFSecRamSecGrpMemb.readRecByClusterIdx() ";
 		ICFSecSecGrpMemb buff;
 		ArrayList<ICFSecSecGrpMemb> filteredList = new ArrayList<ICFSecSecGrpMemb>();
 		ICFSecSecGrpMemb[] buffList = readDerivedByClusterIdx( Authorization,
@@ -470,10 +470,10 @@ public class CFSecRamSecGrpMembTable
 		return( filteredList.toArray( new ICFSecSecGrpMemb[0] ) );
 	}
 
-	public ICFSecSecGrpMemb[] readBuffByGroupIdx( ICFSecAuthorization Authorization,
+	public ICFSecSecGrpMemb[] readRecByGroupIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 SecGroupId )
 	{
-		final String S_ProcName = "CFSecRamSecGrpMemb.readBuffByGroupIdx() ";
+		final String S_ProcName = "CFSecRamSecGrpMemb.readRecByGroupIdx() ";
 		ICFSecSecGrpMemb buff;
 		ArrayList<ICFSecSecGrpMemb> filteredList = new ArrayList<ICFSecSecGrpMemb>();
 		ICFSecSecGrpMemb[] buffList = readDerivedByGroupIdx( Authorization,
@@ -487,10 +487,10 @@ public class CFSecRamSecGrpMembTable
 		return( filteredList.toArray( new ICFSecSecGrpMemb[0] ) );
 	}
 
-	public ICFSecSecGrpMemb[] readBuffByUserIdx( ICFSecAuthorization Authorization,
+	public ICFSecSecGrpMemb[] readRecByUserIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 SecUserId )
 	{
-		final String S_ProcName = "CFSecRamSecGrpMemb.readBuffByUserIdx() ";
+		final String S_ProcName = "CFSecRamSecGrpMemb.readRecByUserIdx() ";
 		ICFSecSecGrpMemb buff;
 		ArrayList<ICFSecSecGrpMemb> filteredList = new ArrayList<ICFSecSecGrpMemb>();
 		ICFSecSecGrpMemb[] buffList = readDerivedByUserIdx( Authorization,
@@ -504,12 +504,12 @@ public class CFSecRamSecGrpMembTable
 		return( filteredList.toArray( new ICFSecSecGrpMemb[0] ) );
 	}
 
-	public ICFSecSecGrpMemb readBuffByUUserIdx( ICFSecAuthorization Authorization,
+	public ICFSecSecGrpMemb readRecByUUserIdx( ICFSecAuthorization Authorization,
 		long ClusterId,
 		CFLibDbKeyHash256 SecGroupId,
 		CFLibDbKeyHash256 SecUserId )
 	{
-		final String S_ProcName = "CFSecRamSecGrpMemb.readBuffByUUserIdx() ";
+		final String S_ProcName = "CFSecRamSecGrpMemb.readRecByUUserIdx() ";
 		ICFSecSecGrpMemb buff = readDerivedByUUserIdx( Authorization,
 			ClusterId,
 			SecGroupId,
@@ -533,11 +533,11 @@ public class CFSecRamSecGrpMembTable
 	 *
 	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
 	 */
-	public ICFSecSecGrpMemb[] pageBuffByClusterIdx( ICFSecAuthorization Authorization,
+	public ICFSecSecGrpMemb[] pageRecByClusterIdx( ICFSecAuthorization Authorization,
 		long ClusterId,
 		CFLibDbKeyHash256 priorSecGrpMembId )
 	{
-		final String S_ProcName = "pageBuffByClusterIdx";
+		final String S_ProcName = "pageRecByClusterIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 
@@ -552,11 +552,11 @@ public class CFSecRamSecGrpMembTable
 	 *
 	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
 	 */
-	public ICFSecSecGrpMemb[] pageBuffByGroupIdx( ICFSecAuthorization Authorization,
+	public ICFSecSecGrpMemb[] pageRecByGroupIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 SecGroupId,
 		CFLibDbKeyHash256 priorSecGrpMembId )
 	{
-		final String S_ProcName = "pageBuffByGroupIdx";
+		final String S_ProcName = "pageRecByGroupIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 
@@ -571,11 +571,11 @@ public class CFSecRamSecGrpMembTable
 	 *
 	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
 	 */
-	public ICFSecSecGrpMemb[] pageBuffByUserIdx( ICFSecAuthorization Authorization,
+	public ICFSecSecGrpMemb[] pageRecByUserIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 SecUserId,
 		CFLibDbKeyHash256 priorSecGrpMembId )
 	{
-		final String S_ProcName = "pageBuffByUserIdx";
+		final String S_ProcName = "pageRecByUserIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 

@@ -238,10 +238,10 @@ public class CFSecRamISOCtryTable
 		return( buff );
 	}
 
-	public ICFSecISOCtry readBuff( ICFSecAuthorization Authorization,
+	public ICFSecISOCtry readRec( ICFSecAuthorization Authorization,
 		Short PKey )
 	{
-		final String S_ProcName = "CFSecRamISOCtry.readBuff";
+		final String S_ProcName = "CFSecRamISOCtry.readRec";
 		ICFSecISOCtry buff = readDerived( Authorization, PKey );
 		if( ( buff != null ) && ( buff.getClassCode() != ICFSecISOCtry.CLASS_CODE ) ) {
 			buff = null;
@@ -249,10 +249,10 @@ public class CFSecRamISOCtryTable
 		return( buff );
 	}
 
-	public ICFSecISOCtry lockBuff( ICFSecAuthorization Authorization,
+	public ICFSecISOCtry lockRec( ICFSecAuthorization Authorization,
 		Short PKey )
 	{
-		final String S_ProcName = "lockBuff";
+		final String S_ProcName = "lockRec";
 		ICFSecISOCtry buff = readDerived( Authorization, PKey );
 		if( ( buff != null ) && ( buff.getClassCode() != ICFSecISOCtry.CLASS_CODE ) ) {
 			buff = null;
@@ -260,9 +260,9 @@ public class CFSecRamISOCtryTable
 		return( buff );
 	}
 
-	public ICFSecISOCtry[] readAllBuff( ICFSecAuthorization Authorization )
+	public ICFSecISOCtry[] readAllRec( ICFSecAuthorization Authorization )
 	{
-		final String S_ProcName = "CFSecRamISOCtry.readAllBuff";
+		final String S_ProcName = "CFSecRamISOCtry.readAllRec";
 		ICFSecISOCtry buff;
 		ArrayList<ICFSecISOCtry> filteredList = new ArrayList<ICFSecISOCtry>();
 		ICFSecISOCtry[] buffList = readAllDerived( Authorization );
@@ -275,10 +275,10 @@ public class CFSecRamISOCtryTable
 		return( filteredList.toArray( new ICFSecISOCtry[0] ) );
 	}
 
-	public ICFSecISOCtry readBuffByIdIdx( ICFSecAuthorization Authorization,
+	public ICFSecISOCtry readRecByIdIdx( ICFSecAuthorization Authorization,
 		short ISOCtryId )
 	{
-		final String S_ProcName = "CFSecRamISOCtry.readBuffByIdIdx() ";
+		final String S_ProcName = "CFSecRamISOCtry.readRecByIdIdx() ";
 		ICFSecISOCtry buff = readDerivedByIdIdx( Authorization,
 			ISOCtryId );
 		if( ( buff != null ) && ( buff.getClassCode() == ICFSecISOCtry.CLASS_CODE ) ) {
@@ -289,10 +289,10 @@ public class CFSecRamISOCtryTable
 		}
 	}
 
-	public ICFSecISOCtry readBuffByISOCodeIdx( ICFSecAuthorization Authorization,
+	public ICFSecISOCtry readRecByISOCodeIdx( ICFSecAuthorization Authorization,
 		String ISOCode )
 	{
-		final String S_ProcName = "CFSecRamISOCtry.readBuffByISOCodeIdx() ";
+		final String S_ProcName = "CFSecRamISOCtry.readRecByISOCodeIdx() ";
 		ICFSecISOCtry buff = readDerivedByISOCodeIdx( Authorization,
 			ISOCode );
 		if( ( buff != null ) && ( buff.getClassCode() == ICFSecISOCtry.CLASS_CODE ) ) {
@@ -303,10 +303,10 @@ public class CFSecRamISOCtryTable
 		}
 	}
 
-	public ICFSecISOCtry readBuffByNameIdx( ICFSecAuthorization Authorization,
+	public ICFSecISOCtry readRecByNameIdx( ICFSecAuthorization Authorization,
 		String Name )
 	{
-		final String S_ProcName = "CFSecRamISOCtry.readBuffByNameIdx() ";
+		final String S_ProcName = "CFSecRamISOCtry.readRecByNameIdx() ";
 		ICFSecISOCtry buff = readDerivedByNameIdx( Authorization,
 			Name );
 		if( ( buff != null ) && ( buff.getClassCode() == ICFSecISOCtry.CLASS_CODE ) ) {

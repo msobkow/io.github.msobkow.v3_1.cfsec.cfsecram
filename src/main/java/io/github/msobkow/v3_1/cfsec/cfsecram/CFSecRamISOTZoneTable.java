@@ -299,10 +299,10 @@ public class CFSecRamISOTZoneTable
 		return( buff );
 	}
 
-	public ICFSecISOTZone readBuff( ICFSecAuthorization Authorization,
+	public ICFSecISOTZone readRec( ICFSecAuthorization Authorization,
 		Short PKey )
 	{
-		final String S_ProcName = "CFSecRamISOTZone.readBuff";
+		final String S_ProcName = "CFSecRamISOTZone.readRec";
 		ICFSecISOTZone buff = readDerived( Authorization, PKey );
 		if( ( buff != null ) && ( buff.getClassCode() != ICFSecISOTZone.CLASS_CODE ) ) {
 			buff = null;
@@ -310,10 +310,10 @@ public class CFSecRamISOTZoneTable
 		return( buff );
 	}
 
-	public ICFSecISOTZone lockBuff( ICFSecAuthorization Authorization,
+	public ICFSecISOTZone lockRec( ICFSecAuthorization Authorization,
 		Short PKey )
 	{
-		final String S_ProcName = "lockBuff";
+		final String S_ProcName = "lockRec";
 		ICFSecISOTZone buff = readDerived( Authorization, PKey );
 		if( ( buff != null ) && ( buff.getClassCode() != ICFSecISOTZone.CLASS_CODE ) ) {
 			buff = null;
@@ -321,9 +321,9 @@ public class CFSecRamISOTZoneTable
 		return( buff );
 	}
 
-	public ICFSecISOTZone[] readAllBuff( ICFSecAuthorization Authorization )
+	public ICFSecISOTZone[] readAllRec( ICFSecAuthorization Authorization )
 	{
-		final String S_ProcName = "CFSecRamISOTZone.readAllBuff";
+		final String S_ProcName = "CFSecRamISOTZone.readAllRec";
 		ICFSecISOTZone buff;
 		ArrayList<ICFSecISOTZone> filteredList = new ArrayList<ICFSecISOTZone>();
 		ICFSecISOTZone[] buffList = readAllDerived( Authorization );
@@ -336,10 +336,10 @@ public class CFSecRamISOTZoneTable
 		return( filteredList.toArray( new ICFSecISOTZone[0] ) );
 	}
 
-	public ICFSecISOTZone readBuffByIdIdx( ICFSecAuthorization Authorization,
+	public ICFSecISOTZone readRecByIdIdx( ICFSecAuthorization Authorization,
 		short ISOTZoneId )
 	{
-		final String S_ProcName = "CFSecRamISOTZone.readBuffByIdIdx() ";
+		final String S_ProcName = "CFSecRamISOTZone.readRecByIdIdx() ";
 		ICFSecISOTZone buff = readDerivedByIdIdx( Authorization,
 			ISOTZoneId );
 		if( ( buff != null ) && ( buff.getClassCode() == ICFSecISOTZone.CLASS_CODE ) ) {
@@ -350,11 +350,11 @@ public class CFSecRamISOTZoneTable
 		}
 	}
 
-	public ICFSecISOTZone[] readBuffByOffsetIdx( ICFSecAuthorization Authorization,
+	public ICFSecISOTZone[] readRecByOffsetIdx( ICFSecAuthorization Authorization,
 		short TZHourOffset,
 		short TZMinOffset )
 	{
-		final String S_ProcName = "CFSecRamISOTZone.readBuffByOffsetIdx() ";
+		final String S_ProcName = "CFSecRamISOTZone.readRecByOffsetIdx() ";
 		ICFSecISOTZone buff;
 		ArrayList<ICFSecISOTZone> filteredList = new ArrayList<ICFSecISOTZone>();
 		ICFSecISOTZone[] buffList = readDerivedByOffsetIdx( Authorization,
@@ -369,10 +369,10 @@ public class CFSecRamISOTZoneTable
 		return( filteredList.toArray( new ICFSecISOTZone[0] ) );
 	}
 
-	public ICFSecISOTZone readBuffByUTZNameIdx( ICFSecAuthorization Authorization,
+	public ICFSecISOTZone readRecByUTZNameIdx( ICFSecAuthorization Authorization,
 		String TZName )
 	{
-		final String S_ProcName = "CFSecRamISOTZone.readBuffByUTZNameIdx() ";
+		final String S_ProcName = "CFSecRamISOTZone.readRecByUTZNameIdx() ";
 		ICFSecISOTZone buff = readDerivedByUTZNameIdx( Authorization,
 			TZName );
 		if( ( buff != null ) && ( buff.getClassCode() == ICFSecISOTZone.CLASS_CODE ) ) {
@@ -383,10 +383,10 @@ public class CFSecRamISOTZoneTable
 		}
 	}
 
-	public ICFSecISOTZone[] readBuffByIso8601Idx( ICFSecAuthorization Authorization,
+	public ICFSecISOTZone[] readRecByIso8601Idx( ICFSecAuthorization Authorization,
 		String Iso8601 )
 	{
-		final String S_ProcName = "CFSecRamISOTZone.readBuffByIso8601Idx() ";
+		final String S_ProcName = "CFSecRamISOTZone.readRecByIso8601Idx() ";
 		ICFSecISOTZone buff;
 		ArrayList<ICFSecISOTZone> filteredList = new ArrayList<ICFSecISOTZone>();
 		ICFSecISOTZone[] buffList = readDerivedByIso8601Idx( Authorization,

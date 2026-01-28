@@ -238,10 +238,10 @@ public class CFSecRamClusterTable
 		return( buff );
 	}
 
-	public ICFSecCluster readBuff( ICFSecAuthorization Authorization,
+	public ICFSecCluster readRec( ICFSecAuthorization Authorization,
 		Long PKey )
 	{
-		final String S_ProcName = "CFSecRamCluster.readBuff";
+		final String S_ProcName = "CFSecRamCluster.readRec";
 		ICFSecCluster buff = readDerived( Authorization, PKey );
 		if( ( buff != null ) && ( buff.getClassCode() != ICFSecCluster.CLASS_CODE ) ) {
 			buff = null;
@@ -249,10 +249,10 @@ public class CFSecRamClusterTable
 		return( buff );
 	}
 
-	public ICFSecCluster lockBuff( ICFSecAuthorization Authorization,
+	public ICFSecCluster lockRec( ICFSecAuthorization Authorization,
 		Long PKey )
 	{
-		final String S_ProcName = "lockBuff";
+		final String S_ProcName = "lockRec";
 		ICFSecCluster buff = readDerived( Authorization, PKey );
 		if( ( buff != null ) && ( buff.getClassCode() != ICFSecCluster.CLASS_CODE ) ) {
 			buff = null;
@@ -260,9 +260,9 @@ public class CFSecRamClusterTable
 		return( buff );
 	}
 
-	public ICFSecCluster[] readAllBuff( ICFSecAuthorization Authorization )
+	public ICFSecCluster[] readAllRec( ICFSecAuthorization Authorization )
 	{
-		final String S_ProcName = "CFSecRamCluster.readAllBuff";
+		final String S_ProcName = "CFSecRamCluster.readAllRec";
 		ICFSecCluster buff;
 		ArrayList<ICFSecCluster> filteredList = new ArrayList<ICFSecCluster>();
 		ICFSecCluster[] buffList = readAllDerived( Authorization );
@@ -282,17 +282,17 @@ public class CFSecRamClusterTable
 	 *
 	 *	@return All the specific Cluster instances in the database accessible for the Authorization.
 	 */
-	public ICFSecCluster[] pageAllBuff( ICFSecAuthorization Authorization,
+	public ICFSecCluster[] pageAllRec( ICFSecAuthorization Authorization,
 		Long priorId )
 	{
-		final String S_ProcName = "pageAllBuff";
+		final String S_ProcName = "pageAllRec";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 
-	public ICFSecCluster readBuffByIdIdx( ICFSecAuthorization Authorization,
+	public ICFSecCluster readRecByIdIdx( ICFSecAuthorization Authorization,
 		long Id )
 	{
-		final String S_ProcName = "CFSecRamCluster.readBuffByIdIdx() ";
+		final String S_ProcName = "CFSecRamCluster.readRecByIdIdx() ";
 		ICFSecCluster buff = readDerivedByIdIdx( Authorization,
 			Id );
 		if( ( buff != null ) && ( buff.getClassCode() == ICFSecCluster.CLASS_CODE ) ) {
@@ -303,10 +303,10 @@ public class CFSecRamClusterTable
 		}
 	}
 
-	public ICFSecCluster readBuffByUDomNameIdx( ICFSecAuthorization Authorization,
+	public ICFSecCluster readRecByUDomNameIdx( ICFSecAuthorization Authorization,
 		String FullDomName )
 	{
-		final String S_ProcName = "CFSecRamCluster.readBuffByUDomNameIdx() ";
+		final String S_ProcName = "CFSecRamCluster.readRecByUDomNameIdx() ";
 		ICFSecCluster buff = readDerivedByUDomNameIdx( Authorization,
 			FullDomName );
 		if( ( buff != null ) && ( buff.getClassCode() == ICFSecCluster.CLASS_CODE ) ) {
@@ -317,10 +317,10 @@ public class CFSecRamClusterTable
 		}
 	}
 
-	public ICFSecCluster readBuffByUDescrIdx( ICFSecAuthorization Authorization,
+	public ICFSecCluster readRecByUDescrIdx( ICFSecAuthorization Authorization,
 		String Description )
 	{
-		final String S_ProcName = "CFSecRamCluster.readBuffByUDescrIdx() ";
+		final String S_ProcName = "CFSecRamCluster.readRecByUDescrIdx() ";
 		ICFSecCluster buff = readDerivedByUDescrIdx( Authorization,
 			Description );
 		if( ( buff != null ) && ( buff.getClassCode() == ICFSecCluster.CLASS_CODE ) ) {

@@ -408,10 +408,10 @@ public class CFSecRamServiceTable
 		return( buff );
 	}
 
-	public ICFSecService readBuff( ICFSecAuthorization Authorization,
+	public ICFSecService readRec( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 PKey )
 	{
-		final String S_ProcName = "CFSecRamService.readBuff";
+		final String S_ProcName = "CFSecRamService.readRec";
 		ICFSecService buff = readDerived( Authorization, PKey );
 		if( ( buff != null ) && ( buff.getClassCode() != ICFSecService.CLASS_CODE ) ) {
 			buff = null;
@@ -419,10 +419,10 @@ public class CFSecRamServiceTable
 		return( buff );
 	}
 
-	public ICFSecService lockBuff( ICFSecAuthorization Authorization,
+	public ICFSecService lockRec( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 PKey )
 	{
-		final String S_ProcName = "lockBuff";
+		final String S_ProcName = "lockRec";
 		ICFSecService buff = readDerived( Authorization, PKey );
 		if( ( buff != null ) && ( buff.getClassCode() != ICFSecService.CLASS_CODE ) ) {
 			buff = null;
@@ -430,9 +430,9 @@ public class CFSecRamServiceTable
 		return( buff );
 	}
 
-	public ICFSecService[] readAllBuff( ICFSecAuthorization Authorization )
+	public ICFSecService[] readAllRec( ICFSecAuthorization Authorization )
 	{
-		final String S_ProcName = "CFSecRamService.readAllBuff";
+		final String S_ProcName = "CFSecRamService.readAllRec";
 		ICFSecService buff;
 		ArrayList<ICFSecService> filteredList = new ArrayList<ICFSecService>();
 		ICFSecService[] buffList = readAllDerived( Authorization );
@@ -452,17 +452,17 @@ public class CFSecRamServiceTable
 	 *
 	 *	@return All the specific Service instances in the database accessible for the Authorization.
 	 */
-	public ICFSecService[] pageAllBuff( ICFSecAuthorization Authorization,
+	public ICFSecService[] pageAllRec( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 priorServiceId )
 	{
-		final String S_ProcName = "pageAllBuff";
+		final String S_ProcName = "pageAllRec";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 
-	public ICFSecService readBuffByIdIdx( ICFSecAuthorization Authorization,
+	public ICFSecService readRecByIdIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 ServiceId )
 	{
-		final String S_ProcName = "CFSecRamService.readBuffByIdIdx() ";
+		final String S_ProcName = "CFSecRamService.readRecByIdIdx() ";
 		ICFSecService buff = readDerivedByIdIdx( Authorization,
 			ServiceId );
 		if( ( buff != null ) && ( buff.getClassCode() == ICFSecService.CLASS_CODE ) ) {
@@ -473,10 +473,10 @@ public class CFSecRamServiceTable
 		}
 	}
 
-	public ICFSecService[] readBuffByClusterIdx( ICFSecAuthorization Authorization,
+	public ICFSecService[] readRecByClusterIdx( ICFSecAuthorization Authorization,
 		long ClusterId )
 	{
-		final String S_ProcName = "CFSecRamService.readBuffByClusterIdx() ";
+		final String S_ProcName = "CFSecRamService.readRecByClusterIdx() ";
 		ICFSecService buff;
 		ArrayList<ICFSecService> filteredList = new ArrayList<ICFSecService>();
 		ICFSecService[] buffList = readDerivedByClusterIdx( Authorization,
@@ -490,10 +490,10 @@ public class CFSecRamServiceTable
 		return( filteredList.toArray( new ICFSecService[0] ) );
 	}
 
-	public ICFSecService[] readBuffByHostIdx( ICFSecAuthorization Authorization,
+	public ICFSecService[] readRecByHostIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 HostNodeId )
 	{
-		final String S_ProcName = "CFSecRamService.readBuffByHostIdx() ";
+		final String S_ProcName = "CFSecRamService.readRecByHostIdx() ";
 		ICFSecService buff;
 		ArrayList<ICFSecService> filteredList = new ArrayList<ICFSecService>();
 		ICFSecService[] buffList = readDerivedByHostIdx( Authorization,
@@ -507,10 +507,10 @@ public class CFSecRamServiceTable
 		return( filteredList.toArray( new ICFSecService[0] ) );
 	}
 
-	public ICFSecService[] readBuffByTypeIdx( ICFSecAuthorization Authorization,
+	public ICFSecService[] readRecByTypeIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 ServiceTypeId )
 	{
-		final String S_ProcName = "CFSecRamService.readBuffByTypeIdx() ";
+		final String S_ProcName = "CFSecRamService.readRecByTypeIdx() ";
 		ICFSecService buff;
 		ArrayList<ICFSecService> filteredList = new ArrayList<ICFSecService>();
 		ICFSecService[] buffList = readDerivedByTypeIdx( Authorization,
@@ -524,12 +524,12 @@ public class CFSecRamServiceTable
 		return( filteredList.toArray( new ICFSecService[0] ) );
 	}
 
-	public ICFSecService readBuffByUTypeIdx( ICFSecAuthorization Authorization,
+	public ICFSecService readRecByUTypeIdx( ICFSecAuthorization Authorization,
 		long ClusterId,
 		CFLibDbKeyHash256 HostNodeId,
 		CFLibDbKeyHash256 ServiceTypeId )
 	{
-		final String S_ProcName = "CFSecRamService.readBuffByUTypeIdx() ";
+		final String S_ProcName = "CFSecRamService.readRecByUTypeIdx() ";
 		ICFSecService buff = readDerivedByUTypeIdx( Authorization,
 			ClusterId,
 			HostNodeId,
@@ -542,12 +542,12 @@ public class CFSecRamServiceTable
 		}
 	}
 
-	public ICFSecService readBuffByUHostPortIdx( ICFSecAuthorization Authorization,
+	public ICFSecService readRecByUHostPortIdx( ICFSecAuthorization Authorization,
 		long ClusterId,
 		CFLibDbKeyHash256 HostNodeId,
 		short HostPort )
 	{
-		final String S_ProcName = "CFSecRamService.readBuffByUHostPortIdx() ";
+		final String S_ProcName = "CFSecRamService.readRecByUHostPortIdx() ";
 		ICFSecService buff = readDerivedByUHostPortIdx( Authorization,
 			ClusterId,
 			HostNodeId,
@@ -571,11 +571,11 @@ public class CFSecRamServiceTable
 	 *
 	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
 	 */
-	public ICFSecService[] pageBuffByClusterIdx( ICFSecAuthorization Authorization,
+	public ICFSecService[] pageRecByClusterIdx( ICFSecAuthorization Authorization,
 		long ClusterId,
 		CFLibDbKeyHash256 priorServiceId )
 	{
-		final String S_ProcName = "pageBuffByClusterIdx";
+		final String S_ProcName = "pageRecByClusterIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 
@@ -590,11 +590,11 @@ public class CFSecRamServiceTable
 	 *
 	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
 	 */
-	public ICFSecService[] pageBuffByHostIdx( ICFSecAuthorization Authorization,
+	public ICFSecService[] pageRecByHostIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 HostNodeId,
 		CFLibDbKeyHash256 priorServiceId )
 	{
-		final String S_ProcName = "pageBuffByHostIdx";
+		final String S_ProcName = "pageRecByHostIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 
@@ -609,11 +609,11 @@ public class CFSecRamServiceTable
 	 *
 	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
 	 */
-	public ICFSecService[] pageBuffByTypeIdx( ICFSecAuthorization Authorization,
+	public ICFSecService[] pageRecByTypeIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 ServiceTypeId,
 		CFLibDbKeyHash256 priorServiceId )
 	{
-		final String S_ProcName = "pageBuffByTypeIdx";
+		final String S_ProcName = "pageRecByTypeIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 

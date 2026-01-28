@@ -345,10 +345,10 @@ public class CFSecRamSecUserTable
 		return( buff );
 	}
 
-	public ICFSecSecUser readBuff( ICFSecAuthorization Authorization,
+	public ICFSecSecUser readRec( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 PKey )
 	{
-		final String S_ProcName = "CFSecRamSecUser.readBuff";
+		final String S_ProcName = "CFSecRamSecUser.readRec";
 		ICFSecSecUser buff = readDerived( Authorization, PKey );
 		if( ( buff != null ) && ( buff.getClassCode() != ICFSecSecUser.CLASS_CODE ) ) {
 			buff = null;
@@ -356,10 +356,10 @@ public class CFSecRamSecUserTable
 		return( buff );
 	}
 
-	public ICFSecSecUser lockBuff( ICFSecAuthorization Authorization,
+	public ICFSecSecUser lockRec( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 PKey )
 	{
-		final String S_ProcName = "lockBuff";
+		final String S_ProcName = "lockRec";
 		ICFSecSecUser buff = readDerived( Authorization, PKey );
 		if( ( buff != null ) && ( buff.getClassCode() != ICFSecSecUser.CLASS_CODE ) ) {
 			buff = null;
@@ -367,9 +367,9 @@ public class CFSecRamSecUserTable
 		return( buff );
 	}
 
-	public ICFSecSecUser[] readAllBuff( ICFSecAuthorization Authorization )
+	public ICFSecSecUser[] readAllRec( ICFSecAuthorization Authorization )
 	{
-		final String S_ProcName = "CFSecRamSecUser.readAllBuff";
+		final String S_ProcName = "CFSecRamSecUser.readAllRec";
 		ICFSecSecUser buff;
 		ArrayList<ICFSecSecUser> filteredList = new ArrayList<ICFSecSecUser>();
 		ICFSecSecUser[] buffList = readAllDerived( Authorization );
@@ -389,17 +389,17 @@ public class CFSecRamSecUserTable
 	 *
 	 *	@return All the specific SecUser instances in the database accessible for the Authorization.
 	 */
-	public ICFSecSecUser[] pageAllBuff( ICFSecAuthorization Authorization,
+	public ICFSecSecUser[] pageAllRec( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 priorSecUserId )
 	{
-		final String S_ProcName = "pageAllBuff";
+		final String S_ProcName = "pageAllRec";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 
-	public ICFSecSecUser readBuffByIdIdx( ICFSecAuthorization Authorization,
+	public ICFSecSecUser readRecByIdIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 SecUserId )
 	{
-		final String S_ProcName = "CFSecRamSecUser.readBuffByIdIdx() ";
+		final String S_ProcName = "CFSecRamSecUser.readRecByIdIdx() ";
 		ICFSecSecUser buff = readDerivedByIdIdx( Authorization,
 			SecUserId );
 		if( ( buff != null ) && ( buff.getClassCode() == ICFSecSecUser.CLASS_CODE ) ) {
@@ -410,10 +410,10 @@ public class CFSecRamSecUserTable
 		}
 	}
 
-	public ICFSecSecUser readBuffByULoginIdx( ICFSecAuthorization Authorization,
+	public ICFSecSecUser readRecByULoginIdx( ICFSecAuthorization Authorization,
 		String LoginId )
 	{
-		final String S_ProcName = "CFSecRamSecUser.readBuffByULoginIdx() ";
+		final String S_ProcName = "CFSecRamSecUser.readRecByULoginIdx() ";
 		ICFSecSecUser buff = readDerivedByULoginIdx( Authorization,
 			LoginId );
 		if( ( buff != null ) && ( buff.getClassCode() == ICFSecSecUser.CLASS_CODE ) ) {
@@ -424,10 +424,10 @@ public class CFSecRamSecUserTable
 		}
 	}
 
-	public ICFSecSecUser[] readBuffByEMConfIdx( ICFSecAuthorization Authorization,
+	public ICFSecSecUser[] readRecByEMConfIdx( ICFSecAuthorization Authorization,
 		CFLibUuid6 EMailConfirmUuid6 )
 	{
-		final String S_ProcName = "CFSecRamSecUser.readBuffByEMConfIdx() ";
+		final String S_ProcName = "CFSecRamSecUser.readRecByEMConfIdx() ";
 		ICFSecSecUser buff;
 		ArrayList<ICFSecSecUser> filteredList = new ArrayList<ICFSecSecUser>();
 		ICFSecSecUser[] buffList = readDerivedByEMConfIdx( Authorization,
@@ -441,10 +441,10 @@ public class CFSecRamSecUserTable
 		return( filteredList.toArray( new ICFSecSecUser[0] ) );
 	}
 
-	public ICFSecSecUser[] readBuffByPwdResetIdx( ICFSecAuthorization Authorization,
+	public ICFSecSecUser[] readRecByPwdResetIdx( ICFSecAuthorization Authorization,
 		CFLibUuid6 PasswordResetUuid6 )
 	{
-		final String S_ProcName = "CFSecRamSecUser.readBuffByPwdResetIdx() ";
+		final String S_ProcName = "CFSecRamSecUser.readRecByPwdResetIdx() ";
 		ICFSecSecUser buff;
 		ArrayList<ICFSecSecUser> filteredList = new ArrayList<ICFSecSecUser>();
 		ICFSecSecUser[] buffList = readDerivedByPwdResetIdx( Authorization,
@@ -458,11 +458,11 @@ public class CFSecRamSecUserTable
 		return( filteredList.toArray( new ICFSecSecUser[0] ) );
 	}
 
-	public ICFSecSecUser[] readBuffByDefDevIdx( ICFSecAuthorization Authorization,
+	public ICFSecSecUser[] readRecByDefDevIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 DfltDevUserId,
 		String DfltDevName )
 	{
-		final String S_ProcName = "CFSecRamSecUser.readBuffByDefDevIdx() ";
+		final String S_ProcName = "CFSecRamSecUser.readRecByDefDevIdx() ";
 		ICFSecSecUser buff;
 		ArrayList<ICFSecSecUser> filteredList = new ArrayList<ICFSecSecUser>();
 		ICFSecSecUser[] buffList = readDerivedByDefDevIdx( Authorization,
@@ -488,11 +488,11 @@ public class CFSecRamSecUserTable
 	 *
 	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
 	 */
-	public ICFSecSecUser[] pageBuffByEMConfIdx( ICFSecAuthorization Authorization,
+	public ICFSecSecUser[] pageRecByEMConfIdx( ICFSecAuthorization Authorization,
 		CFLibUuid6 EMailConfirmUuid6,
 		CFLibDbKeyHash256 priorSecUserId )
 	{
-		final String S_ProcName = "pageBuffByEMConfIdx";
+		final String S_ProcName = "pageRecByEMConfIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 
@@ -507,11 +507,11 @@ public class CFSecRamSecUserTable
 	 *
 	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
 	 */
-	public ICFSecSecUser[] pageBuffByPwdResetIdx( ICFSecAuthorization Authorization,
+	public ICFSecSecUser[] pageRecByPwdResetIdx( ICFSecAuthorization Authorization,
 		CFLibUuid6 PasswordResetUuid6,
 		CFLibDbKeyHash256 priorSecUserId )
 	{
-		final String S_ProcName = "pageBuffByPwdResetIdx";
+		final String S_ProcName = "pageRecByPwdResetIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 
@@ -528,12 +528,12 @@ public class CFSecRamSecUserTable
 	 *
 	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
 	 */
-	public ICFSecSecUser[] pageBuffByDefDevIdx( ICFSecAuthorization Authorization,
+	public ICFSecSecUser[] pageRecByDefDevIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 DfltDevUserId,
 		String DfltDevName,
 		CFLibDbKeyHash256 priorSecUserId )
 	{
-		final String S_ProcName = "pageBuffByDefDevIdx";
+		final String S_ProcName = "pageRecByDefDevIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 
