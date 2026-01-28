@@ -87,7 +87,7 @@ public class CFSecRamISOCtryCcyTable
 				return( ((CFSecBuffISOCtryCcyDefaultFactory)(schema.getFactoryISOCtryCcy())).ensureRec(rec) );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", 1, "rec", "Not " + Integer.toString(classCode));
+				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -169,7 +169,7 @@ public class CFSecRamISOCtryCcyTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, 0, "-create-buff-cloning-", "Not " + Integer.toString(classCode));
+				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -211,7 +211,7 @@ public class CFSecRamISOCtryCcyTable
 	public ICFSecISOCtryCcy[] readAllDerived( ICFSecAuthorization Authorization ) {
 		final String S_ProcName = "CFSecRamISOCtryCcy.readAllDerived";
 		ICFSecISOCtryCcy[] retList = new ICFSecISOCtryCcy[ dictByPKey.values().size() ];
-		Iterator< ICFSecISOCtryCcy > iter = dictByPKey.values().iterator();
+		Iterator< CFSecBuffISOCtryCcy > iter = dictByPKey.values().iterator();
 		int idx = 0;
 		while( iter.hasNext() ) {
 			retList[ idx++ ] = iter.next();
@@ -231,7 +231,7 @@ public class CFSecRamISOCtryCcyTable
 			Map< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdictCtryIdx
 				= dictByCtryIdx.get( key );
 			recArray = new ICFSecISOCtryCcy[ subdictCtryIdx.size() ];
-			Iterator< ICFSecISOCtryCcy > iter = subdictCtryIdx.values().iterator();
+			Iterator< CFSecBuffISOCtryCcy > iter = subdictCtryIdx.values().iterator();
 			int idx = 0;
 			while( iter.hasNext() ) {
 				recArray[ idx++ ] = iter.next();
@@ -258,7 +258,7 @@ public class CFSecRamISOCtryCcyTable
 			Map< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdictCcyIdx
 				= dictByCcyIdx.get( key );
 			recArray = new ICFSecISOCtryCcy[ subdictCcyIdx.size() ];
-			Iterator< ICFSecISOCtryCcy > iter = subdictCcyIdx.values().iterator();
+			Iterator< CFSecBuffISOCtryCcy > iter = subdictCcyIdx.values().iterator();
 			int idx = 0;
 			while( iter.hasNext() ) {
 				recArray[ idx++ ] = iter.next();
@@ -380,16 +380,19 @@ public class CFSecRamISOCtryCcyTable
 	}
 
 	public ICFSecISOCtryCcy updateISOCtryCcy( ICFSecAuthorization Authorization,
-		ICFSecISOCtryCcy Buff )
+		ICFSecISOCtryCcy iBuff )
 	{
-		ICFSecISOCtryCcyPKey pkey = schema.getFactoryISOCtryCcy().newPKey();
+		CFSecBuffISOCtryCcy Buff = ensureRec(iBuff);
+		CFSecBuffISOCtryCcyPKey pkey = (CFSecBuffISOCtryCcyPKey)schema.getFactoryISOCtryCcy().newPKey();
 		pkey.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
 		pkey.setRequiredISOCcyId( Buff.getRequiredISOCcyId() );
-		ICFSecISOCtryCcy existing = dictByPKey.get( pkey );
+		CFSecBuffISOCtryCcy existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
 				"updateISOCtryCcy",
 				"Existing record not found",
+				"Existing record not found",
+				"ISOCtryCcy",
 				"ISOCtryCcy",
 				pkey );
 		}
@@ -434,7 +437,7 @@ public class CFSecRamISOCtryCcyTable
 
 		// Update is valid
 
-		Map< ICFSecISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdict;
+		Map< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -469,14 +472,13 @@ public class CFSecRamISOCtryCcyTable
 	}
 
 	public void deleteISOCtryCcy( ICFSecAuthorization Authorization,
-		ICFSecISOCtryCcy Buff )
+		ICFSecISOCtryCcy iBuff )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcyTable.deleteISOCtryCcy() ";
-		String classCode;
-		ICFSecISOCtryCcyPKey pkey = schema.getFactoryISOCtryCcy().newPKey();
-		pkey.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
-		pkey.setRequiredISOCcyId( Buff.getRequiredISOCcyId() );
-		ICFSecISOCtryCcy existing = dictByPKey.get( pkey );
+		CFSecBuffISOCtryCcy Buff = ensureRec(iBuff);
+		int classCode;
+		CFSecBuffISOCtryCcyPKey pkey = (CFSecBuffISOCtryCcyPKey)(Buff.getPKey());
+		CFSecBuffISOCtryCcy existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
 		}
@@ -495,7 +497,7 @@ public class CFSecRamISOCtryCcyTable
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< ICFSecISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdict;
+		Map< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdict;
 
 		dictByPKey.remove( pkey );
 

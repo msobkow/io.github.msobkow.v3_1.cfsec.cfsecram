@@ -85,7 +85,7 @@ public class CFSecRamTenantTable
 				return( ((CFSecBuffTenantDefaultFactory)(schema.getFactoryTenant())).ensureRec(rec) );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", 1, "rec", "Not " + Integer.toString(classCode));
+				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -166,7 +166,7 @@ public class CFSecRamTenantTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, 0, "-create-buff-cloning-", "Not " + Integer.toString(classCode));
+				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -202,7 +202,7 @@ public class CFSecRamTenantTable
 	public ICFSecTenant[] readAllDerived( ICFSecAuthorization Authorization ) {
 		final String S_ProcName = "CFSecRamTenant.readAllDerived";
 		ICFSecTenant[] retList = new ICFSecTenant[ dictByPKey.values().size() ];
-		Iterator< ICFSecTenant > iter = dictByPKey.values().iterator();
+		Iterator< CFSecBuffTenant > iter = dictByPKey.values().iterator();
 		int idx = 0;
 		while( iter.hasNext() ) {
 			retList[ idx++ ] = iter.next();
@@ -222,7 +222,7 @@ public class CFSecRamTenantTable
 			Map< CFLibDbKeyHash256, CFSecBuffTenant > subdictClusterIdx
 				= dictByClusterIdx.get( key );
 			recArray = new ICFSecTenant[ subdictClusterIdx.size() ];
-			Iterator< ICFSecTenant > iter = subdictClusterIdx.values().iterator();
+			Iterator< CFSecBuffTenant > iter = subdictClusterIdx.values().iterator();
 			int idx = 0;
 			while( iter.hasNext() ) {
 				recArray[ idx++ ] = iter.next();
@@ -388,14 +388,17 @@ public class CFSecRamTenantTable
 	}
 
 	public ICFSecTenant updateTenant( ICFSecAuthorization Authorization,
-		ICFSecTenant Buff )
+		ICFSecTenant iBuff )
 	{
+		CFSecBuffTenant Buff = ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey = Buff.getPKey();
-		ICFSecTenant existing = dictByPKey.get( pkey );
+		CFSecBuffTenant existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
 				"updateTenant",
 				"Existing record not found",
+				"Existing record not found",
+				"Tenant",
 				"Tenant",
 				pkey );
 		}
@@ -477,13 +480,13 @@ public class CFSecRamTenantTable
 	}
 
 	public void deleteTenant( ICFSecAuthorization Authorization,
-		ICFSecTenant Buff )
+		ICFSecTenant iBuff )
 	{
 		final String S_ProcName = "CFSecRamTenantTable.deleteTenant() ";
-		String classCode;
-		CFLibDbKeyHash256 pkey = schema.getFactoryTenant().newPKey();
-		pkey.setRequiredId( Buff.getRequiredId() );
-		ICFSecTenant existing = dictByPKey.get( pkey );
+		CFSecBuffTenant Buff = ensureRec(iBuff);
+		int classCode;
+		CFLibDbKeyHash256 pkey = (CFLibDbKeyHash256)(Buff.getPKey());
+		CFSecBuffTenant existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
 		}
@@ -493,24 +496,24 @@ public class CFSecRamTenantTable
 				"deleteTenant",
 				pkey );
 		}
-		CFSecTSecGroupBuff buffDelIncludedByGroup;
-		CFSecTSecGroupBuff arrDelIncludedByGroup[] = schema.getTableTSecGroup().readDerivedByTenantIdx( Authorization,
+		CFSecBuffTSecGroup buffDelIncludedByGroup;
+		CFSecBuffTSecGroup arrDelIncludedByGroup[] = schema.getTableTSecGroup().readDerivedByTenantIdx( Authorization,
 			existing.getRequiredId() );
 		for( int idxDelIncludedByGroup = 0; idxDelIncludedByGroup < arrDelIncludedByGroup.length; idxDelIncludedByGroup++ ) {
 			buffDelIncludedByGroup = arrDelIncludedByGroup[idxDelIncludedByGroup];
 					schema.getTableTSecGrpInc().deleteTSecGrpIncByIncludeIdx( Authorization,
 						buffDelIncludedByGroup.getRequiredTSecGroupId() );
 		}
-		CFSecTSecGroupBuff buffDelGrpMembs;
-		CFSecTSecGroupBuff arrDelGrpMembs[] = schema.getTableTSecGroup().readDerivedByTenantIdx( Authorization,
+		CFSecBuffTSecGroup buffDelGrpMembs;
+		CFSecBuffTSecGroup arrDelGrpMembs[] = schema.getTableTSecGroup().readDerivedByTenantIdx( Authorization,
 			existing.getRequiredId() );
 		for( int idxDelGrpMembs = 0; idxDelGrpMembs < arrDelGrpMembs.length; idxDelGrpMembs++ ) {
 			buffDelGrpMembs = arrDelGrpMembs[idxDelGrpMembs];
 					schema.getTableTSecGrpMemb().deleteTSecGrpMembByGroupIdx( Authorization,
 						buffDelGrpMembs.getRequiredTSecGroupId() );
 		}
-		CFSecTSecGroupBuff buffDelGrpIncs;
-		CFSecTSecGroupBuff arrDelGrpIncs[] = schema.getTableTSecGroup().readDerivedByTenantIdx( Authorization,
+		CFSecBuffTSecGroup buffDelGrpIncs;
+		CFSecBuffTSecGroup arrDelGrpIncs[] = schema.getTableTSecGroup().readDerivedByTenantIdx( Authorization,
 			existing.getRequiredId() );
 		for( int idxDelGrpIncs = 0; idxDelGrpIncs < arrDelGrpIncs.length; idxDelGrpIncs++ ) {
 			buffDelGrpIncs = arrDelGrpIncs[idxDelGrpIncs];

@@ -79,7 +79,7 @@ public class CFSecRamServiceTypeTable
 				return( ((CFSecBuffServiceTypeDefaultFactory)(schema.getFactoryServiceType())).ensureRec(rec) );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", 1, "rec", "Not " + Integer.toString(classCode));
+				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -129,7 +129,7 @@ public class CFSecRamServiceTypeTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, 0, "-create-buff-cloning-", "Not " + Integer.toString(classCode));
+				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -165,7 +165,7 @@ public class CFSecRamServiceTypeTable
 	public ICFSecServiceType[] readAllDerived( ICFSecAuthorization Authorization ) {
 		final String S_ProcName = "CFSecRamServiceType.readAllDerived";
 		ICFSecServiceType[] retList = new ICFSecServiceType[ dictByPKey.values().size() ];
-		Iterator< ICFSecServiceType > iter = dictByPKey.values().iterator();
+		Iterator< CFSecBuffServiceType > iter = dictByPKey.values().iterator();
 		int idx = 0;
 		while( iter.hasNext() ) {
 			retList[ idx++ ] = iter.next();
@@ -270,14 +270,17 @@ public class CFSecRamServiceTypeTable
 	}
 
 	public ICFSecServiceType updateServiceType( ICFSecAuthorization Authorization,
-		ICFSecServiceType Buff )
+		ICFSecServiceType iBuff )
 	{
+		CFSecBuffServiceType Buff = ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey = Buff.getPKey();
-		ICFSecServiceType existing = dictByPKey.get( pkey );
+		CFSecBuffServiceType existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
 				"updateServiceType",
 				"Existing record not found",
+				"Existing record not found",
+				"ServiceType",
 				"ServiceType",
 				pkey );
 		}
@@ -321,13 +324,13 @@ public class CFSecRamServiceTypeTable
 	}
 
 	public void deleteServiceType( ICFSecAuthorization Authorization,
-		ICFSecServiceType Buff )
+		ICFSecServiceType iBuff )
 	{
 		final String S_ProcName = "CFSecRamServiceTypeTable.deleteServiceType() ";
-		String classCode;
-		CFLibDbKeyHash256 pkey = schema.getFactoryServiceType().newPKey();
-		pkey.setRequiredServiceTypeId( Buff.getRequiredServiceTypeId() );
-		ICFSecServiceType existing = dictByPKey.get( pkey );
+		CFSecBuffServiceType Buff = ensureRec(iBuff);
+		int classCode;
+		CFLibDbKeyHash256 pkey = (CFLibDbKeyHash256)(Buff.getPKey());
+		CFSecBuffServiceType existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
 		}

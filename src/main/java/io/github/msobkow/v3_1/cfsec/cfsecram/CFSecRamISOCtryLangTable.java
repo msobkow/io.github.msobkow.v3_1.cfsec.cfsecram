@@ -87,7 +87,7 @@ public class CFSecRamISOCtryLangTable
 				return( ((CFSecBuffISOCtryLangDefaultFactory)(schema.getFactoryISOCtryLang())).ensureRec(rec) );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", 1, "rec", "Not " + Integer.toString(classCode));
+				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -169,7 +169,7 @@ public class CFSecRamISOCtryLangTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, 0, "-create-buff-cloning-", "Not " + Integer.toString(classCode));
+				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -211,7 +211,7 @@ public class CFSecRamISOCtryLangTable
 	public ICFSecISOCtryLang[] readAllDerived( ICFSecAuthorization Authorization ) {
 		final String S_ProcName = "CFSecRamISOCtryLang.readAllDerived";
 		ICFSecISOCtryLang[] retList = new ICFSecISOCtryLang[ dictByPKey.values().size() ];
-		Iterator< ICFSecISOCtryLang > iter = dictByPKey.values().iterator();
+		Iterator< CFSecBuffISOCtryLang > iter = dictByPKey.values().iterator();
 		int idx = 0;
 		while( iter.hasNext() ) {
 			retList[ idx++ ] = iter.next();
@@ -231,7 +231,7 @@ public class CFSecRamISOCtryLangTable
 			Map< CFSecBuffISOCtryLangPKey, CFSecBuffISOCtryLang > subdictCtryIdx
 				= dictByCtryIdx.get( key );
 			recArray = new ICFSecISOCtryLang[ subdictCtryIdx.size() ];
-			Iterator< ICFSecISOCtryLang > iter = subdictCtryIdx.values().iterator();
+			Iterator< CFSecBuffISOCtryLang > iter = subdictCtryIdx.values().iterator();
 			int idx = 0;
 			while( iter.hasNext() ) {
 				recArray[ idx++ ] = iter.next();
@@ -258,7 +258,7 @@ public class CFSecRamISOCtryLangTable
 			Map< CFSecBuffISOCtryLangPKey, CFSecBuffISOCtryLang > subdictLangIdx
 				= dictByLangIdx.get( key );
 			recArray = new ICFSecISOCtryLang[ subdictLangIdx.size() ];
-			Iterator< ICFSecISOCtryLang > iter = subdictLangIdx.values().iterator();
+			Iterator< CFSecBuffISOCtryLang > iter = subdictLangIdx.values().iterator();
 			int idx = 0;
 			while( iter.hasNext() ) {
 				recArray[ idx++ ] = iter.next();
@@ -380,16 +380,19 @@ public class CFSecRamISOCtryLangTable
 	}
 
 	public ICFSecISOCtryLang updateISOCtryLang( ICFSecAuthorization Authorization,
-		ICFSecISOCtryLang Buff )
+		ICFSecISOCtryLang iBuff )
 	{
-		ICFSecISOCtryLangPKey pkey = schema.getFactoryISOCtryLang().newPKey();
+		CFSecBuffISOCtryLang Buff = ensureRec(iBuff);
+		CFSecBuffISOCtryLangPKey pkey = (CFSecBuffISOCtryLangPKey)schema.getFactoryISOCtryLang().newPKey();
 		pkey.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
 		pkey.setRequiredISOLangId( Buff.getRequiredISOLangId() );
-		ICFSecISOCtryLang existing = dictByPKey.get( pkey );
+		CFSecBuffISOCtryLang existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
 				"updateISOCtryLang",
 				"Existing record not found",
+				"Existing record not found",
+				"ISOCtryLang",
 				"ISOCtryLang",
 				pkey );
 		}
@@ -434,7 +437,7 @@ public class CFSecRamISOCtryLangTable
 
 		// Update is valid
 
-		Map< ICFSecISOCtryLangPKey, CFSecBuffISOCtryLang > subdict;
+		Map< CFSecBuffISOCtryLangPKey, CFSecBuffISOCtryLang > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -469,14 +472,13 @@ public class CFSecRamISOCtryLangTable
 	}
 
 	public void deleteISOCtryLang( ICFSecAuthorization Authorization,
-		ICFSecISOCtryLang Buff )
+		ICFSecISOCtryLang iBuff )
 	{
 		final String S_ProcName = "CFSecRamISOCtryLangTable.deleteISOCtryLang() ";
-		String classCode;
-		ICFSecISOCtryLangPKey pkey = schema.getFactoryISOCtryLang().newPKey();
-		pkey.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
-		pkey.setRequiredISOLangId( Buff.getRequiredISOLangId() );
-		ICFSecISOCtryLang existing = dictByPKey.get( pkey );
+		CFSecBuffISOCtryLang Buff = ensureRec(iBuff);
+		int classCode;
+		CFSecBuffISOCtryLangPKey pkey = (CFSecBuffISOCtryLangPKey)(Buff.getPKey());
+		CFSecBuffISOCtryLang existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
 		}
@@ -495,7 +497,7 @@ public class CFSecRamISOCtryLangTable
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< ICFSecISOCtryLangPKey, CFSecBuffISOCtryLang > subdict;
+		Map< CFSecBuffISOCtryLangPKey, CFSecBuffISOCtryLang > subdict;
 
 		dictByPKey.remove( pkey );
 

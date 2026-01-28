@@ -83,7 +83,7 @@ public class CFSecRamISOCcyTable
 				return( ((CFSecBuffISOCcyDefaultFactory)(schema.getFactoryISOCcy())).ensureRec(rec) );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", 1, "rec", "Not " + Integer.toString(classCode));
+				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -146,7 +146,7 @@ public class CFSecRamISOCcyTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, 0, "-create-buff-cloning-", "Not " + Integer.toString(classCode));
+				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -182,7 +182,7 @@ public class CFSecRamISOCcyTable
 	public ICFSecISOCcy[] readAllDerived( ICFSecAuthorization Authorization ) {
 		final String S_ProcName = "CFSecRamISOCcy.readAllDerived";
 		ICFSecISOCcy[] retList = new ICFSecISOCcy[ dictByPKey.values().size() ];
-		Iterator< ICFSecISOCcy > iter = dictByPKey.values().iterator();
+		Iterator< CFSecBuffISOCcy > iter = dictByPKey.values().iterator();
 		int idx = 0;
 		while( iter.hasNext() ) {
 			retList[ idx++ ] = iter.next();
@@ -318,14 +318,17 @@ public class CFSecRamISOCcyTable
 	}
 
 	public ICFSecISOCcy updateISOCcy( ICFSecAuthorization Authorization,
-		ICFSecISOCcy Buff )
+		ICFSecISOCcy iBuff )
 	{
+		CFSecBuffISOCcy Buff = ensureRec(iBuff);
 		Short pkey = Buff.getPKey();
-		ICFSecISOCcy existing = dictByPKey.get( pkey );
+		CFSecBuffISOCcy existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
 				"updateISOCcy",
 				"Existing record not found",
+				"Existing record not found",
+				"ISOCcy",
 				"ISOCcy",
 				pkey );
 		}
@@ -388,13 +391,13 @@ public class CFSecRamISOCcyTable
 	}
 
 	public void deleteISOCcy( ICFSecAuthorization Authorization,
-		ICFSecISOCcy Buff )
+		ICFSecISOCcy iBuff )
 	{
 		final String S_ProcName = "CFSecRamISOCcyTable.deleteISOCcy() ";
-		String classCode;
-		Short pkey = schema.getFactoryISOCcy().newPKey();
-		pkey.setRequiredISOCcyId( Buff.getRequiredISOCcyId() );
-		ICFSecISOCcy existing = dictByPKey.get( pkey );
+		CFSecBuffISOCcy Buff = ensureRec(iBuff);
+		int classCode;
+		Short pkey = (Short)(Buff.getPKey());
+		CFSecBuffISOCcy existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
 		}

@@ -89,7 +89,7 @@ public class CFSecRamHostNodeTable
 				return( ((CFSecBuffHostNodeDefaultFactory)(schema.getFactoryHostNode())).ensureRec(rec) );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", 1, "rec", "Not " + Integer.toString(classCode));
+				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -184,7 +184,7 @@ public class CFSecRamHostNodeTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, 0, "-create-buff-cloning-", "Not " + Integer.toString(classCode));
+				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -220,7 +220,7 @@ public class CFSecRamHostNodeTable
 	public ICFSecHostNode[] readAllDerived( ICFSecAuthorization Authorization ) {
 		final String S_ProcName = "CFSecRamHostNode.readAllDerived";
 		ICFSecHostNode[] retList = new ICFSecHostNode[ dictByPKey.values().size() ];
-		Iterator< ICFSecHostNode > iter = dictByPKey.values().iterator();
+		Iterator< CFSecBuffHostNode > iter = dictByPKey.values().iterator();
 		int idx = 0;
 		while( iter.hasNext() ) {
 			retList[ idx++ ] = iter.next();
@@ -240,7 +240,7 @@ public class CFSecRamHostNodeTable
 			Map< CFLibDbKeyHash256, CFSecBuffHostNode > subdictClusterIdx
 				= dictByClusterIdx.get( key );
 			recArray = new ICFSecHostNode[ subdictClusterIdx.size() ];
-			Iterator< ICFSecHostNode > iter = subdictClusterIdx.values().iterator();
+			Iterator< CFSecBuffHostNode > iter = subdictClusterIdx.values().iterator();
 			int idx = 0;
 			while( iter.hasNext() ) {
 				recArray[ idx++ ] = iter.next();
@@ -441,14 +441,17 @@ public class CFSecRamHostNodeTable
 	}
 
 	public ICFSecHostNode updateHostNode( ICFSecAuthorization Authorization,
-		ICFSecHostNode Buff )
+		ICFSecHostNode iBuff )
 	{
+		CFSecBuffHostNode Buff = ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey = Buff.getPKey();
-		ICFSecHostNode existing = dictByPKey.get( pkey );
+		CFSecBuffHostNode existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
 				"updateHostNode",
 				"Existing record not found",
+				"Existing record not found",
+				"HostNode",
 				"HostNode",
 				pkey );
 		}
@@ -551,13 +554,13 @@ public class CFSecRamHostNodeTable
 	}
 
 	public void deleteHostNode( ICFSecAuthorization Authorization,
-		ICFSecHostNode Buff )
+		ICFSecHostNode iBuff )
 	{
 		final String S_ProcName = "CFSecRamHostNodeTable.deleteHostNode() ";
-		String classCode;
-		CFLibDbKeyHash256 pkey = schema.getFactoryHostNode().newPKey();
-		pkey.setRequiredHostNodeId( Buff.getRequiredHostNodeId() );
-		ICFSecHostNode existing = dictByPKey.get( pkey );
+		CFSecBuffHostNode Buff = ensureRec(iBuff);
+		int classCode;
+		CFLibDbKeyHash256 pkey = (CFLibDbKeyHash256)(Buff.getPKey());
+		CFSecBuffHostNode existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
 		}

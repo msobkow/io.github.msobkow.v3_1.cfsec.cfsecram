@@ -91,7 +91,7 @@ public class CFSecRamISOTZoneTable
 				return( ((CFSecBuffISOTZoneDefaultFactory)(schema.getFactoryISOTZone())).ensureRec(rec) );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", 1, "rec", "Not " + Integer.toString(classCode));
+				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -168,7 +168,7 @@ public class CFSecRamISOTZoneTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, 0, "-create-buff-cloning-", "Not " + Integer.toString(classCode));
+				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -204,7 +204,7 @@ public class CFSecRamISOTZoneTable
 	public ICFSecISOTZone[] readAllDerived( ICFSecAuthorization Authorization ) {
 		final String S_ProcName = "CFSecRamISOTZone.readAllDerived";
 		ICFSecISOTZone[] retList = new ICFSecISOTZone[ dictByPKey.values().size() ];
-		Iterator< ICFSecISOTZone > iter = dictByPKey.values().iterator();
+		Iterator< CFSecBuffISOTZone > iter = dictByPKey.values().iterator();
 		int idx = 0;
 		while( iter.hasNext() ) {
 			retList[ idx++ ] = iter.next();
@@ -226,7 +226,7 @@ public class CFSecRamISOTZoneTable
 			Map< Short, CFSecBuffISOTZone > subdictOffsetIdx
 				= dictByOffsetIdx.get( key );
 			recArray = new ICFSecISOTZone[ subdictOffsetIdx.size() ];
-			Iterator< ICFSecISOTZone > iter = subdictOffsetIdx.values().iterator();
+			Iterator< CFSecBuffISOTZone > iter = subdictOffsetIdx.values().iterator();
 			int idx = 0;
 			while( iter.hasNext() ) {
 				recArray[ idx++ ] = iter.next();
@@ -270,7 +270,7 @@ public class CFSecRamISOTZoneTable
 			Map< Short, CFSecBuffISOTZone > subdictIso8601Idx
 				= dictByIso8601Idx.get( key );
 			recArray = new ICFSecISOTZone[ subdictIso8601Idx.size() ];
-			Iterator< ICFSecISOTZone > iter = subdictIso8601Idx.values().iterator();
+			Iterator< CFSecBuffISOTZone > iter = subdictIso8601Idx.values().iterator();
 			int idx = 0;
 			while( iter.hasNext() ) {
 				recArray[ idx++ ] = iter.next();
@@ -401,14 +401,17 @@ public class CFSecRamISOTZoneTable
 	}
 
 	public ICFSecISOTZone updateISOTZone( ICFSecAuthorization Authorization,
-		ICFSecISOTZone Buff )
+		ICFSecISOTZone iBuff )
 	{
+		CFSecBuffISOTZone Buff = ensureRec(iBuff);
 		Short pkey = Buff.getPKey();
-		ICFSecISOTZone existing = dictByPKey.get( pkey );
+		CFSecBuffISOTZone existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
 				"updateISOTZone",
 				"Existing record not found",
+				"Existing record not found",
+				"ISOTZone",
 				"ISOTZone",
 				pkey );
 		}
@@ -492,13 +495,13 @@ public class CFSecRamISOTZoneTable
 	}
 
 	public void deleteISOTZone( ICFSecAuthorization Authorization,
-		ICFSecISOTZone Buff )
+		ICFSecISOTZone iBuff )
 	{
 		final String S_ProcName = "CFSecRamISOTZoneTable.deleteISOTZone() ";
-		String classCode;
-		Short pkey = schema.getFactoryISOTZone().newPKey();
-		pkey.setRequiredISOTZoneId( Buff.getRequiredISOTZoneId() );
-		ICFSecISOTZone existing = dictByPKey.get( pkey );
+		CFSecBuffISOTZone Buff = ensureRec(iBuff);
+		int classCode;
+		Short pkey = (Short)(Buff.getPKey());
+		CFSecBuffISOTZone existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
 		}
