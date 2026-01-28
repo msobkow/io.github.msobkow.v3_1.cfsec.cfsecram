@@ -497,26 +497,26 @@ public class CFSecRamTenantTable
 				pkey );
 		}
 		CFSecBuffTSecGroup buffDelIncludedByGroup;
-		CFSecBuffTSecGroup arrDelIncludedByGroup[] = schema.getTableTSecGroup().readDerivedByTenantIdx( Authorization,
+		ICFSecTSecGroup arrDelIncludedByGroup[] = schema.getTableTSecGroup().readDerivedByTenantIdx( Authorization,
 			existing.getRequiredId() );
 		for( int idxDelIncludedByGroup = 0; idxDelIncludedByGroup < arrDelIncludedByGroup.length; idxDelIncludedByGroup++ ) {
-			buffDelIncludedByGroup = arrDelIncludedByGroup[idxDelIncludedByGroup];
+			buffDelIncludedByGroup = (CFSecBuffTSecGroup)(arrDelIncludedByGroup[idxDelIncludedByGroup]);
 					schema.getTableTSecGrpInc().deleteTSecGrpIncByIncludeIdx( Authorization,
 						buffDelIncludedByGroup.getRequiredTSecGroupId() );
 		}
 		CFSecBuffTSecGroup buffDelGrpMembs;
-		CFSecBuffTSecGroup arrDelGrpMembs[] = schema.getTableTSecGroup().readDerivedByTenantIdx( Authorization,
+		ICFSecTSecGroup arrDelGrpMembs[] = schema.getTableTSecGroup().readDerivedByTenantIdx( Authorization,
 			existing.getRequiredId() );
 		for( int idxDelGrpMembs = 0; idxDelGrpMembs < arrDelGrpMembs.length; idxDelGrpMembs++ ) {
-			buffDelGrpMembs = arrDelGrpMembs[idxDelGrpMembs];
+			buffDelGrpMembs = (CFSecBuffTSecGroup)(arrDelGrpMembs[idxDelGrpMembs]);
 					schema.getTableTSecGrpMemb().deleteTSecGrpMembByGroupIdx( Authorization,
 						buffDelGrpMembs.getRequiredTSecGroupId() );
 		}
 		CFSecBuffTSecGroup buffDelGrpIncs;
-		CFSecBuffTSecGroup arrDelGrpIncs[] = schema.getTableTSecGroup().readDerivedByTenantIdx( Authorization,
+		ICFSecTSecGroup arrDelGrpIncs[] = schema.getTableTSecGroup().readDerivedByTenantIdx( Authorization,
 			existing.getRequiredId() );
 		for( int idxDelGrpIncs = 0; idxDelGrpIncs < arrDelGrpIncs.length; idxDelGrpIncs++ ) {
-			buffDelGrpIncs = arrDelGrpIncs[idxDelGrpIncs];
+			buffDelGrpIncs = (CFSecBuffTSecGroup)(arrDelGrpIncs[idxDelGrpIncs]);
 					schema.getTableTSecGrpInc().deleteTSecGrpIncByGroupIdx( Authorization,
 						buffDelGrpIncs.getRequiredTSecGroupId() );
 		}
@@ -550,20 +550,20 @@ public class CFSecRamTenantTable
 		if( ! anyNotNull ) {
 			return;
 		}
-		ICFSecTenant cur;
-		LinkedList<ICFSecTenant> matchSet = new LinkedList<ICFSecTenant>();
-		Iterator<ICFSecTenant> values = dictByPKey.values().iterator();
+		CFSecBuffTenant cur;
+		LinkedList<CFSecBuffTenant> matchSet = new LinkedList<CFSecBuffTenant>();
+		Iterator<CFSecBuffTenant> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecTenant> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffTenant> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableTenant().readDerivedByIdIdx( Authorization,
-				cur.getRequiredId() );
+			cur = (CFSecBuffTenant)(schema.getTableTenant().readDerivedByIdIdx( Authorization,
+				cur.getRequiredId() ));
 			deleteTenant( Authorization, cur );
 		}
 	}
@@ -579,25 +579,25 @@ public class CFSecRamTenantTable
 	public void deleteTenantByClusterIdx( ICFSecAuthorization Authorization,
 		ICFSecTenantByClusterIdxKey argKey )
 	{
-		ICFSecTenant cur;
+		CFSecBuffTenant cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecTenant> matchSet = new LinkedList<ICFSecTenant>();
-		Iterator<ICFSecTenant> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffTenant> matchSet = new LinkedList<CFSecBuffTenant>();
+		Iterator<CFSecBuffTenant> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecTenant> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffTenant> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableTenant().readDerivedByIdIdx( Authorization,
-				cur.getRequiredId() );
+			cur = (CFSecBuffTenant)(schema.getTableTenant().readDerivedByIdIdx( Authorization,
+				cur.getRequiredId() ));
 			deleteTenant( Authorization, cur );
 		}
 	}
@@ -615,26 +615,26 @@ public class CFSecRamTenantTable
 	public void deleteTenantByUNameIdx( ICFSecAuthorization Authorization,
 		ICFSecTenantByUNameIdxKey argKey )
 	{
-		ICFSecTenant cur;
+		CFSecBuffTenant cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecTenant> matchSet = new LinkedList<ICFSecTenant>();
-		Iterator<ICFSecTenant> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffTenant> matchSet = new LinkedList<CFSecBuffTenant>();
+		Iterator<CFSecBuffTenant> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecTenant> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffTenant> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableTenant().readDerivedByIdIdx( Authorization,
-				cur.getRequiredId() );
+			cur = (CFSecBuffTenant)(schema.getTableTenant().readDerivedByIdIdx( Authorization,
+				cur.getRequiredId() ));
 			deleteTenant( Authorization, cur );
 		}
 	}

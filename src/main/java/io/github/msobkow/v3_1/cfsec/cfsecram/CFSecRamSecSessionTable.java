@@ -867,20 +867,20 @@ public class CFSecRamSecSessionTable
 		if( ! anyNotNull ) {
 			return;
 		}
-		ICFSecSecSession cur;
-		LinkedList<ICFSecSecSession> matchSet = new LinkedList<ICFSecSecSession>();
-		Iterator<ICFSecSecSession> values = dictByPKey.values().iterator();
+		CFSecBuffSecSession cur;
+		LinkedList<CFSecBuffSecSession> matchSet = new LinkedList<CFSecBuffSecSession>();
+		Iterator<CFSecBuffSecSession> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecSecSession> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffSecSession> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableSecSession().readDerivedByIdIdx( Authorization,
-				cur.getRequiredSecSessionId() );
+			cur = (CFSecBuffSecSession)(schema.getTableSecSession().readDerivedByIdIdx( Authorization,
+				cur.getRequiredSecSessionId() ));
 			deleteSecSession( Authorization, cur );
 		}
 	}
@@ -896,25 +896,25 @@ public class CFSecRamSecSessionTable
 	public void deleteSecSessionBySecUserIdx( ICFSecAuthorization Authorization,
 		ICFSecSecSessionBySecUserIdxKey argKey )
 	{
-		ICFSecSecSession cur;
+		CFSecBuffSecSession cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecSecSession> matchSet = new LinkedList<ICFSecSecSession>();
-		Iterator<ICFSecSecSession> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffSecSession> matchSet = new LinkedList<CFSecBuffSecSession>();
+		Iterator<CFSecBuffSecSession> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecSecSession> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffSecSession> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableSecSession().readDerivedByIdIdx( Authorization,
-				cur.getRequiredSecSessionId() );
+			cur = (CFSecBuffSecSession)(schema.getTableSecSession().readDerivedByIdIdx( Authorization,
+				cur.getRequiredSecSessionId() ));
 			deleteSecSession( Authorization, cur );
 		}
 	}
@@ -932,7 +932,7 @@ public class CFSecRamSecSessionTable
 	public void deleteSecSessionBySecDevIdx( ICFSecAuthorization Authorization,
 		ICFSecSecSessionBySecDevIdxKey argKey )
 	{
-		ICFSecSecSession cur;
+		CFSecBuffSecSession cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( argKey.getOptionalSecDevName() != null ) {
@@ -941,19 +941,19 @@ public class CFSecRamSecSessionTable
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecSecSession> matchSet = new LinkedList<ICFSecSecSession>();
-		Iterator<ICFSecSecSession> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffSecSession> matchSet = new LinkedList<CFSecBuffSecSession>();
+		Iterator<CFSecBuffSecSession> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecSecSession> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffSecSession> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableSecSession().readDerivedByIdIdx( Authorization,
-				cur.getRequiredSecSessionId() );
+			cur = (CFSecBuffSecSession)(schema.getTableSecSession().readDerivedByIdIdx( Authorization,
+				cur.getRequiredSecSessionId() ));
 			deleteSecSession( Authorization, cur );
 		}
 	}
@@ -971,26 +971,26 @@ public class CFSecRamSecSessionTable
 	public void deleteSecSessionByStartIdx( ICFSecAuthorization Authorization,
 		ICFSecSecSessionByStartIdxKey argKey )
 	{
-		ICFSecSecSession cur;
+		CFSecBuffSecSession cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecSecSession> matchSet = new LinkedList<ICFSecSecSession>();
-		Iterator<ICFSecSecSession> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffSecSession> matchSet = new LinkedList<CFSecBuffSecSession>();
+		Iterator<CFSecBuffSecSession> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecSecSession> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffSecSession> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableSecSession().readDerivedByIdIdx( Authorization,
-				cur.getRequiredSecSessionId() );
+			cur = (CFSecBuffSecSession)(schema.getTableSecSession().readDerivedByIdIdx( Authorization,
+				cur.getRequiredSecSessionId() ));
 			deleteSecSession( Authorization, cur );
 		}
 	}
@@ -1008,7 +1008,7 @@ public class CFSecRamSecSessionTable
 	public void deleteSecSessionByFinishIdx( ICFSecAuthorization Authorization,
 		ICFSecSecSessionByFinishIdxKey argKey )
 	{
-		ICFSecSecSession cur;
+		CFSecBuffSecSession cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( argKey.getOptionalFinish() != null ) {
@@ -1017,19 +1017,19 @@ public class CFSecRamSecSessionTable
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecSecSession> matchSet = new LinkedList<ICFSecSecSession>();
-		Iterator<ICFSecSecSession> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffSecSession> matchSet = new LinkedList<CFSecBuffSecSession>();
+		Iterator<CFSecBuffSecSession> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecSecSession> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffSecSession> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableSecSession().readDerivedByIdIdx( Authorization,
-				cur.getRequiredSecSessionId() );
+			cur = (CFSecBuffSecSession)(schema.getTableSecSession().readDerivedByIdIdx( Authorization,
+				cur.getRequiredSecSessionId() ));
 			deleteSecSession( Authorization, cur );
 		}
 	}
@@ -1045,7 +1045,7 @@ public class CFSecRamSecSessionTable
 	public void deleteSecSessionBySecProxyIdx( ICFSecAuthorization Authorization,
 		ICFSecSecSessionBySecProxyIdxKey argKey )
 	{
-		ICFSecSecSession cur;
+		CFSecBuffSecSession cur;
 		boolean anyNotNull = false;
 		if( argKey.getOptionalSecProxyId() != null ) {
 			anyNotNull = true;
@@ -1053,19 +1053,19 @@ public class CFSecRamSecSessionTable
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecSecSession> matchSet = new LinkedList<ICFSecSecSession>();
-		Iterator<ICFSecSecSession> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffSecSession> matchSet = new LinkedList<CFSecBuffSecSession>();
+		Iterator<CFSecBuffSecSession> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecSecSession> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffSecSession> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableSecSession().readDerivedByIdIdx( Authorization,
-				cur.getRequiredSecSessionId() );
+			cur = (CFSecBuffSecSession)(schema.getTableSecSession().readDerivedByIdIdx( Authorization,
+				cur.getRequiredSecSessionId() ));
 			deleteSecSession( Authorization, cur );
 		}
 	}

@@ -780,20 +780,20 @@ public class CFSecRamSecGrpIncTable
 		if( ! anyNotNull ) {
 			return;
 		}
-		ICFSecSecGrpInc cur;
-		LinkedList<ICFSecSecGrpInc> matchSet = new LinkedList<ICFSecSecGrpInc>();
-		Iterator<ICFSecSecGrpInc> values = dictByPKey.values().iterator();
+		CFSecBuffSecGrpInc cur;
+		LinkedList<CFSecBuffSecGrpInc> matchSet = new LinkedList<CFSecBuffSecGrpInc>();
+		Iterator<CFSecBuffSecGrpInc> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecSecGrpInc> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffSecGrpInc> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableSecGrpInc().readDerivedByIdIdx( Authorization,
-				cur.getRequiredSecGrpIncId() );
+			cur = (CFSecBuffSecGrpInc)(schema.getTableSecGrpInc().readDerivedByIdIdx( Authorization,
+				cur.getRequiredSecGrpIncId() ));
 			deleteSecGrpInc( Authorization, cur );
 		}
 	}
@@ -809,25 +809,25 @@ public class CFSecRamSecGrpIncTable
 	public void deleteSecGrpIncByClusterIdx( ICFSecAuthorization Authorization,
 		ICFSecSecGrpIncByClusterIdxKey argKey )
 	{
-		ICFSecSecGrpInc cur;
+		CFSecBuffSecGrpInc cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecSecGrpInc> matchSet = new LinkedList<ICFSecSecGrpInc>();
-		Iterator<ICFSecSecGrpInc> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffSecGrpInc> matchSet = new LinkedList<CFSecBuffSecGrpInc>();
+		Iterator<CFSecBuffSecGrpInc> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecSecGrpInc> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffSecGrpInc> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableSecGrpInc().readDerivedByIdIdx( Authorization,
-				cur.getRequiredSecGrpIncId() );
+			cur = (CFSecBuffSecGrpInc)(schema.getTableSecGrpInc().readDerivedByIdIdx( Authorization,
+				cur.getRequiredSecGrpIncId() ));
 			deleteSecGrpInc( Authorization, cur );
 		}
 	}
@@ -843,25 +843,25 @@ public class CFSecRamSecGrpIncTable
 	public void deleteSecGrpIncByGroupIdx( ICFSecAuthorization Authorization,
 		ICFSecSecGrpIncByGroupIdxKey argKey )
 	{
-		ICFSecSecGrpInc cur;
+		CFSecBuffSecGrpInc cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecSecGrpInc> matchSet = new LinkedList<ICFSecSecGrpInc>();
-		Iterator<ICFSecSecGrpInc> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffSecGrpInc> matchSet = new LinkedList<CFSecBuffSecGrpInc>();
+		Iterator<CFSecBuffSecGrpInc> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecSecGrpInc> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffSecGrpInc> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableSecGrpInc().readDerivedByIdIdx( Authorization,
-				cur.getRequiredSecGrpIncId() );
+			cur = (CFSecBuffSecGrpInc)(schema.getTableSecGrpInc().readDerivedByIdIdx( Authorization,
+				cur.getRequiredSecGrpIncId() ));
 			deleteSecGrpInc( Authorization, cur );
 		}
 	}
@@ -877,25 +877,25 @@ public class CFSecRamSecGrpIncTable
 	public void deleteSecGrpIncByIncludeIdx( ICFSecAuthorization Authorization,
 		ICFSecSecGrpIncByIncludeIdxKey argKey )
 	{
-		ICFSecSecGrpInc cur;
+		CFSecBuffSecGrpInc cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecSecGrpInc> matchSet = new LinkedList<ICFSecSecGrpInc>();
-		Iterator<ICFSecSecGrpInc> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffSecGrpInc> matchSet = new LinkedList<CFSecBuffSecGrpInc>();
+		Iterator<CFSecBuffSecGrpInc> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecSecGrpInc> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffSecGrpInc> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableSecGrpInc().readDerivedByIdIdx( Authorization,
-				cur.getRequiredSecGrpIncId() );
+			cur = (CFSecBuffSecGrpInc)(schema.getTableSecGrpInc().readDerivedByIdIdx( Authorization,
+				cur.getRequiredSecGrpIncId() ));
 			deleteSecGrpInc( Authorization, cur );
 		}
 	}
@@ -915,7 +915,7 @@ public class CFSecRamSecGrpIncTable
 	public void deleteSecGrpIncByUIncludeIdx( ICFSecAuthorization Authorization,
 		ICFSecSecGrpIncByUIncludeIdxKey argKey )
 	{
-		ICFSecSecGrpInc cur;
+		CFSecBuffSecGrpInc cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		anyNotNull = true;
@@ -923,19 +923,19 @@ public class CFSecRamSecGrpIncTable
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecSecGrpInc> matchSet = new LinkedList<ICFSecSecGrpInc>();
-		Iterator<ICFSecSecGrpInc> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffSecGrpInc> matchSet = new LinkedList<CFSecBuffSecGrpInc>();
+		Iterator<CFSecBuffSecGrpInc> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecSecGrpInc> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffSecGrpInc> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableSecGrpInc().readDerivedByIdIdx( Authorization,
-				cur.getRequiredSecGrpIncId() );
+			cur = (CFSecBuffSecGrpInc)(schema.getTableSecGrpInc().readDerivedByIdIdx( Authorization,
+				cur.getRequiredSecGrpIncId() ));
 			deleteSecGrpInc( Authorization, cur );
 		}
 	}

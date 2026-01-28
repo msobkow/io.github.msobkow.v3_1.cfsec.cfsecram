@@ -527,21 +527,21 @@ public class CFSecRamISOCtryCcyTable
 		if( ! anyNotNull ) {
 			return;
 		}
-		ICFSecISOCtryCcy cur;
-		LinkedList<ICFSecISOCtryCcy> matchSet = new LinkedList<ICFSecISOCtryCcy>();
-		Iterator<ICFSecISOCtryCcy> values = dictByPKey.values().iterator();
+		CFSecBuffISOCtryCcy cur;
+		LinkedList<CFSecBuffISOCtryCcy> matchSet = new LinkedList<CFSecBuffISOCtryCcy>();
+		Iterator<CFSecBuffISOCtryCcy> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecISOCtryCcy> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffISOCtryCcy> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableISOCtryCcy().readDerivedByIdIdx( Authorization,
+			cur = (CFSecBuffISOCtryCcy)(schema.getTableISOCtryCcy().readDerivedByIdIdx( Authorization,
 				cur.getRequiredISOCtryId(),
-				cur.getRequiredISOCcyId() );
+				cur.getRequiredISOCcyId() ));
 			deleteISOCtryCcy( Authorization, cur );
 		}
 	}
@@ -557,26 +557,26 @@ public class CFSecRamISOCtryCcyTable
 	public void deleteISOCtryCcyByCtryIdx( ICFSecAuthorization Authorization,
 		ICFSecISOCtryCcyByCtryIdxKey argKey )
 	{
-		ICFSecISOCtryCcy cur;
+		CFSecBuffISOCtryCcy cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecISOCtryCcy> matchSet = new LinkedList<ICFSecISOCtryCcy>();
-		Iterator<ICFSecISOCtryCcy> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffISOCtryCcy> matchSet = new LinkedList<CFSecBuffISOCtryCcy>();
+		Iterator<CFSecBuffISOCtryCcy> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecISOCtryCcy> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffISOCtryCcy> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableISOCtryCcy().readDerivedByIdIdx( Authorization,
+			cur = (CFSecBuffISOCtryCcy)(schema.getTableISOCtryCcy().readDerivedByIdIdx( Authorization,
 				cur.getRequiredISOCtryId(),
-				cur.getRequiredISOCcyId() );
+				cur.getRequiredISOCcyId() ));
 			deleteISOCtryCcy( Authorization, cur );
 		}
 	}
@@ -592,26 +592,26 @@ public class CFSecRamISOCtryCcyTable
 	public void deleteISOCtryCcyByCcyIdx( ICFSecAuthorization Authorization,
 		ICFSecISOCtryCcyByCcyIdxKey argKey )
 	{
-		ICFSecISOCtryCcy cur;
+		CFSecBuffISOCtryCcy cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecISOCtryCcy> matchSet = new LinkedList<ICFSecISOCtryCcy>();
-		Iterator<ICFSecISOCtryCcy> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffISOCtryCcy> matchSet = new LinkedList<CFSecBuffISOCtryCcy>();
+		Iterator<CFSecBuffISOCtryCcy> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecISOCtryCcy> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffISOCtryCcy> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableISOCtryCcy().readDerivedByIdIdx( Authorization,
+			cur = (CFSecBuffISOCtryCcy)(schema.getTableISOCtryCcy().readDerivedByIdIdx( Authorization,
 				cur.getRequiredISOCtryId(),
-				cur.getRequiredISOCcyId() );
+				cur.getRequiredISOCcyId() ));
 			deleteISOCtryCcy( Authorization, cur );
 		}
 	}

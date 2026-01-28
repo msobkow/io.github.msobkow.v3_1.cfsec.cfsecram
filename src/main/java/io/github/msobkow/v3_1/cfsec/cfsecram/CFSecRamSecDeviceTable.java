@@ -554,21 +554,21 @@ public class CFSecRamSecDeviceTable
 		if( ! anyNotNull ) {
 			return;
 		}
-		ICFSecSecDevice cur;
-		LinkedList<ICFSecSecDevice> matchSet = new LinkedList<ICFSecSecDevice>();
-		Iterator<ICFSecSecDevice> values = dictByPKey.values().iterator();
+		CFSecBuffSecDevice cur;
+		LinkedList<CFSecBuffSecDevice> matchSet = new LinkedList<CFSecBuffSecDevice>();
+		Iterator<CFSecBuffSecDevice> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecSecDevice> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffSecDevice> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableSecDevice().readDerivedByIdIdx( Authorization,
+			cur = (CFSecBuffSecDevice)(schema.getTableSecDevice().readDerivedByIdIdx( Authorization,
 				cur.getRequiredSecUserId(),
-				cur.getRequiredDevName() );
+				cur.getRequiredDevName() ));
 			deleteSecDevice( Authorization, cur );
 		}
 	}
@@ -586,27 +586,27 @@ public class CFSecRamSecDeviceTable
 	public void deleteSecDeviceByNameIdx( ICFSecAuthorization Authorization,
 		ICFSecSecDeviceByNameIdxKey argKey )
 	{
-		ICFSecSecDevice cur;
+		CFSecBuffSecDevice cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecSecDevice> matchSet = new LinkedList<ICFSecSecDevice>();
-		Iterator<ICFSecSecDevice> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffSecDevice> matchSet = new LinkedList<CFSecBuffSecDevice>();
+		Iterator<CFSecBuffSecDevice> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecSecDevice> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffSecDevice> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableSecDevice().readDerivedByIdIdx( Authorization,
+			cur = (CFSecBuffSecDevice)(schema.getTableSecDevice().readDerivedByIdIdx( Authorization,
 				cur.getRequiredSecUserId(),
-				cur.getRequiredDevName() );
+				cur.getRequiredDevName() ));
 			deleteSecDevice( Authorization, cur );
 		}
 	}
@@ -622,26 +622,26 @@ public class CFSecRamSecDeviceTable
 	public void deleteSecDeviceByUserIdx( ICFSecAuthorization Authorization,
 		ICFSecSecDeviceByUserIdxKey argKey )
 	{
-		ICFSecSecDevice cur;
+		CFSecBuffSecDevice cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecSecDevice> matchSet = new LinkedList<ICFSecSecDevice>();
-		Iterator<ICFSecSecDevice> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffSecDevice> matchSet = new LinkedList<CFSecBuffSecDevice>();
+		Iterator<CFSecBuffSecDevice> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecSecDevice> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffSecDevice> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableSecDevice().readDerivedByIdIdx( Authorization,
+			cur = (CFSecBuffSecDevice)(schema.getTableSecDevice().readDerivedByIdIdx( Authorization,
 				cur.getRequiredSecUserId(),
-				cur.getRequiredDevName() );
+				cur.getRequiredDevName() ));
 			deleteSecDevice( Authorization, cur );
 		}
 	}

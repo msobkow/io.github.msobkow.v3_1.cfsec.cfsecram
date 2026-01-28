@@ -527,21 +527,21 @@ public class CFSecRamISOCtryLangTable
 		if( ! anyNotNull ) {
 			return;
 		}
-		ICFSecISOCtryLang cur;
-		LinkedList<ICFSecISOCtryLang> matchSet = new LinkedList<ICFSecISOCtryLang>();
-		Iterator<ICFSecISOCtryLang> values = dictByPKey.values().iterator();
+		CFSecBuffISOCtryLang cur;
+		LinkedList<CFSecBuffISOCtryLang> matchSet = new LinkedList<CFSecBuffISOCtryLang>();
+		Iterator<CFSecBuffISOCtryLang> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecISOCtryLang> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffISOCtryLang> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableISOCtryLang().readDerivedByIdIdx( Authorization,
+			cur = (CFSecBuffISOCtryLang)(schema.getTableISOCtryLang().readDerivedByIdIdx( Authorization,
 				cur.getRequiredISOCtryId(),
-				cur.getRequiredISOLangId() );
+				cur.getRequiredISOLangId() ));
 			deleteISOCtryLang( Authorization, cur );
 		}
 	}
@@ -557,26 +557,26 @@ public class CFSecRamISOCtryLangTable
 	public void deleteISOCtryLangByCtryIdx( ICFSecAuthorization Authorization,
 		ICFSecISOCtryLangByCtryIdxKey argKey )
 	{
-		ICFSecISOCtryLang cur;
+		CFSecBuffISOCtryLang cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecISOCtryLang> matchSet = new LinkedList<ICFSecISOCtryLang>();
-		Iterator<ICFSecISOCtryLang> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffISOCtryLang> matchSet = new LinkedList<CFSecBuffISOCtryLang>();
+		Iterator<CFSecBuffISOCtryLang> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecISOCtryLang> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffISOCtryLang> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableISOCtryLang().readDerivedByIdIdx( Authorization,
+			cur = (CFSecBuffISOCtryLang)(schema.getTableISOCtryLang().readDerivedByIdIdx( Authorization,
 				cur.getRequiredISOCtryId(),
-				cur.getRequiredISOLangId() );
+				cur.getRequiredISOLangId() ));
 			deleteISOCtryLang( Authorization, cur );
 		}
 	}
@@ -592,26 +592,26 @@ public class CFSecRamISOCtryLangTable
 	public void deleteISOCtryLangByLangIdx( ICFSecAuthorization Authorization,
 		ICFSecISOCtryLangByLangIdxKey argKey )
 	{
-		ICFSecISOCtryLang cur;
+		CFSecBuffISOCtryLang cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecISOCtryLang> matchSet = new LinkedList<ICFSecISOCtryLang>();
-		Iterator<ICFSecISOCtryLang> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffISOCtryLang> matchSet = new LinkedList<CFSecBuffISOCtryLang>();
+		Iterator<CFSecBuffISOCtryLang> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecISOCtryLang> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffISOCtryLang> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableISOCtryLang().readDerivedByIdIdx( Authorization,
+			cur = (CFSecBuffISOCtryLang)(schema.getTableISOCtryLang().readDerivedByIdIdx( Authorization,
 				cur.getRequiredISOCtryId(),
-				cur.getRequiredISOLangId() );
+				cur.getRequiredISOLangId() ));
 			deleteISOCtryLang( Authorization, cur );
 		}
 	}

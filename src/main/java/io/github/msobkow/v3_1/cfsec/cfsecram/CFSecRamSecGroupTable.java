@@ -593,20 +593,20 @@ public class CFSecRamSecGroupTable
 		if( ! anyNotNull ) {
 			return;
 		}
-		ICFSecSecGroup cur;
-		LinkedList<ICFSecSecGroup> matchSet = new LinkedList<ICFSecSecGroup>();
-		Iterator<ICFSecSecGroup> values = dictByPKey.values().iterator();
+		CFSecBuffSecGroup cur;
+		LinkedList<CFSecBuffSecGroup> matchSet = new LinkedList<CFSecBuffSecGroup>();
+		Iterator<CFSecBuffSecGroup> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecSecGroup> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffSecGroup> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableSecGroup().readDerivedByIdIdx( Authorization,
-				cur.getRequiredSecGroupId() );
+			cur = (CFSecBuffSecGroup)(schema.getTableSecGroup().readDerivedByIdIdx( Authorization,
+				cur.getRequiredSecGroupId() ));
 			deleteSecGroup( Authorization, cur );
 		}
 	}
@@ -622,25 +622,25 @@ public class CFSecRamSecGroupTable
 	public void deleteSecGroupByClusterIdx( ICFSecAuthorization Authorization,
 		ICFSecSecGroupByClusterIdxKey argKey )
 	{
-		ICFSecSecGroup cur;
+		CFSecBuffSecGroup cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecSecGroup> matchSet = new LinkedList<ICFSecSecGroup>();
-		Iterator<ICFSecSecGroup> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffSecGroup> matchSet = new LinkedList<CFSecBuffSecGroup>();
+		Iterator<CFSecBuffSecGroup> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecSecGroup> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffSecGroup> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableSecGroup().readDerivedByIdIdx( Authorization,
-				cur.getRequiredSecGroupId() );
+			cur = (CFSecBuffSecGroup)(schema.getTableSecGroup().readDerivedByIdIdx( Authorization,
+				cur.getRequiredSecGroupId() ));
 			deleteSecGroup( Authorization, cur );
 		}
 	}
@@ -658,26 +658,26 @@ public class CFSecRamSecGroupTable
 	public void deleteSecGroupByClusterVisIdx( ICFSecAuthorization Authorization,
 		ICFSecSecGroupByClusterVisIdxKey argKey )
 	{
-		ICFSecSecGroup cur;
+		CFSecBuffSecGroup cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecSecGroup> matchSet = new LinkedList<ICFSecSecGroup>();
-		Iterator<ICFSecSecGroup> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffSecGroup> matchSet = new LinkedList<CFSecBuffSecGroup>();
+		Iterator<CFSecBuffSecGroup> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecSecGroup> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffSecGroup> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableSecGroup().readDerivedByIdIdx( Authorization,
-				cur.getRequiredSecGroupId() );
+			cur = (CFSecBuffSecGroup)(schema.getTableSecGroup().readDerivedByIdIdx( Authorization,
+				cur.getRequiredSecGroupId() ));
 			deleteSecGroup( Authorization, cur );
 		}
 	}
@@ -695,26 +695,26 @@ public class CFSecRamSecGroupTable
 	public void deleteSecGroupByUNameIdx( ICFSecAuthorization Authorization,
 		ICFSecSecGroupByUNameIdxKey argKey )
 	{
-		ICFSecSecGroup cur;
+		CFSecBuffSecGroup cur;
 		boolean anyNotNull = false;
 		anyNotNull = true;
 		anyNotNull = true;
 		if( ! anyNotNull ) {
 			return;
 		}
-		LinkedList<ICFSecSecGroup> matchSet = new LinkedList<ICFSecSecGroup>();
-		Iterator<ICFSecSecGroup> values = dictByPKey.values().iterator();
+		LinkedList<CFSecBuffSecGroup> matchSet = new LinkedList<CFSecBuffSecGroup>();
+		Iterator<CFSecBuffSecGroup> values = dictByPKey.values().iterator();
 		while( values.hasNext() ) {
 			cur = values.next();
 			if( argKey.equals( cur ) ) {
 				matchSet.add( cur );
 			}
 		}
-		Iterator<ICFSecSecGroup> iterMatch = matchSet.iterator();
+		Iterator<CFSecBuffSecGroup> iterMatch = matchSet.iterator();
 		while( iterMatch.hasNext() ) {
 			cur = iterMatch.next();
-			cur = schema.getTableSecGroup().readDerivedByIdIdx( Authorization,
-				cur.getRequiredSecGroupId() );
+			cur = (CFSecBuffSecGroup)(schema.getTableSecGroup().readDerivedByIdIdx( Authorization,
+				cur.getRequiredSecGroupId() ));
 			deleteSecGroup( Authorization, cur );
 		}
 	}
