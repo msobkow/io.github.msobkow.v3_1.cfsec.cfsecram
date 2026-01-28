@@ -142,7 +142,10 @@ public class CFSecRamTSecGroupTable
 					throw new CFLibUnresolvedRelationException( getClass(),
 						S_ProcName,
 						"Container",
+						"Container",
 						"TSecGroupTenant",
+						"TSecGroupTenant",
+						"Tenant",
 						"Tenant",
 						null );
 				}
@@ -489,7 +492,10 @@ public class CFSecRamTSecGroupTable
 					throw new CFLibUnresolvedRelationException( getClass(),
 						"updateTSecGroup",
 						"Container",
+						"Container",
 						"TSecGroupTenant",
+						"TSecGroupTenant",
+						"Tenant",
 						"Tenant",
 						null );
 				}

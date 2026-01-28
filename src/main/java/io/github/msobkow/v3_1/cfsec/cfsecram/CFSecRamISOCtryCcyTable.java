@@ -98,7 +98,7 @@ public class CFSecRamISOCtryCcyTable
 		final String S_ProcName = "createISOCtryCcy";
 		
 		CFSecBuffISOCtryCcy Buff = ensureRec(iBuff);
-		ICFSecISOCtryCcyPKey pkey = schema.getFactoryISOCtryCcy().newPKey();
+		CFSecBuffISOCtryCcyPKey pkey = (CFSecBuffISOCtryCcyPKey)(schema.getFactoryISOCtryCcy().newPKey());
 		pkey.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
 		pkey.setRequiredISOCcyId( Buff.getRequiredISOCcyId() );
 		Buff.setRequiredISOCtryId( pkey.getRequiredISOCtryId() );
@@ -127,7 +127,10 @@ public class CFSecRamISOCtryCcyTable
 					throw new CFLibUnresolvedRelationException( getClass(),
 						S_ProcName,
 						"Container",
+						"Container",
 						"ISOCtryCcyCtry",
+						"ISOCtryCcyCtry",
+						"ISOCtry",
 						"ISOCtry",
 						null );
 				}
@@ -428,7 +431,10 @@ public class CFSecRamISOCtryCcyTable
 					throw new CFLibUnresolvedRelationException( getClass(),
 						"updateISOCtryCcy",
 						"Container",
+						"Container",
 						"ISOCtryCcyCtry",
+						"ISOCtryCcyCtry",
+						"ISOCtry",
 						"ISOCtry",
 						null );
 				}

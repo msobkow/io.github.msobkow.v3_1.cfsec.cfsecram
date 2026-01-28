@@ -116,7 +116,10 @@ public class CFSecRamSysClusterTable
 					throw new CFLibUnresolvedRelationException( getClass(),
 						S_ProcName,
 						"Container",
+						"Container",
 						"SysClusterCluster",
+						"SysClusterCluster",
+						"Cluster",
 						"Cluster",
 						null );
 				}
@@ -342,7 +345,10 @@ public class CFSecRamSysClusterTable
 					throw new CFLibUnresolvedRelationException( getClass(),
 						"updateSysCluster",
 						"Container",
+						"Container",
 						"SysClusterCluster",
+						"SysClusterCluster",
+						"Cluster",
 						"Cluster",
 						null );
 				}
