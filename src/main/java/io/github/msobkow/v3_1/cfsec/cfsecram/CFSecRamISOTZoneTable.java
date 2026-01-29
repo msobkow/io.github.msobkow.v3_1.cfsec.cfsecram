@@ -190,7 +190,7 @@ public class CFSecRamISOTZoneTable
 	public ICFSecISOTZone lockDerived( ICFSecAuthorization Authorization,
 		Short PKey )
 	{
-		final String S_ProcName = "CFSecRamISOTZone.readDerived";
+		final String S_ProcName = "CFSecRamISOTZone.lockDerived";
 		ICFSecISOTZone buff;
 		if( dictByPKey.containsKey( PKey ) ) {
 			buff = dictByPKey.get( PKey );
@@ -218,9 +218,9 @@ public class CFSecRamISOTZoneTable
 	{
 		final String S_ProcName = "CFSecRamISOTZone.readDerivedByOffsetIdx";
 		CFSecBuffISOTZoneByOffsetIdxKey key = (CFSecBuffISOTZoneByOffsetIdxKey)schema.getFactoryISOTZone().newByOffsetIdxKey();
+
 		key.setRequiredTZHourOffset( TZHourOffset );
 		key.setRequiredTZMinOffset( TZMinOffset );
-
 		ICFSecISOTZone[] recArray;
 		if( dictByOffsetIdx.containsKey( key ) ) {
 			Map< Short, CFSecBuffISOTZone > subdictOffsetIdx
@@ -246,8 +246,8 @@ public class CFSecRamISOTZoneTable
 	{
 		final String S_ProcName = "CFSecRamISOTZone.readDerivedByUTZNameIdx";
 		CFSecBuffISOTZoneByUTZNameIdxKey key = (CFSecBuffISOTZoneByUTZNameIdxKey)schema.getFactoryISOTZone().newByUTZNameIdxKey();
-		key.setRequiredTZName( TZName );
 
+		key.setRequiredTZName( TZName );
 		ICFSecISOTZone buff;
 		if( dictByUTZNameIdx.containsKey( key ) ) {
 			buff = dictByUTZNameIdx.get( key );
@@ -263,8 +263,8 @@ public class CFSecRamISOTZoneTable
 	{
 		final String S_ProcName = "CFSecRamISOTZone.readDerivedByIso8601Idx";
 		CFSecBuffISOTZoneByIso8601IdxKey key = (CFSecBuffISOTZoneByIso8601IdxKey)schema.getFactoryISOTZone().newByIso8601IdxKey();
-		key.setRequiredIso8601( Iso8601 );
 
+		key.setRequiredIso8601( Iso8601 );
 		ICFSecISOTZone[] recArray;
 		if( dictByIso8601Idx.containsKey( key ) ) {
 			Map< Short, CFSecBuffISOTZone > subdictIso8601Idx

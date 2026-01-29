@@ -250,7 +250,7 @@ public class CFSecRamTSecGrpIncTable
 	public ICFSecTSecGrpInc lockDerived( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 PKey )
 	{
-		final String S_ProcName = "CFSecRamTSecGrpInc.readDerived";
+		final String S_ProcName = "CFSecRamTSecGrpInc.lockDerived";
 		ICFSecTSecGrpInc buff;
 		if( dictByPKey.containsKey( PKey ) ) {
 			buff = dictByPKey.get( PKey );
@@ -277,8 +277,8 @@ public class CFSecRamTSecGrpIncTable
 	{
 		final String S_ProcName = "CFSecRamTSecGrpInc.readDerivedByTenantIdx";
 		CFSecBuffTSecGrpIncByTenantIdxKey key = (CFSecBuffTSecGrpIncByTenantIdxKey)schema.getFactoryTSecGrpInc().newByTenantIdxKey();
-		key.setRequiredTenantId( TenantId );
 
+		key.setRequiredTenantId( TenantId );
 		ICFSecTSecGrpInc[] recArray;
 		if( dictByTenantIdx.containsKey( key ) ) {
 			Map< CFLibDbKeyHash256, CFSecBuffTSecGrpInc > subdictTenantIdx
@@ -304,8 +304,8 @@ public class CFSecRamTSecGrpIncTable
 	{
 		final String S_ProcName = "CFSecRamTSecGrpInc.readDerivedByGroupIdx";
 		CFSecBuffTSecGrpIncByGroupIdxKey key = (CFSecBuffTSecGrpIncByGroupIdxKey)schema.getFactoryTSecGrpInc().newByGroupIdxKey();
-		key.setRequiredTSecGroupId( TSecGroupId );
 
+		key.setRequiredTSecGroupId( TSecGroupId );
 		ICFSecTSecGrpInc[] recArray;
 		if( dictByGroupIdx.containsKey( key ) ) {
 			Map< CFLibDbKeyHash256, CFSecBuffTSecGrpInc > subdictGroupIdx
@@ -331,8 +331,8 @@ public class CFSecRamTSecGrpIncTable
 	{
 		final String S_ProcName = "CFSecRamTSecGrpInc.readDerivedByIncludeIdx";
 		CFSecBuffTSecGrpIncByIncludeIdxKey key = (CFSecBuffTSecGrpIncByIncludeIdxKey)schema.getFactoryTSecGrpInc().newByIncludeIdxKey();
-		key.setRequiredIncludeGroupId( IncludeGroupId );
 
+		key.setRequiredIncludeGroupId( IncludeGroupId );
 		ICFSecTSecGrpInc[] recArray;
 		if( dictByIncludeIdx.containsKey( key ) ) {
 			Map< CFLibDbKeyHash256, CFSecBuffTSecGrpInc > subdictIncludeIdx
@@ -360,10 +360,10 @@ public class CFSecRamTSecGrpIncTable
 	{
 		final String S_ProcName = "CFSecRamTSecGrpInc.readDerivedByUIncludeIdx";
 		CFSecBuffTSecGrpIncByUIncludeIdxKey key = (CFSecBuffTSecGrpIncByUIncludeIdxKey)schema.getFactoryTSecGrpInc().newByUIncludeIdxKey();
+
 		key.setRequiredTenantId( TenantId );
 		key.setRequiredTSecGroupId( TSecGroupId );
 		key.setRequiredIncludeGroupId( IncludeGroupId );
-
 		ICFSecTSecGrpInc buff;
 		if( dictByUIncludeIdx.containsKey( key ) ) {
 			buff = dictByUIncludeIdx.get( key );

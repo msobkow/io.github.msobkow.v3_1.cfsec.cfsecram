@@ -168,7 +168,7 @@ public class CFSecRamISOCcyTable
 	public ICFSecISOCcy lockDerived( ICFSecAuthorization Authorization,
 		Short PKey )
 	{
-		final String S_ProcName = "CFSecRamISOCcy.readDerived";
+		final String S_ProcName = "CFSecRamISOCcy.lockDerived";
 		ICFSecISOCcy buff;
 		if( dictByPKey.containsKey( PKey ) ) {
 			buff = dictByPKey.get( PKey );
@@ -195,8 +195,8 @@ public class CFSecRamISOCcyTable
 	{
 		final String S_ProcName = "CFSecRamISOCcy.readDerivedByCcyCdIdx";
 		CFSecBuffISOCcyByCcyCdIdxKey key = (CFSecBuffISOCcyByCcyCdIdxKey)schema.getFactoryISOCcy().newByCcyCdIdxKey();
-		key.setRequiredISOCode( ISOCode );
 
+		key.setRequiredISOCode( ISOCode );
 		ICFSecISOCcy buff;
 		if( dictByCcyCdIdx.containsKey( key ) ) {
 			buff = dictByCcyCdIdx.get( key );
@@ -212,8 +212,8 @@ public class CFSecRamISOCcyTable
 	{
 		final String S_ProcName = "CFSecRamISOCcy.readDerivedByCcyNmIdx";
 		CFSecBuffISOCcyByCcyNmIdxKey key = (CFSecBuffISOCcyByCcyNmIdxKey)schema.getFactoryISOCcy().newByCcyNmIdxKey();
-		key.setRequiredName( Name );
 
+		key.setRequiredName( Name );
 		ICFSecISOCcy buff;
 		if( dictByCcyNmIdx.containsKey( key ) ) {
 			buff = dictByCcyNmIdx.get( key );

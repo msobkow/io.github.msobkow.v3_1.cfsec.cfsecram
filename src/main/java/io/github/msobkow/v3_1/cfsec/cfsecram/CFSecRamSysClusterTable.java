@@ -173,7 +173,7 @@ public class CFSecRamSysClusterTable
 	public ICFSecSysCluster lockDerived( ICFSecAuthorization Authorization,
 		Integer PKey )
 	{
-		final String S_ProcName = "CFSecRamSysCluster.readDerived";
+		final String S_ProcName = "CFSecRamSysCluster.lockDerived";
 		ICFSecSysCluster buff;
 		if( dictByPKey.containsKey( PKey ) ) {
 			buff = dictByPKey.get( PKey );
@@ -200,8 +200,8 @@ public class CFSecRamSysClusterTable
 	{
 		final String S_ProcName = "CFSecRamSysCluster.readDerivedByClusterIdx";
 		CFSecBuffSysClusterByClusterIdxKey key = (CFSecBuffSysClusterByClusterIdxKey)schema.getFactorySysCluster().newByClusterIdxKey();
-		key.setRequiredClusterId( ClusterId );
 
+		key.setRequiredClusterId( ClusterId );
 		ICFSecSysCluster[] recArray;
 		if( dictByClusterIdx.containsKey( key ) ) {
 			Map< Integer, CFSecBuffSysCluster > subdictClusterIdx

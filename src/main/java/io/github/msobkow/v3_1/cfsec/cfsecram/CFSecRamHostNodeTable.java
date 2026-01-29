@@ -209,7 +209,7 @@ public class CFSecRamHostNodeTable
 	public ICFSecHostNode lockDerived( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 PKey )
 	{
-		final String S_ProcName = "CFSecRamHostNode.readDerived";
+		final String S_ProcName = "CFSecRamHostNode.lockDerived";
 		ICFSecHostNode buff;
 		if( dictByPKey.containsKey( PKey ) ) {
 			buff = dictByPKey.get( PKey );
@@ -236,8 +236,8 @@ public class CFSecRamHostNodeTable
 	{
 		final String S_ProcName = "CFSecRamHostNode.readDerivedByClusterIdx";
 		CFSecBuffHostNodeByClusterIdxKey key = (CFSecBuffHostNodeByClusterIdxKey)schema.getFactoryHostNode().newByClusterIdxKey();
-		key.setRequiredClusterId( ClusterId );
 
+		key.setRequiredClusterId( ClusterId );
 		ICFSecHostNode[] recArray;
 		if( dictByClusterIdx.containsKey( key ) ) {
 			Map< CFLibDbKeyHash256, CFSecBuffHostNode > subdictClusterIdx
@@ -264,9 +264,9 @@ public class CFSecRamHostNodeTable
 	{
 		final String S_ProcName = "CFSecRamHostNode.readDerivedByUDescrIdx";
 		CFSecBuffHostNodeByUDescrIdxKey key = (CFSecBuffHostNodeByUDescrIdxKey)schema.getFactoryHostNode().newByUDescrIdxKey();
+
 		key.setRequiredClusterId( ClusterId );
 		key.setRequiredDescription( Description );
-
 		ICFSecHostNode buff;
 		if( dictByUDescrIdx.containsKey( key ) ) {
 			buff = dictByUDescrIdx.get( key );
@@ -283,9 +283,9 @@ public class CFSecRamHostNodeTable
 	{
 		final String S_ProcName = "CFSecRamHostNode.readDerivedByHostNameIdx";
 		CFSecBuffHostNodeByHostNameIdxKey key = (CFSecBuffHostNodeByHostNameIdxKey)schema.getFactoryHostNode().newByHostNameIdxKey();
+
 		key.setRequiredClusterId( ClusterId );
 		key.setRequiredHostName( HostName );
-
 		ICFSecHostNode buff;
 		if( dictByHostNameIdx.containsKey( key ) ) {
 			buff = dictByHostNameIdx.get( key );
