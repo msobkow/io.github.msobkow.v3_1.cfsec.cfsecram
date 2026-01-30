@@ -93,7 +93,7 @@ public class CFSecRamISOCtryTable
 	{
 		final String S_ProcName = "createISOCtry";
 		
-		CFSecBuffISOCtry Buff = ensureRec(iBuff);
+		CFSecBuffISOCtry Buff = (CFSecBuffISOCtry)ensureRec(iBuff);
 		Short pkey;
 		pkey = schema.nextISOCtryIdGen();
 		Buff.setRequiredISOCtryId( pkey );
@@ -320,7 +320,7 @@ public class CFSecRamISOCtryTable
 	public ICFSecISOCtry updateISOCtry( ICFSecAuthorization Authorization,
 		ICFSecISOCtry iBuff )
 	{
-		CFSecBuffISOCtry Buff = ensureRec(iBuff);
+		CFSecBuffISOCtry Buff = (CFSecBuffISOCtry)ensureRec(iBuff);
 		Short pkey = Buff.getPKey();
 		CFSecBuffISOCtry existing = dictByPKey.get( pkey );
 		if( existing == null ) {
@@ -394,7 +394,7 @@ public class CFSecRamISOCtryTable
 		ICFSecISOCtry iBuff )
 	{
 		final String S_ProcName = "CFSecRamISOCtryTable.deleteISOCtry() ";
-		CFSecBuffISOCtry Buff = ensureRec(iBuff);
+		CFSecBuffISOCtry Buff = (CFSecBuffISOCtry)ensureRec(iBuff);
 		int classCode;
 		Short pkey = (Short)(Buff.getPKey());
 		CFSecBuffISOCtry existing = dictByPKey.get( pkey );

@@ -113,7 +113,7 @@ public class CFSecRamSecSessionTable
 	{
 		final String S_ProcName = "createSecSession";
 		
-		CFSecBuffSecSession Buff = ensureRec(iBuff);
+		CFSecBuffSecSession Buff = (CFSecBuffSecSession)ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey;
 		pkey = schema.nextSecSessionIdGen();
 		Buff.setRequiredSecSessionId( pkey );
@@ -655,7 +655,7 @@ public class CFSecRamSecSessionTable
 	public ICFSecSecSession updateSecSession( ICFSecAuthorization Authorization,
 		ICFSecSecSession iBuff )
 	{
-		CFSecBuffSecSession Buff = ensureRec(iBuff);
+		CFSecBuffSecSession Buff = (CFSecBuffSecSession)ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey = Buff.getPKey();
 		CFSecBuffSecSession existing = dictByPKey.get( pkey );
 		if( existing == null ) {
@@ -812,7 +812,7 @@ public class CFSecRamSecSessionTable
 		ICFSecSecSession iBuff )
 	{
 		final String S_ProcName = "CFSecRamSecSessionTable.deleteSecSession() ";
-		CFSecBuffSecSession Buff = ensureRec(iBuff);
+		CFSecBuffSecSession Buff = (CFSecBuffSecSession)ensureRec(iBuff);
 		int classCode;
 		CFLibDbKeyHash256 pkey = (CFLibDbKeyHash256)(Buff.getPKey());
 		CFSecBuffSecSession existing = dictByPKey.get( pkey );

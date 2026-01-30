@@ -97,7 +97,7 @@ public class CFSecRamISOCtryCcyTable
 	{
 		final String S_ProcName = "createISOCtryCcy";
 		
-		CFSecBuffISOCtryCcy Buff = ensureRec(iBuff);
+		CFSecBuffISOCtryCcy Buff = (CFSecBuffISOCtryCcy)ensureRec(iBuff);
 		CFSecBuffISOCtryCcyPKey pkey = (CFSecBuffISOCtryCcyPKey)(schema.getFactoryISOCtryCcy().newPKey());
 		pkey.setRequiredContainerCtry( Buff.getRequiredISOCtryId() );
 		pkey.setRequiredParentCcy( Buff.getRequiredISOCcyId() );
@@ -404,7 +404,7 @@ public class CFSecRamISOCtryCcyTable
 	public ICFSecISOCtryCcy updateISOCtryCcy( ICFSecAuthorization Authorization,
 		ICFSecISOCtryCcy iBuff )
 	{
-		CFSecBuffISOCtryCcy Buff = ensureRec(iBuff);
+		CFSecBuffISOCtryCcy Buff = (CFSecBuffISOCtryCcy)ensureRec(iBuff);
 		CFSecBuffISOCtryCcyPKey pkey = (CFSecBuffISOCtryCcyPKey)(schema.getFactoryISOCtryCcy().newPKey());
 		pkey.setRequiredContainerCtry( Buff.getRequiredISOCtryId() );
 		pkey.setRequiredParentCcy( Buff.getRequiredISOCcyId() );
@@ -500,7 +500,7 @@ public class CFSecRamISOCtryCcyTable
 		ICFSecISOCtryCcy iBuff )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcyTable.deleteISOCtryCcy() ";
-		CFSecBuffISOCtryCcy Buff = ensureRec(iBuff);
+		CFSecBuffISOCtryCcy Buff = (CFSecBuffISOCtryCcy)ensureRec(iBuff);
 		int classCode;
 		CFSecBuffISOCtryCcyPKey pkey = (CFSecBuffISOCtryCcyPKey)(Buff.getPKey());
 		CFSecBuffISOCtryCcy existing = dictByPKey.get( pkey );

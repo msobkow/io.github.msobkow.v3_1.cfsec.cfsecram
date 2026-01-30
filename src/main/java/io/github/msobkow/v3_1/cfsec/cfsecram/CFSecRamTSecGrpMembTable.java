@@ -107,7 +107,7 @@ public class CFSecRamTSecGrpMembTable
 	{
 		final String S_ProcName = "createTSecGrpMemb";
 		
-		CFSecBuffTSecGrpMemb Buff = ensureRec(iBuff);
+		CFSecBuffTSecGrpMemb Buff = (CFSecBuffTSecGrpMemb)ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey;
 		pkey = schema.nextTSecGrpMembIdGen();
 		Buff.setRequiredTSecGrpMembId( pkey );
@@ -582,7 +582,7 @@ public class CFSecRamTSecGrpMembTable
 	public ICFSecTSecGrpMemb updateTSecGrpMemb( ICFSecAuthorization Authorization,
 		ICFSecTSecGrpMemb iBuff )
 	{
-		CFSecBuffTSecGrpMemb Buff = ensureRec(iBuff);
+		CFSecBuffTSecGrpMemb Buff = (CFSecBuffTSecGrpMemb)ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey = Buff.getPKey();
 		CFSecBuffTSecGrpMemb existing = dictByPKey.get( pkey );
 		if( existing == null ) {
@@ -738,7 +738,7 @@ public class CFSecRamTSecGrpMembTable
 		ICFSecTSecGrpMemb iBuff )
 	{
 		final String S_ProcName = "CFSecRamTSecGrpMembTable.deleteTSecGrpMemb() ";
-		CFSecBuffTSecGrpMemb Buff = ensureRec(iBuff);
+		CFSecBuffTSecGrpMemb Buff = (CFSecBuffTSecGrpMemb)ensureRec(iBuff);
 		int classCode;
 		CFLibDbKeyHash256 pkey = (CFLibDbKeyHash256)(Buff.getPKey());
 		CFSecBuffTSecGrpMemb existing = dictByPKey.get( pkey );

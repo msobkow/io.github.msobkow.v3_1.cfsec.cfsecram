@@ -93,7 +93,7 @@ public class CFSecRamISOCcyTable
 	{
 		final String S_ProcName = "createISOCcy";
 		
-		CFSecBuffISOCcy Buff = ensureRec(iBuff);
+		CFSecBuffISOCcy Buff = (CFSecBuffISOCcy)ensureRec(iBuff);
 		Short pkey;
 		pkey = schema.nextISOCcyIdGen();
 		Buff.setRequiredISOCcyId( pkey );
@@ -320,7 +320,7 @@ public class CFSecRamISOCcyTable
 	public ICFSecISOCcy updateISOCcy( ICFSecAuthorization Authorization,
 		ICFSecISOCcy iBuff )
 	{
-		CFSecBuffISOCcy Buff = ensureRec(iBuff);
+		CFSecBuffISOCcy Buff = (CFSecBuffISOCcy)ensureRec(iBuff);
 		Short pkey = Buff.getPKey();
 		CFSecBuffISOCcy existing = dictByPKey.get( pkey );
 		if( existing == null ) {
@@ -394,7 +394,7 @@ public class CFSecRamISOCcyTable
 		ICFSecISOCcy iBuff )
 	{
 		final String S_ProcName = "CFSecRamISOCcyTable.deleteISOCcy() ";
-		CFSecBuffISOCcy Buff = ensureRec(iBuff);
+		CFSecBuffISOCcy Buff = (CFSecBuffISOCcy)ensureRec(iBuff);
 		int classCode;
 		Short pkey = (Short)(Buff.getPKey());
 		CFSecBuffISOCcy existing = dictByPKey.get( pkey );

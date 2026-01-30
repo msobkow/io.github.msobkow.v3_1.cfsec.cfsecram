@@ -89,7 +89,7 @@ public class CFSecRamServiceTypeTable
 	{
 		final String S_ProcName = "createServiceType";
 		
-		CFSecBuffServiceType Buff = ensureRec(iBuff);
+		CFSecBuffServiceType Buff = (CFSecBuffServiceType)ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey;
 		pkey = schema.nextServiceTypeIdGen();
 		Buff.setRequiredServiceTypeId( pkey );
@@ -272,7 +272,7 @@ public class CFSecRamServiceTypeTable
 	public ICFSecServiceType updateServiceType( ICFSecAuthorization Authorization,
 		ICFSecServiceType iBuff )
 	{
-		CFSecBuffServiceType Buff = ensureRec(iBuff);
+		CFSecBuffServiceType Buff = (CFSecBuffServiceType)ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey = Buff.getPKey();
 		CFSecBuffServiceType existing = dictByPKey.get( pkey );
 		if( existing == null ) {
@@ -327,7 +327,7 @@ public class CFSecRamServiceTypeTable
 		ICFSecServiceType iBuff )
 	{
 		final String S_ProcName = "CFSecRamServiceTypeTable.deleteServiceType() ";
-		CFSecBuffServiceType Buff = ensureRec(iBuff);
+		CFSecBuffServiceType Buff = (CFSecBuffServiceType)ensureRec(iBuff);
 		int classCode;
 		CFLibDbKeyHash256 pkey = (CFLibDbKeyHash256)(Buff.getPKey());
 		CFSecBuffServiceType existing = dictByPKey.get( pkey );

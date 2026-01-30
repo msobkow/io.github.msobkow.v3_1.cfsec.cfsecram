@@ -99,7 +99,7 @@ public class CFSecRamHostNodeTable
 	{
 		final String S_ProcName = "createHostNode";
 		
-		CFSecBuffHostNode Buff = ensureRec(iBuff);
+		CFSecBuffHostNode Buff = (CFSecBuffHostNode)ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey;
 		pkey = schema.nextHostNodeIdGen();
 		Buff.setRequiredHostNodeId( pkey );
@@ -446,7 +446,7 @@ public class CFSecRamHostNodeTable
 	public ICFSecHostNode updateHostNode( ICFSecAuthorization Authorization,
 		ICFSecHostNode iBuff )
 	{
-		CFSecBuffHostNode Buff = ensureRec(iBuff);
+		CFSecBuffHostNode Buff = (CFSecBuffHostNode)ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey = Buff.getPKey();
 		CFSecBuffHostNode existing = dictByPKey.get( pkey );
 		if( existing == null ) {
@@ -563,7 +563,7 @@ public class CFSecRamHostNodeTable
 		ICFSecHostNode iBuff )
 	{
 		final String S_ProcName = "CFSecRamHostNodeTable.deleteHostNode() ";
-		CFSecBuffHostNode Buff = ensureRec(iBuff);
+		CFSecBuffHostNode Buff = (CFSecBuffHostNode)ensureRec(iBuff);
 		int classCode;
 		CFLibDbKeyHash256 pkey = (CFLibDbKeyHash256)(Buff.getPKey());
 		CFSecBuffHostNode existing = dictByPKey.get( pkey );

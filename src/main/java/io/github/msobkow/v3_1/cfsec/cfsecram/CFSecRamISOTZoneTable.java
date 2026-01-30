@@ -101,7 +101,7 @@ public class CFSecRamISOTZoneTable
 	{
 		final String S_ProcName = "createISOTZone";
 		
-		CFSecBuffISOTZone Buff = ensureRec(iBuff);
+		CFSecBuffISOTZone Buff = (CFSecBuffISOTZone)ensureRec(iBuff);
 		Short pkey;
 		pkey = schema.nextISOTZoneIdGen();
 		Buff.setRequiredISOTZoneId( pkey );
@@ -403,7 +403,7 @@ public class CFSecRamISOTZoneTable
 	public ICFSecISOTZone updateISOTZone( ICFSecAuthorization Authorization,
 		ICFSecISOTZone iBuff )
 	{
-		CFSecBuffISOTZone Buff = ensureRec(iBuff);
+		CFSecBuffISOTZone Buff = (CFSecBuffISOTZone)ensureRec(iBuff);
 		Short pkey = Buff.getPKey();
 		CFSecBuffISOTZone existing = dictByPKey.get( pkey );
 		if( existing == null ) {
@@ -498,7 +498,7 @@ public class CFSecRamISOTZoneTable
 		ICFSecISOTZone iBuff )
 	{
 		final String S_ProcName = "CFSecRamISOTZoneTable.deleteISOTZone() ";
-		CFSecBuffISOTZone Buff = ensureRec(iBuff);
+		CFSecBuffISOTZone Buff = (CFSecBuffISOTZone)ensureRec(iBuff);
 		int classCode;
 		Short pkey = (Short)(Buff.getPKey());
 		CFSecBuffISOTZone existing = dictByPKey.get( pkey );

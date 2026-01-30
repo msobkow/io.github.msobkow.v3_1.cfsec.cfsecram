@@ -95,7 +95,7 @@ public class CFSecRamTenantTable
 	{
 		final String S_ProcName = "createTenant";
 		
-		CFSecBuffTenant Buff = ensureRec(iBuff);
+		CFSecBuffTenant Buff = (CFSecBuffTenant)ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey;
 		pkey = schema.nextTenantIdGen();
 		Buff.setRequiredId( pkey );
@@ -393,7 +393,7 @@ public class CFSecRamTenantTable
 	public ICFSecTenant updateTenant( ICFSecAuthorization Authorization,
 		ICFSecTenant iBuff )
 	{
-		CFSecBuffTenant Buff = ensureRec(iBuff);
+		CFSecBuffTenant Buff = (CFSecBuffTenant)ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey = Buff.getPKey();
 		CFSecBuffTenant existing = dictByPKey.get( pkey );
 		if( existing == null ) {
@@ -489,7 +489,7 @@ public class CFSecRamTenantTable
 		ICFSecTenant iBuff )
 	{
 		final String S_ProcName = "CFSecRamTenantTable.deleteTenant() ";
-		CFSecBuffTenant Buff = ensureRec(iBuff);
+		CFSecBuffTenant Buff = (CFSecBuffTenant)ensureRec(iBuff);
 		int classCode;
 		CFLibDbKeyHash256 pkey = (CFLibDbKeyHash256)(Buff.getPKey());
 		CFSecBuffTenant existing = dictByPKey.get( pkey );

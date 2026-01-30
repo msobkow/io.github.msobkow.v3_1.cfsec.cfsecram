@@ -93,7 +93,7 @@ public class CFSecRamClusterTable
 	{
 		final String S_ProcName = "createCluster";
 		
-		CFSecBuffCluster Buff = ensureRec(iBuff);
+		CFSecBuffCluster Buff = (CFSecBuffCluster)ensureRec(iBuff);
 		Long pkey;
 		pkey = schema.nextClusterIdGen();
 		Buff.setRequiredId( pkey );
@@ -334,7 +334,7 @@ public class CFSecRamClusterTable
 	public ICFSecCluster updateCluster( ICFSecAuthorization Authorization,
 		ICFSecCluster iBuff )
 	{
-		CFSecBuffCluster Buff = ensureRec(iBuff);
+		CFSecBuffCluster Buff = (CFSecBuffCluster)ensureRec(iBuff);
 		Long pkey = Buff.getPKey();
 		CFSecBuffCluster existing = dictByPKey.get( pkey );
 		if( existing == null ) {
@@ -408,7 +408,7 @@ public class CFSecRamClusterTable
 		ICFSecCluster iBuff )
 	{
 		final String S_ProcName = "CFSecRamClusterTable.deleteCluster() ";
-		CFSecBuffCluster Buff = ensureRec(iBuff);
+		CFSecBuffCluster Buff = (CFSecBuffCluster)ensureRec(iBuff);
 		int classCode;
 		Long pkey = (Long)(Buff.getPKey());
 		CFSecBuffCluster existing = dictByPKey.get( pkey );

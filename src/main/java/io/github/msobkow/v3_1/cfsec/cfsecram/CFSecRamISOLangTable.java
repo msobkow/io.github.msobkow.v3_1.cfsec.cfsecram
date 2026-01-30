@@ -95,7 +95,7 @@ public class CFSecRamISOLangTable
 	{
 		final String S_ProcName = "createISOLang";
 		
-		CFSecBuffISOLang Buff = ensureRec(iBuff);
+		CFSecBuffISOLang Buff = (CFSecBuffISOLang)ensureRec(iBuff);
 		Short pkey;
 		pkey = schema.nextISOLangIdGen();
 		Buff.setRequiredISOLangId( pkey );
@@ -335,7 +335,7 @@ public class CFSecRamISOLangTable
 	public ICFSecISOLang updateISOLang( ICFSecAuthorization Authorization,
 		ICFSecISOLang iBuff )
 	{
-		CFSecBuffISOLang Buff = ensureRec(iBuff);
+		CFSecBuffISOLang Buff = (CFSecBuffISOLang)ensureRec(iBuff);
 		Short pkey = Buff.getPKey();
 		CFSecBuffISOLang existing = dictByPKey.get( pkey );
 		if( existing == null ) {
@@ -409,7 +409,7 @@ public class CFSecRamISOLangTable
 		ICFSecISOLang iBuff )
 	{
 		final String S_ProcName = "CFSecRamISOLangTable.deleteISOLang() ";
-		CFSecBuffISOLang Buff = ensureRec(iBuff);
+		CFSecBuffISOLang Buff = (CFSecBuffISOLang)ensureRec(iBuff);
 		int classCode;
 		Short pkey = (Short)(Buff.getPKey());
 		CFSecBuffISOLang existing = dictByPKey.get( pkey );

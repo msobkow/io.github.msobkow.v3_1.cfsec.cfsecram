@@ -95,7 +95,7 @@ public class CFSecRamSecDeviceTable
 	{
 		final String S_ProcName = "createSecDevice";
 		
-		CFSecBuffSecDevice Buff = ensureRec(iBuff);
+		CFSecBuffSecDevice Buff = (CFSecBuffSecDevice)ensureRec(iBuff);
 		CFSecBuffSecDevicePKey pkey = (CFSecBuffSecDevicePKey)(schema.getFactorySecDevice().newPKey());
 		pkey.setRequiredContainerSecUser( Buff.getRequiredSecUserId() );
 		pkey.setRequiredDevName( Buff.getRequiredDevName() );
@@ -429,7 +429,7 @@ public class CFSecRamSecDeviceTable
 	public ICFSecSecDevice updateSecDevice( ICFSecAuthorization Authorization,
 		ICFSecSecDevice iBuff )
 	{
-		CFSecBuffSecDevice Buff = ensureRec(iBuff);
+		CFSecBuffSecDevice Buff = (CFSecBuffSecDevice)ensureRec(iBuff);
 		CFSecBuffSecDevicePKey pkey = (CFSecBuffSecDevicePKey)(schema.getFactorySecDevice().newPKey());
 		pkey.setRequiredContainerSecUser( Buff.getRequiredSecUserId() );
 		pkey.setRequiredDevName( Buff.getRequiredDevName() );
@@ -527,7 +527,7 @@ public class CFSecRamSecDeviceTable
 		ICFSecSecDevice iBuff )
 	{
 		final String S_ProcName = "CFSecRamSecDeviceTable.deleteSecDevice() ";
-		CFSecBuffSecDevice Buff = ensureRec(iBuff);
+		CFSecBuffSecDevice Buff = (CFSecBuffSecDevice)ensureRec(iBuff);
 		int classCode;
 		CFSecBuffSecDevicePKey pkey = (CFSecBuffSecDevicePKey)(Buff.getPKey());
 		CFSecBuffSecDevice existing = dictByPKey.get( pkey );

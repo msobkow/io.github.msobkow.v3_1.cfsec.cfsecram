@@ -91,7 +91,7 @@ public class CFSecRamSysClusterTable
 	{
 		final String S_ProcName = "createSysCluster";
 		
-		CFSecBuffSysCluster Buff = ensureRec(iBuff);
+		CFSecBuffSysCluster Buff = (CFSecBuffSysCluster)ensureRec(iBuff);
 		Integer pkey;
 		pkey = Buff.getRequiredSingletonId();
 		Buff.setRequiredSingletonId( pkey );
@@ -307,7 +307,7 @@ public class CFSecRamSysClusterTable
 	public ICFSecSysCluster updateSysCluster( ICFSecAuthorization Authorization,
 		ICFSecSysCluster iBuff )
 	{
-		CFSecBuffSysCluster Buff = ensureRec(iBuff);
+		CFSecBuffSysCluster Buff = (CFSecBuffSysCluster)ensureRec(iBuff);
 		Integer pkey = Buff.getPKey();
 		CFSecBuffSysCluster existing = dictByPKey.get( pkey );
 		if( existing == null ) {
@@ -382,7 +382,7 @@ public class CFSecRamSysClusterTable
 		ICFSecSysCluster iBuff )
 	{
 		final String S_ProcName = "CFSecRamSysClusterTable.deleteSysCluster() ";
-		CFSecBuffSysCluster Buff = ensureRec(iBuff);
+		CFSecBuffSysCluster Buff = (CFSecBuffSysCluster)ensureRec(iBuff);
 		int classCode;
 		Integer pkey = (Integer)(Buff.getPKey());
 		CFSecBuffSysCluster existing = dictByPKey.get( pkey );

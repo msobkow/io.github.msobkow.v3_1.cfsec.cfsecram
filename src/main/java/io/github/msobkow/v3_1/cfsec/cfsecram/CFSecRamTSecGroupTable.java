@@ -101,7 +101,7 @@ public class CFSecRamTSecGroupTable
 	{
 		final String S_ProcName = "createTSecGroup";
 		
-		CFSecBuffTSecGroup Buff = ensureRec(iBuff);
+		CFSecBuffTSecGroup Buff = (CFSecBuffTSecGroup)ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey;
 		pkey = schema.nextTSecGroupIdGen();
 		Buff.setRequiredTSecGroupId( pkey );
@@ -428,7 +428,7 @@ public class CFSecRamTSecGroupTable
 	public ICFSecTSecGroup updateTSecGroup( ICFSecAuthorization Authorization,
 		ICFSecTSecGroup iBuff )
 	{
-		CFSecBuffTSecGroup Buff = ensureRec(iBuff);
+		CFSecBuffTSecGroup Buff = (CFSecBuffTSecGroup)ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey = Buff.getPKey();
 		CFSecBuffTSecGroup existing = dictByPKey.get( pkey );
 		if( existing == null ) {
@@ -545,7 +545,7 @@ public class CFSecRamTSecGroupTable
 		ICFSecTSecGroup iBuff )
 	{
 		final String S_ProcName = "CFSecRamTSecGroupTable.deleteTSecGroup() ";
-		CFSecBuffTSecGroup Buff = ensureRec(iBuff);
+		CFSecBuffTSecGroup Buff = (CFSecBuffTSecGroup)ensureRec(iBuff);
 		int classCode;
 		CFLibDbKeyHash256 pkey = (CFLibDbKeyHash256)(Buff.getPKey());
 		CFSecBuffTSecGroup existing = dictByPKey.get( pkey );

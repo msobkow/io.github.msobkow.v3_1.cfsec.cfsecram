@@ -97,7 +97,7 @@ public class CFSecRamISOCtryLangTable
 	{
 		final String S_ProcName = "createISOCtryLang";
 		
-		CFSecBuffISOCtryLang Buff = ensureRec(iBuff);
+		CFSecBuffISOCtryLang Buff = (CFSecBuffISOCtryLang)ensureRec(iBuff);
 		CFSecBuffISOCtryLangPKey pkey = (CFSecBuffISOCtryLangPKey)(schema.getFactoryISOCtryLang().newPKey());
 		pkey.setRequiredContainerCtry( Buff.getRequiredISOCtryId() );
 		pkey.setRequiredParentLang( Buff.getRequiredISOLangId() );
@@ -404,7 +404,7 @@ public class CFSecRamISOCtryLangTable
 	public ICFSecISOCtryLang updateISOCtryLang( ICFSecAuthorization Authorization,
 		ICFSecISOCtryLang iBuff )
 	{
-		CFSecBuffISOCtryLang Buff = ensureRec(iBuff);
+		CFSecBuffISOCtryLang Buff = (CFSecBuffISOCtryLang)ensureRec(iBuff);
 		CFSecBuffISOCtryLangPKey pkey = (CFSecBuffISOCtryLangPKey)(schema.getFactoryISOCtryLang().newPKey());
 		pkey.setRequiredContainerCtry( Buff.getRequiredISOCtryId() );
 		pkey.setRequiredParentLang( Buff.getRequiredISOLangId() );
@@ -500,7 +500,7 @@ public class CFSecRamISOCtryLangTable
 		ICFSecISOCtryLang iBuff )
 	{
 		final String S_ProcName = "CFSecRamISOCtryLangTable.deleteISOCtryLang() ";
-		CFSecBuffISOCtryLang Buff = ensureRec(iBuff);
+		CFSecBuffISOCtryLang Buff = (CFSecBuffISOCtryLang)ensureRec(iBuff);
 		int classCode;
 		CFSecBuffISOCtryLangPKey pkey = (CFSecBuffISOCtryLangPKey)(Buff.getPKey());
 		CFSecBuffISOCtryLang existing = dictByPKey.get( pkey );

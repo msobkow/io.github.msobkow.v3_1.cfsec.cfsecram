@@ -107,7 +107,7 @@ public class CFSecRamSecUserTable
 	{
 		final String S_ProcName = "createSecUser";
 		
-		CFSecBuffSecUser Buff = ensureRec(iBuff);
+		CFSecBuffSecUser Buff = (CFSecBuffSecUser)ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey;
 		pkey = schema.nextSecUserIdGen();
 		Buff.setRequiredSecUserId( pkey );
@@ -540,7 +540,7 @@ public class CFSecRamSecUserTable
 	public ICFSecSecUser updateSecUser( ICFSecAuthorization Authorization,
 		ICFSecSecUser iBuff )
 	{
-		CFSecBuffSecUser Buff = ensureRec(iBuff);
+		CFSecBuffSecUser Buff = (CFSecBuffSecUser)ensureRec(iBuff);
 		CFLibDbKeyHash256 pkey = Buff.getPKey();
 		CFSecBuffSecUser existing = dictByPKey.get( pkey );
 		if( existing == null ) {
@@ -654,7 +654,7 @@ public class CFSecRamSecUserTable
 		ICFSecSecUser iBuff )
 	{
 		final String S_ProcName = "CFSecRamSecUserTable.deleteSecUser() ";
-		CFSecBuffSecUser Buff = ensureRec(iBuff);
+		CFSecBuffSecUser Buff = (CFSecBuffSecUser)ensureRec(iBuff);
 		int classCode;
 		CFLibDbKeyHash256 pkey = (CFLibDbKeyHash256)(Buff.getPKey());
 		CFSecBuffSecUser existing = dictByPKey.get( pkey );
