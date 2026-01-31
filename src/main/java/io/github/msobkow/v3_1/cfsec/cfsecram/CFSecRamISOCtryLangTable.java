@@ -84,7 +84,7 @@ public class CFSecRamISOCtryLangTable
 		else {
 			int classCode = rec.getClassCode();
 			if (classCode == ICFSecISOCtryLang.CLASS_CODE) {
-				return( ((CFSecBuffISOCtryLangDefaultFactory)(schema.getFactoryISOCtryLang())).ensureRec(rec) );
+				return( ((CFSecBuffISOCtryLangDefaultFactory)(schema.getFactoryISOCtryLang())).ensureRec((ICFSecISOCtryLang)rec) );
 			}
 			else {
 				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));

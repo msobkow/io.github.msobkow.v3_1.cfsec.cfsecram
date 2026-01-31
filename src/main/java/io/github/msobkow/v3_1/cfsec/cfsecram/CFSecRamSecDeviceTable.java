@@ -82,7 +82,7 @@ public class CFSecRamSecDeviceTable
 		else {
 			int classCode = rec.getClassCode();
 			if (classCode == ICFSecSecDevice.CLASS_CODE) {
-				return( ((CFSecBuffSecDeviceDefaultFactory)(schema.getFactorySecDevice())).ensureRec(rec) );
+				return( ((CFSecBuffSecDeviceDefaultFactory)(schema.getFactorySecDevice())).ensureRec((ICFSecSecDevice)rec) );
 			}
 			else {
 				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));

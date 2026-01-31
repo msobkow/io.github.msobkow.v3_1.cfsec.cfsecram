@@ -94,7 +94,7 @@ public class CFSecRamSecUserTable
 		else {
 			int classCode = rec.getClassCode();
 			if (classCode == ICFSecSecUser.CLASS_CODE) {
-				return( ((CFSecBuffSecUserDefaultFactory)(schema.getFactorySecUser())).ensureRec(rec) );
+				return( ((CFSecBuffSecUserDefaultFactory)(schema.getFactorySecUser())).ensureRec((ICFSecSecUser)rec) );
 			}
 			else {
 				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
@@ -670,7 +670,7 @@ public class CFSecRamSecUserTable
 					{
 						CFSecBuffSecUser editBuff = (CFSecBuffSecUser)(schema.getTableSecUser().readDerivedByIdIdx( Authorization,
 						existing.getRequiredSecUserId() ));
-						editBuff.setOptionalLookupDefDev(null, null);
+						editBuff.setOptionalLookupDefDev((CFLibDbKeyHash256)null, (String)null);
 						classCode = editBuff.getClassCode();
 						if( classCode == ICFSecSecUser.CLASS_CODE ) {
 							schema.getTableSecUser().updateSecUser( Authorization, editBuff );
@@ -680,7 +680,8 @@ public class CFSecRamSecUserTable
 						}
 					}
 		CFSecBuffSecUser editSubobj = (CFSecBuffSecUser)(schema.getTableSecUser().readDerivedByIdIdx( Authorization,
-			existing.getRequiredSecUserId() ));editSubobj.setOptionalLookupDefDev(null, null);
+			existing.getRequiredSecUserId() ));
+			editSubobj.setOptionalLookupDefDev((CFLibDbKeyHash256)null, (String)null);
 		classCode = editSubobj.getClassCode();
 		if( classCode == ICFSecSecUser.CLASS_CODE ) {
 			schema.getTableSecUser().updateSecUser( Authorization, editSubobj );

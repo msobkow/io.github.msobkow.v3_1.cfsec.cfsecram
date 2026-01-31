@@ -80,7 +80,7 @@ public class CFSecRamISOCcyTable
 		else {
 			int classCode = rec.getClassCode();
 			if (classCode == ICFSecISOCcy.CLASS_CODE) {
-				return( ((CFSecBuffISOCcyDefaultFactory)(schema.getFactoryISOCcy())).ensureRec(rec) );
+				return( ((CFSecBuffISOCcyDefaultFactory)(schema.getFactoryISOCcy())).ensureRec((ICFSecISOCcy)rec) );
 			}
 			else {
 				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));

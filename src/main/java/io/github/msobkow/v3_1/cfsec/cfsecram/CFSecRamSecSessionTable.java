@@ -100,7 +100,7 @@ public class CFSecRamSecSessionTable
 		else {
 			int classCode = rec.getClassCode();
 			if (classCode == ICFSecSecSession.CLASS_CODE) {
-				return( ((CFSecBuffSecSessionDefaultFactory)(schema.getFactorySecSession())).ensureRec(rec) );
+				return( ((CFSecBuffSecSessionDefaultFactory)(schema.getFactorySecSession())).ensureRec((ICFSecSecSession)rec) );
 			}
 			else {
 				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));

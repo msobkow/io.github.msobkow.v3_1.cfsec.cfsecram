@@ -94,7 +94,7 @@ public class CFSecRamTSecGrpIncTable
 		else {
 			int classCode = rec.getClassCode();
 			if (classCode == ICFSecTSecGrpInc.CLASS_CODE) {
-				return( ((CFSecBuffTSecGrpIncDefaultFactory)(schema.getFactoryTSecGrpInc())).ensureRec(rec) );
+				return( ((CFSecBuffTSecGrpIncDefaultFactory)(schema.getFactoryTSecGrpInc())).ensureRec((ICFSecTSecGrpInc)rec) );
 			}
 			else {
 				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));

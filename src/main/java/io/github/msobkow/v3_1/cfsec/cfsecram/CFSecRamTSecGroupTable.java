@@ -88,7 +88,7 @@ public class CFSecRamTSecGroupTable
 		else {
 			int classCode = rec.getClassCode();
 			if (classCode == ICFSecTSecGroup.CLASS_CODE) {
-				return( ((CFSecBuffTSecGroupDefaultFactory)(schema.getFactoryTSecGroup())).ensureRec(rec) );
+				return( ((CFSecBuffTSecGroupDefaultFactory)(schema.getFactoryTSecGroup())).ensureRec((ICFSecTSecGroup)rec) );
 			}
 			else {
 				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));

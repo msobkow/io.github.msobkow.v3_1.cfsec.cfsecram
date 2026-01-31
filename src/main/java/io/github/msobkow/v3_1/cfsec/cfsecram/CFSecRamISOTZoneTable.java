@@ -88,7 +88,7 @@ public class CFSecRamISOTZoneTable
 		else {
 			int classCode = rec.getClassCode();
 			if (classCode == ICFSecISOTZone.CLASS_CODE) {
-				return( ((CFSecBuffISOTZoneDefaultFactory)(schema.getFactoryISOTZone())).ensureRec(rec) );
+				return( ((CFSecBuffISOTZoneDefaultFactory)(schema.getFactoryISOTZone())).ensureRec((ICFSecISOTZone)rec) );
 			}
 			else {
 				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));

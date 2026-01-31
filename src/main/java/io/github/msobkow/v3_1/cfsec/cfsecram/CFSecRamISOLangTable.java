@@ -82,7 +82,7 @@ public class CFSecRamISOLangTable
 		else {
 			int classCode = rec.getClassCode();
 			if (classCode == ICFSecISOLang.CLASS_CODE) {
-				return( ((CFSecBuffISOLangDefaultFactory)(schema.getFactoryISOLang())).ensureRec(rec) );
+				return( ((CFSecBuffISOLangDefaultFactory)(schema.getFactoryISOLang())).ensureRec((ICFSecISOLang)rec) );
 			}
 			else {
 				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));

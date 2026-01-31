@@ -78,7 +78,7 @@ public class CFSecRamSysClusterTable
 		else {
 			int classCode = rec.getClassCode();
 			if (classCode == ICFSecSysCluster.CLASS_CODE) {
-				return( ((CFSecBuffSysClusterDefaultFactory)(schema.getFactorySysCluster())).ensureRec(rec) );
+				return( ((CFSecBuffSysClusterDefaultFactory)(schema.getFactorySysCluster())).ensureRec((ICFSecSysCluster)rec) );
 			}
 			else {
 				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));

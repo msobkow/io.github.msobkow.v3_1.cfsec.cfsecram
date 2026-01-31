@@ -86,7 +86,7 @@ public class CFSecRamHostNodeTable
 		else {
 			int classCode = rec.getClassCode();
 			if (classCode == ICFSecHostNode.CLASS_CODE) {
-				return( ((CFSecBuffHostNodeDefaultFactory)(schema.getFactoryHostNode())).ensureRec(rec) );
+				return( ((CFSecBuffHostNodeDefaultFactory)(schema.getFactoryHostNode())).ensureRec((ICFSecHostNode)rec) );
 			}
 			else {
 				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));

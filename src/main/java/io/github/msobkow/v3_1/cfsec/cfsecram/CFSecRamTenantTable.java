@@ -82,7 +82,7 @@ public class CFSecRamTenantTable
 		else {
 			int classCode = rec.getClassCode();
 			if (classCode == ICFSecTenant.CLASS_CODE) {
-				return( ((CFSecBuffTenantDefaultFactory)(schema.getFactoryTenant())).ensureRec(rec) );
+				return( ((CFSecBuffTenantDefaultFactory)(schema.getFactoryTenant())).ensureRec((ICFSecTenant)rec) );
 			}
 			else {
 				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));

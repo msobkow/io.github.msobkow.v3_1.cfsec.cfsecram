@@ -98,7 +98,7 @@ public class CFSecRamServiceTable
 		else {
 			int classCode = rec.getClassCode();
 			if (classCode == ICFSecService.CLASS_CODE) {
-				return( ((CFSecBuffServiceDefaultFactory)(schema.getFactoryService())).ensureRec(rec) );
+				return( ((CFSecBuffServiceDefaultFactory)(schema.getFactoryService())).ensureRec((ICFSecService)rec) );
 			}
 			else {
 				throw new CFLibUnsupportedClassException(getClass(), "ensureRec", "rec", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
