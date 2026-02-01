@@ -92,6 +92,7 @@ public class CFSecRamISOCtryLangTable
 		}
 	}
 
+	@Override
 	public ICFSecISOCtryLang createISOCtryLang( ICFSecAuthorization Authorization,
 		ICFSecISOCtryLang iBuff )
 	{
@@ -177,6 +178,7 @@ public class CFSecRamISOCtryLangTable
 		}
 	}
 
+	@Override
 	public ICFSecISOCtryLang readDerived( ICFSecAuthorization Authorization,
 		short ISOCtryId,
 		short ISOLangId )
@@ -204,6 +206,7 @@ public class CFSecRamISOCtryLangTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecISOCtryLang lockDerived( ICFSecAuthorization Authorization,
 		ICFSecISOCtryLangPKey PKey )
 	{
@@ -221,6 +224,7 @@ public class CFSecRamISOCtryLangTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecISOCtryLang[] readAllDerived( ICFSecAuthorization Authorization ) {
 		final String S_ProcName = "CFSecRamISOCtryLang.readAllDerived";
 		ICFSecISOCtryLang[] retList = new ICFSecISOCtryLang[ dictByPKey.values().size() ];
@@ -232,6 +236,7 @@ public class CFSecRamISOCtryLangTable
 		return( retList );
 	}
 
+	@Override
 	public ICFSecISOCtryLang[] readDerivedByCtryIdx( ICFSecAuthorization Authorization,
 		short ISOCtryId )
 	{
@@ -259,6 +264,7 @@ public class CFSecRamISOCtryLangTable
 		return( recArray );
 	}
 
+	@Override
 	public ICFSecISOCtryLang[] readDerivedByLangIdx( ICFSecAuthorization Authorization,
 		short ISOLangId )
 	{
@@ -286,6 +292,7 @@ public class CFSecRamISOCtryLangTable
 		return( recArray );
 	}
 
+	@Override
 	public ICFSecISOCtryLang readDerivedByIdIdx( ICFSecAuthorization Authorization,
 		short ISOCtryId,
 		short ISOLangId )
@@ -304,6 +311,7 @@ public class CFSecRamISOCtryLangTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecISOCtryLang readRec( ICFSecAuthorization Authorization,
 		short ISOCtryId,
 		short ISOLangId )
@@ -314,6 +322,7 @@ public class CFSecRamISOCtryLangTable
 		return( readRec( Authorization, key ) );
 	}
 
+	@Override
 	public ICFSecISOCtryLang readRec( ICFSecAuthorization Authorization,
 		ICFSecISOCtryLangPKey PKey )
 	{
@@ -325,6 +334,7 @@ public class CFSecRamISOCtryLangTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecISOCtryLang lockRec( ICFSecAuthorization Authorization,
 		ICFSecISOCtryLangPKey PKey )
 	{
@@ -336,6 +346,7 @@ public class CFSecRamISOCtryLangTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecISOCtryLang[] readAllRec( ICFSecAuthorization Authorization )
 	{
 		final String S_ProcName = "CFSecRamISOCtryLang.readAllRec";
@@ -351,6 +362,7 @@ public class CFSecRamISOCtryLangTable
 		return( filteredList.toArray( new ICFSecISOCtryLang[0] ) );
 	}
 
+	@Override
 	public ICFSecISOCtryLang readRecByIdIdx( ICFSecAuthorization Authorization,
 		short ISOCtryId,
 		short ISOLangId )
@@ -367,6 +379,7 @@ public class CFSecRamISOCtryLangTable
 		}
 	}
 
+	@Override
 	public ICFSecISOCtryLang[] readRecByCtryIdx( ICFSecAuthorization Authorization,
 		short ISOCtryId )
 	{
@@ -384,6 +397,7 @@ public class CFSecRamISOCtryLangTable
 		return( filteredList.toArray( new ICFSecISOCtryLang[0] ) );
 	}
 
+	@Override
 	public ICFSecISOCtryLang[] readRecByLangIdx( ICFSecAuthorization Authorization,
 		short ISOLangId )
 	{
@@ -401,6 +415,7 @@ public class CFSecRamISOCtryLangTable
 		return( filteredList.toArray( new ICFSecISOCtryLang[0] ) );
 	}
 
+	@Override
 	public ICFSecISOCtryLang updateISOCtryLang( ICFSecAuthorization Authorization,
 		ICFSecISOCtryLang iBuff )
 	{
@@ -496,6 +511,7 @@ public class CFSecRamISOCtryLangTable
 		return(Buff);
 	}
 
+	@Override
 	public void deleteISOCtryLang( ICFSecAuthorization Authorization,
 		ICFSecISOCtryLang iBuff )
 	{
@@ -533,6 +549,7 @@ public class CFSecRamISOCtryLangTable
 		subdict.remove( pkey );
 
 	}
+	@Override
 	public void deleteISOCtryLangByIdIdx( ICFSecAuthorization Authorization,
 		short ISOCtryId,
 		short ISOLangId )
@@ -543,6 +560,7 @@ public class CFSecRamISOCtryLangTable
 		deleteISOCtryLangByIdIdx( Authorization, key );
 	}
 
+	@Override
 	public void deleteISOCtryLangByIdIdx( ICFSecAuthorization Authorization,
 		ICFSecISOCtryLangPKey PKey )
 	{
@@ -575,6 +593,7 @@ public class CFSecRamISOCtryLangTable
 		}
 	}
 
+	@Override
 	public void deleteISOCtryLangByCtryIdx( ICFSecAuthorization Authorization,
 		short argISOCtryId )
 	{
@@ -583,6 +602,7 @@ public class CFSecRamISOCtryLangTable
 		deleteISOCtryLangByCtryIdx( Authorization, key );
 	}
 
+	@Override
 	public void deleteISOCtryLangByCtryIdx( ICFSecAuthorization Authorization,
 		ICFSecISOCtryLangByCtryIdxKey argKey )
 	{
@@ -610,6 +630,7 @@ public class CFSecRamISOCtryLangTable
 		}
 	}
 
+	@Override
 	public void deleteISOCtryLangByLangIdx( ICFSecAuthorization Authorization,
 		short argISOLangId )
 	{
@@ -618,6 +639,7 @@ public class CFSecRamISOCtryLangTable
 		deleteISOCtryLangByLangIdx( Authorization, key );
 	}
 
+	@Override
 	public void deleteISOCtryLangByLangIdx( ICFSecAuthorization Authorization,
 		ICFSecISOCtryLangByLangIdxKey argKey )
 	{

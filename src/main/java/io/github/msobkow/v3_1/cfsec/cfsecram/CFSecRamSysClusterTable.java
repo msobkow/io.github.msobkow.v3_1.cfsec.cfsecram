@@ -86,6 +86,7 @@ public class CFSecRamSysClusterTable
 		}
 	}
 
+	@Override
 	public ICFSecSysCluster createSysCluster( ICFSecAuthorization Authorization,
 		ICFSecSysCluster iBuff )
 	{
@@ -156,6 +157,7 @@ public class CFSecRamSysClusterTable
 		}
 	}
 
+	@Override
 	public ICFSecSysCluster readDerived( ICFSecAuthorization Authorization,
 		Integer PKey )
 	{
@@ -170,6 +172,7 @@ public class CFSecRamSysClusterTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecSysCluster lockDerived( ICFSecAuthorization Authorization,
 		Integer PKey )
 	{
@@ -184,6 +187,7 @@ public class CFSecRamSysClusterTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecSysCluster[] readAllDerived( ICFSecAuthorization Authorization ) {
 		final String S_ProcName = "CFSecRamSysCluster.readAllDerived";
 		ICFSecSysCluster[] retList = new ICFSecSysCluster[ dictByPKey.values().size() ];
@@ -195,6 +199,7 @@ public class CFSecRamSysClusterTable
 		return( retList );
 	}
 
+	@Override
 	public ICFSecSysCluster[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
 		long ClusterId )
 	{
@@ -222,6 +227,7 @@ public class CFSecRamSysClusterTable
 		return( recArray );
 	}
 
+	@Override
 	public ICFSecSysCluster readDerivedByIdIdx( ICFSecAuthorization Authorization,
 		int SingletonId )
 	{
@@ -236,6 +242,7 @@ public class CFSecRamSysClusterTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecSysCluster readRec( ICFSecAuthorization Authorization,
 		Integer PKey )
 	{
@@ -247,6 +254,7 @@ public class CFSecRamSysClusterTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecSysCluster lockRec( ICFSecAuthorization Authorization,
 		Integer PKey )
 	{
@@ -258,6 +266,7 @@ public class CFSecRamSysClusterTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecSysCluster[] readAllRec( ICFSecAuthorization Authorization )
 	{
 		final String S_ProcName = "CFSecRamSysCluster.readAllRec";
@@ -273,6 +282,7 @@ public class CFSecRamSysClusterTable
 		return( filteredList.toArray( new ICFSecSysCluster[0] ) );
 	}
 
+	@Override
 	public ICFSecSysCluster readRecByIdIdx( ICFSecAuthorization Authorization,
 		int SingletonId )
 	{
@@ -287,6 +297,7 @@ public class CFSecRamSysClusterTable
 		}
 	}
 
+	@Override
 	public ICFSecSysCluster[] readRecByClusterIdx( ICFSecAuthorization Authorization,
 		long ClusterId )
 	{
@@ -378,6 +389,7 @@ public class CFSecRamSysClusterTable
 		return(Buff);
 	}
 
+	@Override
 	public void deleteSysCluster( ICFSecAuthorization Authorization,
 		ICFSecSysCluster iBuff )
 	{
@@ -409,6 +421,7 @@ public class CFSecRamSysClusterTable
 		subdict.remove( pkey );
 
 	}
+	@Override
 	public void deleteSysClusterByIdIdx( ICFSecAuthorization Authorization,
 		Integer argKey )
 	{
@@ -435,6 +448,7 @@ public class CFSecRamSysClusterTable
 		}
 	}
 
+	@Override
 	public void deleteSysClusterByClusterIdx( ICFSecAuthorization Authorization,
 		long argClusterId )
 	{
@@ -443,6 +457,7 @@ public class CFSecRamSysClusterTable
 		deleteSysClusterByClusterIdx( Authorization, key );
 	}
 
+	@Override
 	public void deleteSysClusterByClusterIdx( ICFSecAuthorization Authorization,
 		ICFSecSysClusterByClusterIdxKey argKey )
 	{

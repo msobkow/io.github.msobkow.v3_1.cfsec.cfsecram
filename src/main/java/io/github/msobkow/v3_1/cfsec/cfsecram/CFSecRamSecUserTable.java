@@ -102,6 +102,7 @@ public class CFSecRamSecUserTable
 		}
 	}
 
+	@Override
 	public ICFSecSecUser createSecUser( ICFSecAuthorization Authorization,
 		ICFSecSecUser iBuff )
 	{
@@ -192,6 +193,7 @@ public class CFSecRamSecUserTable
 		}
 	}
 
+	@Override
 	public ICFSecSecUser readDerived( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 PKey )
 	{
@@ -206,6 +208,7 @@ public class CFSecRamSecUserTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecSecUser lockDerived( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 PKey )
 	{
@@ -220,6 +223,7 @@ public class CFSecRamSecUserTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecSecUser[] readAllDerived( ICFSecAuthorization Authorization ) {
 		final String S_ProcName = "CFSecRamSecUser.readAllDerived";
 		ICFSecSecUser[] retList = new ICFSecSecUser[ dictByPKey.values().size() ];
@@ -231,6 +235,7 @@ public class CFSecRamSecUserTable
 		return( retList );
 	}
 
+	@Override
 	public ICFSecSecUser readDerivedByULoginIdx( ICFSecAuthorization Authorization,
 		String LoginId )
 	{
@@ -248,6 +253,7 @@ public class CFSecRamSecUserTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecSecUser[] readDerivedByEMConfIdx( ICFSecAuthorization Authorization,
 		CFLibUuid6 EMailConfirmUuid6 )
 	{
@@ -275,6 +281,7 @@ public class CFSecRamSecUserTable
 		return( recArray );
 	}
 
+	@Override
 	public ICFSecSecUser[] readDerivedByPwdResetIdx( ICFSecAuthorization Authorization,
 		CFLibUuid6 PasswordResetUuid6 )
 	{
@@ -302,6 +309,7 @@ public class CFSecRamSecUserTable
 		return( recArray );
 	}
 
+	@Override
 	public ICFSecSecUser[] readDerivedByDefDevIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 DfltDevUserId,
 		String DfltDevName )
@@ -331,6 +339,7 @@ public class CFSecRamSecUserTable
 		return( recArray );
 	}
 
+	@Override
 	public ICFSecSecUser readDerivedByIdIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 SecUserId )
 	{
@@ -345,6 +354,7 @@ public class CFSecRamSecUserTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecSecUser readRec( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 PKey )
 	{
@@ -356,6 +366,7 @@ public class CFSecRamSecUserTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecSecUser lockRec( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 PKey )
 	{
@@ -367,6 +378,7 @@ public class CFSecRamSecUserTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecSecUser[] readAllRec( ICFSecAuthorization Authorization )
 	{
 		final String S_ProcName = "CFSecRamSecUser.readAllRec";
@@ -389,6 +401,7 @@ public class CFSecRamSecUserTable
 	 *
 	 *	@return All the specific SecUser instances in the database accessible for the Authorization.
 	 */
+	@Override
 	public ICFSecSecUser[] pageAllRec( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 priorSecUserId )
 	{
@@ -396,6 +409,7 @@ public class CFSecRamSecUserTable
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 
+	@Override
 	public ICFSecSecUser readRecByIdIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 SecUserId )
 	{
@@ -410,6 +424,7 @@ public class CFSecRamSecUserTable
 		}
 	}
 
+	@Override
 	public ICFSecSecUser readRecByULoginIdx( ICFSecAuthorization Authorization,
 		String LoginId )
 	{
@@ -424,6 +439,7 @@ public class CFSecRamSecUserTable
 		}
 	}
 
+	@Override
 	public ICFSecSecUser[] readRecByEMConfIdx( ICFSecAuthorization Authorization,
 		CFLibUuid6 EMailConfirmUuid6 )
 	{
@@ -441,6 +457,7 @@ public class CFSecRamSecUserTable
 		return( filteredList.toArray( new ICFSecSecUser[0] ) );
 	}
 
+	@Override
 	public ICFSecSecUser[] readRecByPwdResetIdx( ICFSecAuthorization Authorization,
 		CFLibUuid6 PasswordResetUuid6 )
 	{
@@ -458,6 +475,7 @@ public class CFSecRamSecUserTable
 		return( filteredList.toArray( new ICFSecSecUser[0] ) );
 	}
 
+	@Override
 	public ICFSecSecUser[] readRecByDefDevIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 DfltDevUserId,
 		String DfltDevName )
@@ -488,6 +506,7 @@ public class CFSecRamSecUserTable
 	 *
 	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
 	 */
+	@Override
 	public ICFSecSecUser[] pageRecByEMConfIdx( ICFSecAuthorization Authorization,
 		CFLibUuid6 EMailConfirmUuid6,
 		CFLibDbKeyHash256 priorSecUserId )
@@ -507,6 +526,7 @@ public class CFSecRamSecUserTable
 	 *
 	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
 	 */
+	@Override
 	public ICFSecSecUser[] pageRecByPwdResetIdx( ICFSecAuthorization Authorization,
 		CFLibUuid6 PasswordResetUuid6,
 		CFLibDbKeyHash256 priorSecUserId )
@@ -528,6 +548,7 @@ public class CFSecRamSecUserTable
 	 *
 	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
 	 */
+	@Override
 	public ICFSecSecUser[] pageRecByDefDevIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 DfltDevUserId,
 		String DfltDevName,
@@ -650,6 +671,7 @@ public class CFSecRamSecUserTable
 		return(Buff);
 	}
 
+	@Override
 	public void deleteSecUser( ICFSecAuthorization Authorization,
 		ICFSecSecUser iBuff )
 	{
@@ -732,6 +754,7 @@ public class CFSecRamSecUserTable
 		subdict.remove( pkey );
 
 	}
+	@Override
 	public void deleteSecUserByIdIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 argKey )
 	{
@@ -758,6 +781,7 @@ public class CFSecRamSecUserTable
 		}
 	}
 
+	@Override
 	public void deleteSecUserByULoginIdx( ICFSecAuthorization Authorization,
 		String argLoginId )
 	{
@@ -766,6 +790,7 @@ public class CFSecRamSecUserTable
 		deleteSecUserByULoginIdx( Authorization, key );
 	}
 
+	@Override
 	public void deleteSecUserByULoginIdx( ICFSecAuthorization Authorization,
 		ICFSecSecUserByULoginIdxKey argKey )
 	{
@@ -792,6 +817,7 @@ public class CFSecRamSecUserTable
 		}
 	}
 
+	@Override
 	public void deleteSecUserByEMConfIdx( ICFSecAuthorization Authorization,
 		CFLibUuid6 argEMailConfirmUuid6 )
 	{
@@ -800,6 +826,7 @@ public class CFSecRamSecUserTable
 		deleteSecUserByEMConfIdx( Authorization, key );
 	}
 
+	@Override
 	public void deleteSecUserByEMConfIdx( ICFSecAuthorization Authorization,
 		ICFSecSecUserByEMConfIdxKey argKey )
 	{
@@ -828,6 +855,7 @@ public class CFSecRamSecUserTable
 		}
 	}
 
+	@Override
 	public void deleteSecUserByPwdResetIdx( ICFSecAuthorization Authorization,
 		CFLibUuid6 argPasswordResetUuid6 )
 	{
@@ -836,6 +864,7 @@ public class CFSecRamSecUserTable
 		deleteSecUserByPwdResetIdx( Authorization, key );
 	}
 
+	@Override
 	public void deleteSecUserByPwdResetIdx( ICFSecAuthorization Authorization,
 		ICFSecSecUserByPwdResetIdxKey argKey )
 	{
@@ -864,6 +893,7 @@ public class CFSecRamSecUserTable
 		}
 	}
 
+	@Override
 	public void deleteSecUserByDefDevIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 argDfltDevUserId,
 		String argDfltDevName )
@@ -874,6 +904,7 @@ public class CFSecRamSecUserTable
 		deleteSecUserByDefDevIdx( Authorization, key );
 	}
 
+	@Override
 	public void deleteSecUserByDefDevIdx( ICFSecAuthorization Authorization,
 		ICFSecSecUserByDefDevIdxKey argKey )
 	{

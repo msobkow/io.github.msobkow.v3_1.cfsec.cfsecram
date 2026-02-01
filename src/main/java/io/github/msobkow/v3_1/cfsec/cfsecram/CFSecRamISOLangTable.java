@@ -90,6 +90,7 @@ public class CFSecRamISOLangTable
 		}
 	}
 
+	@Override
 	public ICFSecISOLang createISOLang( ICFSecAuthorization Authorization,
 		ICFSecISOLang iBuff )
 	{
@@ -153,6 +154,7 @@ public class CFSecRamISOLangTable
 		}
 	}
 
+	@Override
 	public ICFSecISOLang readDerived( ICFSecAuthorization Authorization,
 		Short PKey )
 	{
@@ -167,6 +169,7 @@ public class CFSecRamISOLangTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecISOLang lockDerived( ICFSecAuthorization Authorization,
 		Short PKey )
 	{
@@ -181,6 +184,7 @@ public class CFSecRamISOLangTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecISOLang[] readAllDerived( ICFSecAuthorization Authorization ) {
 		final String S_ProcName = "CFSecRamISOLang.readAllDerived";
 		ICFSecISOLang[] retList = new ICFSecISOLang[ dictByPKey.values().size() ];
@@ -192,6 +196,7 @@ public class CFSecRamISOLangTable
 		return( retList );
 	}
 
+	@Override
 	public ICFSecISOLang readDerivedByCode3Idx( ICFSecAuthorization Authorization,
 		String ISO6392Code )
 	{
@@ -209,6 +214,7 @@ public class CFSecRamISOLangTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecISOLang[] readDerivedByCode2Idx( ICFSecAuthorization Authorization,
 		String ISO6391Code )
 	{
@@ -236,6 +242,7 @@ public class CFSecRamISOLangTable
 		return( recArray );
 	}
 
+	@Override
 	public ICFSecISOLang readDerivedByIdIdx( ICFSecAuthorization Authorization,
 		short ISOLangId )
 	{
@@ -250,6 +257,7 @@ public class CFSecRamISOLangTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecISOLang readRec( ICFSecAuthorization Authorization,
 		Short PKey )
 	{
@@ -261,6 +269,7 @@ public class CFSecRamISOLangTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecISOLang lockRec( ICFSecAuthorization Authorization,
 		Short PKey )
 	{
@@ -272,6 +281,7 @@ public class CFSecRamISOLangTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecISOLang[] readAllRec( ICFSecAuthorization Authorization )
 	{
 		final String S_ProcName = "CFSecRamISOLang.readAllRec";
@@ -287,6 +297,7 @@ public class CFSecRamISOLangTable
 		return( filteredList.toArray( new ICFSecISOLang[0] ) );
 	}
 
+	@Override
 	public ICFSecISOLang readRecByIdIdx( ICFSecAuthorization Authorization,
 		short ISOLangId )
 	{
@@ -301,6 +312,7 @@ public class CFSecRamISOLangTable
 		}
 	}
 
+	@Override
 	public ICFSecISOLang readRecByCode3Idx( ICFSecAuthorization Authorization,
 		String ISO6392Code )
 	{
@@ -315,6 +327,7 @@ public class CFSecRamISOLangTable
 		}
 	}
 
+	@Override
 	public ICFSecISOLang[] readRecByCode2Idx( ICFSecAuthorization Authorization,
 		String ISO6391Code )
 	{
@@ -405,6 +418,7 @@ public class CFSecRamISOLangTable
 		return(Buff);
 	}
 
+	@Override
 	public void deleteISOLang( ICFSecAuthorization Authorization,
 		ICFSecISOLang iBuff )
 	{
@@ -448,6 +462,7 @@ public class CFSecRamISOLangTable
 		subdict.remove( pkey );
 
 	}
+	@Override
 	public void deleteISOLangByIdIdx( ICFSecAuthorization Authorization,
 		Short argKey )
 	{
@@ -474,6 +489,7 @@ public class CFSecRamISOLangTable
 		}
 	}
 
+	@Override
 	public void deleteISOLangByCode3Idx( ICFSecAuthorization Authorization,
 		String argISO6392Code )
 	{
@@ -482,6 +498,7 @@ public class CFSecRamISOLangTable
 		deleteISOLangByCode3Idx( Authorization, key );
 	}
 
+	@Override
 	public void deleteISOLangByCode3Idx( ICFSecAuthorization Authorization,
 		ICFSecISOLangByCode3IdxKey argKey )
 	{
@@ -508,6 +525,7 @@ public class CFSecRamISOLangTable
 		}
 	}
 
+	@Override
 	public void deleteISOLangByCode2Idx( ICFSecAuthorization Authorization,
 		String argISO6391Code )
 	{
@@ -516,6 +534,7 @@ public class CFSecRamISOLangTable
 		deleteISOLangByCode2Idx( Authorization, key );
 	}
 
+	@Override
 	public void deleteISOLangByCode2Idx( ICFSecAuthorization Authorization,
 		ICFSecISOLangByCode2IdxKey argKey )
 	{

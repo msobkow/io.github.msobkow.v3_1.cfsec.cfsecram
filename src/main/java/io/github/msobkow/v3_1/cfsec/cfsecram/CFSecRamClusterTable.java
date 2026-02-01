@@ -88,6 +88,7 @@ public class CFSecRamClusterTable
 		}
 	}
 
+	@Override
 	public ICFSecCluster createCluster( ICFSecAuthorization Authorization,
 		ICFSecCluster iBuff )
 	{
@@ -151,6 +152,7 @@ public class CFSecRamClusterTable
 		}
 	}
 
+	@Override
 	public ICFSecCluster readDerived( ICFSecAuthorization Authorization,
 		Long PKey )
 	{
@@ -165,6 +167,7 @@ public class CFSecRamClusterTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecCluster lockDerived( ICFSecAuthorization Authorization,
 		Long PKey )
 	{
@@ -179,6 +182,7 @@ public class CFSecRamClusterTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecCluster[] readAllDerived( ICFSecAuthorization Authorization ) {
 		final String S_ProcName = "CFSecRamCluster.readAllDerived";
 		ICFSecCluster[] retList = new ICFSecCluster[ dictByPKey.values().size() ];
@@ -190,6 +194,7 @@ public class CFSecRamClusterTable
 		return( retList );
 	}
 
+	@Override
 	public ICFSecCluster readDerivedByUDomNameIdx( ICFSecAuthorization Authorization,
 		String FullDomName )
 	{
@@ -207,6 +212,7 @@ public class CFSecRamClusterTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecCluster readDerivedByUDescrIdx( ICFSecAuthorization Authorization,
 		String Description )
 	{
@@ -224,6 +230,7 @@ public class CFSecRamClusterTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecCluster readDerivedByIdIdx( ICFSecAuthorization Authorization,
 		long Id )
 	{
@@ -238,6 +245,7 @@ public class CFSecRamClusterTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecCluster readRec( ICFSecAuthorization Authorization,
 		Long PKey )
 	{
@@ -249,6 +257,7 @@ public class CFSecRamClusterTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecCluster lockRec( ICFSecAuthorization Authorization,
 		Long PKey )
 	{
@@ -260,6 +269,7 @@ public class CFSecRamClusterTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecCluster[] readAllRec( ICFSecAuthorization Authorization )
 	{
 		final String S_ProcName = "CFSecRamCluster.readAllRec";
@@ -282,6 +292,7 @@ public class CFSecRamClusterTable
 	 *
 	 *	@return All the specific Cluster instances in the database accessible for the Authorization.
 	 */
+	@Override
 	public ICFSecCluster[] pageAllRec( ICFSecAuthorization Authorization,
 		Long priorId )
 	{
@@ -289,6 +300,7 @@ public class CFSecRamClusterTable
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 
+	@Override
 	public ICFSecCluster readRecByIdIdx( ICFSecAuthorization Authorization,
 		long Id )
 	{
@@ -303,6 +315,7 @@ public class CFSecRamClusterTable
 		}
 	}
 
+	@Override
 	public ICFSecCluster readRecByUDomNameIdx( ICFSecAuthorization Authorization,
 		String FullDomName )
 	{
@@ -317,6 +330,7 @@ public class CFSecRamClusterTable
 		}
 	}
 
+	@Override
 	public ICFSecCluster readRecByUDescrIdx( ICFSecAuthorization Authorization,
 		String Description )
 	{
@@ -404,6 +418,7 @@ public class CFSecRamClusterTable
 		return(Buff);
 	}
 
+	@Override
 	public void deleteCluster( ICFSecAuthorization Authorization,
 		ICFSecCluster iBuff )
 	{
@@ -469,6 +484,7 @@ public class CFSecRamClusterTable
 		dictByUDescrIdx.remove( keyUDescrIdx );
 
 	}
+	@Override
 	public void deleteClusterByIdIdx( ICFSecAuthorization Authorization,
 		Long argKey )
 	{
@@ -495,6 +511,7 @@ public class CFSecRamClusterTable
 		}
 	}
 
+	@Override
 	public void deleteClusterByUDomNameIdx( ICFSecAuthorization Authorization,
 		String argFullDomName )
 	{
@@ -503,6 +520,7 @@ public class CFSecRamClusterTable
 		deleteClusterByUDomNameIdx( Authorization, key );
 	}
 
+	@Override
 	public void deleteClusterByUDomNameIdx( ICFSecAuthorization Authorization,
 		ICFSecClusterByUDomNameIdxKey argKey )
 	{
@@ -529,6 +547,7 @@ public class CFSecRamClusterTable
 		}
 	}
 
+	@Override
 	public void deleteClusterByUDescrIdx( ICFSecAuthorization Authorization,
 		String argDescription )
 	{
@@ -537,6 +556,7 @@ public class CFSecRamClusterTable
 		deleteClusterByUDescrIdx( Authorization, key );
 	}
 
+	@Override
 	public void deleteClusterByUDescrIdx( ICFSecAuthorization Authorization,
 		ICFSecClusterByUDescrIdxKey argKey )
 	{

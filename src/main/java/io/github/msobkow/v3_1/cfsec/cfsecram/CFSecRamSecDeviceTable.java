@@ -90,6 +90,7 @@ public class CFSecRamSecDeviceTable
 		}
 	}
 
+	@Override
 	public ICFSecSecDevice createSecDevice( ICFSecAuthorization Authorization,
 		ICFSecSecDevice iBuff )
 	{
@@ -176,6 +177,7 @@ public class CFSecRamSecDeviceTable
 		}
 	}
 
+	@Override
 	public ICFSecSecDevice readDerived( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 SecUserId,
 		String DevName )
@@ -203,6 +205,7 @@ public class CFSecRamSecDeviceTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecSecDevice lockDerived( ICFSecAuthorization Authorization,
 		ICFSecSecDevicePKey PKey )
 	{
@@ -220,6 +223,7 @@ public class CFSecRamSecDeviceTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecSecDevice[] readAllDerived( ICFSecAuthorization Authorization ) {
 		final String S_ProcName = "CFSecRamSecDevice.readAllDerived";
 		ICFSecSecDevice[] retList = new ICFSecSecDevice[ dictByPKey.values().size() ];
@@ -231,6 +235,7 @@ public class CFSecRamSecDeviceTable
 		return( retList );
 	}
 
+	@Override
 	public ICFSecSecDevice readDerivedByNameIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 SecUserId,
 		String DevName )
@@ -250,6 +255,7 @@ public class CFSecRamSecDeviceTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecSecDevice[] readDerivedByUserIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 SecUserId )
 	{
@@ -277,6 +283,7 @@ public class CFSecRamSecDeviceTable
 		return( recArray );
 	}
 
+	@Override
 	public ICFSecSecDevice readDerivedByIdIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 SecUserId,
 		String DevName )
@@ -295,6 +302,7 @@ public class CFSecRamSecDeviceTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecSecDevice readRec( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 SecUserId,
 		String DevName )
@@ -305,6 +313,7 @@ public class CFSecRamSecDeviceTable
 		return( readRec( Authorization, key ) );
 	}
 
+	@Override
 	public ICFSecSecDevice readRec( ICFSecAuthorization Authorization,
 		ICFSecSecDevicePKey PKey )
 	{
@@ -316,6 +325,7 @@ public class CFSecRamSecDeviceTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecSecDevice lockRec( ICFSecAuthorization Authorization,
 		ICFSecSecDevicePKey PKey )
 	{
@@ -327,6 +337,7 @@ public class CFSecRamSecDeviceTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecSecDevice[] readAllRec( ICFSecAuthorization Authorization )
 	{
 		final String S_ProcName = "CFSecRamSecDevice.readAllRec";
@@ -349,6 +360,7 @@ public class CFSecRamSecDeviceTable
 	 *
 	 *	@return All the specific SecDevice instances in the database accessible for the Authorization.
 	 */
+	@Override
 	public ICFSecSecDevice[] pageAllRec( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 priorSecUserId,
 		String priorDevName )
@@ -357,6 +369,7 @@ public class CFSecRamSecDeviceTable
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 
+	@Override
 	public ICFSecSecDevice readRecByIdIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 SecUserId,
 		String DevName )
@@ -373,6 +386,7 @@ public class CFSecRamSecDeviceTable
 		}
 	}
 
+	@Override
 	public ICFSecSecDevice readRecByNameIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 SecUserId,
 		String DevName )
@@ -389,6 +403,7 @@ public class CFSecRamSecDeviceTable
 		}
 	}
 
+	@Override
 	public ICFSecSecDevice[] readRecByUserIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 SecUserId )
 	{
@@ -417,6 +432,7 @@ public class CFSecRamSecDeviceTable
 	 *
 	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
 	 */
+	@Override
 	public ICFSecSecDevice[] pageRecByUserIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 SecUserId,
 		CFLibDbKeyHash256 priorSecUserId,
@@ -426,6 +442,7 @@ public class CFSecRamSecDeviceTable
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
 	}
 
+	@Override
 	public ICFSecSecDevice updateSecDevice( ICFSecAuthorization Authorization,
 		ICFSecSecDevice iBuff )
 	{
@@ -523,6 +540,7 @@ public class CFSecRamSecDeviceTable
 		return(Buff);
 	}
 
+	@Override
 	public void deleteSecDevice( ICFSecAuthorization Authorization,
 		ICFSecSecDevice iBuff )
 	{
@@ -560,6 +578,7 @@ public class CFSecRamSecDeviceTable
 		subdict.remove( pkey );
 
 	}
+	@Override
 	public void deleteSecDeviceByIdIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 SecUserId,
 		String DevName )
@@ -570,6 +589,7 @@ public class CFSecRamSecDeviceTable
 		deleteSecDeviceByIdIdx( Authorization, key );
 	}
 
+	@Override
 	public void deleteSecDeviceByIdIdx( ICFSecAuthorization Authorization,
 		ICFSecSecDevicePKey PKey )
 	{
@@ -602,6 +622,7 @@ public class CFSecRamSecDeviceTable
 		}
 	}
 
+	@Override
 	public void deleteSecDeviceByNameIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 argSecUserId,
 		String argDevName )
@@ -612,6 +633,7 @@ public class CFSecRamSecDeviceTable
 		deleteSecDeviceByNameIdx( Authorization, key );
 	}
 
+	@Override
 	public void deleteSecDeviceByNameIdx( ICFSecAuthorization Authorization,
 		ICFSecSecDeviceByNameIdxKey argKey )
 	{
@@ -640,6 +662,7 @@ public class CFSecRamSecDeviceTable
 		}
 	}
 
+	@Override
 	public void deleteSecDeviceByUserIdx( ICFSecAuthorization Authorization,
 		CFLibDbKeyHash256 argSecUserId )
 	{
@@ -648,6 +671,7 @@ public class CFSecRamSecDeviceTable
 		deleteSecDeviceByUserIdx( Authorization, key );
 	}
 
+	@Override
 	public void deleteSecDeviceByUserIdx( ICFSecAuthorization Authorization,
 		ICFSecSecDeviceByUserIdxKey argKey )
 	{

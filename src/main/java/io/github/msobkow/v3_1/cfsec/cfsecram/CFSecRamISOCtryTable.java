@@ -88,6 +88,7 @@ public class CFSecRamISOCtryTable
 		}
 	}
 
+	@Override
 	public ICFSecISOCtry createISOCtry( ICFSecAuthorization Authorization,
 		ICFSecISOCtry iBuff )
 	{
@@ -151,6 +152,7 @@ public class CFSecRamISOCtryTable
 		}
 	}
 
+	@Override
 	public ICFSecISOCtry readDerived( ICFSecAuthorization Authorization,
 		Short PKey )
 	{
@@ -165,6 +167,7 @@ public class CFSecRamISOCtryTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecISOCtry lockDerived( ICFSecAuthorization Authorization,
 		Short PKey )
 	{
@@ -179,6 +182,7 @@ public class CFSecRamISOCtryTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecISOCtry[] readAllDerived( ICFSecAuthorization Authorization ) {
 		final String S_ProcName = "CFSecRamISOCtry.readAllDerived";
 		ICFSecISOCtry[] retList = new ICFSecISOCtry[ dictByPKey.values().size() ];
@@ -190,6 +194,7 @@ public class CFSecRamISOCtryTable
 		return( retList );
 	}
 
+	@Override
 	public ICFSecISOCtry readDerivedByISOCodeIdx( ICFSecAuthorization Authorization,
 		String ISOCode )
 	{
@@ -207,6 +212,7 @@ public class CFSecRamISOCtryTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecISOCtry readDerivedByNameIdx( ICFSecAuthorization Authorization,
 		String Name )
 	{
@@ -224,6 +230,7 @@ public class CFSecRamISOCtryTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecISOCtry readDerivedByIdIdx( ICFSecAuthorization Authorization,
 		short ISOCtryId )
 	{
@@ -238,6 +245,7 @@ public class CFSecRamISOCtryTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecISOCtry readRec( ICFSecAuthorization Authorization,
 		Short PKey )
 	{
@@ -249,6 +257,7 @@ public class CFSecRamISOCtryTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecISOCtry lockRec( ICFSecAuthorization Authorization,
 		Short PKey )
 	{
@@ -260,6 +269,7 @@ public class CFSecRamISOCtryTable
 		return( buff );
 	}
 
+	@Override
 	public ICFSecISOCtry[] readAllRec( ICFSecAuthorization Authorization )
 	{
 		final String S_ProcName = "CFSecRamISOCtry.readAllRec";
@@ -275,6 +285,7 @@ public class CFSecRamISOCtryTable
 		return( filteredList.toArray( new ICFSecISOCtry[0] ) );
 	}
 
+	@Override
 	public ICFSecISOCtry readRecByIdIdx( ICFSecAuthorization Authorization,
 		short ISOCtryId )
 	{
@@ -289,6 +300,7 @@ public class CFSecRamISOCtryTable
 		}
 	}
 
+	@Override
 	public ICFSecISOCtry readRecByISOCodeIdx( ICFSecAuthorization Authorization,
 		String ISOCode )
 	{
@@ -303,6 +315,7 @@ public class CFSecRamISOCtryTable
 		}
 	}
 
+	@Override
 	public ICFSecISOCtry readRecByNameIdx( ICFSecAuthorization Authorization,
 		String Name )
 	{
@@ -390,6 +403,7 @@ public class CFSecRamISOCtryTable
 		return(Buff);
 	}
 
+	@Override
 	public void deleteISOCtry( ICFSecAuthorization Authorization,
 		ICFSecISOCtry iBuff )
 	{
@@ -429,6 +443,7 @@ public class CFSecRamISOCtryTable
 		dictByNameIdx.remove( keyNameIdx );
 
 	}
+	@Override
 	public void deleteISOCtryByIdIdx( ICFSecAuthorization Authorization,
 		Short argKey )
 	{
@@ -455,6 +470,7 @@ public class CFSecRamISOCtryTable
 		}
 	}
 
+	@Override
 	public void deleteISOCtryByISOCodeIdx( ICFSecAuthorization Authorization,
 		String argISOCode )
 	{
@@ -463,6 +479,7 @@ public class CFSecRamISOCtryTable
 		deleteISOCtryByISOCodeIdx( Authorization, key );
 	}
 
+	@Override
 	public void deleteISOCtryByISOCodeIdx( ICFSecAuthorization Authorization,
 		ICFSecISOCtryByISOCodeIdxKey argKey )
 	{
@@ -489,6 +506,7 @@ public class CFSecRamISOCtryTable
 		}
 	}
 
+	@Override
 	public void deleteISOCtryByNameIdx( ICFSecAuthorization Authorization,
 		String argName )
 	{
@@ -497,6 +515,7 @@ public class CFSecRamISOCtryTable
 		deleteISOCtryByNameIdx( Authorization, key );
 	}
 
+	@Override
 	public void deleteISOCtryByNameIdx( ICFSecAuthorization Authorization,
 		ICFSecISOCtryByNameIdxKey argKey )
 	{
