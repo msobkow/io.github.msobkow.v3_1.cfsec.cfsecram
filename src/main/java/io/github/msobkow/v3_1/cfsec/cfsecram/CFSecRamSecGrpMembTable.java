@@ -281,7 +281,7 @@ public class CFSecRamSecGrpMembTable
 
 	@Override
 	public ICFSecSecGrpMemb[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId )
+		CFLibDbKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSecGrpMemb.readDerivedByClusterIdx";
 		CFSecBuffSecGrpMembByClusterIdxKey key = (CFSecBuffSecGrpMembByClusterIdxKey)schema.getFactorySecGrpMemb().newByClusterIdxKey();
@@ -365,7 +365,7 @@ public class CFSecRamSecGrpMembTable
 
 	@Override
 	public ICFSecSecGrpMemb readDerivedByUUserIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		CFLibDbKeyHash256 SecGroupId,
 		CFLibDbKeyHash256 SecUserId )
 	{
@@ -472,7 +472,7 @@ public class CFSecRamSecGrpMembTable
 
 	@Override
 	public ICFSecSecGrpMemb[] readRecByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId )
+		CFLibDbKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSecGrpMemb.readRecByClusterIdx() ";
 		ICFSecSecGrpMemb buff;
@@ -526,7 +526,7 @@ public class CFSecRamSecGrpMembTable
 
 	@Override
 	public ICFSecSecGrpMemb readRecByUUserIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		CFLibDbKeyHash256 SecGroupId,
 		CFLibDbKeyHash256 SecUserId )
 	{
@@ -556,7 +556,7 @@ public class CFSecRamSecGrpMembTable
 	 */
 	@Override
 	public ICFSecSecGrpMemb[] pageRecByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		CFLibDbKeyHash256 priorSecGrpMembId )
 	{
 		final String S_ProcName = "pageRecByClusterIdx";
@@ -838,7 +838,7 @@ public class CFSecRamSecGrpMembTable
 
 	@Override
 	public void deleteSecGrpMembByClusterIdx( ICFSecAuthorization Authorization,
-		long argClusterId )
+		CFLibDbKeyHash256 argClusterId )
 	{
 		CFSecBuffSecGrpMembByClusterIdxKey key = (CFSecBuffSecGrpMembByClusterIdxKey)schema.getFactorySecGrpMemb().newByClusterIdxKey();
 		key.setRequiredClusterId( argClusterId );
@@ -946,7 +946,7 @@ public class CFSecRamSecGrpMembTable
 
 	@Override
 	public void deleteSecGrpMembByUUserIdx( ICFSecAuthorization Authorization,
-		long argClusterId,
+		CFLibDbKeyHash256 argClusterId,
 		CFLibDbKeyHash256 argSecGroupId,
 		CFLibDbKeyHash256 argSecUserId )
 	{

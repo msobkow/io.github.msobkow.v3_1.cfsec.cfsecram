@@ -55,7 +55,6 @@ public class CFSecRamSchema
 	protected short nextISOCtryIdGenValue = 1;
 	protected short nextISOLangIdGenValue = 1;
 	protected short nextISOTZoneIdGenValue = 1;
-	protected long nextClusterIdGenValue = 1;
 
 
 	public CFSecRamSchema() {
@@ -113,9 +112,9 @@ public class CFSecRamSchema
 	}
 
 	@Override
-	public long nextClusterIdGen() {
-		long next = nextClusterIdGenValue++;
-		return( next );
+	public CFLibDbKeyHash256 nextClusterIdGen() {
+		CFLibDbKeyHash256 retval = new CFLibDbKeyHash256(0);
+		return( retval );
 	}
 
 	@Override

@@ -280,7 +280,7 @@ public class CFSecRamServiceTable
 
 	@Override
 	public ICFSecService[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId )
+		CFLibDbKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamService.readDerivedByClusterIdx";
 		CFSecBuffServiceByClusterIdxKey key = (CFSecBuffServiceByClusterIdxKey)schema.getFactoryService().newByClusterIdxKey();
@@ -364,7 +364,7 @@ public class CFSecRamServiceTable
 
 	@Override
 	public ICFSecService readDerivedByUTypeIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		CFLibDbKeyHash256 HostNodeId,
 		CFLibDbKeyHash256 ServiceTypeId )
 	{
@@ -386,7 +386,7 @@ public class CFSecRamServiceTable
 
 	@Override
 	public ICFSecService readDerivedByUHostPortIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		CFLibDbKeyHash256 HostNodeId,
 		short HostPort )
 	{
@@ -493,7 +493,7 @@ public class CFSecRamServiceTable
 
 	@Override
 	public ICFSecService[] readRecByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId )
+		CFLibDbKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamService.readRecByClusterIdx() ";
 		ICFSecService buff;
@@ -547,7 +547,7 @@ public class CFSecRamServiceTable
 
 	@Override
 	public ICFSecService readRecByUTypeIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		CFLibDbKeyHash256 HostNodeId,
 		CFLibDbKeyHash256 ServiceTypeId )
 	{
@@ -566,7 +566,7 @@ public class CFSecRamServiceTable
 
 	@Override
 	public ICFSecService readRecByUHostPortIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		CFLibDbKeyHash256 HostNodeId,
 		short HostPort )
 	{
@@ -596,7 +596,7 @@ public class CFSecRamServiceTable
 	 */
 	@Override
 	public ICFSecService[] pageRecByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		CFLibDbKeyHash256 priorServiceId )
 	{
 		final String S_ProcName = "pageRecByClusterIdx";
@@ -888,7 +888,7 @@ public class CFSecRamServiceTable
 
 	@Override
 	public void deleteServiceByClusterIdx( ICFSecAuthorization Authorization,
-		long argClusterId )
+		CFLibDbKeyHash256 argClusterId )
 	{
 		CFSecBuffServiceByClusterIdxKey key = (CFSecBuffServiceByClusterIdxKey)schema.getFactoryService().newByClusterIdxKey();
 		key.setRequiredClusterId( argClusterId );
@@ -996,7 +996,7 @@ public class CFSecRamServiceTable
 
 	@Override
 	public void deleteServiceByUTypeIdx( ICFSecAuthorization Authorization,
-		long argClusterId,
+		CFLibDbKeyHash256 argClusterId,
 		CFLibDbKeyHash256 argHostNodeId,
 		CFLibDbKeyHash256 argServiceTypeId )
 	{
@@ -1038,7 +1038,7 @@ public class CFSecRamServiceTable
 
 	@Override
 	public void deleteServiceByUHostPortIdx( ICFSecAuthorization Authorization,
-		long argClusterId,
+		CFLibDbKeyHash256 argClusterId,
 		CFLibDbKeyHash256 argHostNodeId,
 		short argHostPort )
 	{

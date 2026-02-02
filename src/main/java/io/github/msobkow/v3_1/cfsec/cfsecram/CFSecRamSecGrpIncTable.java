@@ -281,7 +281,7 @@ public class CFSecRamSecGrpIncTable
 
 	@Override
 	public ICFSecSecGrpInc[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId )
+		CFLibDbKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSecGrpInc.readDerivedByClusterIdx";
 		CFSecBuffSecGrpIncByClusterIdxKey key = (CFSecBuffSecGrpIncByClusterIdxKey)schema.getFactorySecGrpInc().newByClusterIdxKey();
@@ -365,7 +365,7 @@ public class CFSecRamSecGrpIncTable
 
 	@Override
 	public ICFSecSecGrpInc readDerivedByUIncludeIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		CFLibDbKeyHash256 SecGroupId,
 		CFLibDbKeyHash256 IncludeGroupId )
 	{
@@ -472,7 +472,7 @@ public class CFSecRamSecGrpIncTable
 
 	@Override
 	public ICFSecSecGrpInc[] readRecByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId )
+		CFLibDbKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSecGrpInc.readRecByClusterIdx() ";
 		ICFSecSecGrpInc buff;
@@ -526,7 +526,7 @@ public class CFSecRamSecGrpIncTable
 
 	@Override
 	public ICFSecSecGrpInc readRecByUIncludeIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		CFLibDbKeyHash256 SecGroupId,
 		CFLibDbKeyHash256 IncludeGroupId )
 	{
@@ -556,7 +556,7 @@ public class CFSecRamSecGrpIncTable
 	 */
 	@Override
 	public ICFSecSecGrpInc[] pageRecByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		CFLibDbKeyHash256 priorSecGrpIncId )
 	{
 		final String S_ProcName = "pageRecByClusterIdx";
@@ -838,7 +838,7 @@ public class CFSecRamSecGrpIncTable
 
 	@Override
 	public void deleteSecGrpIncByClusterIdx( ICFSecAuthorization Authorization,
-		long argClusterId )
+		CFLibDbKeyHash256 argClusterId )
 	{
 		CFSecBuffSecGrpIncByClusterIdxKey key = (CFSecBuffSecGrpIncByClusterIdxKey)schema.getFactorySecGrpInc().newByClusterIdxKey();
 		key.setRequiredClusterId( argClusterId );
@@ -946,7 +946,7 @@ public class CFSecRamSecGrpIncTable
 
 	@Override
 	public void deleteSecGrpIncByUIncludeIdx( ICFSecAuthorization Authorization,
-		long argClusterId,
+		CFLibDbKeyHash256 argClusterId,
 		CFLibDbKeyHash256 argSecGroupId,
 		CFLibDbKeyHash256 argIncludeGroupId )
 	{

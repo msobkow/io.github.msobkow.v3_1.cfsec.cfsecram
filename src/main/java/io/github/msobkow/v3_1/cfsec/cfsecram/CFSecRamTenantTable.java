@@ -222,7 +222,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId )
+		CFLibDbKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamTenant.readDerivedByClusterIdx";
 		CFSecBuffTenantByClusterIdxKey key = (CFSecBuffTenantByClusterIdxKey)schema.getFactoryTenant().newByClusterIdxKey();
@@ -250,7 +250,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant readDerivedByUNameIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		String TenantName )
 	{
 		final String S_ProcName = "CFSecRamTenant.readDerivedByUNameIdx";
@@ -355,7 +355,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant[] readRecByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId )
+		CFLibDbKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamTenant.readRecByClusterIdx() ";
 		ICFSecTenant buff;
@@ -373,7 +373,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant readRecByUNameIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		String TenantName )
 	{
 		final String S_ProcName = "CFSecRamTenant.readRecByUNameIdx() ";
@@ -401,7 +401,7 @@ public class CFSecRamTenantTable
 	 */
 	@Override
 	public ICFSecTenant[] pageRecByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		CFLibDbKeyHash256 priorId )
 	{
 		final String S_ProcName = "pageRecByClusterIdx";
@@ -596,7 +596,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public void deleteTenantByClusterIdx( ICFSecAuthorization Authorization,
-		long argClusterId )
+		CFLibDbKeyHash256 argClusterId )
 	{
 		CFSecBuffTenantByClusterIdxKey key = (CFSecBuffTenantByClusterIdxKey)schema.getFactoryTenant().newByClusterIdxKey();
 		key.setRequiredClusterId( argClusterId );
@@ -632,7 +632,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public void deleteTenantByUNameIdx( ICFSecAuthorization Authorization,
-		long argClusterId,
+		CFLibDbKeyHash256 argClusterId,
 		String argTenantName )
 	{
 		CFSecBuffTenantByUNameIdxKey key = (CFSecBuffTenantByUNameIdxKey)schema.getFactoryTenant().newByUNameIdxKey();

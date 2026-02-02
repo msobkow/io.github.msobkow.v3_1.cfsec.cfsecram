@@ -204,7 +204,7 @@ public class CFSecRamSysClusterTable
 
 	@Override
 	public ICFSecSysCluster[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId )
+		CFLibDbKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSysCluster.readDerivedByClusterIdx";
 		CFSecBuffSysClusterByClusterIdxKey key = (CFSecBuffSysClusterByClusterIdxKey)schema.getFactorySysCluster().newByClusterIdxKey();
@@ -302,7 +302,7 @@ public class CFSecRamSysClusterTable
 
 	@Override
 	public ICFSecSysCluster[] readRecByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId )
+		CFLibDbKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSysCluster.readRecByClusterIdx() ";
 		ICFSecSysCluster buff;
@@ -453,7 +453,7 @@ public class CFSecRamSysClusterTable
 
 	@Override
 	public void deleteSysClusterByClusterIdx( ICFSecAuthorization Authorization,
-		long argClusterId )
+		CFLibDbKeyHash256 argClusterId )
 	{
 		CFSecBuffSysClusterByClusterIdxKey key = (CFSecBuffSysClusterByClusterIdxKey)schema.getFactorySysCluster().newByClusterIdxKey();
 		key.setRequiredClusterId( argClusterId );

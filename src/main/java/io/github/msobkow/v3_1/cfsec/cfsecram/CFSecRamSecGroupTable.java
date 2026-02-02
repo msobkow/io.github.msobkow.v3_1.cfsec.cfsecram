@@ -242,7 +242,7 @@ public class CFSecRamSecGroupTable
 
 	@Override
 	public ICFSecSecGroup[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId )
+		CFLibDbKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSecGroup.readDerivedByClusterIdx";
 		CFSecBuffSecGroupByClusterIdxKey key = (CFSecBuffSecGroupByClusterIdxKey)schema.getFactorySecGroup().newByClusterIdxKey();
@@ -270,7 +270,7 @@ public class CFSecRamSecGroupTable
 
 	@Override
 	public ICFSecSecGroup[] readDerivedByClusterVisIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		boolean IsVisible )
 	{
 		final String S_ProcName = "CFSecRamSecGroup.readDerivedByClusterVisIdx";
@@ -300,7 +300,7 @@ public class CFSecRamSecGroupTable
 
 	@Override
 	public ICFSecSecGroup readDerivedByUNameIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		String Name )
 	{
 		final String S_ProcName = "CFSecRamSecGroup.readDerivedByUNameIdx";
@@ -390,7 +390,7 @@ public class CFSecRamSecGroupTable
 
 	@Override
 	public ICFSecSecGroup[] readRecByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId )
+		CFLibDbKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSecGroup.readRecByClusterIdx() ";
 		ICFSecSecGroup buff;
@@ -408,7 +408,7 @@ public class CFSecRamSecGroupTable
 
 	@Override
 	public ICFSecSecGroup[] readRecByClusterVisIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		boolean IsVisible )
 	{
 		final String S_ProcName = "CFSecRamSecGroup.readRecByClusterVisIdx() ";
@@ -428,7 +428,7 @@ public class CFSecRamSecGroupTable
 
 	@Override
 	public ICFSecSecGroup readRecByUNameIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		String Name )
 	{
 		final String S_ProcName = "CFSecRamSecGroup.readRecByUNameIdx() ";
@@ -639,7 +639,7 @@ public class CFSecRamSecGroupTable
 
 	@Override
 	public void deleteSecGroupByClusterIdx( ICFSecAuthorization Authorization,
-		long argClusterId )
+		CFLibDbKeyHash256 argClusterId )
 	{
 		CFSecBuffSecGroupByClusterIdxKey key = (CFSecBuffSecGroupByClusterIdxKey)schema.getFactorySecGroup().newByClusterIdxKey();
 		key.setRequiredClusterId( argClusterId );
@@ -675,7 +675,7 @@ public class CFSecRamSecGroupTable
 
 	@Override
 	public void deleteSecGroupByClusterVisIdx( ICFSecAuthorization Authorization,
-		long argClusterId,
+		CFLibDbKeyHash256 argClusterId,
 		boolean argIsVisible )
 	{
 		CFSecBuffSecGroupByClusterVisIdxKey key = (CFSecBuffSecGroupByClusterVisIdxKey)schema.getFactorySecGroup().newByClusterVisIdxKey();
@@ -714,7 +714,7 @@ public class CFSecRamSecGroupTable
 
 	@Override
 	public void deleteSecGroupByUNameIdx( ICFSecAuthorization Authorization,
-		long argClusterId,
+		CFLibDbKeyHash256 argClusterId,
 		String argName )
 	{
 		CFSecBuffSecGroupByUNameIdxKey key = (CFSecBuffSecGroupByUNameIdxKey)schema.getFactorySecGroup().newByUNameIdxKey();

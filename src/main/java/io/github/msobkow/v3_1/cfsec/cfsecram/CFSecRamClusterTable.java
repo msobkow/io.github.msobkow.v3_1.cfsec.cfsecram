@@ -56,9 +56,9 @@ public class CFSecRamClusterTable
 	implements ICFSecClusterTable
 {
 	private ICFSecSchema schema;
-	private Map< Long,
+	private Map< CFLibDbKeyHash256,
 				CFSecBuffCluster > dictByPKey
-		= new HashMap< Long,
+		= new HashMap< CFLibDbKeyHash256,
 				CFSecBuffCluster >();
 	private Map< CFSecBuffClusterByUDomNameIdxKey,
 			CFSecBuffCluster > dictByUDomNameIdx
@@ -95,7 +95,7 @@ public class CFSecRamClusterTable
 		final String S_ProcName = "createCluster";
 		
 		CFSecBuffCluster Buff = (CFSecBuffCluster)ensureRec(iBuff);
-		Long pkey;
+		CFLibDbKeyHash256 pkey;
 		pkey = schema.nextClusterIdGen();
 		Buff.setRequiredId( pkey );
 		CFSecBuffClusterByUDomNameIdxKey keyUDomNameIdx = (CFSecBuffClusterByUDomNameIdxKey)schema.getFactoryCluster().newByUDomNameIdxKey();
@@ -154,7 +154,7 @@ public class CFSecRamClusterTable
 
 	@Override
 	public ICFSecCluster readDerived( ICFSecAuthorization Authorization,
-		Long PKey )
+		CFLibDbKeyHash256 PKey )
 	{
 		final String S_ProcName = "CFSecRamCluster.readDerived";
 		ICFSecCluster buff;
@@ -172,7 +172,7 @@ public class CFSecRamClusterTable
 
 	@Override
 	public ICFSecCluster lockDerived( ICFSecAuthorization Authorization,
-		Long PKey )
+		CFLibDbKeyHash256 PKey )
 	{
 		final String S_ProcName = "CFSecRamCluster.lockDerived";
 		ICFSecCluster buff;
@@ -235,7 +235,7 @@ public class CFSecRamClusterTable
 
 	@Override
 	public ICFSecCluster readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		long Id )
+		CFLibDbKeyHash256 Id )
 	{
 		final String S_ProcName = "CFSecRamCluster.readDerivedByIdIdx() ";
 		ICFSecCluster buff;
@@ -250,7 +250,7 @@ public class CFSecRamClusterTable
 
 	@Override
 	public ICFSecCluster readRec( ICFSecAuthorization Authorization,
-		Long PKey )
+		CFLibDbKeyHash256 PKey )
 	{
 		final String S_ProcName = "CFSecRamCluster.readRec";
 		ICFSecCluster buff = readDerived( Authorization, PKey );
@@ -262,7 +262,7 @@ public class CFSecRamClusterTable
 
 	@Override
 	public ICFSecCluster lockRec( ICFSecAuthorization Authorization,
-		Long PKey )
+		CFLibDbKeyHash256 PKey )
 	{
 		final String S_ProcName = "lockRec";
 		ICFSecCluster buff = readDerived( Authorization, PKey );
@@ -297,7 +297,7 @@ public class CFSecRamClusterTable
 	 */
 	@Override
 	public ICFSecCluster[] pageAllRec( ICFSecAuthorization Authorization,
-		Long priorId )
+		CFLibDbKeyHash256 priorId )
 	{
 		final String S_ProcName = "pageAllRec";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -305,7 +305,7 @@ public class CFSecRamClusterTable
 
 	@Override
 	public ICFSecCluster readRecByIdIdx( ICFSecAuthorization Authorization,
-		long Id )
+		CFLibDbKeyHash256 Id )
 	{
 		final String S_ProcName = "CFSecRamCluster.readRecByIdIdx() ";
 		ICFSecCluster buff = readDerivedByIdIdx( Authorization,
@@ -352,7 +352,7 @@ public class CFSecRamClusterTable
 		ICFSecCluster iBuff )
 	{
 		CFSecBuffCluster Buff = (CFSecBuffCluster)ensureRec(iBuff);
-		Long pkey = Buff.getPKey();
+		CFLibDbKeyHash256 pkey = Buff.getPKey();
 		CFSecBuffCluster existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
@@ -407,7 +407,7 @@ public class CFSecRamClusterTable
 
 		// Update is valid
 
-		Map< Long, CFSecBuffCluster > subdict;
+		Map< CFLibDbKeyHash256, CFSecBuffCluster > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -428,7 +428,7 @@ public class CFSecRamClusterTable
 		final String S_ProcName = "CFSecRamClusterTable.deleteCluster() ";
 		CFSecBuffCluster Buff = (CFSecBuffCluster)ensureRec(iBuff);
 		int classCode;
-		Long pkey = (Long)(Buff.getPKey());
+		CFLibDbKeyHash256 pkey = (CFLibDbKeyHash256)(Buff.getPKey());
 		CFSecBuffCluster existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
@@ -478,7 +478,7 @@ public class CFSecRamClusterTable
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< Long, CFSecBuffCluster > subdict;
+		Map< CFLibDbKeyHash256, CFSecBuffCluster > subdict;
 
 		dictByPKey.remove( pkey );
 
@@ -489,7 +489,7 @@ public class CFSecRamClusterTable
 	}
 	@Override
 	public void deleteClusterByIdIdx( ICFSecAuthorization Authorization,
-		Long argKey )
+		CFLibDbKeyHash256 argKey )
 	{
 		boolean anyNotNull = false;
 		anyNotNull = true;

@@ -240,7 +240,7 @@ public class CFSecRamHostNodeTable
 
 	@Override
 	public ICFSecHostNode[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId )
+		CFLibDbKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamHostNode.readDerivedByClusterIdx";
 		CFSecBuffHostNodeByClusterIdxKey key = (CFSecBuffHostNodeByClusterIdxKey)schema.getFactoryHostNode().newByClusterIdxKey();
@@ -268,7 +268,7 @@ public class CFSecRamHostNodeTable
 
 	@Override
 	public ICFSecHostNode readDerivedByUDescrIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		String Description )
 	{
 		final String S_ProcName = "CFSecRamHostNode.readDerivedByUDescrIdx";
@@ -288,7 +288,7 @@ public class CFSecRamHostNodeTable
 
 	@Override
 	public ICFSecHostNode readDerivedByHostNameIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		String HostName )
 	{
 		final String S_ProcName = "CFSecRamHostNode.readDerivedByHostNameIdx";
@@ -393,7 +393,7 @@ public class CFSecRamHostNodeTable
 
 	@Override
 	public ICFSecHostNode[] readRecByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId )
+		CFLibDbKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamHostNode.readRecByClusterIdx() ";
 		ICFSecHostNode buff;
@@ -411,7 +411,7 @@ public class CFSecRamHostNodeTable
 
 	@Override
 	public ICFSecHostNode readRecByUDescrIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		String Description )
 	{
 		final String S_ProcName = "CFSecRamHostNode.readRecByUDescrIdx() ";
@@ -428,7 +428,7 @@ public class CFSecRamHostNodeTable
 
 	@Override
 	public ICFSecHostNode readRecByHostNameIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		String HostName )
 	{
 		final String S_ProcName = "CFSecRamHostNode.readRecByHostNameIdx() ";
@@ -456,7 +456,7 @@ public class CFSecRamHostNodeTable
 	 */
 	@Override
 	public ICFSecHostNode[] pageRecByClusterIdx( ICFSecAuthorization Authorization,
-		long ClusterId,
+		CFLibDbKeyHash256 ClusterId,
 		CFLibDbKeyHash256 priorHostNodeId )
 	{
 		final String S_ProcName = "pageRecByClusterIdx";
@@ -654,7 +654,7 @@ public class CFSecRamHostNodeTable
 
 	@Override
 	public void deleteHostNodeByClusterIdx( ICFSecAuthorization Authorization,
-		long argClusterId )
+		CFLibDbKeyHash256 argClusterId )
 	{
 		CFSecBuffHostNodeByClusterIdxKey key = (CFSecBuffHostNodeByClusterIdxKey)schema.getFactoryHostNode().newByClusterIdxKey();
 		key.setRequiredClusterId( argClusterId );
@@ -690,7 +690,7 @@ public class CFSecRamHostNodeTable
 
 	@Override
 	public void deleteHostNodeByUDescrIdx( ICFSecAuthorization Authorization,
-		long argClusterId,
+		CFLibDbKeyHash256 argClusterId,
 		String argDescription )
 	{
 		CFSecBuffHostNodeByUDescrIdxKey key = (CFSecBuffHostNodeByUDescrIdxKey)schema.getFactoryHostNode().newByUDescrIdxKey();
@@ -729,7 +729,7 @@ public class CFSecRamHostNodeTable
 
 	@Override
 	public void deleteHostNodeByHostNameIdx( ICFSecAuthorization Authorization,
-		long argClusterId,
+		CFLibDbKeyHash256 argClusterId,
 		String argHostName )
 	{
 		CFSecBuffHostNodeByHostNameIdxKey key = (CFSecBuffHostNodeByHostNameIdxKey)schema.getFactoryHostNode().newByHostNameIdxKey();
