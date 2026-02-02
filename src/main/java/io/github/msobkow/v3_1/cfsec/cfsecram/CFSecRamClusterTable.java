@@ -158,6 +158,9 @@ public class CFSecRamClusterTable
 	{
 		final String S_ProcName = "CFSecRamCluster.readDerived";
 		ICFSecCluster buff;
+		if( PKey == null ) {
+			return( null );
+		}
 		if( dictByPKey.containsKey( PKey ) ) {
 			buff = dictByPKey.get( PKey );
 		}

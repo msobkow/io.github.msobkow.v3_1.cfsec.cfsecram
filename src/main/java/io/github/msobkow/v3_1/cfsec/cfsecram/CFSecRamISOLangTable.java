@@ -160,6 +160,9 @@ public class CFSecRamISOLangTable
 	{
 		final String S_ProcName = "CFSecRamISOLang.readDerived";
 		ICFSecISOLang buff;
+		if( PKey == null ) {
+			return( null );
+		}
 		if( dictByPKey.containsKey( PKey ) ) {
 			buff = dictByPKey.get( PKey );
 		}

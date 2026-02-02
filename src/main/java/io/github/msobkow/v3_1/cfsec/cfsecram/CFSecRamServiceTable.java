@@ -239,6 +239,9 @@ public class CFSecRamServiceTable
 	{
 		final String S_ProcName = "CFSecRamService.readDerived";
 		ICFSecService buff;
+		if( PKey == null ) {
+			return( null );
+		}
 		if( dictByPKey.containsKey( PKey ) ) {
 			buff = dictByPKey.get( PKey );
 		}

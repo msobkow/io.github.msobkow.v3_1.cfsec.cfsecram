@@ -240,6 +240,9 @@ public class CFSecRamTSecGrpIncTable
 	{
 		final String S_ProcName = "CFSecRamTSecGrpInc.readDerived";
 		ICFSecTSecGrpInc buff;
+		if( PKey == null ) {
+			return( null );
+		}
 		if( dictByPKey.containsKey( PKey ) ) {
 			buff = dictByPKey.get( PKey );
 		}

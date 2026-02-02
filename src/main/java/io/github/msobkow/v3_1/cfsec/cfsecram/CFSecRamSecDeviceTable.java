@@ -182,6 +182,16 @@ public class CFSecRamSecDeviceTable
 		CFLibDbKeyHash256 SecUserId,
 		String DevName )
 	{
+		{	CFLibDbKeyHash256 testSecUserId = SecUserId;
+			if (testSecUserId == null) {
+				return( null );
+			}
+		}
+		{	String testDevName = DevName;
+			if (testDevName == null) {
+				return( null );
+			}
+		}
 		CFSecBuffSecDevicePKey key = (CFSecBuffSecDevicePKey)(schema.getFactorySecDevice().newPKey());
 		key.setRequiredContainerSecUser( SecUserId );
 		key.setRequiredDevName( DevName );

@@ -158,6 +158,9 @@ public class CFSecRamISOCcyTable
 	{
 		final String S_ProcName = "CFSecRamISOCcy.readDerived";
 		ICFSecISOCcy buff;
+		if( PKey == null ) {
+			return( null );
+		}
 		if( dictByPKey.containsKey( PKey ) ) {
 			buff = dictByPKey.get( PKey );
 		}

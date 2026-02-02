@@ -183,6 +183,16 @@ public class CFSecRamISOCtryLangTable
 		short ISOCtryId,
 		short ISOLangId )
 	{
+		{	Short testISOCtryId = ISOCtryId;
+			if (testISOCtryId == null) {
+				return( null );
+			}
+		}
+		{	Short testISOLangId = ISOLangId;
+			if (testISOLangId == null) {
+				return( null );
+			}
+		}
 		CFSecBuffISOCtryLangPKey key = (CFSecBuffISOCtryLangPKey)(schema.getFactoryISOCtryLang().newPKey());
 		key.setRequiredContainerCtry( ISOCtryId );
 		key.setRequiredParentLang( ISOLangId );

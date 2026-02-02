@@ -199,6 +199,9 @@ public class CFSecRamSecUserTable
 	{
 		final String S_ProcName = "CFSecRamSecUser.readDerived";
 		ICFSecSecUser buff;
+		if( PKey == null ) {
+			return( null );
+		}
 		if( dictByPKey.containsKey( PKey ) ) {
 			buff = dictByPKey.get( PKey );
 		}

@@ -181,6 +181,9 @@ public class CFSecRamTenantTable
 	{
 		final String S_ProcName = "CFSecRamTenant.readDerived";
 		ICFSecTenant buff;
+		if( PKey == null ) {
+			return( null );
+		}
 		if( dictByPKey.containsKey( PKey ) ) {
 			buff = dictByPKey.get( PKey );
 		}

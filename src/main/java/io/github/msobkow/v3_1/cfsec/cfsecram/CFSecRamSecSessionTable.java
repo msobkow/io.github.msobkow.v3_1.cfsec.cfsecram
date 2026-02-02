@@ -240,6 +240,9 @@ public class CFSecRamSecSessionTable
 	{
 		final String S_ProcName = "CFSecRamSecSession.readDerived";
 		ICFSecSecSession buff;
+		if( PKey == null ) {
+			return( null );
+		}
 		if( dictByPKey.containsKey( PKey ) ) {
 			buff = dictByPKey.get( PKey );
 		}

@@ -183,6 +183,16 @@ public class CFSecRamISOCtryCcyTable
 		short ISOCtryId,
 		short ISOCcyId )
 	{
+		{	Short testISOCtryId = ISOCtryId;
+			if (testISOCtryId == null) {
+				return( null );
+			}
+		}
+		{	Short testISOCcyId = ISOCcyId;
+			if (testISOCcyId == null) {
+				return( null );
+			}
+		}
 		CFSecBuffISOCtryCcyPKey key = (CFSecBuffISOCtryCcyPKey)(schema.getFactoryISOCtryCcy().newPKey());
 		key.setRequiredContainerCtry( ISOCtryId );
 		key.setRequiredParentCcy( ISOCcyId );
