@@ -26,6 +26,7 @@
 	<jaxb-api.version>2.4.0-b180725.0427</jaxb-api.version>
 	<jakarta-annotation-api.version>3.0.0</jakarta-annotation-api.version>
 	<jakarta-persistence-api.version>3.2.0</jakarta-persistence-api.version>
+	<aspectj-runtime.version>1.9.25.1</aspectj-runtime.version>
   </properties>
 
   <dependencies>
@@ -84,7 +85,12 @@
     <dependency>
         <groupId>org.aspectj</groupId>
         <artifactId>aspectjrt</artifactId>
-        <version>1.9.7</version>
+		<version>${aspectj-runtime.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjtools</artifactId>
+		<version>${aspectj-runtime.version}</version>
     </dependency>
     <dependency>
         <groupId>io.github.msobkow.v3_1</groupId>
@@ -109,14 +115,39 @@
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>aspectj-maven-plugin</artifactId>
             <version>1.16.0</version>
+			<configuration>
+				<complianceLevel>1.6</complianceLevel>
+				<includes>
+					<include>**/*.java</include>
+					<include>**/*.aj</include>
+				</includes>
+			</configuration>
             <executions>
                 <execution>
+					<id>compile_with_aspectj</id>
                     <goals>
                         <goal>compile</goal>
+                    </goals>
+                </execution>
+                <execution>
+					<id>test-compile_with_aspectj</id>
+                    <goals>
                         <goal>test-compile</goal>
                     </goals>
                 </execution>
             </executions>
+			<dependencies>
+				<dependency>
+        			<groupId>org.aspectj</groupId>
+			        <artifactId>aspectjrt</artifactId>
+					<version>${aspectj-runtime.version}</version>
+				</dependency>
+				<dependency>
+        			<groupId>org.aspectj</groupId>
+			        <artifactId>aspectjtools</artifactId>
+					<version>${aspectj-runtime.version}</version>
+				</dependency>
+			</dependencies>
         </plugin -->
     </plugins>
   </build>
