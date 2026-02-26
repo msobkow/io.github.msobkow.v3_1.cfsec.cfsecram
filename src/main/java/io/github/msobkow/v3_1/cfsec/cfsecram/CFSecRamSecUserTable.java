@@ -719,10 +719,6 @@ public class CFSecRamSecUserTable
 						existing.getRequiredSecUserId() );
 					schema.getTableSecGrpMemb().deleteSecGrpMembByUserIdx( Authorization,
 						existing.getRequiredSecUserId() );
-					schema.getTableSecSession().deleteSecSessionBySecUserIdx( Authorization,
-						existing.getRequiredSecUserId() );
-					schema.getTableSecSession().deleteSecSessionBySecProxyIdx( Authorization,
-						existing.getRequiredSecUserId() );
 					schema.getTableSecDevice().deleteSecDeviceByUserIdx( Authorization,
 						existing.getRequiredSecUserId() );
 		CFSecBuffSecUserByULoginIdxKey keyULoginIdx = (CFSecBuffSecUserByULoginIdxKey)schema.getFactorySecUser().newByULoginIdxKey();
