@@ -1,7 +1,7 @@
 // Description: Java 25 implementation of an in-memory RAM CFSec schema.
 
 /*
- *	io.github.msobkow.CFSec
+ *	server.markhome.mcf.CFSec
  *
  *	Copyright (c) 2016-2026 Mark Stephen Sobkow
  *	
@@ -32,20 +32,20 @@
  *	
  */
 
-package io.github.msobkow.v3_1.cfsec.cfsecram;
+package server.markhome.mcf.v3_1.cfsec.cfsecram;
 
 import java.lang.reflect.*;
 import java.net.*;
 import java.sql.*;
 import java.text.*;
 import java.util.*;
-import io.github.msobkow.v3_1.cflib.*;
-import io.github.msobkow.v3_1.cflib.dbutil.*;
+import server.markhome.mcf.v3_1.cflib.*;
+import server.markhome.mcf.v3_1.cflib.dbutil.*;
 
-import io.github.msobkow.v3_1.cfsec.cfsec.*;
-import io.github.msobkow.v3_1.cfsec.cfsecobj.*;
-import io.github.msobkow.v3_1.cfsec.cfsec.buff.*;
-import io.github.msobkow.v3_1.cfsec.cfsecsaxloader.*;
+import server.markhome.mcf.v3_1.cfsec.cfsec.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecobj.*;
+import server.markhome.mcf.v3_1.cfsec.cfsec.buff.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecsaxloader.*;
 
 public class CFSecRamSchema
 	extends CFSecBuffSchema
