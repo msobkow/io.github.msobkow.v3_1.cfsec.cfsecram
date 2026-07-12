@@ -201,7 +201,7 @@ public class CFSecRamSecSysGrpTable
 
 	@Override
 	public ICFSecSecSysGrp[] readDerivedBySecLevelIdx( ICFSecAuthorization Authorization,
-		ICFSecSchema.SecLevelEnum SecLevel )
+		ICFSecPubSchema.SecLevelEnum SecLevel )
 	{
 		final String S_ProcName = "CFSecRamSecSysGrp.readDerivedBySecLevelIdx";
 		CFSecBuffSecSysGrpBySecLevelIdxKey key = (CFSecBuffSecSysGrpBySecLevelIdxKey)schema.getCFSecBuffFactory().getFactorySecSysGrp().newBySecLevelIdxKey();
@@ -314,7 +314,7 @@ public class CFSecRamSecSysGrpTable
 
 	@Override
 	public ICFSecSecSysGrp[] readRecBySecLevelIdx( ICFSecAuthorization Authorization,
-		ICFSecSchema.SecLevelEnum SecLevel )
+		ICFSecPubSchema.SecLevelEnum SecLevel )
 	{
 		final String S_ProcName = "CFSecRamSecSysGrp.readRecBySecLevelIdx() ";
 		ICFSecSecSysGrp buff;
@@ -509,7 +509,7 @@ public class CFSecRamSecSysGrpTable
 
 	@Override
 	public void deleteSecSysGrpBySecLevelIdx( ICFSecAuthorization Authorization,
-		ICFSecSchema.SecLevelEnum argSecLevel )
+		ICFSecPubSchema.SecLevelEnum argSecLevel )
 	{
 		CFSecBuffSecSysGrpBySecLevelIdxKey key = (CFSecBuffSecSysGrpBySecLevelIdxKey)schema.getCFSecBuffFactory().getFactorySecSysGrp().newBySecLevelIdxKey();
 		key.setRequiredSecLevel( argSecLevel );
