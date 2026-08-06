@@ -95,6 +95,7 @@ public class CFSecRamSecUserEMConfTable
 		pkey = Buff.getRequiredSecUserId();
 		pkey = Buff.getRequiredSecUserId();
 		Buff.setRequiredContainerUser( pkey );
+		Buff.setRequiredSecUserId( pkey );
 		CFSecBuffSecUserEMConfByUUuid6IdxKey keyUUuid6Idx = (CFSecBuffSecUserEMConfByUUuid6IdxKey)schema.getCFSecBuffFactory().getFactorySecUserEMConf().newByUUuid6IdxKey();
 		keyUUuid6Idx.setRequiredEMConfirmationUuid6( Buff.getRequiredEMConfirmationUuid6() );
 

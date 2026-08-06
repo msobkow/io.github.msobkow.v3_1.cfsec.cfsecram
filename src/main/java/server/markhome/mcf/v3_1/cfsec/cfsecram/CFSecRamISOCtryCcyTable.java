@@ -84,8 +84,12 @@ public class CFSecRamISOCtryCcyTable
 		CFSecBuffISOCtryCcyPKey pkey = (CFSecBuffISOCtryCcyPKey)(schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newPKey());
 		pkey.setRequiredISOCtryId(Buff.getRequiredISOCtryId());
 		pkey.setRequiredISOCcyId(Buff.getRequiredISOCcyId());
+		pkey.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
+		pkey.setRequiredISOCcyId( Buff.getRequiredISOCcyId() );
 		Buff.setRequiredContainerCtry( pkey.getRequiredISOCtryId() );
 		Buff.setRequiredParentCcy( pkey.getRequiredISOCcyId() );
+		Buff.setRequiredISOCtryId( pkey.getRequiredISOCtryId() );
+		Buff.setRequiredISOCcyId( pkey.getRequiredISOCcyId() );
 		CFSecBuffISOCtryCcyByCtryIdxKey keyCtryIdx = (CFSecBuffISOCtryCcyByCtryIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newByCtryIdxKey();
 		keyCtryIdx.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
 

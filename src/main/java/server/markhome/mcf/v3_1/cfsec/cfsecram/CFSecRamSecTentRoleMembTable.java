@@ -84,8 +84,12 @@ public class CFSecRamSecTentRoleMembTable
 		CFSecBuffSecTentRoleMembPKey pkey = (CFSecBuffSecTentRoleMembPKey)(schema.getCFSecBuffFactory().getFactorySecTentRoleMemb().newPKey());
 		pkey.setRequiredSecTentRoleId(Buff.getRequiredSecTentRoleId());
 		pkey.setRequiredLoginId(Buff.getRequiredLoginId());
+		pkey.setRequiredSecTentRoleId( Buff.getRequiredSecTentRoleId() );
+		pkey.setRequiredLoginId( Buff.getRequiredLoginId() );
 		Buff.setRequiredContainerRole( pkey.getRequiredSecTentRoleId() );
 		Buff.setRequiredParentUser( pkey.getRequiredLoginId() );
+		Buff.setRequiredSecTentRoleId( pkey.getRequiredSecTentRoleId() );
+		Buff.setRequiredLoginId( pkey.getRequiredLoginId() );
 		CFSecBuffSecTentRoleMembByTentRoleIdxKey keyTentRoleIdx = (CFSecBuffSecTentRoleMembByTentRoleIdxKey)schema.getCFSecBuffFactory().getFactorySecTentRoleMemb().newByTentRoleIdxKey();
 		keyTentRoleIdx.setRequiredSecTentRoleId( Buff.getRequiredSecTentRoleId() );
 

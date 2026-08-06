@@ -84,8 +84,12 @@ public class CFSecRamSecClusRoleMembTable
 		CFSecBuffSecClusRoleMembPKey pkey = (CFSecBuffSecClusRoleMembPKey)(schema.getCFSecBuffFactory().getFactorySecClusRoleMemb().newPKey());
 		pkey.setRequiredSecClusRoleId(Buff.getRequiredSecClusRoleId());
 		pkey.setRequiredLoginId(Buff.getRequiredLoginId());
+		pkey.setRequiredSecClusRoleId( Buff.getRequiredSecClusRoleId() );
+		pkey.setRequiredLoginId( Buff.getRequiredLoginId() );
 		Buff.setRequiredContainerRole( pkey.getRequiredSecClusRoleId() );
 		Buff.setRequiredParentUser( pkey.getRequiredLoginId() );
+		Buff.setRequiredSecClusRoleId( pkey.getRequiredSecClusRoleId() );
+		Buff.setRequiredLoginId( pkey.getRequiredLoginId() );
 		CFSecBuffSecClusRoleMembByClusRoleIdxKey keyClusRoleIdx = (CFSecBuffSecClusRoleMembByClusRoleIdxKey)schema.getCFSecBuffFactory().getFactorySecClusRoleMemb().newByClusRoleIdxKey();
 		keyClusRoleIdx.setRequiredSecClusRoleId( Buff.getRequiredSecClusRoleId() );
 

@@ -84,8 +84,12 @@ public class CFSecRamSecSysGrpMembTable
 		CFSecBuffSecSysGrpMembPKey pkey = (CFSecBuffSecSysGrpMembPKey)(schema.getCFSecBuffFactory().getFactorySecSysGrpMemb().newPKey());
 		pkey.setRequiredSecSysGrpId(Buff.getRequiredSecSysGrpId());
 		pkey.setRequiredLoginId(Buff.getRequiredLoginId());
+		pkey.setRequiredSecSysGrpId( Buff.getRequiredSecSysGrpId() );
+		pkey.setRequiredLoginId( Buff.getRequiredLoginId() );
 		Buff.setRequiredContainerGroup( pkey.getRequiredSecSysGrpId() );
 		Buff.setRequiredParentUser( pkey.getRequiredLoginId() );
+		Buff.setRequiredSecSysGrpId( pkey.getRequiredSecSysGrpId() );
+		Buff.setRequiredLoginId( pkey.getRequiredLoginId() );
 		CFSecBuffSecSysGrpMembBySysGrpIdxKey keySysGrpIdx = (CFSecBuffSecSysGrpMembBySysGrpIdxKey)schema.getCFSecBuffFactory().getFactorySecSysGrpMemb().newBySysGrpIdxKey();
 		keySysGrpIdx.setRequiredSecSysGrpId( Buff.getRequiredSecSysGrpId() );
 

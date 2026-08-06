@@ -84,8 +84,12 @@ public class CFSecRamISOCtryLangTable
 		CFSecBuffISOCtryLangPKey pkey = (CFSecBuffISOCtryLangPKey)(schema.getCFSecBuffFactory().getFactoryISOCtryLang().newPKey());
 		pkey.setRequiredISOCtryId(Buff.getRequiredISOCtryId());
 		pkey.setRequiredISOLangId(Buff.getRequiredISOLangId());
+		pkey.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
+		pkey.setRequiredISOLangId( Buff.getRequiredISOLangId() );
 		Buff.setRequiredContainerCtry( pkey.getRequiredISOCtryId() );
 		Buff.setRequiredParentLang( pkey.getRequiredISOLangId() );
+		Buff.setRequiredISOCtryId( pkey.getRequiredISOCtryId() );
+		Buff.setRequiredISOLangId( pkey.getRequiredISOLangId() );
 		CFSecBuffISOCtryLangByCtryIdxKey keyCtryIdx = (CFSecBuffISOCtryLangByCtryIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryLang().newByCtryIdxKey();
 		keyCtryIdx.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
 
