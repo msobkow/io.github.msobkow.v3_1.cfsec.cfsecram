@@ -124,6 +124,26 @@ public class CFSecRamSecSessionTable
 
 		// Validate foreign keys
 
+		{
+			boolean allNull = true;
+			allNull = false;
+			if( ! allNull ) {
+				if( null == schema.getTableSecUser().readDerivedByIdIdx( Authorization,
+						Buff.getRequiredSecUserId() ) )
+				{
+					throw new CFLibUnresolvedRelationException( getClass(),
+						S_ProcName,
+						"Container",
+						"Container",
+						"SecSessionSecUser",
+						"SecSessionSecUser",
+						"SecUser",
+						"SecUser",
+						null );
+				}
+			}
+		}
+
 		// Proceed with adding the new record
 
 		dictByPKey.put( pkey, Buff );
@@ -610,6 +630,26 @@ public class CFSecRamSecSessionTable
 		}
 
 		// Validate foreign keys
+
+		{
+			boolean allNull = true;
+
+			if( allNull ) {
+				if( null == schema.getTableSecUser().readDerivedByIdIdx( Authorization,
+						Buff.getRequiredSecUserId() ) )
+				{
+					throw new CFLibUnresolvedRelationException( getClass(),
+						"updateSecSession",
+						"Container",
+						"Container",
+						"SecSessionSecUser",
+						"SecSessionSecUser",
+						"SecUser",
+						"SecUser",
+						null );
+				}
+			}
+		}
 
 		// Update is valid
 
