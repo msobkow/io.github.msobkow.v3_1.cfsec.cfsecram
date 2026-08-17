@@ -169,12 +169,12 @@ public class CFSecRamISOCtryCcyTable
 		short ISOCtryId,
 		short ISOCcyId )
 	{
-		{	Short testISOCtryId = ISOCtryId;
+		{	$implJavaOptAtomType$ testISOCtryId = ISOCtryId;
 			if (testISOCtryId == null) {
 				return( null );
 			}
 		}
-		{	Short testISOCcyId = ISOCcyId;
+		{	$implJavaOptAtomType$ testISOCcyId = ISOCcyId;
 			if (testISOCcyId == null) {
 				return( null );
 			}

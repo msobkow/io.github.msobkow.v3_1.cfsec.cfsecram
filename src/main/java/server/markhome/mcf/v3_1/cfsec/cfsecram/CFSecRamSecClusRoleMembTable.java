@@ -166,15 +166,15 @@ public class CFSecRamSecClusRoleMembTable
 
 	@Override
 	public ICFSecSecClusRoleMemb readDerived( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecClusRoleId,
+		ICFLibKeyHash256 SecClusRoleId,
 		String LoginId )
 	{
-		{	CFLibDbKeyHash256 testSecClusRoleId = SecClusRoleId;
+		{	$implJavaOptAtomType$ testSecClusRoleId = SecClusRoleId;
 			if (testSecClusRoleId == null) {
 				return( null );
 			}
 		}
-		{	String testLoginId = LoginId;
+		{	$implJavaOptAtomType$ testLoginId = LoginId;
 			if (testLoginId == null) {
 				return( null );
 			}
@@ -234,7 +234,7 @@ public class CFSecRamSecClusRoleMembTable
 
 	@Override
 	public ICFSecSecClusRoleMemb[] readDerivedByClusRoleIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecClusRoleId )
+		ICFLibKeyHash256 SecClusRoleId )
 	{
 		final String S_ProcName = "CFSecRamSecClusRoleMemb.readDerivedByClusRoleIdx";
 		CFSecBuffSecClusRoleMembByClusRoleIdxKey key = (CFSecBuffSecClusRoleMembByClusRoleIdxKey)schema.getCFSecBuffFactory().getFactorySecClusRoleMemb().newByClusRoleIdxKey();
@@ -290,7 +290,7 @@ public class CFSecRamSecClusRoleMembTable
 
 	@Override
 	public ICFSecSecClusRoleMemb readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecClusRoleId,
+		ICFLibKeyHash256 SecClusRoleId,
 		String LoginId )
 	{
 		final String S_ProcName = "CFSecRamSecClusRoleMemb.readDerivedByIdIdx() ";
@@ -309,7 +309,7 @@ public class CFSecRamSecClusRoleMembTable
 
 	@Override
 	public ICFSecSecClusRoleMemb readRec( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecClusRoleId,
+		ICFLibKeyHash256 SecClusRoleId,
 		String LoginId )
 	{
 		CFSecBuffSecClusRoleMembPKey key = (CFSecBuffSecClusRoleMembPKey)(schema.getCFSecBuffFactory().getFactorySecClusRoleMemb().newPKey());
@@ -367,7 +367,7 @@ public class CFSecRamSecClusRoleMembTable
 	 */
 	@Override
 	public ICFSecSecClusRoleMemb[] pageAllRec( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 priorSecClusRoleId,
+		ICFLibKeyHash256 priorSecClusRoleId,
 		String priorLoginId )
 	{
 		final String S_ProcName = "pageAllRec";
@@ -376,7 +376,7 @@ public class CFSecRamSecClusRoleMembTable
 
 	@Override
 	public ICFSecSecClusRoleMemb readRecByIdIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecClusRoleId,
+		ICFLibKeyHash256 SecClusRoleId,
 		String LoginId )
 	{
 		final String S_ProcName = "CFSecRamSecClusRoleMemb.readRecByIdIdx() ";
@@ -393,7 +393,7 @@ public class CFSecRamSecClusRoleMembTable
 
 	@Override
 	public ICFSecSecClusRoleMemb[] readRecByClusRoleIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecClusRoleId )
+		ICFLibKeyHash256 SecClusRoleId )
 	{
 		final String S_ProcName = "CFSecRamSecClusRoleMemb.readRecByClusRoleIdx() ";
 		ICFSecSecClusRoleMemb buff;
@@ -440,8 +440,8 @@ public class CFSecRamSecClusRoleMembTable
 	 */
 	@Override
 	public ICFSecSecClusRoleMemb[] pageRecByClusRoleIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecClusRoleId,
-		CFLibDbKeyHash256 priorSecClusRoleId,
+		ICFLibKeyHash256 SecClusRoleId,
+		ICFLibKeyHash256 priorSecClusRoleId,
 		String priorLoginId )
 	{
 		final String S_ProcName = "pageRecByClusRoleIdx";
@@ -462,7 +462,7 @@ public class CFSecRamSecClusRoleMembTable
 	@Override
 	public ICFSecSecClusRoleMemb[] pageRecByLoginIdx( ICFSecAuthorization Authorization,
 		String LoginId,
-		CFLibDbKeyHash256 priorSecClusRoleId,
+		ICFLibKeyHash256 priorSecClusRoleId,
 		String priorLoginId )
 	{
 		final String S_ProcName = "pageRecByLoginIdx";
@@ -604,7 +604,7 @@ public class CFSecRamSecClusRoleMembTable
 	}
 	@Override
 	public void deleteSecClusRoleMembByIdIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecClusRoleId,
+		ICFLibKeyHash256 SecClusRoleId,
 		String LoginId )
 	{
 		CFSecBuffSecClusRoleMembPKey key = (CFSecBuffSecClusRoleMembPKey)(schema.getCFSecBuffFactory().getFactorySecClusRoleMemb().newPKey());
@@ -648,7 +648,7 @@ public class CFSecRamSecClusRoleMembTable
 
 	@Override
 	public void deleteSecClusRoleMembByClusRoleIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 argSecClusRoleId )
+		ICFLibKeyHash256 argSecClusRoleId )
 	{
 		CFSecBuffSecClusRoleMembByClusRoleIdxKey key = (CFSecBuffSecClusRoleMembByClusRoleIdxKey)schema.getCFSecBuffFactory().getFactorySecClusRoleMemb().newByClusRoleIdxKey();
 		key.setRequiredSecClusRoleId( argSecClusRoleId );

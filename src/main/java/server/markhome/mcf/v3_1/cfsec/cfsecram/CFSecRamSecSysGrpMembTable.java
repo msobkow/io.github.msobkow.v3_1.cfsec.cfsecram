@@ -166,15 +166,15 @@ public class CFSecRamSecSysGrpMembTable
 
 	@Override
 	public ICFSecSecSysGrpMemb readDerived( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecSysGrpId,
+		ICFLibKeyHash256 SecSysGrpId,
 		String LoginId )
 	{
-		{	CFLibDbKeyHash256 testSecSysGrpId = SecSysGrpId;
+		{	$implJavaOptAtomType$ testSecSysGrpId = SecSysGrpId;
 			if (testSecSysGrpId == null) {
 				return( null );
 			}
 		}
-		{	String testLoginId = LoginId;
+		{	$implJavaOptAtomType$ testLoginId = LoginId;
 			if (testLoginId == null) {
 				return( null );
 			}
@@ -234,7 +234,7 @@ public class CFSecRamSecSysGrpMembTable
 
 	@Override
 	public ICFSecSecSysGrpMemb[] readDerivedBySysGrpIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecSysGrpId )
+		ICFLibKeyHash256 SecSysGrpId )
 	{
 		final String S_ProcName = "CFSecRamSecSysGrpMemb.readDerivedBySysGrpIdx";
 		CFSecBuffSecSysGrpMembBySysGrpIdxKey key = (CFSecBuffSecSysGrpMembBySysGrpIdxKey)schema.getCFSecBuffFactory().getFactorySecSysGrpMemb().newBySysGrpIdxKey();
@@ -290,7 +290,7 @@ public class CFSecRamSecSysGrpMembTable
 
 	@Override
 	public ICFSecSecSysGrpMemb readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecSysGrpId,
+		ICFLibKeyHash256 SecSysGrpId,
 		String LoginId )
 	{
 		final String S_ProcName = "CFSecRamSecSysGrpMemb.readDerivedByIdIdx() ";
@@ -309,7 +309,7 @@ public class CFSecRamSecSysGrpMembTable
 
 	@Override
 	public ICFSecSecSysGrpMemb readRec( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecSysGrpId,
+		ICFLibKeyHash256 SecSysGrpId,
 		String LoginId )
 	{
 		CFSecBuffSecSysGrpMembPKey key = (CFSecBuffSecSysGrpMembPKey)(schema.getCFSecBuffFactory().getFactorySecSysGrpMemb().newPKey());
@@ -367,7 +367,7 @@ public class CFSecRamSecSysGrpMembTable
 	 */
 	@Override
 	public ICFSecSecSysGrpMemb[] pageAllRec( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 priorSecSysGrpId,
+		ICFLibKeyHash256 priorSecSysGrpId,
 		String priorLoginId )
 	{
 		final String S_ProcName = "pageAllRec";
@@ -376,7 +376,7 @@ public class CFSecRamSecSysGrpMembTable
 
 	@Override
 	public ICFSecSecSysGrpMemb readRecByIdIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecSysGrpId,
+		ICFLibKeyHash256 SecSysGrpId,
 		String LoginId )
 	{
 		final String S_ProcName = "CFSecRamSecSysGrpMemb.readRecByIdIdx() ";
@@ -393,7 +393,7 @@ public class CFSecRamSecSysGrpMembTable
 
 	@Override
 	public ICFSecSecSysGrpMemb[] readRecBySysGrpIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecSysGrpId )
+		ICFLibKeyHash256 SecSysGrpId )
 	{
 		final String S_ProcName = "CFSecRamSecSysGrpMemb.readRecBySysGrpIdx() ";
 		ICFSecSecSysGrpMemb buff;
@@ -440,8 +440,8 @@ public class CFSecRamSecSysGrpMembTable
 	 */
 	@Override
 	public ICFSecSecSysGrpMemb[] pageRecBySysGrpIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecSysGrpId,
-		CFLibDbKeyHash256 priorSecSysGrpId,
+		ICFLibKeyHash256 SecSysGrpId,
+		ICFLibKeyHash256 priorSecSysGrpId,
 		String priorLoginId )
 	{
 		final String S_ProcName = "pageRecBySysGrpIdx";
@@ -462,7 +462,7 @@ public class CFSecRamSecSysGrpMembTable
 	@Override
 	public ICFSecSecSysGrpMemb[] pageRecByLoginIdx( ICFSecAuthorization Authorization,
 		String LoginId,
-		CFLibDbKeyHash256 priorSecSysGrpId,
+		ICFLibKeyHash256 priorSecSysGrpId,
 		String priorLoginId )
 	{
 		final String S_ProcName = "pageRecByLoginIdx";
@@ -604,7 +604,7 @@ public class CFSecRamSecSysGrpMembTable
 	}
 	@Override
 	public void deleteSecSysGrpMembByIdIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecSysGrpId,
+		ICFLibKeyHash256 SecSysGrpId,
 		String LoginId )
 	{
 		CFSecBuffSecSysGrpMembPKey key = (CFSecBuffSecSysGrpMembPKey)(schema.getCFSecBuffFactory().getFactorySecSysGrpMemb().newPKey());
@@ -648,7 +648,7 @@ public class CFSecRamSecSysGrpMembTable
 
 	@Override
 	public void deleteSecSysGrpMembBySysGrpIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 argSecSysGrpId )
+		ICFLibKeyHash256 argSecSysGrpId )
 	{
 		CFSecBuffSecSysGrpMembBySysGrpIdxKey key = (CFSecBuffSecSysGrpMembBySysGrpIdxKey)schema.getCFSecBuffFactory().getFactorySecSysGrpMemb().newBySysGrpIdxKey();
 		key.setRequiredSecSysGrpId( argSecSysGrpId );

@@ -166,15 +166,15 @@ public class CFSecRamSecTentGrpMembTable
 
 	@Override
 	public ICFSecSecTentGrpMemb readDerived( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecTentGrpId,
+		ICFLibKeyHash256 SecTentGrpId,
 		String LoginId )
 	{
-		{	CFLibDbKeyHash256 testSecTentGrpId = SecTentGrpId;
+		{	$implJavaOptAtomType$ testSecTentGrpId = SecTentGrpId;
 			if (testSecTentGrpId == null) {
 				return( null );
 			}
 		}
-		{	String testLoginId = LoginId;
+		{	$implJavaOptAtomType$ testLoginId = LoginId;
 			if (testLoginId == null) {
 				return( null );
 			}
@@ -234,7 +234,7 @@ public class CFSecRamSecTentGrpMembTable
 
 	@Override
 	public ICFSecSecTentGrpMemb[] readDerivedByTentGrpIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecTentGrpId )
+		ICFLibKeyHash256 SecTentGrpId )
 	{
 		final String S_ProcName = "CFSecRamSecTentGrpMemb.readDerivedByTentGrpIdx";
 		CFSecBuffSecTentGrpMembByTentGrpIdxKey key = (CFSecBuffSecTentGrpMembByTentGrpIdxKey)schema.getCFSecBuffFactory().getFactorySecTentGrpMemb().newByTentGrpIdxKey();
@@ -290,7 +290,7 @@ public class CFSecRamSecTentGrpMembTable
 
 	@Override
 	public ICFSecSecTentGrpMemb readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecTentGrpId,
+		ICFLibKeyHash256 SecTentGrpId,
 		String LoginId )
 	{
 		final String S_ProcName = "CFSecRamSecTentGrpMemb.readDerivedByIdIdx() ";
@@ -309,7 +309,7 @@ public class CFSecRamSecTentGrpMembTable
 
 	@Override
 	public ICFSecSecTentGrpMemb readRec( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecTentGrpId,
+		ICFLibKeyHash256 SecTentGrpId,
 		String LoginId )
 	{
 		CFSecBuffSecTentGrpMembPKey key = (CFSecBuffSecTentGrpMembPKey)(schema.getCFSecBuffFactory().getFactorySecTentGrpMemb().newPKey());
@@ -367,7 +367,7 @@ public class CFSecRamSecTentGrpMembTable
 	 */
 	@Override
 	public ICFSecSecTentGrpMemb[] pageAllRec( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 priorSecTentGrpId,
+		ICFLibKeyHash256 priorSecTentGrpId,
 		String priorLoginId )
 	{
 		final String S_ProcName = "pageAllRec";
@@ -376,7 +376,7 @@ public class CFSecRamSecTentGrpMembTable
 
 	@Override
 	public ICFSecSecTentGrpMemb readRecByIdIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecTentGrpId,
+		ICFLibKeyHash256 SecTentGrpId,
 		String LoginId )
 	{
 		final String S_ProcName = "CFSecRamSecTentGrpMemb.readRecByIdIdx() ";
@@ -393,7 +393,7 @@ public class CFSecRamSecTentGrpMembTable
 
 	@Override
 	public ICFSecSecTentGrpMemb[] readRecByTentGrpIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecTentGrpId )
+		ICFLibKeyHash256 SecTentGrpId )
 	{
 		final String S_ProcName = "CFSecRamSecTentGrpMemb.readRecByTentGrpIdx() ";
 		ICFSecSecTentGrpMemb buff;
@@ -440,8 +440,8 @@ public class CFSecRamSecTentGrpMembTable
 	 */
 	@Override
 	public ICFSecSecTentGrpMemb[] pageRecByTentGrpIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecTentGrpId,
-		CFLibDbKeyHash256 priorSecTentGrpId,
+		ICFLibKeyHash256 SecTentGrpId,
+		ICFLibKeyHash256 priorSecTentGrpId,
 		String priorLoginId )
 	{
 		final String S_ProcName = "pageRecByTentGrpIdx";
@@ -462,7 +462,7 @@ public class CFSecRamSecTentGrpMembTable
 	@Override
 	public ICFSecSecTentGrpMemb[] pageRecByUserIdx( ICFSecAuthorization Authorization,
 		String LoginId,
-		CFLibDbKeyHash256 priorSecTentGrpId,
+		ICFLibKeyHash256 priorSecTentGrpId,
 		String priorLoginId )
 	{
 		final String S_ProcName = "pageRecByUserIdx";
@@ -604,7 +604,7 @@ public class CFSecRamSecTentGrpMembTable
 	}
 	@Override
 	public void deleteSecTentGrpMembByIdIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecTentGrpId,
+		ICFLibKeyHash256 SecTentGrpId,
 		String LoginId )
 	{
 		CFSecBuffSecTentGrpMembPKey key = (CFSecBuffSecTentGrpMembPKey)(schema.getCFSecBuffFactory().getFactorySecTentGrpMemb().newPKey());
@@ -648,7 +648,7 @@ public class CFSecRamSecTentGrpMembTable
 
 	@Override
 	public void deleteSecTentGrpMembByTentGrpIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 argSecTentGrpId )
+		ICFLibKeyHash256 argSecTentGrpId )
 	{
 		CFSecBuffSecTentGrpMembByTentGrpIdxKey key = (CFSecBuffSecTentGrpMembByTentGrpIdxKey)schema.getCFSecBuffFactory().getFactorySecTentGrpMemb().newByTentGrpIdxKey();
 		key.setRequiredSecTentGrpId( argSecTentGrpId );

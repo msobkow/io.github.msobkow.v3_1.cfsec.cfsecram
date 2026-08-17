@@ -155,15 +155,15 @@ public class CFSecRamSecUserPWHistoryTable
 
 	@Override
 	public ICFSecSecUserPWHistory readDerived( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecUserId,
+		ICFLibKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp )
 	{
-		{	CFLibDbKeyHash256 testSecUserId = SecUserId;
+		{	$implJavaOptAtomType$ testSecUserId = SecUserId;
 			if (testSecUserId == null) {
 				return( null );
 			}
 		}
-		{	LocalDateTime testPWSetStamp = PWSetStamp;
+		{	$implJavaOptAtomType$ testPWSetStamp = PWSetStamp;
 			if (testPWSetStamp == null) {
 				return( null );
 			}
@@ -223,7 +223,7 @@ public class CFSecRamSecUserPWHistoryTable
 
 	@Override
 	public ICFSecSecUserPWHistory readDerivedByUserIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecUserId )
+		ICFLibKeyHash256 SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWHistory.readDerivedByUserIdx";
 		CFSecBuffSecUserPWHistoryByUserIdxKey key = (CFSecBuffSecUserPWHistoryByUserIdxKey)schema.getCFSecBuffFactory().getFactorySecUserPWHistory().newByUserIdxKey();
@@ -277,7 +277,7 @@ public class CFSecRamSecUserPWHistoryTable
 
 	@Override
 	public ICFSecSecUserPWHistory readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecUserId,
+		ICFLibKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWHistory.readDerivedByIdIdx() ";
@@ -296,7 +296,7 @@ public class CFSecRamSecUserPWHistoryTable
 
 	@Override
 	public ICFSecSecUserPWHistory readRec( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecUserId,
+		ICFLibKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp )
 	{
 		CFSecBuffSecUserPWHistoryPKey key = (CFSecBuffSecUserPWHistoryPKey)(schema.getCFSecBuffFactory().getFactorySecUserPWHistory().newPKey());
@@ -354,7 +354,7 @@ public class CFSecRamSecUserPWHistoryTable
 	 */
 	@Override
 	public ICFSecSecUserPWHistory[] pageAllRec( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 priorSecUserId,
+		ICFLibKeyHash256 priorSecUserId,
 		LocalDateTime priorPWSetStamp )
 	{
 		final String S_ProcName = "pageAllRec";
@@ -363,7 +363,7 @@ public class CFSecRamSecUserPWHistoryTable
 
 	@Override
 	public ICFSecSecUserPWHistory readRecByIdIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecUserId,
+		ICFLibKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWHistory.readRecByIdIdx() ";
@@ -380,7 +380,7 @@ public class CFSecRamSecUserPWHistoryTable
 
 	@Override
 	public ICFSecSecUserPWHistory readRecByUserIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecUserId )
+		ICFLibKeyHash256 SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWHistory.readRecByUserIdx() ";
 		ICFSecSecUserPWHistory buff = readDerivedByUserIdx( Authorization,
@@ -560,7 +560,7 @@ public class CFSecRamSecUserPWHistoryTable
 	}
 	@Override
 	public void deleteSecUserPWHistoryByIdIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 SecUserId,
+		ICFLibKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp )
 	{
 		CFSecBuffSecUserPWHistoryPKey key = (CFSecBuffSecUserPWHistoryPKey)(schema.getCFSecBuffFactory().getFactorySecUserPWHistory().newPKey());
@@ -604,7 +604,7 @@ public class CFSecRamSecUserPWHistoryTable
 
 	@Override
 	public void deleteSecUserPWHistoryByUserIdx( ICFSecAuthorization Authorization,
-		CFLibDbKeyHash256 argSecUserId )
+		ICFLibKeyHash256 argSecUserId )
 	{
 		CFSecBuffSecUserPWHistoryByUserIdxKey key = (CFSecBuffSecUserPWHistoryByUserIdxKey)schema.getCFSecBuffFactory().getFactorySecUserPWHistory().newByUserIdxKey();
 		key.setRequiredSecUserId( argSecUserId );

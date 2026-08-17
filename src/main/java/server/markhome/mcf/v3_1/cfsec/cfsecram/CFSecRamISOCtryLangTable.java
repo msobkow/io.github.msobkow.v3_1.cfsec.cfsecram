@@ -169,12 +169,12 @@ public class CFSecRamISOCtryLangTable
 		short ISOCtryId,
 		short ISOLangId )
 	{
-		{	Short testISOCtryId = ISOCtryId;
+		{	$implJavaOptAtomType$ testISOCtryId = ISOCtryId;
 			if (testISOCtryId == null) {
 				return( null );
 			}
 		}
-		{	Short testISOLangId = ISOLangId;
+		{	$implJavaOptAtomType$ testISOLangId = ISOLangId;
 			if (testISOLangId == null) {
 				return( null );
 			}
