@@ -158,12 +158,12 @@ public class CFSecRamSecUserPWHistoryTable
 		ICFLibKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp )
 	{
-		{	$implJavaOptAtomType$ testSecUserId = SecUserId;
+		{	ICFLibKeyHash256 testSecUserId = SecUserId;
 			if (testSecUserId == null) {
 				return( null );
 			}
 		}
-		{	$implJavaOptAtomType$ testPWSetStamp = PWSetStamp;
+		{	LocalDateTime testPWSetStamp = PWSetStamp;
 			if (testPWSetStamp == null) {
 				return( null );
 			}

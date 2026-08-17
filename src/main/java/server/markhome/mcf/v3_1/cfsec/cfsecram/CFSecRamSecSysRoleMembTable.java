@@ -169,12 +169,12 @@ public class CFSecRamSecSysRoleMembTable
 		ICFLibKeyHash256 SecSysRoleId,
 		String LoginId )
 	{
-		{	$implJavaOptAtomType$ testSecSysRoleId = SecSysRoleId;
+		{	ICFLibKeyHash256 testSecSysRoleId = SecSysRoleId;
 			if (testSecSysRoleId == null) {
 				return( null );
 			}
 		}
-		{	$implJavaOptAtomType$ testLoginId = LoginId;
+		{	String testLoginId = LoginId;
 			if (testLoginId == null) {
 				return( null );
 			}

@@ -169,12 +169,12 @@ public class CFSecRamSecSysGrpIncTable
 		ICFLibKeyHash256 SecSysGrpId,
 		String InclName )
 	{
-		{	$implJavaOptAtomType$ testSecSysGrpId = SecSysGrpId;
+		{	ICFLibKeyHash256 testSecSysGrpId = SecSysGrpId;
 			if (testSecSysGrpId == null) {
 				return( null );
 			}
 		}
-		{	$implJavaOptAtomType$ testInclName = InclName;
+		{	String testInclName = InclName;
 			if (testInclName == null) {
 				return( null );
 			}
