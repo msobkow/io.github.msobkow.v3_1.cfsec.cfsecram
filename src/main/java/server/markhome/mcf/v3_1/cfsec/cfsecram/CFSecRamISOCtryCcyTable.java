@@ -1,0 +1,665 @@
+
+// Description: Java 25 in-memory RAM DbIO implementation for ISOCtryCcy.
+
+/*
+ *	server.markhome.mcf.CFSec
+ *
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow
+ *	
+ *	Mark's Code Fractal 3.1 CFSec - Security Services
+ *	
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow mark.sobkow@gmail.com
+ *	
+ *	These files are part of Mark's Code Fractal CFSec.
+ *	
+ *	Licensed under the Apache License, Version 2.0 (the "License");
+ *	you may not use this file except in compliance with the License.
+ *	You may obtain a copy of the License at
+ *	
+ *	http://www.apache.org/licenses/LICENSE-2.0
+ *	
+ *	Unless required by applicable law or agreed to in writing, software
+ *	distributed under the License is distributed on an "AS IS" BASIS,
+ *	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *	See the License for the specific language governing permissions and
+ *	limitations under the License.
+ *	
+ */
+
+package server.markhome.mcf.v3_1.cfsec.cfsecram;
+
+import java.math.*;
+import java.sql.*;
+import java.text.*;
+import java.time.*;
+import java.util.*;
+import org.apache.commons.codec.binary.Base64;
+import server.markhome.mcf.v3_1.cflib.*;
+import server.markhome.mcf.v3_1.cflib.dbutil.*;
+import server.markhome.mcf.v3_1.cflib.keyhash.*;
+
+import server.markhome.mcf.v3_1.cfsec.cfsec.*;
+import server.markhome.mcf.v3_1.cfsec.cfsec.buff.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecobj.*;
+
+/*
+ *	CFSecRamISOCtryCcyTable in-memory RAM DbIO implementation
+ *	for ISOCtryCcy.
+ */
+public class CFSecRamISOCtryCcyTable
+	implements ICFSecISOCtryCcyTable
+{
+	private ICFSecSchema schema;
+	private Map< ICFSecISOCtryCcyPKey,
+				CFSecBuffISOCtryCcy > dictByPKey
+		= new HashMap< ICFSecISOCtryCcyPKey,
+				CFSecBuffISOCtryCcy >();
+	private Map< CFSecBuffISOCtryCcyByCtryIdxKey,
+				Map< CFSecBuffISOCtryCcyPKey,
+					CFSecBuffISOCtryCcy >> dictByCtryIdx
+		= new HashMap< CFSecBuffISOCtryCcyByCtryIdxKey,
+				Map< CFSecBuffISOCtryCcyPKey,
+					CFSecBuffISOCtryCcy >>();
+	private Map< CFSecBuffISOCtryCcyByCcyIdxKey,
+				Map< CFSecBuffISOCtryCcyPKey,
+					CFSecBuffISOCtryCcy >> dictByCcyIdx
+		= new HashMap< CFSecBuffISOCtryCcyByCcyIdxKey,
+				Map< CFSecBuffISOCtryCcyPKey,
+					CFSecBuffISOCtryCcy >>();
+
+	public CFSecRamISOCtryCcyTable( ICFSecSchema argSchema ) {
+		schema = argSchema;
+	}
+
+	public CFSecBuffISOCtryCcy ensureRec(ICFSecISOCtryCcy rec) {
+		return (((CFSecBuffISOCtryCcyFactoryService)(schema.getCFSecBuffFactory().getFactoryISOCtryCcy())).ensureRec(rec));
+	}
+
+	@Override
+	public ICFSecISOCtryCcy createISOCtryCcy( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcy iBuff )
+	{
+		final String S_ProcName = "createISOCtryCcy";
+		
+		CFSecBuffISOCtryCcy Buff = (CFSecBuffISOCtryCcy)ensureRec(iBuff);
+		CFSecBuffISOCtryCcyPKey pkey = (CFSecBuffISOCtryCcyPKey)(schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newPKey());
+		pkey.setRequiredISOCtryId(Buff.getRequiredISOCtryId());
+		pkey.setRequiredISOCcyId(Buff.getRequiredISOCcyId());
+		pkey.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
+		pkey.setRequiredISOCcyId( Buff.getRequiredISOCcyId() );
+		Buff.setRequiredContainerCtry( pkey.getRequiredISOCtryId() );
+		Buff.setRequiredParentCcy( pkey.getRequiredISOCcyId() );
+		Buff.setRequiredISOCtryId( pkey.getRequiredISOCtryId() );
+		Buff.setRequiredISOCcyId( pkey.getRequiredISOCcyId() );
+		CFSecBuffISOCtryCcyByCtryIdxKey keyCtryIdx = (CFSecBuffISOCtryCcyByCtryIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newByCtryIdxKey();
+		keyCtryIdx.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
+
+		CFSecBuffISOCtryCcyByCcyIdxKey keyCcyIdx = (CFSecBuffISOCtryCcyByCcyIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newByCcyIdxKey();
+		keyCcyIdx.setRequiredISOCcyId( Buff.getRequiredISOCcyId() );
+
+		// Validate unique indexes
+
+		if( dictByPKey.containsKey( pkey ) ) {
+			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+		}
+
+		// Validate foreign keys
+
+		{
+			boolean allNull = true;
+			allNull = false;
+			if( ! allNull ) {
+				if( null == schema.getTableISOCtry().readDerivedByIdIdx( Authorization,
+						Buff.getRequiredISOCtryId() ) )
+				{
+					throw new CFLibUnresolvedRelationException( getClass(),
+						S_ProcName,
+						"Container",
+						"Container",
+						"ISOCtryCcyCtry",
+						"ISOCtryCcyCtry",
+						"ISOCtry",
+						"ISOCtry",
+						null );
+				}
+			}
+		}
+
+		// Proceed with adding the new record
+
+		dictByPKey.put( pkey, Buff );
+
+		Map< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdictCtryIdx;
+		if( dictByCtryIdx.containsKey( keyCtryIdx ) ) {
+			subdictCtryIdx = dictByCtryIdx.get( keyCtryIdx );
+		}
+		else {
+			subdictCtryIdx = new HashMap< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy >();
+			dictByCtryIdx.put( keyCtryIdx, subdictCtryIdx );
+		}
+		subdictCtryIdx.put( pkey, Buff );
+
+		Map< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdictCcyIdx;
+		if( dictByCcyIdx.containsKey( keyCcyIdx ) ) {
+			subdictCcyIdx = dictByCcyIdx.get( keyCcyIdx );
+		}
+		else {
+			subdictCcyIdx = new HashMap< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy >();
+			dictByCcyIdx.put( keyCcyIdx, subdictCcyIdx );
+		}
+		subdictCcyIdx.put( pkey, Buff );
+
+		if (Buff == null) {
+			return( null );
+		}
+		else {
+			int classCode = Buff.getClassCode();
+			if (classCode == ICFSecISOCtryCcy.CLASS_CODE) {
+				CFSecBuffISOCtryCcy retbuff = ((CFSecBuffISOCtryCcy)(schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newRec()));
+				retbuff.set(Buff);
+				return( retbuff );
+			}
+			else {
+				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+			}
+		}
+	}
+
+	@Override
+	public ICFSecISOCtryCcy readDerived( ICFSecAuthorization Authorization,
+		short ISOCtryId,
+		short ISOCcyId )
+	{
+		{	Short testISOCtryId = ISOCtryId;
+			if (testISOCtryId == null) {
+				return( null );
+			}
+		}
+		{	Short testISOCcyId = ISOCcyId;
+			if (testISOCcyId == null) {
+				return( null );
+			}
+		}
+		CFSecBuffISOCtryCcyPKey key = (CFSecBuffISOCtryCcyPKey)(schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newPKey());
+		key.setRequiredISOCtryId( ISOCtryId );
+		key.setRequiredISOCcyId( ISOCcyId );
+		return( readDerived( Authorization, key ) );
+	}
+
+	public ICFSecISOCtryCcy readDerived( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcyPKey PKey )
+	{
+		final String S_ProcName = "CFSecRamISOCtryCcy.readDerived";
+		CFSecBuffISOCtryCcyPKey key = (CFSecBuffISOCtryCcyPKey)(schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newPKey());
+		key.setRequiredISOCtryId( PKey.getRequiredISOCtryId() );
+		key.setRequiredISOCcyId( PKey.getRequiredISOCcyId() );
+		ICFSecISOCtryCcy buff;
+		if( dictByPKey.containsKey( key ) ) {
+			buff = dictByPKey.get( key );
+		}
+		else {
+			buff = null;
+		}
+		return( buff );
+	}
+
+	@Override
+	public ICFSecISOCtryCcy lockDerived( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcyPKey PKey )
+	{
+		final String S_ProcName = "CFSecRamISOCtryCcy.lockDerived";
+		CFSecBuffISOCtryCcyPKey key = (CFSecBuffISOCtryCcyPKey)(schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newPKey());
+		key.setRequiredISOCtryId( PKey.getRequiredISOCtryId() );
+		key.setRequiredISOCcyId( PKey.getRequiredISOCcyId() );
+		ICFSecISOCtryCcy buff;
+		if( dictByPKey.containsKey( key ) ) {
+			buff = dictByPKey.get( key );
+		}
+		else {
+			buff = null;
+		}
+		return( buff );
+	}
+
+	@Override
+	public ICFSecISOCtryCcy[] readAllDerived( ICFSecAuthorization Authorization ) {
+		final String S_ProcName = "CFSecRamISOCtryCcy.readAllDerived";
+		ICFSecISOCtryCcy[] retList = new ICFSecISOCtryCcy[ dictByPKey.values().size() ];
+		Iterator< CFSecBuffISOCtryCcy > iter = dictByPKey.values().iterator();
+		int idx = 0;
+		while( iter.hasNext() ) {
+			retList[ idx++ ] = iter.next();
+		}
+		return( retList );
+	}
+
+	@Override
+	public ICFSecISOCtryCcy[] readDerivedByCtryIdx( ICFSecAuthorization Authorization,
+		short ISOCtryId )
+	{
+		final String S_ProcName = "CFSecRamISOCtryCcy.readDerivedByCtryIdx";
+		CFSecBuffISOCtryCcyByCtryIdxKey key = (CFSecBuffISOCtryCcyByCtryIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newByCtryIdxKey();
+
+		key.setRequiredISOCtryId( ISOCtryId );
+		ICFSecISOCtryCcy[] recArray;
+		if( dictByCtryIdx.containsKey( key ) ) {
+			Map< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdictCtryIdx
+				= dictByCtryIdx.get( key );
+			recArray = new ICFSecISOCtryCcy[ subdictCtryIdx.size() ];
+			Iterator< CFSecBuffISOCtryCcy > iter = subdictCtryIdx.values().iterator();
+			int idx = 0;
+			while( iter.hasNext() ) {
+				recArray[ idx++ ] = iter.next();
+			}
+		}
+		else {
+			Map< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdictCtryIdx
+				= new HashMap< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy >();
+			dictByCtryIdx.put( key, subdictCtryIdx );
+			recArray = new ICFSecISOCtryCcy[0];
+		}
+		return( recArray );
+	}
+
+	@Override
+	public ICFSecISOCtryCcy[] readDerivedByCcyIdx( ICFSecAuthorization Authorization,
+		short ISOCcyId )
+	{
+		final String S_ProcName = "CFSecRamISOCtryCcy.readDerivedByCcyIdx";
+		CFSecBuffISOCtryCcyByCcyIdxKey key = (CFSecBuffISOCtryCcyByCcyIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newByCcyIdxKey();
+
+		key.setRequiredISOCcyId( ISOCcyId );
+		ICFSecISOCtryCcy[] recArray;
+		if( dictByCcyIdx.containsKey( key ) ) {
+			Map< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdictCcyIdx
+				= dictByCcyIdx.get( key );
+			recArray = new ICFSecISOCtryCcy[ subdictCcyIdx.size() ];
+			Iterator< CFSecBuffISOCtryCcy > iter = subdictCcyIdx.values().iterator();
+			int idx = 0;
+			while( iter.hasNext() ) {
+				recArray[ idx++ ] = iter.next();
+			}
+		}
+		else {
+			Map< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdictCcyIdx
+				= new HashMap< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy >();
+			dictByCcyIdx.put( key, subdictCcyIdx );
+			recArray = new ICFSecISOCtryCcy[0];
+		}
+		return( recArray );
+	}
+
+	@Override
+	public ICFSecISOCtryCcy readDerivedByIdIdx( ICFSecAuthorization Authorization,
+		short ISOCtryId,
+		short ISOCcyId )
+	{
+		final String S_ProcName = "CFSecRamISOCtryCcy.readDerivedByIdIdx() ";
+		CFSecBuffISOCtryCcyPKey key = (CFSecBuffISOCtryCcyPKey)(schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newPKey());
+		key.setRequiredISOCtryId( ISOCtryId );
+		key.setRequiredISOCcyId( ISOCcyId );
+		ICFSecISOCtryCcy buff;
+		if( dictByPKey.containsKey( key ) ) {
+			buff = dictByPKey.get( key );
+		}
+		else {
+			buff = null;
+		}
+		return( buff );
+	}
+
+	@Override
+	public ICFSecISOCtryCcy readRec( ICFSecAuthorization Authorization,
+		short ISOCtryId,
+		short ISOCcyId )
+	{
+		CFSecBuffISOCtryCcyPKey key = (CFSecBuffISOCtryCcyPKey)(schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newPKey());
+		key.setRequiredISOCtryId( ISOCtryId );
+		key.setRequiredISOCcyId( ISOCcyId );
+		return( readRec( Authorization, key ) );
+	}
+
+	@Override
+	public ICFSecISOCtryCcy readRec( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcyPKey PKey )
+	{
+		final String S_ProcName = "CFSecRamISOCtryCcy.readRec";
+		ICFSecISOCtryCcy buff = readDerived( Authorization, PKey );
+		if( ( buff != null ) && ( buff.getClassCode() != ICFSecISOCtryCcy.CLASS_CODE ) ) {
+			buff = null;
+		}
+		return( buff );
+	}
+
+	@Override
+	public ICFSecISOCtryCcy lockRec( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcyPKey PKey )
+	{
+		final String S_ProcName = "lockRec";
+		ICFSecISOCtryCcy buff = readDerived( Authorization, PKey );
+		if( ( buff != null ) && ( buff.getClassCode() != ICFSecISOCtryCcy.CLASS_CODE ) ) {
+			buff = null;
+		}
+		return( buff );
+	}
+
+	@Override
+	public ICFSecISOCtryCcy[] readAllRec( ICFSecAuthorization Authorization )
+	{
+		final String S_ProcName = "CFSecRamISOCtryCcy.readAllRec";
+		ICFSecISOCtryCcy buff;
+		ArrayList<ICFSecISOCtryCcy> filteredList = new ArrayList<ICFSecISOCtryCcy>();
+		ICFSecISOCtryCcy[] buffList = readAllDerived( Authorization );
+		for( int idx = 0; idx < buffList.length; idx ++ ) {
+			buff = buffList[idx];
+			if( ( buff != null ) && ( buff.getClassCode() == ICFSecISOCtryCcy.CLASS_CODE ) ) {
+				filteredList.add( buff );
+			}
+		}
+		return( filteredList.toArray( new ICFSecISOCtryCcy[0] ) );
+	}
+
+	@Override
+	public ICFSecISOCtryCcy readRecByIdIdx( ICFSecAuthorization Authorization,
+		short ISOCtryId,
+		short ISOCcyId )
+	{
+		final String S_ProcName = "CFSecRamISOCtryCcy.readRecByIdIdx() ";
+		ICFSecISOCtryCcy buff = readDerivedByIdIdx( Authorization,
+			ISOCtryId,
+			ISOCcyId );
+		if( ( buff != null ) && ( buff.getClassCode() == ICFSecISOCtryCcy.CLASS_CODE ) ) {
+			return( (ICFSecISOCtryCcy)buff );
+		}
+		else {
+			return( null );
+		}
+	}
+
+	@Override
+	public ICFSecISOCtryCcy[] readRecByCtryIdx( ICFSecAuthorization Authorization,
+		short ISOCtryId )
+	{
+		final String S_ProcName = "CFSecRamISOCtryCcy.readRecByCtryIdx() ";
+		ICFSecISOCtryCcy buff;
+		ArrayList<ICFSecISOCtryCcy> filteredList = new ArrayList<ICFSecISOCtryCcy>();
+		ICFSecISOCtryCcy[] buffList = readDerivedByCtryIdx( Authorization,
+			ISOCtryId );
+		for( int idx = 0; idx < buffList.length; idx ++ ) {
+			buff = buffList[idx];
+			if( ( buff != null ) && ( buff.getClassCode() == ICFSecISOCtryCcy.CLASS_CODE ) ) {
+				filteredList.add( (ICFSecISOCtryCcy)buff );
+			}
+		}
+		return( filteredList.toArray( new ICFSecISOCtryCcy[0] ) );
+	}
+
+	@Override
+	public ICFSecISOCtryCcy[] readRecByCcyIdx( ICFSecAuthorization Authorization,
+		short ISOCcyId )
+	{
+		final String S_ProcName = "CFSecRamISOCtryCcy.readRecByCcyIdx() ";
+		ICFSecISOCtryCcy buff;
+		ArrayList<ICFSecISOCtryCcy> filteredList = new ArrayList<ICFSecISOCtryCcy>();
+		ICFSecISOCtryCcy[] buffList = readDerivedByCcyIdx( Authorization,
+			ISOCcyId );
+		for( int idx = 0; idx < buffList.length; idx ++ ) {
+			buff = buffList[idx];
+			if( ( buff != null ) && ( buff.getClassCode() == ICFSecISOCtryCcy.CLASS_CODE ) ) {
+				filteredList.add( (ICFSecISOCtryCcy)buff );
+			}
+		}
+		return( filteredList.toArray( new ICFSecISOCtryCcy[0] ) );
+	}
+
+	@Override
+	public ICFSecISOCtryCcy updateISOCtryCcy( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcy iBuff )
+	{
+		CFSecBuffISOCtryCcy Buff = (CFSecBuffISOCtryCcy)ensureRec(iBuff);
+		CFSecBuffISOCtryCcyPKey pkey = (CFSecBuffISOCtryCcyPKey)(schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newPKey());
+		pkey = (CFSecBuffISOCtryCcyPKey)Buff.getPKey();
+		CFSecBuffISOCtryCcy existing = dictByPKey.get( pkey );
+		if( existing == null ) {
+			throw new CFLibStaleCacheDetectedException( getClass(),
+				"updateISOCtryCcy",
+				"Existing record not found",
+				"Existing record not found",
+				"ISOCtryCcy",
+				"ISOCtryCcy",
+				pkey );
+		}
+		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
+			throw new CFLibCollisionDetectedException( getClass(),
+				"updateISOCtryCcy",
+				pkey );
+		}
+		Buff.setRequiredRevision( Buff.getRequiredRevision() + 1 );
+		CFSecBuffISOCtryCcyByCtryIdxKey existingKeyCtryIdx = (CFSecBuffISOCtryCcyByCtryIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newByCtryIdxKey();
+		existingKeyCtryIdx.setRequiredISOCtryId( existing.getRequiredISOCtryId() );
+
+		CFSecBuffISOCtryCcyByCtryIdxKey newKeyCtryIdx = (CFSecBuffISOCtryCcyByCtryIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newByCtryIdxKey();
+		newKeyCtryIdx.setRequiredISOCtryId( Buff.getRequiredISOCtryId() );
+
+		CFSecBuffISOCtryCcyByCcyIdxKey existingKeyCcyIdx = (CFSecBuffISOCtryCcyByCcyIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newByCcyIdxKey();
+		existingKeyCcyIdx.setRequiredISOCcyId( existing.getRequiredISOCcyId() );
+
+		CFSecBuffISOCtryCcyByCcyIdxKey newKeyCcyIdx = (CFSecBuffISOCtryCcyByCcyIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newByCcyIdxKey();
+		newKeyCcyIdx.setRequiredISOCcyId( Buff.getRequiredISOCcyId() );
+
+		// Check unique indexes
+
+		// Validate foreign keys
+
+		{
+			boolean allNull = true;
+
+			if( allNull ) {
+				if( null == schema.getTableISOCtry().readDerivedByIdIdx( Authorization,
+						Buff.getRequiredISOCtryId() ) )
+				{
+					throw new CFLibUnresolvedRelationException( getClass(),
+						"updateISOCtryCcy",
+						"Container",
+						"Container",
+						"ISOCtryCcyCtry",
+						"ISOCtryCcyCtry",
+						"ISOCtry",
+						"ISOCtry",
+						null );
+				}
+			}
+		}
+
+		// Update is valid
+
+		Map< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdict;
+
+		dictByPKey.remove( pkey );
+		dictByPKey.put( pkey, Buff );
+
+		subdict = dictByCtryIdx.get( existingKeyCtryIdx );
+		if( subdict != null ) {
+			subdict.remove( pkey );
+		}
+		if( dictByCtryIdx.containsKey( newKeyCtryIdx ) ) {
+			subdict = dictByCtryIdx.get( newKeyCtryIdx );
+		}
+		else {
+			subdict = new HashMap< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy >();
+			dictByCtryIdx.put( newKeyCtryIdx, subdict );
+		}
+		subdict.put( pkey, Buff );
+
+		subdict = dictByCcyIdx.get( existingKeyCcyIdx );
+		if( subdict != null ) {
+			subdict.remove( pkey );
+		}
+		if( dictByCcyIdx.containsKey( newKeyCcyIdx ) ) {
+			subdict = dictByCcyIdx.get( newKeyCcyIdx );
+		}
+		else {
+			subdict = new HashMap< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy >();
+			dictByCcyIdx.put( newKeyCcyIdx, subdict );
+		}
+		subdict.put( pkey, Buff );
+
+		return(Buff);
+	}
+
+	@Override
+	public void deleteISOCtryCcy( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcy iBuff )
+	{
+		final String S_ProcName = "CFSecRamISOCtryCcyTable.deleteISOCtryCcy() ";
+		CFSecBuffISOCtryCcy Buff = (CFSecBuffISOCtryCcy)ensureRec(iBuff);
+		int classCode;
+		CFSecBuffISOCtryCcyPKey pkey = (CFSecBuffISOCtryCcyPKey)(Buff.getPKey());
+		CFSecBuffISOCtryCcy existing = dictByPKey.get( pkey );
+		if( existing == null ) {
+			return;
+		}
+		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
+		{
+			throw new CFLibCollisionDetectedException( getClass(),
+				"deleteISOCtryCcy",
+				pkey );
+		}
+		CFSecBuffISOCtryCcyByCtryIdxKey keyCtryIdx = (CFSecBuffISOCtryCcyByCtryIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newByCtryIdxKey();
+		keyCtryIdx.setRequiredISOCtryId( existing.getRequiredISOCtryId() );
+
+		CFSecBuffISOCtryCcyByCcyIdxKey keyCcyIdx = (CFSecBuffISOCtryCcyByCcyIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newByCcyIdxKey();
+		keyCcyIdx.setRequiredISOCcyId( existing.getRequiredISOCcyId() );
+
+		// Validate reverse foreign keys
+
+		// Delete is valid
+		Map< CFSecBuffISOCtryCcyPKey, CFSecBuffISOCtryCcy > subdict;
+
+		dictByPKey.remove( pkey );
+
+		subdict = dictByCtryIdx.get( keyCtryIdx );
+		subdict.remove( pkey );
+
+		subdict = dictByCcyIdx.get( keyCcyIdx );
+		subdict.remove( pkey );
+
+	}
+	@Override
+	public void deleteISOCtryCcyByIdIdx( ICFSecAuthorization Authorization,
+		short ISOCtryId,
+		short ISOCcyId )
+	{
+		CFSecBuffISOCtryCcyPKey key = (CFSecBuffISOCtryCcyPKey)(schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newPKey());
+		key.setRequiredISOCtryId( ISOCtryId );
+		key.setRequiredISOCcyId( ISOCcyId );
+		deleteISOCtryCcyByIdIdx( Authorization, key );
+	}
+
+	@Override
+	public void deleteISOCtryCcyByIdIdx( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcyPKey PKey )
+	{
+		CFSecBuffISOCtryCcyPKey key = (CFSecBuffISOCtryCcyPKey)(schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newPKey());
+		key.setRequiredISOCtryId( PKey.getRequiredISOCtryId() );
+		key.setRequiredISOCcyId( PKey.getRequiredISOCcyId() );
+		CFSecBuffISOCtryCcyPKey argKey = key;
+		boolean anyNotNull = false;
+		anyNotNull = true;
+		anyNotNull = true;
+		if( ! anyNotNull ) {
+			return;
+		}
+		CFSecBuffISOCtryCcy cur;
+		LinkedList<CFSecBuffISOCtryCcy> matchSet = new LinkedList<CFSecBuffISOCtryCcy>();
+		Iterator<CFSecBuffISOCtryCcy> values = dictByPKey.values().iterator();
+		while( values.hasNext() ) {
+			cur = values.next();
+			if( argKey.equals( cur ) ) {
+				matchSet.add( cur );
+			}
+		}
+		Iterator<CFSecBuffISOCtryCcy> iterMatch = matchSet.iterator();
+		while( iterMatch.hasNext() ) {
+			cur = iterMatch.next();
+			cur = (CFSecBuffISOCtryCcy)(schema.getTableISOCtryCcy().readDerivedByIdIdx( Authorization,
+				cur.getRequiredISOCtryId(),
+				cur.getRequiredISOCcyId() ));
+			deleteISOCtryCcy( Authorization, cur );
+		}
+	}
+
+	@Override
+	public void deleteISOCtryCcyByCtryIdx( ICFSecAuthorization Authorization,
+		short argISOCtryId )
+	{
+		CFSecBuffISOCtryCcyByCtryIdxKey key = (CFSecBuffISOCtryCcyByCtryIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newByCtryIdxKey();
+		key.setRequiredISOCtryId( argISOCtryId );
+		deleteISOCtryCcyByCtryIdx( Authorization, key );
+	}
+
+	@Override
+	public void deleteISOCtryCcyByCtryIdx( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcyByCtryIdxKey argKey )
+	{
+		CFSecBuffISOCtryCcy cur;
+		boolean anyNotNull = false;
+		anyNotNull = true;
+		if( ! anyNotNull ) {
+			return;
+		}
+		LinkedList<CFSecBuffISOCtryCcy> matchSet = new LinkedList<CFSecBuffISOCtryCcy>();
+		Iterator<CFSecBuffISOCtryCcy> values = dictByPKey.values().iterator();
+		while( values.hasNext() ) {
+			cur = values.next();
+			if( argKey.equals( cur ) ) {
+				matchSet.add( cur );
+			}
+		}
+		Iterator<CFSecBuffISOCtryCcy> iterMatch = matchSet.iterator();
+		while( iterMatch.hasNext() ) {
+			cur = iterMatch.next();
+			cur = (CFSecBuffISOCtryCcy)(schema.getTableISOCtryCcy().readDerivedByIdIdx( Authorization,
+				cur.getRequiredISOCtryId(),
+				cur.getRequiredISOCcyId() ));
+			deleteISOCtryCcy( Authorization, cur );
+		}
+	}
+
+	@Override
+	public void deleteISOCtryCcyByCcyIdx( ICFSecAuthorization Authorization,
+		short argISOCcyId )
+	{
+		CFSecBuffISOCtryCcyByCcyIdxKey key = (CFSecBuffISOCtryCcyByCcyIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newByCcyIdxKey();
+		key.setRequiredISOCcyId( argISOCcyId );
+		deleteISOCtryCcyByCcyIdx( Authorization, key );
+	}
+
+	@Override
+	public void deleteISOCtryCcyByCcyIdx( ICFSecAuthorization Authorization,
+		ICFSecISOCtryCcyByCcyIdxKey argKey )
+	{
+		CFSecBuffISOCtryCcy cur;
+		boolean anyNotNull = false;
+		anyNotNull = true;
+		if( ! anyNotNull ) {
+			return;
+		}
+		LinkedList<CFSecBuffISOCtryCcy> matchSet = new LinkedList<CFSecBuffISOCtryCcy>();
+		Iterator<CFSecBuffISOCtryCcy> values = dictByPKey.values().iterator();
+		while( values.hasNext() ) {
+			cur = values.next();
+			if( argKey.equals( cur ) ) {
+				matchSet.add( cur );
+			}
+		}
+		Iterator<CFSecBuffISOCtryCcy> iterMatch = matchSet.iterator();
+		while( iterMatch.hasNext() ) {
+			cur = iterMatch.next();
+			cur = (CFSecBuffISOCtryCcy)(schema.getTableISOCtryCcy().readDerivedByIdIdx( Authorization,
+				cur.getRequiredISOCtryId(),
+				cur.getRequiredISOCcyId() ));
+			deleteISOCtryCcy( Authorization, cur );
+		}
+	}
+}

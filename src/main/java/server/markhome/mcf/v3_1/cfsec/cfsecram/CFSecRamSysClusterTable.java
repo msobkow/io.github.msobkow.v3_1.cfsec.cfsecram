@@ -1,0 +1,472 @@
+
+// Description: Java 25 in-memory RAM DbIO implementation for SysCluster.
+
+/*
+ *	server.markhome.mcf.CFSec
+ *
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow
+ *	
+ *	Mark's Code Fractal 3.1 CFSec - Security Services
+ *	
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow mark.sobkow@gmail.com
+ *	
+ *	These files are part of Mark's Code Fractal CFSec.
+ *	
+ *	Licensed under the Apache License, Version 2.0 (the "License");
+ *	you may not use this file except in compliance with the License.
+ *	You may obtain a copy of the License at
+ *	
+ *	http://www.apache.org/licenses/LICENSE-2.0
+ *	
+ *	Unless required by applicable law or agreed to in writing, software
+ *	distributed under the License is distributed on an "AS IS" BASIS,
+ *	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *	See the License for the specific language governing permissions and
+ *	limitations under the License.
+ *	
+ */
+
+package server.markhome.mcf.v3_1.cfsec.cfsecram;
+
+import java.math.*;
+import java.sql.*;
+import java.text.*;
+import java.time.*;
+import java.util.*;
+import org.apache.commons.codec.binary.Base64;
+import server.markhome.mcf.v3_1.cflib.*;
+import server.markhome.mcf.v3_1.cflib.dbutil.*;
+import server.markhome.mcf.v3_1.cflib.keyhash.*;
+
+import server.markhome.mcf.v3_1.cfsec.cfsec.*;
+import server.markhome.mcf.v3_1.cfsec.cfsec.buff.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecobj.*;
+
+/*
+ *	CFSecRamSysClusterTable in-memory RAM DbIO implementation
+ *	for SysCluster.
+ */
+public class CFSecRamSysClusterTable
+	implements ICFSecSysClusterTable
+{
+	private ICFSecSchema schema;
+	private Map< Integer,
+				CFSecBuffSysCluster > dictByPKey
+		= new HashMap< Integer,
+				CFSecBuffSysCluster >();
+	private Map< CFSecBuffSysClusterByClusterIdxKey,
+				Map< Integer,
+					CFSecBuffSysCluster >> dictByClusterIdx
+		= new HashMap< CFSecBuffSysClusterByClusterIdxKey,
+				Map< Integer,
+					CFSecBuffSysCluster >>();
+
+	public CFSecRamSysClusterTable( ICFSecSchema argSchema ) {
+		schema = argSchema;
+	}
+
+	public CFSecBuffSysCluster ensureRec(ICFSecSysCluster rec) {
+		return (((CFSecBuffSysClusterFactoryService)(schema.getCFSecBuffFactory().getFactorySysCluster())).ensureRec(rec));
+	}
+
+	@Override
+	public ICFSecSysCluster createSysCluster( ICFSecAuthorization Authorization,
+		ICFSecSysCluster iBuff )
+	{
+		final String S_ProcName = "createSysCluster";
+		
+		CFSecBuffSysCluster Buff = (CFSecBuffSysCluster)ensureRec(iBuff);
+		Integer pkey;
+		pkey = Buff.getRequiredSingletonId();
+		Buff.setRequiredSingletonId( pkey );
+		CFSecBuffSysClusterByClusterIdxKey keyClusterIdx = (CFSecBuffSysClusterByClusterIdxKey)schema.getCFSecBuffFactory().getFactorySysCluster().newByClusterIdxKey();
+		keyClusterIdx.setRequiredClusterId( Buff.getRequiredClusterId() );
+
+		// Validate unique indexes
+
+		if( dictByPKey.containsKey( pkey ) ) {
+			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+		}
+
+		// Validate foreign keys
+
+		{
+			boolean allNull = true;
+			allNull = false;
+			if( ! allNull ) {
+				if( null == schema.getTableCluster().readDerivedByIdIdx( Authorization,
+						Buff.getRequiredClusterId() ) )
+				{
+					throw new CFLibUnresolvedRelationException( getClass(),
+						S_ProcName,
+						"Container",
+						"Container",
+						"SysClusterCluster",
+						"SysClusterCluster",
+						"Cluster",
+						"Cluster",
+						null );
+				}
+			}
+		}
+
+		// Proceed with adding the new record
+
+		dictByPKey.put( pkey, Buff );
+
+		Map< Integer, CFSecBuffSysCluster > subdictClusterIdx;
+		if( dictByClusterIdx.containsKey( keyClusterIdx ) ) {
+			subdictClusterIdx = dictByClusterIdx.get( keyClusterIdx );
+		}
+		else {
+			subdictClusterIdx = new HashMap< Integer, CFSecBuffSysCluster >();
+			dictByClusterIdx.put( keyClusterIdx, subdictClusterIdx );
+		}
+		subdictClusterIdx.put( pkey, Buff );
+
+		if (Buff == null) {
+			return( null );
+		}
+		else {
+			int classCode = Buff.getClassCode();
+			if (classCode == ICFSecSysCluster.CLASS_CODE) {
+				CFSecBuffSysCluster retbuff = ((CFSecBuffSysCluster)(schema.getCFSecBuffFactory().getFactorySysCluster().newRec()));
+				retbuff.set(Buff);
+				return( retbuff );
+			}
+			else {
+				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+			}
+		}
+	}
+
+	@Override
+	public ICFSecSysCluster readDerived( ICFSecAuthorization Authorization,
+		Integer PKey )
+	{
+		final String S_ProcName = "CFSecRamSysCluster.readDerived";
+		ICFSecSysCluster buff;
+		if( PKey == null ) {
+			return( null );
+		}
+		if( dictByPKey.containsKey( PKey ) ) {
+			buff = dictByPKey.get( PKey );
+		}
+		else {
+			buff = null;
+		}
+		return( buff );
+	}
+
+	@Override
+	public ICFSecSysCluster lockDerived( ICFSecAuthorization Authorization,
+		Integer PKey )
+	{
+		final String S_ProcName = "CFSecRamSysCluster.lockDerived";
+		ICFSecSysCluster buff;
+		if( dictByPKey.containsKey( PKey ) ) {
+			buff = dictByPKey.get( PKey );
+		}
+		else {
+			buff = null;
+		}
+		return( buff );
+	}
+
+	@Override
+	public ICFSecSysCluster[] readAllDerived( ICFSecAuthorization Authorization ) {
+		final String S_ProcName = "CFSecRamSysCluster.readAllDerived";
+		ICFSecSysCluster[] retList = new ICFSecSysCluster[ dictByPKey.values().size() ];
+		Iterator< CFSecBuffSysCluster > iter = dictByPKey.values().iterator();
+		int idx = 0;
+		while( iter.hasNext() ) {
+			retList[ idx++ ] = iter.next();
+		}
+		return( retList );
+	}
+
+	@Override
+	public ICFSecSysCluster[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
+		ICFLibKeyHash256 ClusterId )
+	{
+		final String S_ProcName = "CFSecRamSysCluster.readDerivedByClusterIdx";
+		CFSecBuffSysClusterByClusterIdxKey key = (CFSecBuffSysClusterByClusterIdxKey)schema.getCFSecBuffFactory().getFactorySysCluster().newByClusterIdxKey();
+
+		key.setRequiredClusterId( ClusterId );
+		ICFSecSysCluster[] recArray;
+		if( dictByClusterIdx.containsKey( key ) ) {
+			Map< Integer, CFSecBuffSysCluster > subdictClusterIdx
+				= dictByClusterIdx.get( key );
+			recArray = new ICFSecSysCluster[ subdictClusterIdx.size() ];
+			Iterator< CFSecBuffSysCluster > iter = subdictClusterIdx.values().iterator();
+			int idx = 0;
+			while( iter.hasNext() ) {
+				recArray[ idx++ ] = iter.next();
+			}
+		}
+		else {
+			Map< Integer, CFSecBuffSysCluster > subdictClusterIdx
+				= new HashMap< Integer, CFSecBuffSysCluster >();
+			dictByClusterIdx.put( key, subdictClusterIdx );
+			recArray = new ICFSecSysCluster[0];
+		}
+		return( recArray );
+	}
+
+	@Override
+	public ICFSecSysCluster readDerivedByIdIdx( ICFSecAuthorization Authorization,
+		int SingletonId )
+	{
+		final String S_ProcName = "CFSecRamSysCluster.readDerivedByIdIdx() ";
+		ICFSecSysCluster buff;
+		if( dictByPKey.containsKey( SingletonId ) ) {
+			buff = dictByPKey.get( SingletonId );
+		}
+		else {
+			buff = null;
+		}
+		return( buff );
+	}
+
+	@Override
+	public ICFSecSysCluster readRec( ICFSecAuthorization Authorization,
+		Integer PKey )
+	{
+		final String S_ProcName = "CFSecRamSysCluster.readRec";
+		ICFSecSysCluster buff = readDerived( Authorization, PKey );
+		if( ( buff != null ) && ( buff.getClassCode() != ICFSecSysCluster.CLASS_CODE ) ) {
+			buff = null;
+		}
+		return( buff );
+	}
+
+	@Override
+	public ICFSecSysCluster lockRec( ICFSecAuthorization Authorization,
+		Integer PKey )
+	{
+		final String S_ProcName = "lockRec";
+		ICFSecSysCluster buff = readDerived( Authorization, PKey );
+		if( ( buff != null ) && ( buff.getClassCode() != ICFSecSysCluster.CLASS_CODE ) ) {
+			buff = null;
+		}
+		return( buff );
+	}
+
+	@Override
+	public ICFSecSysCluster[] readAllRec( ICFSecAuthorization Authorization )
+	{
+		final String S_ProcName = "CFSecRamSysCluster.readAllRec";
+		ICFSecSysCluster buff;
+		ArrayList<ICFSecSysCluster> filteredList = new ArrayList<ICFSecSysCluster>();
+		ICFSecSysCluster[] buffList = readAllDerived( Authorization );
+		for( int idx = 0; idx < buffList.length; idx ++ ) {
+			buff = buffList[idx];
+			if( ( buff != null ) && ( buff.getClassCode() == ICFSecSysCluster.CLASS_CODE ) ) {
+				filteredList.add( buff );
+			}
+		}
+		return( filteredList.toArray( new ICFSecSysCluster[0] ) );
+	}
+
+	@Override
+	public ICFSecSysCluster readRecByIdIdx( ICFSecAuthorization Authorization,
+		int SingletonId )
+	{
+		final String S_ProcName = "CFSecRamSysCluster.readRecByIdIdx() ";
+		ICFSecSysCluster buff = readDerivedByIdIdx( Authorization,
+			SingletonId );
+		if( ( buff != null ) && ( buff.getClassCode() == ICFSecSysCluster.CLASS_CODE ) ) {
+			return( (ICFSecSysCluster)buff );
+		}
+		else {
+			return( null );
+		}
+	}
+
+	@Override
+	public ICFSecSysCluster[] readRecByClusterIdx( ICFSecAuthorization Authorization,
+		ICFLibKeyHash256 ClusterId )
+	{
+		final String S_ProcName = "CFSecRamSysCluster.readRecByClusterIdx() ";
+		ICFSecSysCluster buff;
+		ArrayList<ICFSecSysCluster> filteredList = new ArrayList<ICFSecSysCluster>();
+		ICFSecSysCluster[] buffList = readDerivedByClusterIdx( Authorization,
+			ClusterId );
+		for( int idx = 0; idx < buffList.length; idx ++ ) {
+			buff = buffList[idx];
+			if( ( buff != null ) && ( buff.getClassCode() == ICFSecSysCluster.CLASS_CODE ) ) {
+				filteredList.add( (ICFSecSysCluster)buff );
+			}
+		}
+		return( filteredList.toArray( new ICFSecSysCluster[0] ) );
+	}
+
+	public ICFSecSysCluster updateSysCluster( ICFSecAuthorization Authorization,
+		ICFSecSysCluster iBuff )
+	{
+		CFSecBuffSysCluster Buff = (CFSecBuffSysCluster)ensureRec(iBuff);
+		Integer pkey = (Integer)Buff.getPKey();
+		CFSecBuffSysCluster existing = dictByPKey.get( pkey );
+		if( existing == null ) {
+			throw new CFLibStaleCacheDetectedException( getClass(),
+				"updateSysCluster",
+				"Existing record not found",
+				"Existing record not found",
+				"SysCluster",
+				"SysCluster",
+				pkey );
+		}
+		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
+			throw new CFLibCollisionDetectedException( getClass(),
+				"updateSysCluster",
+				pkey );
+		}
+		Buff.setRequiredRevision( Buff.getRequiredRevision() + 1 );
+		CFSecBuffSysClusterByClusterIdxKey existingKeyClusterIdx = (CFSecBuffSysClusterByClusterIdxKey)schema.getCFSecBuffFactory().getFactorySysCluster().newByClusterIdxKey();
+		existingKeyClusterIdx.setRequiredClusterId( existing.getRequiredClusterId() );
+
+		CFSecBuffSysClusterByClusterIdxKey newKeyClusterIdx = (CFSecBuffSysClusterByClusterIdxKey)schema.getCFSecBuffFactory().getFactorySysCluster().newByClusterIdxKey();
+		newKeyClusterIdx.setRequiredClusterId( Buff.getRequiredClusterId() );
+
+		// Check unique indexes
+
+		// Validate foreign keys
+
+		{
+			boolean allNull = true;
+
+			if( allNull ) {
+				if( null == schema.getTableCluster().readDerivedByIdIdx( Authorization,
+						Buff.getRequiredClusterId() ) )
+				{
+					throw new CFLibUnresolvedRelationException( getClass(),
+						"updateSysCluster",
+						"Container",
+						"Container",
+						"SysClusterCluster",
+						"SysClusterCluster",
+						"Cluster",
+						"Cluster",
+						null );
+				}
+			}
+		}
+
+		// Update is valid
+
+		Map< Integer, CFSecBuffSysCluster > subdict;
+
+		dictByPKey.remove( pkey );
+		dictByPKey.put( pkey, Buff );
+
+		subdict = dictByClusterIdx.get( existingKeyClusterIdx );
+		if( subdict != null ) {
+			subdict.remove( pkey );
+		}
+		if( dictByClusterIdx.containsKey( newKeyClusterIdx ) ) {
+			subdict = dictByClusterIdx.get( newKeyClusterIdx );
+		}
+		else {
+			subdict = new HashMap< Integer, CFSecBuffSysCluster >();
+			dictByClusterIdx.put( newKeyClusterIdx, subdict );
+		}
+		subdict.put( pkey, Buff );
+
+		return(Buff);
+	}
+
+	@Override
+	public void deleteSysCluster( ICFSecAuthorization Authorization,
+		ICFSecSysCluster iBuff )
+	{
+		final String S_ProcName = "CFSecRamSysClusterTable.deleteSysCluster() ";
+		CFSecBuffSysCluster Buff = (CFSecBuffSysCluster)ensureRec(iBuff);
+		int classCode;
+		Integer pkey = (Integer)(Buff.getPKey());
+		CFSecBuffSysCluster existing = dictByPKey.get( pkey );
+		if( existing == null ) {
+			return;
+		}
+		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
+		{
+			throw new CFLibCollisionDetectedException( getClass(),
+				"deleteSysCluster",
+				pkey );
+		}
+		CFSecBuffSysClusterByClusterIdxKey keyClusterIdx = (CFSecBuffSysClusterByClusterIdxKey)schema.getCFSecBuffFactory().getFactorySysCluster().newByClusterIdxKey();
+		keyClusterIdx.setRequiredClusterId( existing.getRequiredClusterId() );
+
+		// Validate reverse foreign keys
+
+		// Delete is valid
+		Map< Integer, CFSecBuffSysCluster > subdict;
+
+		dictByPKey.remove( pkey );
+
+		subdict = dictByClusterIdx.get( keyClusterIdx );
+		subdict.remove( pkey );
+
+	}
+	@Override
+	public void deleteSysClusterByIdIdx( ICFSecAuthorization Authorization,
+		Integer argKey )
+	{
+		boolean anyNotNull = false;
+		anyNotNull = true;
+		if( ! anyNotNull ) {
+			return;
+		}
+		CFSecBuffSysCluster cur;
+		LinkedList<CFSecBuffSysCluster> matchSet = new LinkedList<CFSecBuffSysCluster>();
+		Iterator<CFSecBuffSysCluster> values = dictByPKey.values().iterator();
+		while( values.hasNext() ) {
+			cur = values.next();
+			if( argKey.equals( cur ) ) {
+				matchSet.add( cur );
+			}
+		}
+		Iterator<CFSecBuffSysCluster> iterMatch = matchSet.iterator();
+		while( iterMatch.hasNext() ) {
+			cur = iterMatch.next();
+			cur = (CFSecBuffSysCluster)(schema.getTableSysCluster().readDerivedByIdIdx( Authorization,
+				cur.getRequiredSingletonId() ));
+			deleteSysCluster( Authorization, cur );
+		}
+	}
+
+	@Override
+	public void deleteSysClusterByClusterIdx( ICFSecAuthorization Authorization,
+		ICFLibKeyHash256 argClusterId )
+	{
+		CFSecBuffSysClusterByClusterIdxKey key = (CFSecBuffSysClusterByClusterIdxKey)schema.getCFSecBuffFactory().getFactorySysCluster().newByClusterIdxKey();
+		key.setRequiredClusterId( argClusterId );
+		deleteSysClusterByClusterIdx( Authorization, key );
+	}
+
+	@Override
+	public void deleteSysClusterByClusterIdx( ICFSecAuthorization Authorization,
+		ICFSecSysClusterByClusterIdxKey argKey )
+	{
+		CFSecBuffSysCluster cur;
+		boolean anyNotNull = false;
+		anyNotNull = true;
+		if( ! anyNotNull ) {
+			return;
+		}
+		LinkedList<CFSecBuffSysCluster> matchSet = new LinkedList<CFSecBuffSysCluster>();
+		Iterator<CFSecBuffSysCluster> values = dictByPKey.values().iterator();
+		while( values.hasNext() ) {
+			cur = values.next();
+			if( argKey.equals( cur ) ) {
+				matchSet.add( cur );
+			}
+		}
+		Iterator<CFSecBuffSysCluster> iterMatch = matchSet.iterator();
+		while( iterMatch.hasNext() ) {
+			cur = iterMatch.next();
+			cur = (CFSecBuffSysCluster)(schema.getTableSysCluster().readDerivedByIdIdx( Authorization,
+				cur.getRequiredSingletonId() ));
+			deleteSysCluster( Authorization, cur );
+		}
+	}
+}
