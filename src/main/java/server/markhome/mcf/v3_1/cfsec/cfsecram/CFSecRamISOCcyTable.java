@@ -50,9 +50,9 @@ public class CFSecRamISOCcyTable
 	implements ICFSecISOCcyTable
 {
 	private ICFSecSchema schema;
-	private Map< Short,
+	private Map< $implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffISOCcy > dictByPKey
-		= new HashMap< Short,
+		= new HashMap< $implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffISOCcy >();
 	private Map< CFSecBuffISOCcyByCcyCdIdxKey,
 			CFSecBuffISOCcy > dictByCcyCdIdx
@@ -78,7 +78,7 @@ public class CFSecRamISOCcyTable
 		final String S_ProcName = "createISOCcy";
 		
 		CFSecBuffISOCcy Buff = (CFSecBuffISOCcy)ensureRec(iBuff);
-		Short pkey;
+		$implCommaIJavaOptAtomType empty empty )$ pkey;
 		pkey = schema.nextISOCcyIdGen();
 		Buff.setRequiredISOCcyId( pkey );
 		CFSecBuffISOCcyByCcyCdIdxKey keyCcyCdIdx = (CFSecBuffISOCcyByCcyCdIdxKey)schema.getCFSecBuffFactory().getFactoryISOCcy().newByCcyCdIdxKey();
@@ -137,7 +137,7 @@ public class CFSecRamISOCcyTable
 
 	@Override
 	public ICFSecISOCcy readDerived( ICFSecAuthorization Authorization,
-		Short PKey )
+		$implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamISOCcy.readDerived";
 		ICFSecISOCcy buff;
@@ -155,7 +155,7 @@ public class CFSecRamISOCcyTable
 
 	@Override
 	public ICFSecISOCcy lockDerived( ICFSecAuthorization Authorization,
-		Short PKey )
+		$implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamISOCcy.lockDerived";
 		ICFSecISOCcy buff;
@@ -182,7 +182,7 @@ public class CFSecRamISOCcyTable
 
 	@Override
 	public ICFSecISOCcy readDerivedByCcyCdIdx( ICFSecAuthorization Authorization,
-		String ISOCode )
+		$implIJavaAtomType$ ISOCode )
 	{
 		final String S_ProcName = "CFSecRamISOCcy.readDerivedByCcyCdIdx";
 		CFSecBuffISOCcyByCcyCdIdxKey key = (CFSecBuffISOCcyByCcyCdIdxKey)schema.getCFSecBuffFactory().getFactoryISOCcy().newByCcyCdIdxKey();
@@ -200,7 +200,7 @@ public class CFSecRamISOCcyTable
 
 	@Override
 	public ICFSecISOCcy readDerivedByCcyNmIdx( ICFSecAuthorization Authorization,
-		String Name )
+		$implIJavaAtomType$ Name )
 	{
 		final String S_ProcName = "CFSecRamISOCcy.readDerivedByCcyNmIdx";
 		CFSecBuffISOCcyByCcyNmIdxKey key = (CFSecBuffISOCcyByCcyNmIdxKey)schema.getCFSecBuffFactory().getFactoryISOCcy().newByCcyNmIdxKey();
@@ -218,7 +218,7 @@ public class CFSecRamISOCcyTable
 
 	@Override
 	public ICFSecISOCcy readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		short ISOCcyId )
+		$implIJavaAtomType$ ISOCcyId )
 	{
 		final String S_ProcName = "CFSecRamISOCcy.readDerivedByIdIdx() ";
 		ICFSecISOCcy buff;
@@ -233,7 +233,7 @@ public class CFSecRamISOCcyTable
 
 	@Override
 	public ICFSecISOCcy readRec( ICFSecAuthorization Authorization,
-		Short PKey )
+		$implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamISOCcy.readRec";
 		ICFSecISOCcy buff = readDerived( Authorization, PKey );
@@ -245,7 +245,7 @@ public class CFSecRamISOCcyTable
 
 	@Override
 	public ICFSecISOCcy lockRec( ICFSecAuthorization Authorization,
-		Short PKey )
+		$implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "lockRec";
 		ICFSecISOCcy buff = readDerived( Authorization, PKey );
@@ -273,7 +273,7 @@ public class CFSecRamISOCcyTable
 
 	@Override
 	public ICFSecISOCcy readRecByIdIdx( ICFSecAuthorization Authorization,
-		short ISOCcyId )
+		$implIJavaAtomType$ ISOCcyId )
 	{
 		final String S_ProcName = "CFSecRamISOCcy.readRecByIdIdx() ";
 		ICFSecISOCcy buff = readDerivedByIdIdx( Authorization,
@@ -288,7 +288,7 @@ public class CFSecRamISOCcyTable
 
 	@Override
 	public ICFSecISOCcy readRecByCcyCdIdx( ICFSecAuthorization Authorization,
-		String ISOCode )
+		$implIJavaAtomType$ ISOCode )
 	{
 		final String S_ProcName = "CFSecRamISOCcy.readRecByCcyCdIdx() ";
 		ICFSecISOCcy buff = readDerivedByCcyCdIdx( Authorization,
@@ -303,7 +303,7 @@ public class CFSecRamISOCcyTable
 
 	@Override
 	public ICFSecISOCcy readRecByCcyNmIdx( ICFSecAuthorization Authorization,
-		String Name )
+		$implIJavaAtomType$ Name )
 	{
 		final String S_ProcName = "CFSecRamISOCcy.readRecByCcyNmIdx() ";
 		ICFSecISOCcy buff = readDerivedByCcyNmIdx( Authorization,
@@ -320,7 +320,7 @@ public class CFSecRamISOCcyTable
 		ICFSecISOCcy iBuff )
 	{
 		CFSecBuffISOCcy Buff = (CFSecBuffISOCcy)ensureRec(iBuff);
-		Short pkey = (Short)Buff.getPKey();
+		$implCommaIJavaOptAtomType empty empty )$ pkey = ($implCommaIJavaOptAtomType empty empty )$)Buff.getPKey();
 		CFSecBuffISOCcy existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
@@ -375,7 +375,7 @@ public class CFSecRamISOCcyTable
 
 		// Update is valid
 
-		Map< Short, CFSecBuffISOCcy > subdict;
+		Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOCcy > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -396,7 +396,7 @@ public class CFSecRamISOCcyTable
 		final String S_ProcName = "CFSecRamISOCcyTable.deleteISOCcy() ";
 		CFSecBuffISOCcy Buff = (CFSecBuffISOCcy)ensureRec(iBuff);
 		int classCode;
-		Short pkey = (Short)(Buff.getPKey());
+		$implCommaIJavaOptAtomType empty empty )$ pkey = ($implCommaIJavaOptAtomType empty empty )$)(Buff.getPKey());
 		CFSecBuffISOCcy existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
@@ -423,7 +423,7 @@ public class CFSecRamISOCcyTable
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< Short, CFSecBuffISOCcy > subdict;
+		Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOCcy > subdict;
 
 		dictByPKey.remove( pkey );
 
@@ -434,7 +434,7 @@ public class CFSecRamISOCcyTable
 	}
 	@Override
 	public void deleteISOCcyByIdIdx( ICFSecAuthorization Authorization,
-		Short argKey )
+		$implCommaIJavaOptAtomType empty empty )$ argKey )
 	{
 		boolean anyNotNull = false;
 		anyNotNull = true;
@@ -461,7 +461,7 @@ public class CFSecRamISOCcyTable
 
 	@Override
 	public void deleteISOCcyByCcyCdIdx( ICFSecAuthorization Authorization,
-		String argISOCode )
+		$implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argISOCode )
 	{
 		CFSecBuffISOCcyByCcyCdIdxKey key = (CFSecBuffISOCcyByCcyCdIdxKey)schema.getCFSecBuffFactory().getFactoryISOCcy().newByCcyCdIdxKey();
 		key.setRequiredISOCode( argISOCode );
@@ -497,7 +497,7 @@ public class CFSecRamISOCcyTable
 
 	@Override
 	public void deleteISOCcyByCcyNmIdx( ICFSecAuthorization Authorization,
-		String argName )
+		$implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argName )
 	{
 		CFSecBuffISOCcyByCcyNmIdxKey key = (CFSecBuffISOCcyByCcyNmIdxKey)schema.getCFSecBuffFactory().getFactoryISOCcy().newByCcyNmIdxKey();
 		key.setRequiredName( argName );

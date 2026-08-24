@@ -167,15 +167,15 @@ public class CFSecRamSecClusGrpMembTable
 
 	@Override
 	public ICFSecSecClusGrpMemb readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecClusGrpId,
-		String LoginId )
+		$implIJavaAtomType$ SecClusGrpId,
+		$implIJavaAtomType$ LoginId )
 	{
-		{	ICFLibKeyHash256 testSecClusGrpId = SecClusGrpId;
+		{	$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ testSecClusGrpId = SecClusGrpId;
 			if (testSecClusGrpId == null) {
 				return( null );
 			}
 		}
-		{	String testLoginId = LoginId;
+		{	$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ testLoginId = LoginId;
 			if (testLoginId == null) {
 				return( null );
 			}
@@ -235,7 +235,7 @@ public class CFSecRamSecClusGrpMembTable
 
 	@Override
 	public ICFSecSecClusGrpMemb[] readDerivedByClusGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecClusGrpId )
+		$implIJavaAtomType$ SecClusGrpId )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrpMemb.readDerivedByClusGrpIdx";
 		CFSecBuffSecClusGrpMembByClusGrpIdxKey key = (CFSecBuffSecClusGrpMembByClusGrpIdxKey)schema.getCFSecBuffFactory().getFactorySecClusGrpMemb().newByClusGrpIdxKey();
@@ -263,7 +263,7 @@ public class CFSecRamSecClusGrpMembTable
 
 	@Override
 	public ICFSecSecClusGrpMemb[] readDerivedByLoginIdx( ICFSecAuthorization Authorization,
-		String LoginId )
+		$implIJavaAtomType$ LoginId )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrpMemb.readDerivedByLoginIdx";
 		CFSecBuffSecClusGrpMembByLoginIdxKey key = (CFSecBuffSecClusGrpMembByLoginIdxKey)schema.getCFSecBuffFactory().getFactorySecClusGrpMemb().newByLoginIdxKey();
@@ -291,8 +291,8 @@ public class CFSecRamSecClusGrpMembTable
 
 	@Override
 	public ICFSecSecClusGrpMemb readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecClusGrpId,
-		String LoginId )
+		$implIJavaAtomType$ SecClusGrpId,
+		$implIJavaAtomType$ LoginId )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrpMemb.readDerivedByIdIdx() ";
 		CFSecBuffSecClusGrpMembPKey key = (CFSecBuffSecClusGrpMembPKey)(schema.getCFSecBuffFactory().getFactorySecClusGrpMemb().newPKey());
@@ -310,8 +310,8 @@ public class CFSecRamSecClusGrpMembTable
 
 	@Override
 	public ICFSecSecClusGrpMemb readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecClusGrpId,
-		String LoginId )
+		$implIJavaAtomType$ SecClusGrpId,
+		$implIJavaAtomType$ LoginId )
 	{
 		CFSecBuffSecClusGrpMembPKey key = (CFSecBuffSecClusGrpMembPKey)(schema.getCFSecBuffFactory().getFactorySecClusGrpMemb().newPKey());
 		key.setRequiredSecClusGrpId( SecClusGrpId );
@@ -368,8 +368,8 @@ public class CFSecRamSecClusGrpMembTable
 	 */
 	@Override
 	public ICFSecSecClusGrpMemb[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecClusGrpId,
-		String priorLoginId )
+		$implIJavaOptAtomType$ priorSecClusGrpId,
+		$implIJavaOptAtomType$ priorLoginId )
 	{
 		final String S_ProcName = "pageAllRec";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -377,8 +377,8 @@ public class CFSecRamSecClusGrpMembTable
 
 	@Override
 	public ICFSecSecClusGrpMemb readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecClusGrpId,
-		String LoginId )
+		$implIJavaAtomType$ SecClusGrpId,
+		$implIJavaAtomType$ LoginId )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrpMemb.readRecByIdIdx() ";
 		ICFSecSecClusGrpMemb buff = readDerivedByIdIdx( Authorization,
@@ -394,7 +394,7 @@ public class CFSecRamSecClusGrpMembTable
 
 	@Override
 	public ICFSecSecClusGrpMemb[] readRecByClusGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecClusGrpId )
+		$implIJavaAtomType$ SecClusGrpId )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrpMemb.readRecByClusGrpIdx() ";
 		ICFSecSecClusGrpMemb buff;
@@ -412,7 +412,7 @@ public class CFSecRamSecClusGrpMembTable
 
 	@Override
 	public ICFSecSecClusGrpMemb[] readRecByLoginIdx( ICFSecAuthorization Authorization,
-		String LoginId )
+		$implIJavaAtomType$ LoginId )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrpMemb.readRecByLoginIdx() ";
 		ICFSecSecClusGrpMemb buff;
@@ -441,9 +441,9 @@ public class CFSecRamSecClusGrpMembTable
 	 */
 	@Override
 	public ICFSecSecClusGrpMemb[] pageRecByClusGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecClusGrpId,
-		ICFLibKeyHash256 priorSecClusGrpId,
-		String priorLoginId )
+		$implIJavaAtomType$ SecClusGrpId,
+		$implIJavaOptAtomType$ priorSecClusGrpId,
+		$implIJavaOptAtomType$ priorLoginId )
 	{
 		final String S_ProcName = "pageRecByClusGrpIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -462,9 +462,9 @@ public class CFSecRamSecClusGrpMembTable
 	 */
 	@Override
 	public ICFSecSecClusGrpMemb[] pageRecByLoginIdx( ICFSecAuthorization Authorization,
-		String LoginId,
-		ICFLibKeyHash256 priorSecClusGrpId,
-		String priorLoginId )
+		$implIJavaAtomType$ LoginId,
+		$implIJavaOptAtomType$ priorSecClusGrpId,
+		$implIJavaOptAtomType$ priorLoginId )
 	{
 		final String S_ProcName = "pageRecByLoginIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -605,8 +605,8 @@ public class CFSecRamSecClusGrpMembTable
 	}
 	@Override
 	public void deleteSecClusGrpMembByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecClusGrpId,
-		String LoginId )
+		$implIJavaAtomType$ SecClusGrpId,
+		$implIJavaAtomType$ LoginId )
 	{
 		CFSecBuffSecClusGrpMembPKey key = (CFSecBuffSecClusGrpMembPKey)(schema.getCFSecBuffFactory().getFactorySecClusGrpMemb().newPKey());
 		key.setRequiredSecClusGrpId( SecClusGrpId );
@@ -649,7 +649,7 @@ public class CFSecRamSecClusGrpMembTable
 
 	@Override
 	public void deleteSecClusGrpMembByClusGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecClusGrpId )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argSecClusGrpId )
 	{
 		CFSecBuffSecClusGrpMembByClusGrpIdxKey key = (CFSecBuffSecClusGrpMembByClusGrpIdxKey)schema.getCFSecBuffFactory().getFactorySecClusGrpMemb().newByClusGrpIdxKey();
 		key.setRequiredSecClusGrpId( argSecClusGrpId );
@@ -686,7 +686,7 @@ public class CFSecRamSecClusGrpMembTable
 
 	@Override
 	public void deleteSecClusGrpMembByLoginIdx( ICFSecAuthorization Authorization,
-		String argLoginId )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argLoginId )
 	{
 		CFSecBuffSecClusGrpMembByLoginIdxKey key = (CFSecBuffSecClusGrpMembByLoginIdxKey)schema.getCFSecBuffFactory().getFactorySecClusGrpMemb().newByLoginIdxKey();
 		key.setRequiredLoginId( argLoginId );

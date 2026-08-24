@@ -167,15 +167,15 @@ public class CFSecRamSecSysRoleEnablesTable
 
 	@Override
 	public ICFSecSecSysRoleEnables readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId,
-		String EnableName )
+		$implIJavaAtomType$ SecSysRoleId,
+		$implIJavaAtomType$ EnableName )
 	{
-		{	ICFLibKeyHash256 testSecSysRoleId = SecSysRoleId;
+		{	$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ testSecSysRoleId = SecSysRoleId;
 			if (testSecSysRoleId == null) {
 				return( null );
 			}
 		}
-		{	String testEnableName = EnableName;
+		{	$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ testEnableName = EnableName;
 			if (testEnableName == null) {
 				return( null );
 			}
@@ -235,7 +235,7 @@ public class CFSecRamSecSysRoleEnablesTable
 
 	@Override
 	public ICFSecSecSysRoleEnables[] readDerivedBySysRoleIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId )
+		$implIJavaAtomType$ SecSysRoleId )
 	{
 		final String S_ProcName = "CFSecRamSecSysRoleEnables.readDerivedBySysRoleIdx";
 		CFSecBuffSecSysRoleEnablesBySysRoleIdxKey key = (CFSecBuffSecSysRoleEnablesBySysRoleIdxKey)schema.getCFSecBuffFactory().getFactorySecSysRoleEnables().newBySysRoleIdxKey();
@@ -263,7 +263,7 @@ public class CFSecRamSecSysRoleEnablesTable
 
 	@Override
 	public ICFSecSecSysRoleEnables[] readDerivedByNameIdx( ICFSecAuthorization Authorization,
-		String EnableName )
+		$implIJavaAtomType$ EnableName )
 	{
 		final String S_ProcName = "CFSecRamSecSysRoleEnables.readDerivedByNameIdx";
 		CFSecBuffSecSysRoleEnablesByNameIdxKey key = (CFSecBuffSecSysRoleEnablesByNameIdxKey)schema.getCFSecBuffFactory().getFactorySecSysRoleEnables().newByNameIdxKey();
@@ -291,8 +291,8 @@ public class CFSecRamSecSysRoleEnablesTable
 
 	@Override
 	public ICFSecSecSysRoleEnables readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId,
-		String EnableName )
+		$implIJavaAtomType$ SecSysRoleId,
+		$implIJavaAtomType$ EnableName )
 	{
 		final String S_ProcName = "CFSecRamSecSysRoleEnables.readDerivedByIdIdx() ";
 		CFSecBuffSecSysRoleEnablesPKey key = (CFSecBuffSecSysRoleEnablesPKey)(schema.getCFSecBuffFactory().getFactorySecSysRoleEnables().newPKey());
@@ -310,8 +310,8 @@ public class CFSecRamSecSysRoleEnablesTable
 
 	@Override
 	public ICFSecSecSysRoleEnables readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId,
-		String EnableName )
+		$implIJavaAtomType$ SecSysRoleId,
+		$implIJavaAtomType$ EnableName )
 	{
 		CFSecBuffSecSysRoleEnablesPKey key = (CFSecBuffSecSysRoleEnablesPKey)(schema.getCFSecBuffFactory().getFactorySecSysRoleEnables().newPKey());
 		key.setRequiredSecSysRoleId( SecSysRoleId );
@@ -368,8 +368,8 @@ public class CFSecRamSecSysRoleEnablesTable
 	 */
 	@Override
 	public ICFSecSecSysRoleEnables[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecSysRoleId,
-		String priorEnableName )
+		$implIJavaOptAtomType$ priorSecSysRoleId,
+		$implIJavaOptAtomType$ priorEnableName )
 	{
 		final String S_ProcName = "pageAllRec";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -377,8 +377,8 @@ public class CFSecRamSecSysRoleEnablesTable
 
 	@Override
 	public ICFSecSecSysRoleEnables readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId,
-		String EnableName )
+		$implIJavaAtomType$ SecSysRoleId,
+		$implIJavaAtomType$ EnableName )
 	{
 		final String S_ProcName = "CFSecRamSecSysRoleEnables.readRecByIdIdx() ";
 		ICFSecSecSysRoleEnables buff = readDerivedByIdIdx( Authorization,
@@ -394,7 +394,7 @@ public class CFSecRamSecSysRoleEnablesTable
 
 	@Override
 	public ICFSecSecSysRoleEnables[] readRecBySysRoleIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId )
+		$implIJavaAtomType$ SecSysRoleId )
 	{
 		final String S_ProcName = "CFSecRamSecSysRoleEnables.readRecBySysRoleIdx() ";
 		ICFSecSecSysRoleEnables buff;
@@ -412,7 +412,7 @@ public class CFSecRamSecSysRoleEnablesTable
 
 	@Override
 	public ICFSecSecSysRoleEnables[] readRecByNameIdx( ICFSecAuthorization Authorization,
-		String EnableName )
+		$implIJavaAtomType$ EnableName )
 	{
 		final String S_ProcName = "CFSecRamSecSysRoleEnables.readRecByNameIdx() ";
 		ICFSecSecSysRoleEnables buff;
@@ -441,9 +441,9 @@ public class CFSecRamSecSysRoleEnablesTable
 	 */
 	@Override
 	public ICFSecSecSysRoleEnables[] pageRecBySysRoleIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId,
-		ICFLibKeyHash256 priorSecSysRoleId,
-		String priorEnableName )
+		$implIJavaAtomType$ SecSysRoleId,
+		$implIJavaOptAtomType$ priorSecSysRoleId,
+		$implIJavaOptAtomType$ priorEnableName )
 	{
 		final String S_ProcName = "pageRecBySysRoleIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -462,9 +462,9 @@ public class CFSecRamSecSysRoleEnablesTable
 	 */
 	@Override
 	public ICFSecSecSysRoleEnables[] pageRecByNameIdx( ICFSecAuthorization Authorization,
-		String EnableName,
-		ICFLibKeyHash256 priorSecSysRoleId,
-		String priorEnableName )
+		$implIJavaAtomType$ EnableName,
+		$implIJavaOptAtomType$ priorSecSysRoleId,
+		$implIJavaOptAtomType$ priorEnableName )
 	{
 		final String S_ProcName = "pageRecByNameIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -605,8 +605,8 @@ public class CFSecRamSecSysRoleEnablesTable
 	}
 	@Override
 	public void deleteSecSysRoleEnablesByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId,
-		String EnableName )
+		$implIJavaAtomType$ SecSysRoleId,
+		$implIJavaAtomType$ EnableName )
 	{
 		CFSecBuffSecSysRoleEnablesPKey key = (CFSecBuffSecSysRoleEnablesPKey)(schema.getCFSecBuffFactory().getFactorySecSysRoleEnables().newPKey());
 		key.setRequiredSecSysRoleId( SecSysRoleId );
@@ -649,7 +649,7 @@ public class CFSecRamSecSysRoleEnablesTable
 
 	@Override
 	public void deleteSecSysRoleEnablesBySysRoleIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecSysRoleId )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argSecSysRoleId )
 	{
 		CFSecBuffSecSysRoleEnablesBySysRoleIdxKey key = (CFSecBuffSecSysRoleEnablesBySysRoleIdxKey)schema.getCFSecBuffFactory().getFactorySecSysRoleEnables().newBySysRoleIdxKey();
 		key.setRequiredSecSysRoleId( argSecSysRoleId );
@@ -686,7 +686,7 @@ public class CFSecRamSecSysRoleEnablesTable
 
 	@Override
 	public void deleteSecSysRoleEnablesByNameIdx( ICFSecAuthorization Authorization,
-		String argEnableName )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argEnableName )
 	{
 		CFSecBuffSecSysRoleEnablesByNameIdxKey key = (CFSecBuffSecSysRoleEnablesByNameIdxKey)schema.getCFSecBuffFactory().getFactorySecSysRoleEnables().newByNameIdxKey();
 		key.setRequiredEnableName( argEnableName );

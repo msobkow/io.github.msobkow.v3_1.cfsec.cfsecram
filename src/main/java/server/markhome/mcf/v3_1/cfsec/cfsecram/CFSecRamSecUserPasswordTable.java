@@ -50,15 +50,15 @@ public class CFSecRamSecUserPasswordTable
 	implements ICFSecSecUserPasswordTable
 {
 	private ICFSecSchema schema;
-	private Map< ICFLibKeyHash256,
+	private Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffSecUserPassword > dictByPKey
-		= new HashMap< ICFLibKeyHash256,
+		= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffSecUserPassword >();
 	private Map< CFSecBuffSecUserPasswordBySetStampIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecUserPassword >> dictBySetStampIdx
 		= new HashMap< CFSecBuffSecUserPasswordBySetStampIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecUserPassword >>();
 
 	public CFSecRamSecUserPasswordTable( ICFSecSchema argSchema ) {
@@ -76,7 +76,7 @@ public class CFSecRamSecUserPasswordTable
 		final String S_ProcName = "createSecUserPassword";
 		
 		CFSecBuffSecUserPassword Buff = (CFSecBuffSecUserPassword)ensureRec(iBuff);
-		ICFLibKeyHash256 pkey;
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey;
 		pkey = Buff.getRequiredSecUserId();
 		pkey = Buff.getRequiredSecUserId();
 		Buff.setRequiredContainerUser( pkey );
@@ -116,12 +116,12 @@ public class CFSecRamSecUserPasswordTable
 
 		dictByPKey.put( pkey, Buff );
 
-		Map< ICFLibKeyHash256, CFSecBuffSecUserPassword > subdictSetStampIdx;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPassword > subdictSetStampIdx;
 		if( dictBySetStampIdx.containsKey( keySetStampIdx ) ) {
 			subdictSetStampIdx = dictBySetStampIdx.get( keySetStampIdx );
 		}
 		else {
-			subdictSetStampIdx = new HashMap< ICFLibKeyHash256, CFSecBuffSecUserPassword >();
+			subdictSetStampIdx = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPassword >();
 			dictBySetStampIdx.put( keySetStampIdx, subdictSetStampIdx );
 		}
 		subdictSetStampIdx.put( pkey, Buff );
@@ -144,7 +144,7 @@ public class CFSecRamSecUserPasswordTable
 
 	@Override
 	public ICFSecSecUserPassword readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecUserPassword.readDerived";
 		ICFSecSecUserPassword buff;
@@ -162,7 +162,7 @@ public class CFSecRamSecUserPasswordTable
 
 	@Override
 	public ICFSecSecUserPassword lockDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecUserPassword.lockDerived";
 		ICFSecSecUserPassword buff;
@@ -189,7 +189,7 @@ public class CFSecRamSecUserPasswordTable
 
 	@Override
 	public ICFSecSecUserPassword[] readDerivedBySetStampIdx( ICFSecAuthorization Authorization,
-		LocalDateTime PWSetStamp )
+		$implIJavaAtomType$ PWSetStamp )
 	{
 		final String S_ProcName = "CFSecRamSecUserPassword.readDerivedBySetStampIdx";
 		CFSecBuffSecUserPasswordBySetStampIdxKey key = (CFSecBuffSecUserPasswordBySetStampIdxKey)schema.getCFSecBuffFactory().getFactorySecUserPassword().newBySetStampIdxKey();
@@ -197,7 +197,7 @@ public class CFSecRamSecUserPasswordTable
 		key.setRequiredPWSetStamp( PWSetStamp );
 		ICFSecSecUserPassword[] recArray;
 		if( dictBySetStampIdx.containsKey( key ) ) {
-			Map< ICFLibKeyHash256, CFSecBuffSecUserPassword > subdictSetStampIdx
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPassword > subdictSetStampIdx
 				= dictBySetStampIdx.get( key );
 			recArray = new ICFSecSecUserPassword[ subdictSetStampIdx.size() ];
 			Iterator< CFSecBuffSecUserPassword > iter = subdictSetStampIdx.values().iterator();
@@ -207,8 +207,8 @@ public class CFSecRamSecUserPasswordTable
 			}
 		}
 		else {
-			Map< ICFLibKeyHash256, CFSecBuffSecUserPassword > subdictSetStampIdx
-				= new HashMap< ICFLibKeyHash256, CFSecBuffSecUserPassword >();
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPassword > subdictSetStampIdx
+				= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPassword >();
 			dictBySetStampIdx.put( key, subdictSetStampIdx );
 			recArray = new ICFSecSecUserPassword[0];
 		}
@@ -217,7 +217,7 @@ public class CFSecRamSecUserPasswordTable
 
 	@Override
 	public ICFSecSecUserPassword readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		$implIJavaAtomType$ SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecUserPassword.readDerivedByIdIdx() ";
 		ICFSecSecUserPassword buff;
@@ -232,7 +232,7 @@ public class CFSecRamSecUserPasswordTable
 
 	@Override
 	public ICFSecSecUserPassword readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecUserPassword.readRec";
 		ICFSecSecUserPassword buff = readDerived( Authorization, PKey );
@@ -244,7 +244,7 @@ public class CFSecRamSecUserPasswordTable
 
 	@Override
 	public ICFSecSecUserPassword lockRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "lockRec";
 		ICFSecSecUserPassword buff = readDerived( Authorization, PKey );
@@ -272,7 +272,7 @@ public class CFSecRamSecUserPasswordTable
 
 	@Override
 	public ICFSecSecUserPassword readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		$implIJavaAtomType$ SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecUserPassword.readRecByIdIdx() ";
 		ICFSecSecUserPassword buff = readDerivedByIdIdx( Authorization,
@@ -287,7 +287,7 @@ public class CFSecRamSecUserPasswordTable
 
 	@Override
 	public ICFSecSecUserPassword[] readRecBySetStampIdx( ICFSecAuthorization Authorization,
-		LocalDateTime PWSetStamp )
+		$implIJavaAtomType$ PWSetStamp )
 	{
 		final String S_ProcName = "CFSecRamSecUserPassword.readRecBySetStampIdx() ";
 		ICFSecSecUserPassword buff;
@@ -307,7 +307,7 @@ public class CFSecRamSecUserPasswordTable
 		ICFSecSecUserPassword iBuff )
 	{
 		CFSecBuffSecUserPassword Buff = (CFSecBuffSecUserPassword)ensureRec(iBuff);
-		ICFLibKeyHash256 pkey = (ICFLibKeyHash256)Buff.getPKey();
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)Buff.getPKey();
 		CFSecBuffSecUserPassword existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
@@ -356,7 +356,7 @@ public class CFSecRamSecUserPasswordTable
 
 		// Update is valid
 
-		Map< ICFLibKeyHash256, CFSecBuffSecUserPassword > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPassword > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -369,7 +369,7 @@ public class CFSecRamSecUserPasswordTable
 			subdict = dictBySetStampIdx.get( newKeySetStampIdx );
 		}
 		else {
-			subdict = new HashMap< ICFLibKeyHash256, CFSecBuffSecUserPassword >();
+			subdict = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPassword >();
 			dictBySetStampIdx.put( newKeySetStampIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -384,7 +384,7 @@ public class CFSecRamSecUserPasswordTable
 		final String S_ProcName = "CFSecRamSecUserPasswordTable.deleteSecUserPassword() ";
 		CFSecBuffSecUserPassword Buff = (CFSecBuffSecUserPassword)ensureRec(iBuff);
 		int classCode;
-		ICFLibKeyHash256 pkey = (ICFLibKeyHash256)(Buff.getPKey());
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)(Buff.getPKey());
 		CFSecBuffSecUserPassword existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
@@ -401,7 +401,7 @@ public class CFSecRamSecUserPasswordTable
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< ICFLibKeyHash256, CFSecBuffSecUserPassword > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPassword > subdict;
 
 		dictByPKey.remove( pkey );
 
@@ -411,7 +411,7 @@ public class CFSecRamSecUserPasswordTable
 	}
 	@Override
 	public void deleteSecUserPasswordByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ argKey )
 	{
 		boolean anyNotNull = false;
 		anyNotNull = true;
@@ -438,7 +438,7 @@ public class CFSecRamSecUserPasswordTable
 
 	@Override
 	public void deleteSecUserPasswordBySetStampIdx( ICFSecAuthorization Authorization,
-		LocalDateTime argPWSetStamp )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argPWSetStamp )
 	{
 		CFSecBuffSecUserPasswordBySetStampIdxKey key = (CFSecBuffSecUserPasswordBySetStampIdxKey)schema.getCFSecBuffFactory().getFactorySecUserPassword().newBySetStampIdxKey();
 		key.setRequiredPWSetStamp( argPWSetStamp );

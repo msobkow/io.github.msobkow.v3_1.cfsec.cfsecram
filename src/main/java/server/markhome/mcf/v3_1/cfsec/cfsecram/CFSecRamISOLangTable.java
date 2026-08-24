@@ -50,19 +50,19 @@ public class CFSecRamISOLangTable
 	implements ICFSecISOLangTable
 {
 	private ICFSecSchema schema;
-	private Map< Short,
+	private Map< $implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffISOLang > dictByPKey
-		= new HashMap< Short,
+		= new HashMap< $implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffISOLang >();
 	private Map< CFSecBuffISOLangByCode3IdxKey,
 			CFSecBuffISOLang > dictByCode3Idx
 		= new HashMap< CFSecBuffISOLangByCode3IdxKey,
 			CFSecBuffISOLang >();
 	private Map< CFSecBuffISOLangByCode2IdxKey,
-				Map< Short,
+				Map< $implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffISOLang >> dictByCode2Idx
 		= new HashMap< CFSecBuffISOLangByCode2IdxKey,
-				Map< Short,
+				Map< $implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffISOLang >>();
 
 	public CFSecRamISOLangTable( ICFSecSchema argSchema ) {
@@ -80,7 +80,7 @@ public class CFSecRamISOLangTable
 		final String S_ProcName = "createISOLang";
 		
 		CFSecBuffISOLang Buff = (CFSecBuffISOLang)ensureRec(iBuff);
-		Short pkey;
+		$implCommaIJavaOptAtomType empty empty )$ pkey;
 		pkey = schema.nextISOLangIdGen();
 		Buff.setRequiredISOLangId( pkey );
 		CFSecBuffISOLangByCode3IdxKey keyCode3Idx = (CFSecBuffISOLangByCode3IdxKey)schema.getCFSecBuffFactory().getFactoryISOLang().newByCode3IdxKey();
@@ -111,12 +111,12 @@ public class CFSecRamISOLangTable
 
 		dictByCode3Idx.put( keyCode3Idx, Buff );
 
-		Map< Short, CFSecBuffISOLang > subdictCode2Idx;
+		Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOLang > subdictCode2Idx;
 		if( dictByCode2Idx.containsKey( keyCode2Idx ) ) {
 			subdictCode2Idx = dictByCode2Idx.get( keyCode2Idx );
 		}
 		else {
-			subdictCode2Idx = new HashMap< Short, CFSecBuffISOLang >();
+			subdictCode2Idx = new HashMap< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOLang >();
 			dictByCode2Idx.put( keyCode2Idx, subdictCode2Idx );
 		}
 		subdictCode2Idx.put( pkey, Buff );
@@ -139,7 +139,7 @@ public class CFSecRamISOLangTable
 
 	@Override
 	public ICFSecISOLang readDerived( ICFSecAuthorization Authorization,
-		Short PKey )
+		$implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamISOLang.readDerived";
 		ICFSecISOLang buff;
@@ -157,7 +157,7 @@ public class CFSecRamISOLangTable
 
 	@Override
 	public ICFSecISOLang lockDerived( ICFSecAuthorization Authorization,
-		Short PKey )
+		$implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamISOLang.lockDerived";
 		ICFSecISOLang buff;
@@ -184,7 +184,7 @@ public class CFSecRamISOLangTable
 
 	@Override
 	public ICFSecISOLang readDerivedByCode3Idx( ICFSecAuthorization Authorization,
-		String ISO6392Code )
+		$implIJavaAtomType$ ISO6392Code )
 	{
 		final String S_ProcName = "CFSecRamISOLang.readDerivedByCode3Idx";
 		CFSecBuffISOLangByCode3IdxKey key = (CFSecBuffISOLangByCode3IdxKey)schema.getCFSecBuffFactory().getFactoryISOLang().newByCode3IdxKey();
@@ -202,7 +202,7 @@ public class CFSecRamISOLangTable
 
 	@Override
 	public ICFSecISOLang[] readDerivedByCode2Idx( ICFSecAuthorization Authorization,
-		String ISO6391Code )
+		$implIJavaAtomType$ ISO6391Code )
 	{
 		final String S_ProcName = "CFSecRamISOLang.readDerivedByCode2Idx";
 		CFSecBuffISOLangByCode2IdxKey key = (CFSecBuffISOLangByCode2IdxKey)schema.getCFSecBuffFactory().getFactoryISOLang().newByCode2IdxKey();
@@ -210,7 +210,7 @@ public class CFSecRamISOLangTable
 		key.setOptionalISO6391Code( ISO6391Code );
 		ICFSecISOLang[] recArray;
 		if( dictByCode2Idx.containsKey( key ) ) {
-			Map< Short, CFSecBuffISOLang > subdictCode2Idx
+			Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOLang > subdictCode2Idx
 				= dictByCode2Idx.get( key );
 			recArray = new ICFSecISOLang[ subdictCode2Idx.size() ];
 			Iterator< CFSecBuffISOLang > iter = subdictCode2Idx.values().iterator();
@@ -220,8 +220,8 @@ public class CFSecRamISOLangTable
 			}
 		}
 		else {
-			Map< Short, CFSecBuffISOLang > subdictCode2Idx
-				= new HashMap< Short, CFSecBuffISOLang >();
+			Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOLang > subdictCode2Idx
+				= new HashMap< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOLang >();
 			dictByCode2Idx.put( key, subdictCode2Idx );
 			recArray = new ICFSecISOLang[0];
 		}
@@ -230,7 +230,7 @@ public class CFSecRamISOLangTable
 
 	@Override
 	public ICFSecISOLang readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		short ISOLangId )
+		$implIJavaAtomType$ ISOLangId )
 	{
 		final String S_ProcName = "CFSecRamISOLang.readDerivedByIdIdx() ";
 		ICFSecISOLang buff;
@@ -245,7 +245,7 @@ public class CFSecRamISOLangTable
 
 	@Override
 	public ICFSecISOLang readRec( ICFSecAuthorization Authorization,
-		Short PKey )
+		$implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamISOLang.readRec";
 		ICFSecISOLang buff = readDerived( Authorization, PKey );
@@ -257,7 +257,7 @@ public class CFSecRamISOLangTable
 
 	@Override
 	public ICFSecISOLang lockRec( ICFSecAuthorization Authorization,
-		Short PKey )
+		$implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "lockRec";
 		ICFSecISOLang buff = readDerived( Authorization, PKey );
@@ -285,7 +285,7 @@ public class CFSecRamISOLangTable
 
 	@Override
 	public ICFSecISOLang readRecByIdIdx( ICFSecAuthorization Authorization,
-		short ISOLangId )
+		$implIJavaAtomType$ ISOLangId )
 	{
 		final String S_ProcName = "CFSecRamISOLang.readRecByIdIdx() ";
 		ICFSecISOLang buff = readDerivedByIdIdx( Authorization,
@@ -300,7 +300,7 @@ public class CFSecRamISOLangTable
 
 	@Override
 	public ICFSecISOLang readRecByCode3Idx( ICFSecAuthorization Authorization,
-		String ISO6392Code )
+		$implIJavaAtomType$ ISO6392Code )
 	{
 		final String S_ProcName = "CFSecRamISOLang.readRecByCode3Idx() ";
 		ICFSecISOLang buff = readDerivedByCode3Idx( Authorization,
@@ -315,7 +315,7 @@ public class CFSecRamISOLangTable
 
 	@Override
 	public ICFSecISOLang[] readRecByCode2Idx( ICFSecAuthorization Authorization,
-		String ISO6391Code )
+		$implIJavaAtomType$ ISO6391Code )
 	{
 		final String S_ProcName = "CFSecRamISOLang.readRecByCode2Idx() ";
 		ICFSecISOLang buff;
@@ -335,7 +335,7 @@ public class CFSecRamISOLangTable
 		ICFSecISOLang iBuff )
 	{
 		CFSecBuffISOLang Buff = (CFSecBuffISOLang)ensureRec(iBuff);
-		Short pkey = (Short)Buff.getPKey();
+		$implCommaIJavaOptAtomType empty empty )$ pkey = ($implCommaIJavaOptAtomType empty empty )$)Buff.getPKey();
 		CFSecBuffISOLang existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
@@ -380,7 +380,7 @@ public class CFSecRamISOLangTable
 
 		// Update is valid
 
-		Map< Short, CFSecBuffISOLang > subdict;
+		Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOLang > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -396,7 +396,7 @@ public class CFSecRamISOLangTable
 			subdict = dictByCode2Idx.get( newKeyCode2Idx );
 		}
 		else {
-			subdict = new HashMap< Short, CFSecBuffISOLang >();
+			subdict = new HashMap< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOLang >();
 			dictByCode2Idx.put( newKeyCode2Idx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -411,7 +411,7 @@ public class CFSecRamISOLangTable
 		final String S_ProcName = "CFSecRamISOLangTable.deleteISOLang() ";
 		CFSecBuffISOLang Buff = (CFSecBuffISOLang)ensureRec(iBuff);
 		int classCode;
-		Short pkey = (Short)(Buff.getPKey());
+		$implCommaIJavaOptAtomType empty empty )$ pkey = ($implCommaIJavaOptAtomType empty empty )$)(Buff.getPKey());
 		CFSecBuffISOLang existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
@@ -438,7 +438,7 @@ public class CFSecRamISOLangTable
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< Short, CFSecBuffISOLang > subdict;
+		Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOLang > subdict;
 
 		dictByPKey.remove( pkey );
 
@@ -450,7 +450,7 @@ public class CFSecRamISOLangTable
 	}
 	@Override
 	public void deleteISOLangByIdIdx( ICFSecAuthorization Authorization,
-		Short argKey )
+		$implCommaIJavaOptAtomType empty empty )$ argKey )
 	{
 		boolean anyNotNull = false;
 		anyNotNull = true;
@@ -477,7 +477,7 @@ public class CFSecRamISOLangTable
 
 	@Override
 	public void deleteISOLangByCode3Idx( ICFSecAuthorization Authorization,
-		String argISO6392Code )
+		$implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argISO6392Code )
 	{
 		CFSecBuffISOLangByCode3IdxKey key = (CFSecBuffISOLangByCode3IdxKey)schema.getCFSecBuffFactory().getFactoryISOLang().newByCode3IdxKey();
 		key.setRequiredISO6392Code( argISO6392Code );
@@ -513,7 +513,7 @@ public class CFSecRamISOLangTable
 
 	@Override
 	public void deleteISOLangByCode2Idx( ICFSecAuthorization Authorization,
-		String argISO6391Code )
+		$implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argISO6391Code )
 	{
 		CFSecBuffISOLangByCode2IdxKey key = (CFSecBuffISOLangByCode2IdxKey)schema.getCFSecBuffFactory().getFactoryISOLang().newByCode2IdxKey();
 		key.setOptionalISO6391Code( argISO6391Code );

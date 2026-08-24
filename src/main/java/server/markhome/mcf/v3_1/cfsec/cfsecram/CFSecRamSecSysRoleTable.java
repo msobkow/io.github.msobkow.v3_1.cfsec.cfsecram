@@ -50,9 +50,9 @@ public class CFSecRamSecSysRoleTable
 	implements ICFSecSecSysRoleTable
 {
 	private ICFSecSchema schema;
-	private Map< ICFLibKeyHash256,
+	private Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffSecSysRole > dictByPKey
-		= new HashMap< ICFLibKeyHash256,
+		= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffSecSysRole >();
 	private Map< CFSecBuffSecSysRoleByUNameIdxKey,
 			CFSecBuffSecSysRole > dictByUNameIdx
@@ -74,7 +74,7 @@ public class CFSecRamSecSysRoleTable
 		final String S_ProcName = "createSecSysRole";
 		
 		CFSecBuffSecSysRole Buff = (CFSecBuffSecSysRole)ensureRec(iBuff);
-		ICFLibKeyHash256 pkey;
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey;
 		pkey = schema.nextSecSysGrpIdGen();
 		Buff.setRequiredSecSysRoleId( pkey );
 		CFSecBuffSecSysRoleByUNameIdxKey keyUNameIdx = (CFSecBuffSecSysRoleByUNameIdxKey)schema.getCFSecBuffFactory().getFactorySecSysRole().newByUNameIdxKey();
@@ -120,7 +120,7 @@ public class CFSecRamSecSysRoleTable
 
 	@Override
 	public ICFSecSecSysRole readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecSysRole.readDerived";
 		ICFSecSecSysRole buff;
@@ -138,7 +138,7 @@ public class CFSecRamSecSysRoleTable
 
 	@Override
 	public ICFSecSecSysRole lockDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecSysRole.lockDerived";
 		ICFSecSecSysRole buff;
@@ -165,7 +165,7 @@ public class CFSecRamSecSysRoleTable
 
 	@Override
 	public ICFSecSecSysRole readDerivedByUNameIdx( ICFSecAuthorization Authorization,
-		String Name )
+		$implIJavaAtomType$ Name )
 	{
 		final String S_ProcName = "CFSecRamSecSysRole.readDerivedByUNameIdx";
 		CFSecBuffSecSysRoleByUNameIdxKey key = (CFSecBuffSecSysRoleByUNameIdxKey)schema.getCFSecBuffFactory().getFactorySecSysRole().newByUNameIdxKey();
@@ -183,7 +183,7 @@ public class CFSecRamSecSysRoleTable
 
 	@Override
 	public ICFSecSecSysRole readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId )
+		$implIJavaAtomType$ SecSysRoleId )
 	{
 		final String S_ProcName = "CFSecRamSecSysRole.readDerivedByIdIdx() ";
 		ICFSecSecSysRole buff;
@@ -198,7 +198,7 @@ public class CFSecRamSecSysRoleTable
 
 	@Override
 	public ICFSecSecSysRole readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecSysRole.readRec";
 		ICFSecSecSysRole buff = readDerived( Authorization, PKey );
@@ -210,7 +210,7 @@ public class CFSecRamSecSysRoleTable
 
 	@Override
 	public ICFSecSecSysRole lockRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "lockRec";
 		ICFSecSecSysRole buff = readDerived( Authorization, PKey );
@@ -238,7 +238,7 @@ public class CFSecRamSecSysRoleTable
 
 	@Override
 	public ICFSecSecSysRole readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId )
+		$implIJavaAtomType$ SecSysRoleId )
 	{
 		final String S_ProcName = "CFSecRamSecSysRole.readRecByIdIdx() ";
 		ICFSecSecSysRole buff = readDerivedByIdIdx( Authorization,
@@ -253,7 +253,7 @@ public class CFSecRamSecSysRoleTable
 
 	@Override
 	public ICFSecSecSysRole readRecByUNameIdx( ICFSecAuthorization Authorization,
-		String Name )
+		$implIJavaAtomType$ Name )
 	{
 		final String S_ProcName = "CFSecRamSecSysRole.readRecByUNameIdx() ";
 		ICFSecSecSysRole buff = readDerivedByUNameIdx( Authorization,
@@ -270,7 +270,7 @@ public class CFSecRamSecSysRoleTable
 		ICFSecSecSysRole iBuff )
 	{
 		CFSecBuffSecSysRole Buff = (CFSecBuffSecSysRole)ensureRec(iBuff);
-		ICFLibKeyHash256 pkey = (ICFLibKeyHash256)Buff.getPKey();
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)Buff.getPKey();
 		CFSecBuffSecSysRole existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
@@ -309,7 +309,7 @@ public class CFSecRamSecSysRoleTable
 
 		// Update is valid
 
-		Map< ICFLibKeyHash256, CFSecBuffSecSysRole > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSysRole > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -327,7 +327,7 @@ public class CFSecRamSecSysRoleTable
 		final String S_ProcName = "CFSecRamSecSysRoleTable.deleteSecSysRole() ";
 		CFSecBuffSecSysRole Buff = (CFSecBuffSecSysRole)ensureRec(iBuff);
 		int classCode;
-		ICFLibKeyHash256 pkey = (ICFLibKeyHash256)(Buff.getPKey());
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)(Buff.getPKey());
 		CFSecBuffSecSysRole existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
@@ -348,7 +348,7 @@ public class CFSecRamSecSysRoleTable
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< ICFLibKeyHash256, CFSecBuffSecSysRole > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSysRole > subdict;
 
 		dictByPKey.remove( pkey );
 
@@ -357,7 +357,7 @@ public class CFSecRamSecSysRoleTable
 	}
 	@Override
 	public void deleteSecSysRoleByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ argKey )
 	{
 		boolean anyNotNull = false;
 		anyNotNull = true;
@@ -384,7 +384,7 @@ public class CFSecRamSecSysRoleTable
 
 	@Override
 	public void deleteSecSysRoleByUNameIdx( ICFSecAuthorization Authorization,
-		String argName )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argName )
 	{
 		CFSecBuffSecSysRoleByUNameIdxKey key = (CFSecBuffSecSysRoleByUNameIdxKey)schema.getCFSecBuffFactory().getFactorySecSysRole().newByUNameIdxKey();
 		key.setRequiredName( argName );

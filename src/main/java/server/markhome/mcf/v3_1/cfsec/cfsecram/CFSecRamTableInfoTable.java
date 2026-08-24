@@ -50,25 +50,25 @@ public class CFSecRamTableInfoTable
 	implements ICFSecTableInfoTable
 {
 	private ICFSecSchema schema;
-	private Map< Integer,
+	private Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffTableInfo > dictByPKey
-		= new HashMap< Integer,
+		= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffTableInfo >();
 	private Map< CFSecBuffTableInfoByTableNameIdxKey,
 			CFSecBuffTableInfo > dictByTableNameIdx
 		= new HashMap< CFSecBuffTableInfoByTableNameIdxKey,
 			CFSecBuffTableInfo >();
 	private Map< CFSecBuffTableInfoBySuperNameIdxKey,
-				Map< Integer,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffTableInfo >> dictBySuperNameIdx
 		= new HashMap< CFSecBuffTableInfoBySuperNameIdxKey,
-				Map< Integer,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffTableInfo >>();
 	private Map< CFSecBuffTableInfoBySchemaNameIdxKey,
-				Map< Integer,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffTableInfo >> dictBySchemaNameIdx
 		= new HashMap< CFSecBuffTableInfoBySchemaNameIdxKey,
-				Map< Integer,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffTableInfo >>();
 	private Map< CFSecBuffTableInfoBySchemaBkCodeIdxKey,
 			CFSecBuffTableInfo > dictBySchemaBkCodeIdx
@@ -94,7 +94,7 @@ public class CFSecRamTableInfoTable
 		final String S_ProcName = "createTableInfo";
 		
 		CFSecBuffTableInfo Buff = (CFSecBuffTableInfo)ensureRec(iBuff);
-		Integer pkey;
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey;
 		pkey = schema.nextTableInfoIdGen();
 		Buff.setRequiredTableInfoId( pkey );
 		CFSecBuffTableInfoByTableNameIdxKey keyTableNameIdx = (CFSecBuffTableInfoByTableNameIdxKey)schema.getCFSecBuffFactory().getFactoryTableInfo().newByTableNameIdxKey();
@@ -151,22 +151,22 @@ public class CFSecRamTableInfoTable
 
 		dictByTableNameIdx.put( keyTableNameIdx, Buff );
 
-		Map< Integer, CFSecBuffTableInfo > subdictSuperNameIdx;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTableInfo > subdictSuperNameIdx;
 		if( dictBySuperNameIdx.containsKey( keySuperNameIdx ) ) {
 			subdictSuperNameIdx = dictBySuperNameIdx.get( keySuperNameIdx );
 		}
 		else {
-			subdictSuperNameIdx = new HashMap< Integer, CFSecBuffTableInfo >();
+			subdictSuperNameIdx = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTableInfo >();
 			dictBySuperNameIdx.put( keySuperNameIdx, subdictSuperNameIdx );
 		}
 		subdictSuperNameIdx.put( pkey, Buff );
 
-		Map< Integer, CFSecBuffTableInfo > subdictSchemaNameIdx;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTableInfo > subdictSchemaNameIdx;
 		if( dictBySchemaNameIdx.containsKey( keySchemaNameIdx ) ) {
 			subdictSchemaNameIdx = dictBySchemaNameIdx.get( keySchemaNameIdx );
 		}
 		else {
-			subdictSchemaNameIdx = new HashMap< Integer, CFSecBuffTableInfo >();
+			subdictSchemaNameIdx = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTableInfo >();
 			dictBySchemaNameIdx.put( keySchemaNameIdx, subdictSchemaNameIdx );
 		}
 		subdictSchemaNameIdx.put( pkey, Buff );
@@ -193,7 +193,7 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public ICFSecTableInfo readDerived( ICFSecAuthorization Authorization,
-		Integer PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamTableInfo.readDerived";
 		ICFSecTableInfo buff;
@@ -211,7 +211,7 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public ICFSecTableInfo lockDerived( ICFSecAuthorization Authorization,
-		Integer PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamTableInfo.lockDerived";
 		ICFSecTableInfo buff;
@@ -238,7 +238,7 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public ICFSecTableInfo readDerivedByTableNameIdx( ICFSecAuthorization Authorization,
-		String TableName )
+		$implIJavaAtomType$ TableName )
 	{
 		final String S_ProcName = "CFSecRamTableInfo.readDerivedByTableNameIdx";
 		CFSecBuffTableInfoByTableNameIdxKey key = (CFSecBuffTableInfoByTableNameIdxKey)schema.getCFSecBuffFactory().getFactoryTableInfo().newByTableNameIdxKey();
@@ -256,7 +256,7 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public ICFSecTableInfo[] readDerivedBySuperNameIdx( ICFSecAuthorization Authorization,
-		String SuperName )
+		$implIJavaAtomType$ SuperName )
 	{
 		final String S_ProcName = "CFSecRamTableInfo.readDerivedBySuperNameIdx";
 		CFSecBuffTableInfoBySuperNameIdxKey key = (CFSecBuffTableInfoBySuperNameIdxKey)schema.getCFSecBuffFactory().getFactoryTableInfo().newBySuperNameIdxKey();
@@ -264,7 +264,7 @@ public class CFSecRamTableInfoTable
 		key.setOptionalSuperName( SuperName );
 		ICFSecTableInfo[] recArray;
 		if( dictBySuperNameIdx.containsKey( key ) ) {
-			Map< Integer, CFSecBuffTableInfo > subdictSuperNameIdx
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTableInfo > subdictSuperNameIdx
 				= dictBySuperNameIdx.get( key );
 			recArray = new ICFSecTableInfo[ subdictSuperNameIdx.size() ];
 			Iterator< CFSecBuffTableInfo > iter = subdictSuperNameIdx.values().iterator();
@@ -274,8 +274,8 @@ public class CFSecRamTableInfoTable
 			}
 		}
 		else {
-			Map< Integer, CFSecBuffTableInfo > subdictSuperNameIdx
-				= new HashMap< Integer, CFSecBuffTableInfo >();
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTableInfo > subdictSuperNameIdx
+				= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTableInfo >();
 			dictBySuperNameIdx.put( key, subdictSuperNameIdx );
 			recArray = new ICFSecTableInfo[0];
 		}
@@ -284,7 +284,7 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public ICFSecTableInfo[] readDerivedBySchemaNameIdx( ICFSecAuthorization Authorization,
-		String SchemaName )
+		$implIJavaAtomType$ SchemaName )
 	{
 		final String S_ProcName = "CFSecRamTableInfo.readDerivedBySchemaNameIdx";
 		CFSecBuffTableInfoBySchemaNameIdxKey key = (CFSecBuffTableInfoBySchemaNameIdxKey)schema.getCFSecBuffFactory().getFactoryTableInfo().newBySchemaNameIdxKey();
@@ -292,7 +292,7 @@ public class CFSecRamTableInfoTable
 		key.setRequiredSchemaName( SchemaName );
 		ICFSecTableInfo[] recArray;
 		if( dictBySchemaNameIdx.containsKey( key ) ) {
-			Map< Integer, CFSecBuffTableInfo > subdictSchemaNameIdx
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTableInfo > subdictSchemaNameIdx
 				= dictBySchemaNameIdx.get( key );
 			recArray = new ICFSecTableInfo[ subdictSchemaNameIdx.size() ];
 			Iterator< CFSecBuffTableInfo > iter = subdictSchemaNameIdx.values().iterator();
@@ -302,8 +302,8 @@ public class CFSecRamTableInfoTable
 			}
 		}
 		else {
-			Map< Integer, CFSecBuffTableInfo > subdictSchemaNameIdx
-				= new HashMap< Integer, CFSecBuffTableInfo >();
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTableInfo > subdictSchemaNameIdx
+				= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTableInfo >();
 			dictBySchemaNameIdx.put( key, subdictSchemaNameIdx );
 			recArray = new ICFSecTableInfo[0];
 		}
@@ -312,8 +312,8 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public ICFSecTableInfo readDerivedBySchemaBkCodeIdx( ICFSecAuthorization Authorization,
-		String SchemaName,
-		int BackingClassCode )
+		$implIJavaAtomType$ SchemaName,
+		$implIJavaAtomType$ BackingClassCode )
 	{
 		final String S_ProcName = "CFSecRamTableInfo.readDerivedBySchemaBkCodeIdx";
 		CFSecBuffTableInfoBySchemaBkCodeIdxKey key = (CFSecBuffTableInfoBySchemaBkCodeIdxKey)schema.getCFSecBuffFactory().getFactoryTableInfo().newBySchemaBkCodeIdxKey();
@@ -332,7 +332,7 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public ICFSecTableInfo readDerivedBySchemaRTCodeIdx( ICFSecAuthorization Authorization,
-		int RuntimeClassCode )
+		$implIJavaAtomType$ RuntimeClassCode )
 	{
 		final String S_ProcName = "CFSecRamTableInfo.readDerivedBySchemaRTCodeIdx";
 		CFSecBuffTableInfoBySchemaRTCodeIdxKey key = (CFSecBuffTableInfoBySchemaRTCodeIdxKey)schema.getCFSecBuffFactory().getFactoryTableInfo().newBySchemaRTCodeIdxKey();
@@ -350,7 +350,7 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public ICFSecTableInfo readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		int TableInfoId )
+		$implIJavaAtomType$ TableInfoId )
 	{
 		final String S_ProcName = "CFSecRamTableInfo.readDerivedByIdIdx() ";
 		ICFSecTableInfo buff;
@@ -365,7 +365,7 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public ICFSecTableInfo readRec( ICFSecAuthorization Authorization,
-		Integer PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamTableInfo.readRec";
 		ICFSecTableInfo buff = readDerived( Authorization, PKey );
@@ -377,7 +377,7 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public ICFSecTableInfo lockRec( ICFSecAuthorization Authorization,
-		Integer PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "lockRec";
 		ICFSecTableInfo buff = readDerived( Authorization, PKey );
@@ -405,7 +405,7 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public ICFSecTableInfo readRecByIdIdx( ICFSecAuthorization Authorization,
-		int TableInfoId )
+		$implIJavaAtomType$ TableInfoId )
 	{
 		final String S_ProcName = "CFSecRamTableInfo.readRecByIdIdx() ";
 		ICFSecTableInfo buff = readDerivedByIdIdx( Authorization,
@@ -420,7 +420,7 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public ICFSecTableInfo readRecByTableNameIdx( ICFSecAuthorization Authorization,
-		String TableName )
+		$implIJavaAtomType$ TableName )
 	{
 		final String S_ProcName = "CFSecRamTableInfo.readRecByTableNameIdx() ";
 		ICFSecTableInfo buff = readDerivedByTableNameIdx( Authorization,
@@ -435,7 +435,7 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public ICFSecTableInfo[] readRecBySuperNameIdx( ICFSecAuthorization Authorization,
-		String SuperName )
+		$implIJavaAtomType$ SuperName )
 	{
 		final String S_ProcName = "CFSecRamTableInfo.readRecBySuperNameIdx() ";
 		ICFSecTableInfo buff;
@@ -453,7 +453,7 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public ICFSecTableInfo[] readRecBySchemaNameIdx( ICFSecAuthorization Authorization,
-		String SchemaName )
+		$implIJavaAtomType$ SchemaName )
 	{
 		final String S_ProcName = "CFSecRamTableInfo.readRecBySchemaNameIdx() ";
 		ICFSecTableInfo buff;
@@ -471,8 +471,8 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public ICFSecTableInfo readRecBySchemaBkCodeIdx( ICFSecAuthorization Authorization,
-		String SchemaName,
-		int BackingClassCode )
+		$implIJavaAtomType$ SchemaName,
+		$implIJavaAtomType$ BackingClassCode )
 	{
 		final String S_ProcName = "CFSecRamTableInfo.readRecBySchemaBkCodeIdx() ";
 		ICFSecTableInfo buff = readDerivedBySchemaBkCodeIdx( Authorization,
@@ -488,7 +488,7 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public ICFSecTableInfo readRecBySchemaRTCodeIdx( ICFSecAuthorization Authorization,
-		int RuntimeClassCode )
+		$implIJavaAtomType$ RuntimeClassCode )
 	{
 		final String S_ProcName = "CFSecRamTableInfo.readRecBySchemaRTCodeIdx() ";
 		ICFSecTableInfo buff = readDerivedBySchemaRTCodeIdx( Authorization,
@@ -505,7 +505,7 @@ public class CFSecRamTableInfoTable
 		ICFSecTableInfo iBuff )
 	{
 		CFSecBuffTableInfo Buff = (CFSecBuffTableInfo)ensureRec(iBuff);
-		Integer pkey = (Integer)Buff.getPKey();
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)Buff.getPKey();
 		CFSecBuffTableInfo existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
@@ -590,7 +590,7 @@ public class CFSecRamTableInfoTable
 
 		// Update is valid
 
-		Map< Integer, CFSecBuffTableInfo > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTableInfo > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -606,7 +606,7 @@ public class CFSecRamTableInfoTable
 			subdict = dictBySuperNameIdx.get( newKeySuperNameIdx );
 		}
 		else {
-			subdict = new HashMap< Integer, CFSecBuffTableInfo >();
+			subdict = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTableInfo >();
 			dictBySuperNameIdx.put( newKeySuperNameIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -619,7 +619,7 @@ public class CFSecRamTableInfoTable
 			subdict = dictBySchemaNameIdx.get( newKeySchemaNameIdx );
 		}
 		else {
-			subdict = new HashMap< Integer, CFSecBuffTableInfo >();
+			subdict = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTableInfo >();
 			dictBySchemaNameIdx.put( newKeySchemaNameIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -640,7 +640,7 @@ public class CFSecRamTableInfoTable
 		final String S_ProcName = "CFSecRamTableInfoTable.deleteTableInfo() ";
 		CFSecBuffTableInfo Buff = (CFSecBuffTableInfo)ensureRec(iBuff);
 		int classCode;
-		Integer pkey = (Integer)(Buff.getPKey());
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)(Buff.getPKey());
 		CFSecBuffTableInfo existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
@@ -677,7 +677,7 @@ public class CFSecRamTableInfoTable
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< Integer, CFSecBuffTableInfo > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTableInfo > subdict;
 
 		dictByPKey.remove( pkey );
 
@@ -696,7 +696,7 @@ public class CFSecRamTableInfoTable
 	}
 	@Override
 	public void deleteTableInfoByIdIdx( ICFSecAuthorization Authorization,
-		Integer argKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ argKey )
 	{
 		boolean anyNotNull = false;
 		anyNotNull = true;
@@ -723,7 +723,7 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public void deleteTableInfoByTableNameIdx( ICFSecAuthorization Authorization,
-		String argTableName )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argTableName )
 	{
 		CFSecBuffTableInfoByTableNameIdxKey key = (CFSecBuffTableInfoByTableNameIdxKey)schema.getCFSecBuffFactory().getFactoryTableInfo().newByTableNameIdxKey();
 		key.setRequiredTableName( argTableName );
@@ -759,7 +759,7 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public void deleteTableInfoBySuperNameIdx( ICFSecAuthorization Authorization,
-		String argSuperName )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argSuperName )
 	{
 		CFSecBuffTableInfoBySuperNameIdxKey key = (CFSecBuffTableInfoBySuperNameIdxKey)schema.getCFSecBuffFactory().getFactoryTableInfo().newBySuperNameIdxKey();
 		key.setOptionalSuperName( argSuperName );
@@ -797,7 +797,7 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public void deleteTableInfoBySchemaNameIdx( ICFSecAuthorization Authorization,
-		String argSchemaName )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argSchemaName )
 	{
 		CFSecBuffTableInfoBySchemaNameIdxKey key = (CFSecBuffTableInfoBySchemaNameIdxKey)schema.getCFSecBuffFactory().getFactoryTableInfo().newBySchemaNameIdxKey();
 		key.setRequiredSchemaName( argSchemaName );
@@ -833,8 +833,8 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public void deleteTableInfoBySchemaBkCodeIdx( ICFSecAuthorization Authorization,
-		String argSchemaName,
-		int argBackingClassCode )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argSchemaName,
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argBackingClassCode )
 	{
 		CFSecBuffTableInfoBySchemaBkCodeIdxKey key = (CFSecBuffTableInfoBySchemaBkCodeIdxKey)schema.getCFSecBuffFactory().getFactoryTableInfo().newBySchemaBkCodeIdxKey();
 		key.setRequiredSchemaName( argSchemaName );
@@ -872,7 +872,7 @@ public class CFSecRamTableInfoTable
 
 	@Override
 	public void deleteTableInfoBySchemaRTCodeIdx( ICFSecAuthorization Authorization,
-		int argRuntimeClassCode )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argRuntimeClassCode )
 	{
 		CFSecBuffTableInfoBySchemaRTCodeIdxKey key = (CFSecBuffTableInfoBySchemaRTCodeIdxKey)schema.getCFSecBuffFactory().getFactoryTableInfo().newBySchemaRTCodeIdxKey();
 		key.setRequiredRuntimeClassCode( argRuntimeClassCode );

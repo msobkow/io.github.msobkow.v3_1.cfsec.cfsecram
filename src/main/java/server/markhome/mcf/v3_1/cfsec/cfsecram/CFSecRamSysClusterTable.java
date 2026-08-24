@@ -50,15 +50,15 @@ public class CFSecRamSysClusterTable
 	implements ICFSecSysClusterTable
 {
 	private ICFSecSchema schema;
-	private Map< Integer,
+	private Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffSysCluster > dictByPKey
-		= new HashMap< Integer,
+		= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffSysCluster >();
 	private Map< CFSecBuffSysClusterByClusterIdxKey,
-				Map< Integer,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSysCluster >> dictByClusterIdx
 		= new HashMap< CFSecBuffSysClusterByClusterIdxKey,
-				Map< Integer,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSysCluster >>();
 
 	public CFSecRamSysClusterTable( ICFSecSchema argSchema ) {
@@ -76,7 +76,7 @@ public class CFSecRamSysClusterTable
 		final String S_ProcName = "createSysCluster";
 		
 		CFSecBuffSysCluster Buff = (CFSecBuffSysCluster)ensureRec(iBuff);
-		Integer pkey;
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey;
 		pkey = Buff.getRequiredSingletonId();
 		Buff.setRequiredSingletonId( pkey );
 		CFSecBuffSysClusterByClusterIdxKey keyClusterIdx = (CFSecBuffSysClusterByClusterIdxKey)schema.getCFSecBuffFactory().getFactorySysCluster().newByClusterIdxKey();
@@ -114,12 +114,12 @@ public class CFSecRamSysClusterTable
 
 		dictByPKey.put( pkey, Buff );
 
-		Map< Integer, CFSecBuffSysCluster > subdictClusterIdx;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSysCluster > subdictClusterIdx;
 		if( dictByClusterIdx.containsKey( keyClusterIdx ) ) {
 			subdictClusterIdx = dictByClusterIdx.get( keyClusterIdx );
 		}
 		else {
-			subdictClusterIdx = new HashMap< Integer, CFSecBuffSysCluster >();
+			subdictClusterIdx = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSysCluster >();
 			dictByClusterIdx.put( keyClusterIdx, subdictClusterIdx );
 		}
 		subdictClusterIdx.put( pkey, Buff );
@@ -142,7 +142,7 @@ public class CFSecRamSysClusterTable
 
 	@Override
 	public ICFSecSysCluster readDerived( ICFSecAuthorization Authorization,
-		Integer PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSysCluster.readDerived";
 		ICFSecSysCluster buff;
@@ -160,7 +160,7 @@ public class CFSecRamSysClusterTable
 
 	@Override
 	public ICFSecSysCluster lockDerived( ICFSecAuthorization Authorization,
-		Integer PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSysCluster.lockDerived";
 		ICFSecSysCluster buff;
@@ -187,7 +187,7 @@ public class CFSecRamSysClusterTable
 
 	@Override
 	public ICFSecSysCluster[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId )
+		$implIJavaAtomType$ ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSysCluster.readDerivedByClusterIdx";
 		CFSecBuffSysClusterByClusterIdxKey key = (CFSecBuffSysClusterByClusterIdxKey)schema.getCFSecBuffFactory().getFactorySysCluster().newByClusterIdxKey();
@@ -195,7 +195,7 @@ public class CFSecRamSysClusterTable
 		key.setRequiredClusterId( ClusterId );
 		ICFSecSysCluster[] recArray;
 		if( dictByClusterIdx.containsKey( key ) ) {
-			Map< Integer, CFSecBuffSysCluster > subdictClusterIdx
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSysCluster > subdictClusterIdx
 				= dictByClusterIdx.get( key );
 			recArray = new ICFSecSysCluster[ subdictClusterIdx.size() ];
 			Iterator< CFSecBuffSysCluster > iter = subdictClusterIdx.values().iterator();
@@ -205,8 +205,8 @@ public class CFSecRamSysClusterTable
 			}
 		}
 		else {
-			Map< Integer, CFSecBuffSysCluster > subdictClusterIdx
-				= new HashMap< Integer, CFSecBuffSysCluster >();
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSysCluster > subdictClusterIdx
+				= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSysCluster >();
 			dictByClusterIdx.put( key, subdictClusterIdx );
 			recArray = new ICFSecSysCluster[0];
 		}
@@ -215,7 +215,7 @@ public class CFSecRamSysClusterTable
 
 	@Override
 	public ICFSecSysCluster readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		int SingletonId )
+		$implIJavaAtomType$ SingletonId )
 	{
 		final String S_ProcName = "CFSecRamSysCluster.readDerivedByIdIdx() ";
 		ICFSecSysCluster buff;
@@ -230,7 +230,7 @@ public class CFSecRamSysClusterTable
 
 	@Override
 	public ICFSecSysCluster readRec( ICFSecAuthorization Authorization,
-		Integer PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSysCluster.readRec";
 		ICFSecSysCluster buff = readDerived( Authorization, PKey );
@@ -242,7 +242,7 @@ public class CFSecRamSysClusterTable
 
 	@Override
 	public ICFSecSysCluster lockRec( ICFSecAuthorization Authorization,
-		Integer PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "lockRec";
 		ICFSecSysCluster buff = readDerived( Authorization, PKey );
@@ -270,7 +270,7 @@ public class CFSecRamSysClusterTable
 
 	@Override
 	public ICFSecSysCluster readRecByIdIdx( ICFSecAuthorization Authorization,
-		int SingletonId )
+		$implIJavaAtomType$ SingletonId )
 	{
 		final String S_ProcName = "CFSecRamSysCluster.readRecByIdIdx() ";
 		ICFSecSysCluster buff = readDerivedByIdIdx( Authorization,
@@ -285,7 +285,7 @@ public class CFSecRamSysClusterTable
 
 	@Override
 	public ICFSecSysCluster[] readRecByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId )
+		$implIJavaAtomType$ ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSysCluster.readRecByClusterIdx() ";
 		ICFSecSysCluster buff;
@@ -305,7 +305,7 @@ public class CFSecRamSysClusterTable
 		ICFSecSysCluster iBuff )
 	{
 		CFSecBuffSysCluster Buff = (CFSecBuffSysCluster)ensureRec(iBuff);
-		Integer pkey = (Integer)Buff.getPKey();
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)Buff.getPKey();
 		CFSecBuffSysCluster existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
@@ -354,7 +354,7 @@ public class CFSecRamSysClusterTable
 
 		// Update is valid
 
-		Map< Integer, CFSecBuffSysCluster > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSysCluster > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -367,7 +367,7 @@ public class CFSecRamSysClusterTable
 			subdict = dictByClusterIdx.get( newKeyClusterIdx );
 		}
 		else {
-			subdict = new HashMap< Integer, CFSecBuffSysCluster >();
+			subdict = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSysCluster >();
 			dictByClusterIdx.put( newKeyClusterIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -382,7 +382,7 @@ public class CFSecRamSysClusterTable
 		final String S_ProcName = "CFSecRamSysClusterTable.deleteSysCluster() ";
 		CFSecBuffSysCluster Buff = (CFSecBuffSysCluster)ensureRec(iBuff);
 		int classCode;
-		Integer pkey = (Integer)(Buff.getPKey());
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)(Buff.getPKey());
 		CFSecBuffSysCluster existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
@@ -399,7 +399,7 @@ public class CFSecRamSysClusterTable
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< Integer, CFSecBuffSysCluster > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSysCluster > subdict;
 
 		dictByPKey.remove( pkey );
 
@@ -409,7 +409,7 @@ public class CFSecRamSysClusterTable
 	}
 	@Override
 	public void deleteSysClusterByIdIdx( ICFSecAuthorization Authorization,
-		Integer argKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ argKey )
 	{
 		boolean anyNotNull = false;
 		anyNotNull = true;
@@ -436,7 +436,7 @@ public class CFSecRamSysClusterTable
 
 	@Override
 	public void deleteSysClusterByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argClusterId )
 	{
 		CFSecBuffSysClusterByClusterIdxKey key = (CFSecBuffSysClusterByClusterIdxKey)schema.getCFSecBuffFactory().getFactorySysCluster().newByClusterIdxKey();
 		key.setRequiredClusterId( argClusterId );

@@ -167,15 +167,15 @@ public class CFSecRamSecTentRoleMembTable
 
 	@Override
 	public ICFSecSecTentRoleMemb readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecTentRoleId,
-		String LoginId )
+		$implIJavaAtomType$ SecTentRoleId,
+		$implIJavaAtomType$ LoginId )
 	{
-		{	ICFLibKeyHash256 testSecTentRoleId = SecTentRoleId;
+		{	$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ testSecTentRoleId = SecTentRoleId;
 			if (testSecTentRoleId == null) {
 				return( null );
 			}
 		}
-		{	String testLoginId = LoginId;
+		{	$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ testLoginId = LoginId;
 			if (testLoginId == null) {
 				return( null );
 			}
@@ -235,7 +235,7 @@ public class CFSecRamSecTentRoleMembTable
 
 	@Override
 	public ICFSecSecTentRoleMemb[] readDerivedByTentRoleIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecTentRoleId )
+		$implIJavaAtomType$ SecTentRoleId )
 	{
 		final String S_ProcName = "CFSecRamSecTentRoleMemb.readDerivedByTentRoleIdx";
 		CFSecBuffSecTentRoleMembByTentRoleIdxKey key = (CFSecBuffSecTentRoleMembByTentRoleIdxKey)schema.getCFSecBuffFactory().getFactorySecTentRoleMemb().newByTentRoleIdxKey();
@@ -263,7 +263,7 @@ public class CFSecRamSecTentRoleMembTable
 
 	@Override
 	public ICFSecSecTentRoleMemb[] readDerivedByUserIdx( ICFSecAuthorization Authorization,
-		String LoginId )
+		$implIJavaAtomType$ LoginId )
 	{
 		final String S_ProcName = "CFSecRamSecTentRoleMemb.readDerivedByUserIdx";
 		CFSecBuffSecTentRoleMembByUserIdxKey key = (CFSecBuffSecTentRoleMembByUserIdxKey)schema.getCFSecBuffFactory().getFactorySecTentRoleMemb().newByUserIdxKey();
@@ -291,8 +291,8 @@ public class CFSecRamSecTentRoleMembTable
 
 	@Override
 	public ICFSecSecTentRoleMemb readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecTentRoleId,
-		String LoginId )
+		$implIJavaAtomType$ SecTentRoleId,
+		$implIJavaAtomType$ LoginId )
 	{
 		final String S_ProcName = "CFSecRamSecTentRoleMemb.readDerivedByIdIdx() ";
 		CFSecBuffSecTentRoleMembPKey key = (CFSecBuffSecTentRoleMembPKey)(schema.getCFSecBuffFactory().getFactorySecTentRoleMemb().newPKey());
@@ -310,8 +310,8 @@ public class CFSecRamSecTentRoleMembTable
 
 	@Override
 	public ICFSecSecTentRoleMemb readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecTentRoleId,
-		String LoginId )
+		$implIJavaAtomType$ SecTentRoleId,
+		$implIJavaAtomType$ LoginId )
 	{
 		CFSecBuffSecTentRoleMembPKey key = (CFSecBuffSecTentRoleMembPKey)(schema.getCFSecBuffFactory().getFactorySecTentRoleMemb().newPKey());
 		key.setRequiredSecTentRoleId( SecTentRoleId );
@@ -368,8 +368,8 @@ public class CFSecRamSecTentRoleMembTable
 	 */
 	@Override
 	public ICFSecSecTentRoleMemb[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecTentRoleId,
-		String priorLoginId )
+		$implIJavaOptAtomType$ priorSecTentRoleId,
+		$implIJavaOptAtomType$ priorLoginId )
 	{
 		final String S_ProcName = "pageAllRec";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -377,8 +377,8 @@ public class CFSecRamSecTentRoleMembTable
 
 	@Override
 	public ICFSecSecTentRoleMemb readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecTentRoleId,
-		String LoginId )
+		$implIJavaAtomType$ SecTentRoleId,
+		$implIJavaAtomType$ LoginId )
 	{
 		final String S_ProcName = "CFSecRamSecTentRoleMemb.readRecByIdIdx() ";
 		ICFSecSecTentRoleMemb buff = readDerivedByIdIdx( Authorization,
@@ -394,7 +394,7 @@ public class CFSecRamSecTentRoleMembTable
 
 	@Override
 	public ICFSecSecTentRoleMemb[] readRecByTentRoleIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecTentRoleId )
+		$implIJavaAtomType$ SecTentRoleId )
 	{
 		final String S_ProcName = "CFSecRamSecTentRoleMemb.readRecByTentRoleIdx() ";
 		ICFSecSecTentRoleMemb buff;
@@ -412,7 +412,7 @@ public class CFSecRamSecTentRoleMembTable
 
 	@Override
 	public ICFSecSecTentRoleMemb[] readRecByUserIdx( ICFSecAuthorization Authorization,
-		String LoginId )
+		$implIJavaAtomType$ LoginId )
 	{
 		final String S_ProcName = "CFSecRamSecTentRoleMemb.readRecByUserIdx() ";
 		ICFSecSecTentRoleMemb buff;
@@ -441,9 +441,9 @@ public class CFSecRamSecTentRoleMembTable
 	 */
 	@Override
 	public ICFSecSecTentRoleMemb[] pageRecByTentRoleIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecTentRoleId,
-		ICFLibKeyHash256 priorSecTentRoleId,
-		String priorLoginId )
+		$implIJavaAtomType$ SecTentRoleId,
+		$implIJavaOptAtomType$ priorSecTentRoleId,
+		$implIJavaOptAtomType$ priorLoginId )
 	{
 		final String S_ProcName = "pageRecByTentRoleIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -462,9 +462,9 @@ public class CFSecRamSecTentRoleMembTable
 	 */
 	@Override
 	public ICFSecSecTentRoleMemb[] pageRecByUserIdx( ICFSecAuthorization Authorization,
-		String LoginId,
-		ICFLibKeyHash256 priorSecTentRoleId,
-		String priorLoginId )
+		$implIJavaAtomType$ LoginId,
+		$implIJavaOptAtomType$ priorSecTentRoleId,
+		$implIJavaOptAtomType$ priorLoginId )
 	{
 		final String S_ProcName = "pageRecByUserIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -605,8 +605,8 @@ public class CFSecRamSecTentRoleMembTable
 	}
 	@Override
 	public void deleteSecTentRoleMembByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecTentRoleId,
-		String LoginId )
+		$implIJavaAtomType$ SecTentRoleId,
+		$implIJavaAtomType$ LoginId )
 	{
 		CFSecBuffSecTentRoleMembPKey key = (CFSecBuffSecTentRoleMembPKey)(schema.getCFSecBuffFactory().getFactorySecTentRoleMemb().newPKey());
 		key.setRequiredSecTentRoleId( SecTentRoleId );
@@ -649,7 +649,7 @@ public class CFSecRamSecTentRoleMembTable
 
 	@Override
 	public void deleteSecTentRoleMembByTentRoleIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecTentRoleId )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argSecTentRoleId )
 	{
 		CFSecBuffSecTentRoleMembByTentRoleIdxKey key = (CFSecBuffSecTentRoleMembByTentRoleIdxKey)schema.getCFSecBuffFactory().getFactorySecTentRoleMemb().newByTentRoleIdxKey();
 		key.setRequiredSecTentRoleId( argSecTentRoleId );
@@ -686,7 +686,7 @@ public class CFSecRamSecTentRoleMembTable
 
 	@Override
 	public void deleteSecTentRoleMembByUserIdx( ICFSecAuthorization Authorization,
-		String argLoginId )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argLoginId )
 	{
 		CFSecBuffSecTentRoleMembByUserIdxKey key = (CFSecBuffSecTentRoleMembByUserIdxKey)schema.getCFSecBuffFactory().getFactorySecTentRoleMemb().newByUserIdxKey();
 		key.setRequiredLoginId( argLoginId );

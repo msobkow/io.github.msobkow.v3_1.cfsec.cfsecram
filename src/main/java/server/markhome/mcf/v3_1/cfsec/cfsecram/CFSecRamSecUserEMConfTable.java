@@ -50,31 +50,31 @@ public class CFSecRamSecUserEMConfTable
 	implements ICFSecSecUserEMConfTable
 {
 	private ICFSecSchema schema;
-	private Map< ICFLibKeyHash256,
+	private Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffSecUserEMConf > dictByPKey
-		= new HashMap< ICFLibKeyHash256,
+		= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffSecUserEMConf >();
 	private Map< CFSecBuffSecUserEMConfByUUuid6IdxKey,
 			CFSecBuffSecUserEMConf > dictByUUuid6Idx
 		= new HashMap< CFSecBuffSecUserEMConfByUUuid6IdxKey,
 			CFSecBuffSecUserEMConf >();
 	private Map< CFSecBuffSecUserEMConfByConfEMAddrIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecUserEMConf >> dictByConfEMAddrIdx
 		= new HashMap< CFSecBuffSecUserEMConfByConfEMAddrIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecUserEMConf >>();
 	private Map< CFSecBuffSecUserEMConfBySentStampIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecUserEMConf >> dictBySentStampIdx
 		= new HashMap< CFSecBuffSecUserEMConfBySentStampIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecUserEMConf >>();
 	private Map< CFSecBuffSecUserEMConfByNewAcctIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecUserEMConf >> dictByNewAcctIdx
 		= new HashMap< CFSecBuffSecUserEMConfByNewAcctIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecUserEMConf >>();
 
 	public CFSecRamSecUserEMConfTable( ICFSecSchema argSchema ) {
@@ -92,7 +92,7 @@ public class CFSecRamSecUserEMConfTable
 		final String S_ProcName = "createSecUserEMConf";
 		
 		CFSecBuffSecUserEMConf Buff = (CFSecBuffSecUserEMConf)ensureRec(iBuff);
-		ICFLibKeyHash256 pkey;
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey;
 		pkey = Buff.getRequiredSecUserId();
 		pkey = Buff.getRequiredSecUserId();
 		Buff.setRequiredContainerUser( pkey );
@@ -151,32 +151,32 @@ public class CFSecRamSecUserEMConfTable
 
 		dictByUUuid6Idx.put( keyUUuid6Idx, Buff );
 
-		Map< ICFLibKeyHash256, CFSecBuffSecUserEMConf > subdictConfEMAddrIdx;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf > subdictConfEMAddrIdx;
 		if( dictByConfEMAddrIdx.containsKey( keyConfEMAddrIdx ) ) {
 			subdictConfEMAddrIdx = dictByConfEMAddrIdx.get( keyConfEMAddrIdx );
 		}
 		else {
-			subdictConfEMAddrIdx = new HashMap< ICFLibKeyHash256, CFSecBuffSecUserEMConf >();
+			subdictConfEMAddrIdx = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf >();
 			dictByConfEMAddrIdx.put( keyConfEMAddrIdx, subdictConfEMAddrIdx );
 		}
 		subdictConfEMAddrIdx.put( pkey, Buff );
 
-		Map< ICFLibKeyHash256, CFSecBuffSecUserEMConf > subdictSentStampIdx;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf > subdictSentStampIdx;
 		if( dictBySentStampIdx.containsKey( keySentStampIdx ) ) {
 			subdictSentStampIdx = dictBySentStampIdx.get( keySentStampIdx );
 		}
 		else {
-			subdictSentStampIdx = new HashMap< ICFLibKeyHash256, CFSecBuffSecUserEMConf >();
+			subdictSentStampIdx = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf >();
 			dictBySentStampIdx.put( keySentStampIdx, subdictSentStampIdx );
 		}
 		subdictSentStampIdx.put( pkey, Buff );
 
-		Map< ICFLibKeyHash256, CFSecBuffSecUserEMConf > subdictNewAcctIdx;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf > subdictNewAcctIdx;
 		if( dictByNewAcctIdx.containsKey( keyNewAcctIdx ) ) {
 			subdictNewAcctIdx = dictByNewAcctIdx.get( keyNewAcctIdx );
 		}
 		else {
-			subdictNewAcctIdx = new HashMap< ICFLibKeyHash256, CFSecBuffSecUserEMConf >();
+			subdictNewAcctIdx = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf >();
 			dictByNewAcctIdx.put( keyNewAcctIdx, subdictNewAcctIdx );
 		}
 		subdictNewAcctIdx.put( pkey, Buff );
@@ -199,7 +199,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public ICFSecSecUserEMConf readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecUserEMConf.readDerived";
 		ICFSecSecUserEMConf buff;
@@ -217,7 +217,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public ICFSecSecUserEMConf lockDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecUserEMConf.lockDerived";
 		ICFSecSecUserEMConf buff;
@@ -244,7 +244,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public ICFSecSecUserEMConf readDerivedByUUuid6Idx( ICFSecAuthorization Authorization,
-		ICFLibUuid6 EMConfirmationUuid6 )
+		$implIJavaAtomType$ EMConfirmationUuid6 )
 	{
 		final String S_ProcName = "CFSecRamSecUserEMConf.readDerivedByUUuid6Idx";
 		CFSecBuffSecUserEMConfByUUuid6IdxKey key = (CFSecBuffSecUserEMConfByUUuid6IdxKey)schema.getCFSecBuffFactory().getFactorySecUserEMConf().newByUUuid6IdxKey();
@@ -262,7 +262,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public ICFSecSecUserEMConf[] readDerivedByConfEMAddrIdx( ICFSecAuthorization Authorization,
-		String ConfirmEMailAddr )
+		$implIJavaAtomType$ ConfirmEMailAddr )
 	{
 		final String S_ProcName = "CFSecRamSecUserEMConf.readDerivedByConfEMAddrIdx";
 		CFSecBuffSecUserEMConfByConfEMAddrIdxKey key = (CFSecBuffSecUserEMConfByConfEMAddrIdxKey)schema.getCFSecBuffFactory().getFactorySecUserEMConf().newByConfEMAddrIdxKey();
@@ -270,7 +270,7 @@ public class CFSecRamSecUserEMConfTable
 		key.setRequiredConfirmEMailAddr( ConfirmEMailAddr );
 		ICFSecSecUserEMConf[] recArray;
 		if( dictByConfEMAddrIdx.containsKey( key ) ) {
-			Map< ICFLibKeyHash256, CFSecBuffSecUserEMConf > subdictConfEMAddrIdx
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf > subdictConfEMAddrIdx
 				= dictByConfEMAddrIdx.get( key );
 			recArray = new ICFSecSecUserEMConf[ subdictConfEMAddrIdx.size() ];
 			Iterator< CFSecBuffSecUserEMConf > iter = subdictConfEMAddrIdx.values().iterator();
@@ -280,8 +280,8 @@ public class CFSecRamSecUserEMConfTable
 			}
 		}
 		else {
-			Map< ICFLibKeyHash256, CFSecBuffSecUserEMConf > subdictConfEMAddrIdx
-				= new HashMap< ICFLibKeyHash256, CFSecBuffSecUserEMConf >();
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf > subdictConfEMAddrIdx
+				= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf >();
 			dictByConfEMAddrIdx.put( key, subdictConfEMAddrIdx );
 			recArray = new ICFSecSecUserEMConf[0];
 		}
@@ -290,7 +290,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public ICFSecSecUserEMConf[] readDerivedBySentStampIdx( ICFSecAuthorization Authorization,
-		LocalDateTime EMailSentStamp )
+		$implIJavaAtomType$ EMailSentStamp )
 	{
 		final String S_ProcName = "CFSecRamSecUserEMConf.readDerivedBySentStampIdx";
 		CFSecBuffSecUserEMConfBySentStampIdxKey key = (CFSecBuffSecUserEMConfBySentStampIdxKey)schema.getCFSecBuffFactory().getFactorySecUserEMConf().newBySentStampIdxKey();
@@ -298,7 +298,7 @@ public class CFSecRamSecUserEMConfTable
 		key.setRequiredEMailSentStamp( EMailSentStamp );
 		ICFSecSecUserEMConf[] recArray;
 		if( dictBySentStampIdx.containsKey( key ) ) {
-			Map< ICFLibKeyHash256, CFSecBuffSecUserEMConf > subdictSentStampIdx
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf > subdictSentStampIdx
 				= dictBySentStampIdx.get( key );
 			recArray = new ICFSecSecUserEMConf[ subdictSentStampIdx.size() ];
 			Iterator< CFSecBuffSecUserEMConf > iter = subdictSentStampIdx.values().iterator();
@@ -308,8 +308,8 @@ public class CFSecRamSecUserEMConfTable
 			}
 		}
 		else {
-			Map< ICFLibKeyHash256, CFSecBuffSecUserEMConf > subdictSentStampIdx
-				= new HashMap< ICFLibKeyHash256, CFSecBuffSecUserEMConf >();
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf > subdictSentStampIdx
+				= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf >();
 			dictBySentStampIdx.put( key, subdictSentStampIdx );
 			recArray = new ICFSecSecUserEMConf[0];
 		}
@@ -318,7 +318,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public ICFSecSecUserEMConf[] readDerivedByNewAcctIdx( ICFSecAuthorization Authorization,
-		boolean NewAccount )
+		$implIJavaAtomType$ NewAccount )
 	{
 		final String S_ProcName = "CFSecRamSecUserEMConf.readDerivedByNewAcctIdx";
 		CFSecBuffSecUserEMConfByNewAcctIdxKey key = (CFSecBuffSecUserEMConfByNewAcctIdxKey)schema.getCFSecBuffFactory().getFactorySecUserEMConf().newByNewAcctIdxKey();
@@ -326,7 +326,7 @@ public class CFSecRamSecUserEMConfTable
 		key.setRequiredNewAccount( NewAccount );
 		ICFSecSecUserEMConf[] recArray;
 		if( dictByNewAcctIdx.containsKey( key ) ) {
-			Map< ICFLibKeyHash256, CFSecBuffSecUserEMConf > subdictNewAcctIdx
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf > subdictNewAcctIdx
 				= dictByNewAcctIdx.get( key );
 			recArray = new ICFSecSecUserEMConf[ subdictNewAcctIdx.size() ];
 			Iterator< CFSecBuffSecUserEMConf > iter = subdictNewAcctIdx.values().iterator();
@@ -336,8 +336,8 @@ public class CFSecRamSecUserEMConfTable
 			}
 		}
 		else {
-			Map< ICFLibKeyHash256, CFSecBuffSecUserEMConf > subdictNewAcctIdx
-				= new HashMap< ICFLibKeyHash256, CFSecBuffSecUserEMConf >();
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf > subdictNewAcctIdx
+				= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf >();
 			dictByNewAcctIdx.put( key, subdictNewAcctIdx );
 			recArray = new ICFSecSecUserEMConf[0];
 		}
@@ -346,7 +346,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public ICFSecSecUserEMConf readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		$implIJavaAtomType$ SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecUserEMConf.readDerivedByIdIdx() ";
 		ICFSecSecUserEMConf buff;
@@ -361,7 +361,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public ICFSecSecUserEMConf readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecUserEMConf.readRec";
 		ICFSecSecUserEMConf buff = readDerived( Authorization, PKey );
@@ -373,7 +373,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public ICFSecSecUserEMConf lockRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "lockRec";
 		ICFSecSecUserEMConf buff = readDerived( Authorization, PKey );
@@ -408,7 +408,7 @@ public class CFSecRamSecUserEMConfTable
 	 */
 	@Override
 	public ICFSecSecUserEMConf[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecUserId )
+		$implIJavaOptAtomType$ priorSecUserId )
 	{
 		final String S_ProcName = "pageAllRec";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -416,7 +416,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public ICFSecSecUserEMConf readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		$implIJavaAtomType$ SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecUserEMConf.readRecByIdIdx() ";
 		ICFSecSecUserEMConf buff = readDerivedByIdIdx( Authorization,
@@ -431,7 +431,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public ICFSecSecUserEMConf readRecByUUuid6Idx( ICFSecAuthorization Authorization,
-		ICFLibUuid6 EMConfirmationUuid6 )
+		$implIJavaAtomType$ EMConfirmationUuid6 )
 	{
 		final String S_ProcName = "CFSecRamSecUserEMConf.readRecByUUuid6Idx() ";
 		ICFSecSecUserEMConf buff = readDerivedByUUuid6Idx( Authorization,
@@ -446,7 +446,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public ICFSecSecUserEMConf[] readRecByConfEMAddrIdx( ICFSecAuthorization Authorization,
-		String ConfirmEMailAddr )
+		$implIJavaAtomType$ ConfirmEMailAddr )
 	{
 		final String S_ProcName = "CFSecRamSecUserEMConf.readRecByConfEMAddrIdx() ";
 		ICFSecSecUserEMConf buff;
@@ -464,7 +464,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public ICFSecSecUserEMConf[] readRecBySentStampIdx( ICFSecAuthorization Authorization,
-		LocalDateTime EMailSentStamp )
+		$implIJavaAtomType$ EMailSentStamp )
 	{
 		final String S_ProcName = "CFSecRamSecUserEMConf.readRecBySentStampIdx() ";
 		ICFSecSecUserEMConf buff;
@@ -482,7 +482,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public ICFSecSecUserEMConf[] readRecByNewAcctIdx( ICFSecAuthorization Authorization,
-		boolean NewAccount )
+		$implIJavaAtomType$ NewAccount )
 	{
 		final String S_ProcName = "CFSecRamSecUserEMConf.readRecByNewAcctIdx() ";
 		ICFSecSecUserEMConf buff;
@@ -511,8 +511,8 @@ public class CFSecRamSecUserEMConfTable
 	 */
 	@Override
 	public ICFSecSecUserEMConf[] pageRecByConfEMAddrIdx( ICFSecAuthorization Authorization,
-		String ConfirmEMailAddr,
-		ICFLibKeyHash256 priorSecUserId )
+		$implIJavaAtomType$ ConfirmEMailAddr,
+		$implIJavaOptAtomType$ priorSecUserId )
 	{
 		final String S_ProcName = "pageRecByConfEMAddrIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -531,8 +531,8 @@ public class CFSecRamSecUserEMConfTable
 	 */
 	@Override
 	public ICFSecSecUserEMConf[] pageRecBySentStampIdx( ICFSecAuthorization Authorization,
-		LocalDateTime EMailSentStamp,
-		ICFLibKeyHash256 priorSecUserId )
+		$implIJavaAtomType$ EMailSentStamp,
+		$implIJavaOptAtomType$ priorSecUserId )
 	{
 		final String S_ProcName = "pageRecBySentStampIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -551,8 +551,8 @@ public class CFSecRamSecUserEMConfTable
 	 */
 	@Override
 	public ICFSecSecUserEMConf[] pageRecByNewAcctIdx( ICFSecAuthorization Authorization,
-		boolean NewAccount,
-		ICFLibKeyHash256 priorSecUserId )
+		$implIJavaAtomType$ NewAccount,
+		$implIJavaOptAtomType$ priorSecUserId )
 	{
 		final String S_ProcName = "pageRecByNewAcctIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -562,7 +562,7 @@ public class CFSecRamSecUserEMConfTable
 		ICFSecSecUserEMConf iBuff )
 	{
 		CFSecBuffSecUserEMConf Buff = (CFSecBuffSecUserEMConf)ensureRec(iBuff);
-		ICFLibKeyHash256 pkey = (ICFLibKeyHash256)Buff.getPKey();
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)Buff.getPKey();
 		CFSecBuffSecUserEMConf existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
@@ -639,7 +639,7 @@ public class CFSecRamSecUserEMConfTable
 
 		// Update is valid
 
-		Map< ICFLibKeyHash256, CFSecBuffSecUserEMConf > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -655,7 +655,7 @@ public class CFSecRamSecUserEMConfTable
 			subdict = dictByConfEMAddrIdx.get( newKeyConfEMAddrIdx );
 		}
 		else {
-			subdict = new HashMap< ICFLibKeyHash256, CFSecBuffSecUserEMConf >();
+			subdict = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf >();
 			dictByConfEMAddrIdx.put( newKeyConfEMAddrIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -668,7 +668,7 @@ public class CFSecRamSecUserEMConfTable
 			subdict = dictBySentStampIdx.get( newKeySentStampIdx );
 		}
 		else {
-			subdict = new HashMap< ICFLibKeyHash256, CFSecBuffSecUserEMConf >();
+			subdict = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf >();
 			dictBySentStampIdx.put( newKeySentStampIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -681,7 +681,7 @@ public class CFSecRamSecUserEMConfTable
 			subdict = dictByNewAcctIdx.get( newKeyNewAcctIdx );
 		}
 		else {
-			subdict = new HashMap< ICFLibKeyHash256, CFSecBuffSecUserEMConf >();
+			subdict = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf >();
 			dictByNewAcctIdx.put( newKeyNewAcctIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -696,7 +696,7 @@ public class CFSecRamSecUserEMConfTable
 		final String S_ProcName = "CFSecRamSecUserEMConfTable.deleteSecUserEMConf() ";
 		CFSecBuffSecUserEMConf Buff = (CFSecBuffSecUserEMConf)ensureRec(iBuff);
 		int classCode;
-		ICFLibKeyHash256 pkey = (ICFLibKeyHash256)(Buff.getPKey());
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)(Buff.getPKey());
 		CFSecBuffSecUserEMConf existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
@@ -722,7 +722,7 @@ public class CFSecRamSecUserEMConfTable
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< ICFLibKeyHash256, CFSecBuffSecUserEMConf > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserEMConf > subdict;
 
 		dictByPKey.remove( pkey );
 
@@ -740,7 +740,7 @@ public class CFSecRamSecUserEMConfTable
 	}
 	@Override
 	public void deleteSecUserEMConfByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ argKey )
 	{
 		boolean anyNotNull = false;
 		anyNotNull = true;
@@ -767,7 +767,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public void deleteSecUserEMConfByUUuid6Idx( ICFSecAuthorization Authorization,
-		ICFLibUuid6 argEMConfirmationUuid6 )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argEMConfirmationUuid6 )
 	{
 		CFSecBuffSecUserEMConfByUUuid6IdxKey key = (CFSecBuffSecUserEMConfByUUuid6IdxKey)schema.getCFSecBuffFactory().getFactorySecUserEMConf().newByUUuid6IdxKey();
 		key.setRequiredEMConfirmationUuid6( argEMConfirmationUuid6 );
@@ -803,7 +803,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public void deleteSecUserEMConfByConfEMAddrIdx( ICFSecAuthorization Authorization,
-		String argConfirmEMailAddr )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argConfirmEMailAddr )
 	{
 		CFSecBuffSecUserEMConfByConfEMAddrIdxKey key = (CFSecBuffSecUserEMConfByConfEMAddrIdxKey)schema.getCFSecBuffFactory().getFactorySecUserEMConf().newByConfEMAddrIdxKey();
 		key.setRequiredConfirmEMailAddr( argConfirmEMailAddr );
@@ -839,7 +839,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public void deleteSecUserEMConfBySentStampIdx( ICFSecAuthorization Authorization,
-		LocalDateTime argEMailSentStamp )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argEMailSentStamp )
 	{
 		CFSecBuffSecUserEMConfBySentStampIdxKey key = (CFSecBuffSecUserEMConfBySentStampIdxKey)schema.getCFSecBuffFactory().getFactorySecUserEMConf().newBySentStampIdxKey();
 		key.setRequiredEMailSentStamp( argEMailSentStamp );
@@ -875,7 +875,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public void deleteSecUserEMConfByNewAcctIdx( ICFSecAuthorization Authorization,
-		boolean argNewAccount )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argNewAccount )
 	{
 		CFSecBuffSecUserEMConfByNewAcctIdxKey key = (CFSecBuffSecUserEMConfByNewAcctIdxKey)schema.getCFSecBuffFactory().getFactorySecUserEMConf().newByNewAcctIdxKey();
 		key.setRequiredNewAccount( argNewAccount );

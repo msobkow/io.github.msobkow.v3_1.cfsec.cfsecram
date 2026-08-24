@@ -167,15 +167,15 @@ public class CFSecRamISOCtryLangTable
 
 	@Override
 	public ICFSecISOCtryLang readDerived( ICFSecAuthorization Authorization,
-		short ISOCtryId,
-		short ISOLangId )
+		$implIJavaAtomType$ ISOCtryId,
+		$implIJavaAtomType$ ISOLangId )
 	{
-		{	Short testISOCtryId = ISOCtryId;
+		{	$implCommaIJavaOptAtomType empty empty )$ testISOCtryId = ISOCtryId;
 			if (testISOCtryId == null) {
 				return( null );
 			}
 		}
-		{	Short testISOLangId = ISOLangId;
+		{	$implCommaIJavaOptAtomType empty empty )$ testISOLangId = ISOLangId;
 			if (testISOLangId == null) {
 				return( null );
 			}
@@ -235,7 +235,7 @@ public class CFSecRamISOCtryLangTable
 
 	@Override
 	public ICFSecISOCtryLang[] readDerivedByCtryIdx( ICFSecAuthorization Authorization,
-		short ISOCtryId )
+		$implIJavaAtomType$ ISOCtryId )
 	{
 		final String S_ProcName = "CFSecRamISOCtryLang.readDerivedByCtryIdx";
 		CFSecBuffISOCtryLangByCtryIdxKey key = (CFSecBuffISOCtryLangByCtryIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryLang().newByCtryIdxKey();
@@ -263,7 +263,7 @@ public class CFSecRamISOCtryLangTable
 
 	@Override
 	public ICFSecISOCtryLang[] readDerivedByLangIdx( ICFSecAuthorization Authorization,
-		short ISOLangId )
+		$implIJavaAtomType$ ISOLangId )
 	{
 		final String S_ProcName = "CFSecRamISOCtryLang.readDerivedByLangIdx";
 		CFSecBuffISOCtryLangByLangIdxKey key = (CFSecBuffISOCtryLangByLangIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryLang().newByLangIdxKey();
@@ -291,8 +291,8 @@ public class CFSecRamISOCtryLangTable
 
 	@Override
 	public ICFSecISOCtryLang readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		short ISOCtryId,
-		short ISOLangId )
+		$implIJavaAtomType$ ISOCtryId,
+		$implIJavaAtomType$ ISOLangId )
 	{
 		final String S_ProcName = "CFSecRamISOCtryLang.readDerivedByIdIdx() ";
 		CFSecBuffISOCtryLangPKey key = (CFSecBuffISOCtryLangPKey)(schema.getCFSecBuffFactory().getFactoryISOCtryLang().newPKey());
@@ -310,8 +310,8 @@ public class CFSecRamISOCtryLangTable
 
 	@Override
 	public ICFSecISOCtryLang readRec( ICFSecAuthorization Authorization,
-		short ISOCtryId,
-		short ISOLangId )
+		$implIJavaAtomType$ ISOCtryId,
+		$implIJavaAtomType$ ISOLangId )
 	{
 		CFSecBuffISOCtryLangPKey key = (CFSecBuffISOCtryLangPKey)(schema.getCFSecBuffFactory().getFactoryISOCtryLang().newPKey());
 		key.setRequiredISOCtryId( ISOCtryId );
@@ -361,8 +361,8 @@ public class CFSecRamISOCtryLangTable
 
 	@Override
 	public ICFSecISOCtryLang readRecByIdIdx( ICFSecAuthorization Authorization,
-		short ISOCtryId,
-		short ISOLangId )
+		$implIJavaAtomType$ ISOCtryId,
+		$implIJavaAtomType$ ISOLangId )
 	{
 		final String S_ProcName = "CFSecRamISOCtryLang.readRecByIdIdx() ";
 		ICFSecISOCtryLang buff = readDerivedByIdIdx( Authorization,
@@ -378,7 +378,7 @@ public class CFSecRamISOCtryLangTable
 
 	@Override
 	public ICFSecISOCtryLang[] readRecByCtryIdx( ICFSecAuthorization Authorization,
-		short ISOCtryId )
+		$implIJavaAtomType$ ISOCtryId )
 	{
 		final String S_ProcName = "CFSecRamISOCtryLang.readRecByCtryIdx() ";
 		ICFSecISOCtryLang buff;
@@ -396,7 +396,7 @@ public class CFSecRamISOCtryLangTable
 
 	@Override
 	public ICFSecISOCtryLang[] readRecByLangIdx( ICFSecAuthorization Authorization,
-		short ISOLangId )
+		$implIJavaAtomType$ ISOLangId )
 	{
 		final String S_ProcName = "CFSecRamISOCtryLang.readRecByLangIdx() ";
 		ICFSecISOCtryLang buff;
@@ -547,8 +547,8 @@ public class CFSecRamISOCtryLangTable
 	}
 	@Override
 	public void deleteISOCtryLangByIdIdx( ICFSecAuthorization Authorization,
-		short ISOCtryId,
-		short ISOLangId )
+		$implIJavaAtomType$ ISOCtryId,
+		$implIJavaAtomType$ ISOLangId )
 	{
 		CFSecBuffISOCtryLangPKey key = (CFSecBuffISOCtryLangPKey)(schema.getCFSecBuffFactory().getFactoryISOCtryLang().newPKey());
 		key.setRequiredISOCtryId( ISOCtryId );
@@ -591,7 +591,7 @@ public class CFSecRamISOCtryLangTable
 
 	@Override
 	public void deleteISOCtryLangByCtryIdx( ICFSecAuthorization Authorization,
-		short argISOCtryId )
+		$implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argISOCtryId )
 	{
 		CFSecBuffISOCtryLangByCtryIdxKey key = (CFSecBuffISOCtryLangByCtryIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryLang().newByCtryIdxKey();
 		key.setRequiredISOCtryId( argISOCtryId );
@@ -628,7 +628,7 @@ public class CFSecRamISOCtryLangTable
 
 	@Override
 	public void deleteISOCtryLangByLangIdx( ICFSecAuthorization Authorization,
-		short argISOLangId )
+		$implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argISOLangId )
 	{
 		CFSecBuffISOCtryLangByLangIdxKey key = (CFSecBuffISOCtryLangByLangIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryLang().newByLangIdxKey();
 		key.setRequiredISOLangId( argISOLangId );

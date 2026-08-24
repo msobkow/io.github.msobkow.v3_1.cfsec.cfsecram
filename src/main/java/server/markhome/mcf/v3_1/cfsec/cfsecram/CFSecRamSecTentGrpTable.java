@@ -50,21 +50,21 @@ public class CFSecRamSecTentGrpTable
 	implements ICFSecSecTentGrpTable
 {
 	private ICFSecSchema schema;
-	private Map< ICFLibKeyHash256,
+	private Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffSecTentGrp > dictByPKey
-		= new HashMap< ICFLibKeyHash256,
+		= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffSecTentGrp >();
 	private Map< CFSecBuffSecTentGrpByTenantIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecTentGrp >> dictByTenantIdx
 		= new HashMap< CFSecBuffSecTentGrpByTenantIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecTentGrp >>();
 	private Map< CFSecBuffSecTentGrpByNameIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecTentGrp >> dictByNameIdx
 		= new HashMap< CFSecBuffSecTentGrpByNameIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecTentGrp >>();
 	private Map< CFSecBuffSecTentGrpByUNameIdxKey,
 			CFSecBuffSecTentGrp > dictByUNameIdx
@@ -86,7 +86,7 @@ public class CFSecRamSecTentGrpTable
 		final String S_ProcName = "createSecTentGrp";
 		
 		CFSecBuffSecTentGrp Buff = (CFSecBuffSecTentGrp)ensureRec(iBuff);
-		ICFLibKeyHash256 pkey;
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey;
 		pkey = schema.nextSecTentGrpIdGen();
 		Buff.setRequiredSecTentGrpId( pkey );
 		CFSecBuffSecTentGrpByTenantIdxKey keyTenantIdx = (CFSecBuffSecTentGrpByTenantIdxKey)schema.getCFSecBuffFactory().getFactorySecTentGrp().newByTenantIdxKey();
@@ -159,22 +159,22 @@ public class CFSecRamSecTentGrpTable
 
 		dictByPKey.put( pkey, Buff );
 
-		Map< ICFLibKeyHash256, CFSecBuffSecTentGrp > subdictTenantIdx;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentGrp > subdictTenantIdx;
 		if( dictByTenantIdx.containsKey( keyTenantIdx ) ) {
 			subdictTenantIdx = dictByTenantIdx.get( keyTenantIdx );
 		}
 		else {
-			subdictTenantIdx = new HashMap< ICFLibKeyHash256, CFSecBuffSecTentGrp >();
+			subdictTenantIdx = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentGrp >();
 			dictByTenantIdx.put( keyTenantIdx, subdictTenantIdx );
 		}
 		subdictTenantIdx.put( pkey, Buff );
 
-		Map< ICFLibKeyHash256, CFSecBuffSecTentGrp > subdictNameIdx;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentGrp > subdictNameIdx;
 		if( dictByNameIdx.containsKey( keyNameIdx ) ) {
 			subdictNameIdx = dictByNameIdx.get( keyNameIdx );
 		}
 		else {
-			subdictNameIdx = new HashMap< ICFLibKeyHash256, CFSecBuffSecTentGrp >();
+			subdictNameIdx = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentGrp >();
 			dictByNameIdx.put( keyNameIdx, subdictNameIdx );
 		}
 		subdictNameIdx.put( pkey, Buff );
@@ -199,7 +199,7 @@ public class CFSecRamSecTentGrpTable
 
 	@Override
 	public ICFSecSecTentGrp readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecTentGrp.readDerived";
 		ICFSecSecTentGrp buff;
@@ -217,7 +217,7 @@ public class CFSecRamSecTentGrpTable
 
 	@Override
 	public ICFSecSecTentGrp lockDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecTentGrp.lockDerived";
 		ICFSecSecTentGrp buff;
@@ -244,7 +244,7 @@ public class CFSecRamSecTentGrpTable
 
 	@Override
 	public ICFSecSecTentGrp[] readDerivedByTenantIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 TenantId )
+		$implIJavaAtomType$ TenantId )
 	{
 		final String S_ProcName = "CFSecRamSecTentGrp.readDerivedByTenantIdx";
 		CFSecBuffSecTentGrpByTenantIdxKey key = (CFSecBuffSecTentGrpByTenantIdxKey)schema.getCFSecBuffFactory().getFactorySecTentGrp().newByTenantIdxKey();
@@ -252,7 +252,7 @@ public class CFSecRamSecTentGrpTable
 		key.setRequiredTenantId( TenantId );
 		ICFSecSecTentGrp[] recArray;
 		if( dictByTenantIdx.containsKey( key ) ) {
-			Map< ICFLibKeyHash256, CFSecBuffSecTentGrp > subdictTenantIdx
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentGrp > subdictTenantIdx
 				= dictByTenantIdx.get( key );
 			recArray = new ICFSecSecTentGrp[ subdictTenantIdx.size() ];
 			Iterator< CFSecBuffSecTentGrp > iter = subdictTenantIdx.values().iterator();
@@ -262,8 +262,8 @@ public class CFSecRamSecTentGrpTable
 			}
 		}
 		else {
-			Map< ICFLibKeyHash256, CFSecBuffSecTentGrp > subdictTenantIdx
-				= new HashMap< ICFLibKeyHash256, CFSecBuffSecTentGrp >();
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentGrp > subdictTenantIdx
+				= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentGrp >();
 			dictByTenantIdx.put( key, subdictTenantIdx );
 			recArray = new ICFSecSecTentGrp[0];
 		}
@@ -272,7 +272,7 @@ public class CFSecRamSecTentGrpTable
 
 	@Override
 	public ICFSecSecTentGrp[] readDerivedByNameIdx( ICFSecAuthorization Authorization,
-		String Name )
+		$implIJavaAtomType$ Name )
 	{
 		final String S_ProcName = "CFSecRamSecTentGrp.readDerivedByNameIdx";
 		CFSecBuffSecTentGrpByNameIdxKey key = (CFSecBuffSecTentGrpByNameIdxKey)schema.getCFSecBuffFactory().getFactorySecTentGrp().newByNameIdxKey();
@@ -280,7 +280,7 @@ public class CFSecRamSecTentGrpTable
 		key.setRequiredName( Name );
 		ICFSecSecTentGrp[] recArray;
 		if( dictByNameIdx.containsKey( key ) ) {
-			Map< ICFLibKeyHash256, CFSecBuffSecTentGrp > subdictNameIdx
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentGrp > subdictNameIdx
 				= dictByNameIdx.get( key );
 			recArray = new ICFSecSecTentGrp[ subdictNameIdx.size() ];
 			Iterator< CFSecBuffSecTentGrp > iter = subdictNameIdx.values().iterator();
@@ -290,8 +290,8 @@ public class CFSecRamSecTentGrpTable
 			}
 		}
 		else {
-			Map< ICFLibKeyHash256, CFSecBuffSecTentGrp > subdictNameIdx
-				= new HashMap< ICFLibKeyHash256, CFSecBuffSecTentGrp >();
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentGrp > subdictNameIdx
+				= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentGrp >();
 			dictByNameIdx.put( key, subdictNameIdx );
 			recArray = new ICFSecSecTentGrp[0];
 		}
@@ -300,8 +300,8 @@ public class CFSecRamSecTentGrpTable
 
 	@Override
 	public ICFSecSecTentGrp readDerivedByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 TenantId,
-		String Name )
+		$implIJavaAtomType$ TenantId,
+		$implIJavaAtomType$ Name )
 	{
 		final String S_ProcName = "CFSecRamSecTentGrp.readDerivedByUNameIdx";
 		CFSecBuffSecTentGrpByUNameIdxKey key = (CFSecBuffSecTentGrpByUNameIdxKey)schema.getCFSecBuffFactory().getFactorySecTentGrp().newByUNameIdxKey();
@@ -320,7 +320,7 @@ public class CFSecRamSecTentGrpTable
 
 	@Override
 	public ICFSecSecTentGrp readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecTentGrpId )
+		$implIJavaAtomType$ SecTentGrpId )
 	{
 		final String S_ProcName = "CFSecRamSecTentGrp.readDerivedByIdIdx() ";
 		ICFSecSecTentGrp buff;
@@ -335,7 +335,7 @@ public class CFSecRamSecTentGrpTable
 
 	@Override
 	public ICFSecSecTentGrp readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecTentGrp.readRec";
 		ICFSecSecTentGrp buff = readDerived( Authorization, PKey );
@@ -347,7 +347,7 @@ public class CFSecRamSecTentGrpTable
 
 	@Override
 	public ICFSecSecTentGrp lockRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "lockRec";
 		ICFSecSecTentGrp buff = readDerived( Authorization, PKey );
@@ -375,7 +375,7 @@ public class CFSecRamSecTentGrpTable
 
 	@Override
 	public ICFSecSecTentGrp readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecTentGrpId )
+		$implIJavaAtomType$ SecTentGrpId )
 	{
 		final String S_ProcName = "CFSecRamSecTentGrp.readRecByIdIdx() ";
 		ICFSecSecTentGrp buff = readDerivedByIdIdx( Authorization,
@@ -390,7 +390,7 @@ public class CFSecRamSecTentGrpTable
 
 	@Override
 	public ICFSecSecTentGrp[] readRecByTenantIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 TenantId )
+		$implIJavaAtomType$ TenantId )
 	{
 		final String S_ProcName = "CFSecRamSecTentGrp.readRecByTenantIdx() ";
 		ICFSecSecTentGrp buff;
@@ -408,7 +408,7 @@ public class CFSecRamSecTentGrpTable
 
 	@Override
 	public ICFSecSecTentGrp[] readRecByNameIdx( ICFSecAuthorization Authorization,
-		String Name )
+		$implIJavaAtomType$ Name )
 	{
 		final String S_ProcName = "CFSecRamSecTentGrp.readRecByNameIdx() ";
 		ICFSecSecTentGrp buff;
@@ -426,8 +426,8 @@ public class CFSecRamSecTentGrpTable
 
 	@Override
 	public ICFSecSecTentGrp readRecByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 TenantId,
-		String Name )
+		$implIJavaAtomType$ TenantId,
+		$implIJavaAtomType$ Name )
 	{
 		final String S_ProcName = "CFSecRamSecTentGrp.readRecByUNameIdx() ";
 		ICFSecSecTentGrp buff = readDerivedByUNameIdx( Authorization,
@@ -445,7 +445,7 @@ public class CFSecRamSecTentGrpTable
 		ICFSecSecTentGrp iBuff )
 	{
 		CFSecBuffSecTentGrp Buff = (CFSecBuffSecTentGrp)ensureRec(iBuff);
-		ICFLibKeyHash256 pkey = (ICFLibKeyHash256)Buff.getPKey();
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)Buff.getPKey();
 		CFSecBuffSecTentGrp existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
@@ -538,7 +538,7 @@ public class CFSecRamSecTentGrpTable
 
 		// Update is valid
 
-		Map< ICFLibKeyHash256, CFSecBuffSecTentGrp > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentGrp > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -551,7 +551,7 @@ public class CFSecRamSecTentGrpTable
 			subdict = dictByTenantIdx.get( newKeyTenantIdx );
 		}
 		else {
-			subdict = new HashMap< ICFLibKeyHash256, CFSecBuffSecTentGrp >();
+			subdict = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentGrp >();
 			dictByTenantIdx.put( newKeyTenantIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -564,7 +564,7 @@ public class CFSecRamSecTentGrpTable
 			subdict = dictByNameIdx.get( newKeyNameIdx );
 		}
 		else {
-			subdict = new HashMap< ICFLibKeyHash256, CFSecBuffSecTentGrp >();
+			subdict = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentGrp >();
 			dictByNameIdx.put( newKeyNameIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -582,7 +582,7 @@ public class CFSecRamSecTentGrpTable
 		final String S_ProcName = "CFSecRamSecTentGrpTable.deleteSecTentGrp() ";
 		CFSecBuffSecTentGrp Buff = (CFSecBuffSecTentGrp)ensureRec(iBuff);
 		int classCode;
-		ICFLibKeyHash256 pkey = (ICFLibKeyHash256)(Buff.getPKey());
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)(Buff.getPKey());
 		CFSecBuffSecTentGrp existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
@@ -608,7 +608,7 @@ public class CFSecRamSecTentGrpTable
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< ICFLibKeyHash256, CFSecBuffSecTentGrp > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentGrp > subdict;
 
 		dictByPKey.remove( pkey );
 
@@ -623,7 +623,7 @@ public class CFSecRamSecTentGrpTable
 	}
 	@Override
 	public void deleteSecTentGrpByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ argKey )
 	{
 		boolean anyNotNull = false;
 		anyNotNull = true;
@@ -650,7 +650,7 @@ public class CFSecRamSecTentGrpTable
 
 	@Override
 	public void deleteSecTentGrpByTenantIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argTenantId )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argTenantId )
 	{
 		CFSecBuffSecTentGrpByTenantIdxKey key = (CFSecBuffSecTentGrpByTenantIdxKey)schema.getCFSecBuffFactory().getFactorySecTentGrp().newByTenantIdxKey();
 		key.setRequiredTenantId( argTenantId );
@@ -686,7 +686,7 @@ public class CFSecRamSecTentGrpTable
 
 	@Override
 	public void deleteSecTentGrpByNameIdx( ICFSecAuthorization Authorization,
-		String argName )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argName )
 	{
 		CFSecBuffSecTentGrpByNameIdxKey key = (CFSecBuffSecTentGrpByNameIdxKey)schema.getCFSecBuffFactory().getFactorySecTentGrp().newByNameIdxKey();
 		key.setRequiredName( argName );
@@ -722,8 +722,8 @@ public class CFSecRamSecTentGrpTable
 
 	@Override
 	public void deleteSecTentGrpByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argTenantId,
-		String argName )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argTenantId,
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argName )
 	{
 		CFSecBuffSecTentGrpByUNameIdxKey key = (CFSecBuffSecTentGrpByUNameIdxKey)schema.getCFSecBuffFactory().getFactorySecTentGrp().newByUNameIdxKey();
 		key.setRequiredTenantId( argTenantId );

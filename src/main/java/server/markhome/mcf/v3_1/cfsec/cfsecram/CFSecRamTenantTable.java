@@ -50,15 +50,15 @@ public class CFSecRamTenantTable
 	implements ICFSecTenantTable
 {
 	private ICFSecSchema schema;
-	private Map< ICFLibKeyHash256,
+	private Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffTenant > dictByPKey
-		= new HashMap< ICFLibKeyHash256,
+		= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffTenant >();
 	private Map< CFSecBuffTenantByClusterIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffTenant >> dictByClusterIdx
 		= new HashMap< CFSecBuffTenantByClusterIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffTenant >>();
 	private Map< CFSecBuffTenantByUNameIdxKey,
 			CFSecBuffTenant > dictByUNameIdx
@@ -80,7 +80,7 @@ public class CFSecRamTenantTable
 		final String S_ProcName = "createTenant";
 		
 		CFSecBuffTenant Buff = (CFSecBuffTenant)ensureRec(iBuff);
-		ICFLibKeyHash256 pkey;
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey;
 		pkey = schema.nextTenantIdGen();
 		Buff.setRequiredId( pkey );
 		CFSecBuffTenantByClusterIdxKey keyClusterIdx = (CFSecBuffTenantByClusterIdxKey)schema.getCFSecBuffFactory().getFactoryTenant().newByClusterIdxKey();
@@ -130,12 +130,12 @@ public class CFSecRamTenantTable
 
 		dictByPKey.put( pkey, Buff );
 
-		Map< ICFLibKeyHash256, CFSecBuffTenant > subdictClusterIdx;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTenant > subdictClusterIdx;
 		if( dictByClusterIdx.containsKey( keyClusterIdx ) ) {
 			subdictClusterIdx = dictByClusterIdx.get( keyClusterIdx );
 		}
 		else {
-			subdictClusterIdx = new HashMap< ICFLibKeyHash256, CFSecBuffTenant >();
+			subdictClusterIdx = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTenant >();
 			dictByClusterIdx.put( keyClusterIdx, subdictClusterIdx );
 		}
 		subdictClusterIdx.put( pkey, Buff );
@@ -160,7 +160,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamTenant.readDerived";
 		ICFSecTenant buff;
@@ -178,7 +178,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant lockDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamTenant.lockDerived";
 		ICFSecTenant buff;
@@ -205,7 +205,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId )
+		$implIJavaAtomType$ ClusterId )
 	{
 		final String S_ProcName = "CFSecRamTenant.readDerivedByClusterIdx";
 		CFSecBuffTenantByClusterIdxKey key = (CFSecBuffTenantByClusterIdxKey)schema.getCFSecBuffFactory().getFactoryTenant().newByClusterIdxKey();
@@ -213,7 +213,7 @@ public class CFSecRamTenantTable
 		key.setRequiredClusterId( ClusterId );
 		ICFSecTenant[] recArray;
 		if( dictByClusterIdx.containsKey( key ) ) {
-			Map< ICFLibKeyHash256, CFSecBuffTenant > subdictClusterIdx
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTenant > subdictClusterIdx
 				= dictByClusterIdx.get( key );
 			recArray = new ICFSecTenant[ subdictClusterIdx.size() ];
 			Iterator< CFSecBuffTenant > iter = subdictClusterIdx.values().iterator();
@@ -223,8 +223,8 @@ public class CFSecRamTenantTable
 			}
 		}
 		else {
-			Map< ICFLibKeyHash256, CFSecBuffTenant > subdictClusterIdx
-				= new HashMap< ICFLibKeyHash256, CFSecBuffTenant >();
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTenant > subdictClusterIdx
+				= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTenant >();
 			dictByClusterIdx.put( key, subdictClusterIdx );
 			recArray = new ICFSecTenant[0];
 		}
@@ -233,8 +233,8 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant readDerivedByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
-		String TenantName )
+		$implIJavaAtomType$ ClusterId,
+		$implIJavaAtomType$ TenantName )
 	{
 		final String S_ProcName = "CFSecRamTenant.readDerivedByUNameIdx";
 		CFSecBuffTenantByUNameIdxKey key = (CFSecBuffTenantByUNameIdxKey)schema.getCFSecBuffFactory().getFactoryTenant().newByUNameIdxKey();
@@ -253,7 +253,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 Id )
+		$implIJavaAtomType$ Id )
 	{
 		final String S_ProcName = "CFSecRamTenant.readDerivedByIdIdx() ";
 		ICFSecTenant buff;
@@ -268,7 +268,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamTenant.readRec";
 		ICFSecTenant buff = readDerived( Authorization, PKey );
@@ -280,7 +280,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant lockRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "lockRec";
 		ICFSecTenant buff = readDerived( Authorization, PKey );
@@ -315,7 +315,7 @@ public class CFSecRamTenantTable
 	 */
 	@Override
 	public ICFSecTenant[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorId )
+		$implIJavaOptAtomType$ priorId )
 	{
 		final String S_ProcName = "pageAllRec";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -323,7 +323,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 Id )
+		$implIJavaAtomType$ Id )
 	{
 		final String S_ProcName = "CFSecRamTenant.readRecByIdIdx() ";
 		ICFSecTenant buff = readDerivedByIdIdx( Authorization,
@@ -338,7 +338,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant[] readRecByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId )
+		$implIJavaAtomType$ ClusterId )
 	{
 		final String S_ProcName = "CFSecRamTenant.readRecByClusterIdx() ";
 		ICFSecTenant buff;
@@ -356,8 +356,8 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant readRecByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
-		String TenantName )
+		$implIJavaAtomType$ ClusterId,
+		$implIJavaAtomType$ TenantName )
 	{
 		final String S_ProcName = "CFSecRamTenant.readRecByUNameIdx() ";
 		ICFSecTenant buff = readDerivedByUNameIdx( Authorization,
@@ -384,8 +384,8 @@ public class CFSecRamTenantTable
 	 */
 	@Override
 	public ICFSecTenant[] pageRecByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
-		ICFLibKeyHash256 priorId )
+		$implIJavaAtomType$ ClusterId,
+		$implIJavaOptAtomType$ priorId )
 	{
 		final String S_ProcName = "pageRecByClusterIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -395,7 +395,7 @@ public class CFSecRamTenantTable
 		ICFSecTenant iBuff )
 	{
 		CFSecBuffTenant Buff = (CFSecBuffTenant)ensureRec(iBuff);
-		ICFLibKeyHash256 pkey = (ICFLibKeyHash256)Buff.getPKey();
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)Buff.getPKey();
 		CFSecBuffTenant existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
@@ -462,7 +462,7 @@ public class CFSecRamTenantTable
 
 		// Update is valid
 
-		Map< ICFLibKeyHash256, CFSecBuffTenant > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTenant > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -475,7 +475,7 @@ public class CFSecRamTenantTable
 			subdict = dictByClusterIdx.get( newKeyClusterIdx );
 		}
 		else {
-			subdict = new HashMap< ICFLibKeyHash256, CFSecBuffTenant >();
+			subdict = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTenant >();
 			dictByClusterIdx.put( newKeyClusterIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -493,7 +493,7 @@ public class CFSecRamTenantTable
 		final String S_ProcName = "CFSecRamTenantTable.deleteTenant() ";
 		CFSecBuffTenant Buff = (CFSecBuffTenant)ensureRec(iBuff);
 		int classCode;
-		ICFLibKeyHash256 pkey = (ICFLibKeyHash256)(Buff.getPKey());
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)(Buff.getPKey());
 		CFSecBuffTenant existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
@@ -526,7 +526,7 @@ public class CFSecRamTenantTable
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< ICFLibKeyHash256, CFSecBuffTenant > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffTenant > subdict;
 
 		dictByPKey.remove( pkey );
 
@@ -538,7 +538,7 @@ public class CFSecRamTenantTable
 	}
 	@Override
 	public void deleteTenantByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ argKey )
 	{
 		boolean anyNotNull = false;
 		anyNotNull = true;
@@ -565,7 +565,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public void deleteTenantByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argClusterId )
 	{
 		CFSecBuffTenantByClusterIdxKey key = (CFSecBuffTenantByClusterIdxKey)schema.getCFSecBuffFactory().getFactoryTenant().newByClusterIdxKey();
 		key.setRequiredClusterId( argClusterId );
@@ -601,8 +601,8 @@ public class CFSecRamTenantTable
 
 	@Override
 	public void deleteTenantByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId,
-		String argTenantName )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argClusterId,
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argTenantName )
 	{
 		CFSecBuffTenantByUNameIdxKey key = (CFSecBuffTenantByUNameIdxKey)schema.getCFSecBuffFactory().getFactoryTenant().newByUNameIdxKey();
 		key.setRequiredClusterId( argClusterId );

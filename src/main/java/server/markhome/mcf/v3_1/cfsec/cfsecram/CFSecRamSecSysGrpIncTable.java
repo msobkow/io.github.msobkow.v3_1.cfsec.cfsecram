@@ -167,15 +167,15 @@ public class CFSecRamSecSysGrpIncTable
 
 	@Override
 	public ICFSecSecSysGrpInc readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
-		String InclName )
+		$implIJavaAtomType$ SecSysGrpId,
+		$implIJavaAtomType$ InclName )
 	{
-		{	ICFLibKeyHash256 testSecSysGrpId = SecSysGrpId;
+		{	$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ testSecSysGrpId = SecSysGrpId;
 			if (testSecSysGrpId == null) {
 				return( null );
 			}
 		}
-		{	String testInclName = InclName;
+		{	$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ testInclName = InclName;
 			if (testInclName == null) {
 				return( null );
 			}
@@ -235,7 +235,7 @@ public class CFSecRamSecSysGrpIncTable
 
 	@Override
 	public ICFSecSecSysGrpInc[] readDerivedBySysGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId )
+		$implIJavaAtomType$ SecSysGrpId )
 	{
 		final String S_ProcName = "CFSecRamSecSysGrpInc.readDerivedBySysGrpIdx";
 		CFSecBuffSecSysGrpIncBySysGrpIdxKey key = (CFSecBuffSecSysGrpIncBySysGrpIdxKey)schema.getCFSecBuffFactory().getFactorySecSysGrpInc().newBySysGrpIdxKey();
@@ -263,7 +263,7 @@ public class CFSecRamSecSysGrpIncTable
 
 	@Override
 	public ICFSecSecSysGrpInc[] readDerivedByNameIdx( ICFSecAuthorization Authorization,
-		String InclName )
+		$implIJavaAtomType$ InclName )
 	{
 		final String S_ProcName = "CFSecRamSecSysGrpInc.readDerivedByNameIdx";
 		CFSecBuffSecSysGrpIncByNameIdxKey key = (CFSecBuffSecSysGrpIncByNameIdxKey)schema.getCFSecBuffFactory().getFactorySecSysGrpInc().newByNameIdxKey();
@@ -291,8 +291,8 @@ public class CFSecRamSecSysGrpIncTable
 
 	@Override
 	public ICFSecSecSysGrpInc readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
-		String InclName )
+		$implIJavaAtomType$ SecSysGrpId,
+		$implIJavaAtomType$ InclName )
 	{
 		final String S_ProcName = "CFSecRamSecSysGrpInc.readDerivedByIdIdx() ";
 		CFSecBuffSecSysGrpIncPKey key = (CFSecBuffSecSysGrpIncPKey)(schema.getCFSecBuffFactory().getFactorySecSysGrpInc().newPKey());
@@ -310,8 +310,8 @@ public class CFSecRamSecSysGrpIncTable
 
 	@Override
 	public ICFSecSecSysGrpInc readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
-		String InclName )
+		$implIJavaAtomType$ SecSysGrpId,
+		$implIJavaAtomType$ InclName )
 	{
 		CFSecBuffSecSysGrpIncPKey key = (CFSecBuffSecSysGrpIncPKey)(schema.getCFSecBuffFactory().getFactorySecSysGrpInc().newPKey());
 		key.setRequiredSecSysGrpId( SecSysGrpId );
@@ -368,8 +368,8 @@ public class CFSecRamSecSysGrpIncTable
 	 */
 	@Override
 	public ICFSecSecSysGrpInc[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecSysGrpId,
-		String priorInclName )
+		$implIJavaOptAtomType$ priorSecSysGrpId,
+		$implIJavaOptAtomType$ priorInclName )
 	{
 		final String S_ProcName = "pageAllRec";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -377,8 +377,8 @@ public class CFSecRamSecSysGrpIncTable
 
 	@Override
 	public ICFSecSecSysGrpInc readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
-		String InclName )
+		$implIJavaAtomType$ SecSysGrpId,
+		$implIJavaAtomType$ InclName )
 	{
 		final String S_ProcName = "CFSecRamSecSysGrpInc.readRecByIdIdx() ";
 		ICFSecSecSysGrpInc buff = readDerivedByIdIdx( Authorization,
@@ -394,7 +394,7 @@ public class CFSecRamSecSysGrpIncTable
 
 	@Override
 	public ICFSecSecSysGrpInc[] readRecBySysGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId )
+		$implIJavaAtomType$ SecSysGrpId )
 	{
 		final String S_ProcName = "CFSecRamSecSysGrpInc.readRecBySysGrpIdx() ";
 		ICFSecSecSysGrpInc buff;
@@ -412,7 +412,7 @@ public class CFSecRamSecSysGrpIncTable
 
 	@Override
 	public ICFSecSecSysGrpInc[] readRecByNameIdx( ICFSecAuthorization Authorization,
-		String InclName )
+		$implIJavaAtomType$ InclName )
 	{
 		final String S_ProcName = "CFSecRamSecSysGrpInc.readRecByNameIdx() ";
 		ICFSecSecSysGrpInc buff;
@@ -441,9 +441,9 @@ public class CFSecRamSecSysGrpIncTable
 	 */
 	@Override
 	public ICFSecSecSysGrpInc[] pageRecBySysGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
-		ICFLibKeyHash256 priorSecSysGrpId,
-		String priorInclName )
+		$implIJavaAtomType$ SecSysGrpId,
+		$implIJavaOptAtomType$ priorSecSysGrpId,
+		$implIJavaOptAtomType$ priorInclName )
 	{
 		final String S_ProcName = "pageRecBySysGrpIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -462,9 +462,9 @@ public class CFSecRamSecSysGrpIncTable
 	 */
 	@Override
 	public ICFSecSecSysGrpInc[] pageRecByNameIdx( ICFSecAuthorization Authorization,
-		String InclName,
-		ICFLibKeyHash256 priorSecSysGrpId,
-		String priorInclName )
+		$implIJavaAtomType$ InclName,
+		$implIJavaOptAtomType$ priorSecSysGrpId,
+		$implIJavaOptAtomType$ priorInclName )
 	{
 		final String S_ProcName = "pageRecByNameIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -605,8 +605,8 @@ public class CFSecRamSecSysGrpIncTable
 	}
 	@Override
 	public void deleteSecSysGrpIncByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
-		String InclName )
+		$implIJavaAtomType$ SecSysGrpId,
+		$implIJavaAtomType$ InclName )
 	{
 		CFSecBuffSecSysGrpIncPKey key = (CFSecBuffSecSysGrpIncPKey)(schema.getCFSecBuffFactory().getFactorySecSysGrpInc().newPKey());
 		key.setRequiredSecSysGrpId( SecSysGrpId );
@@ -649,7 +649,7 @@ public class CFSecRamSecSysGrpIncTable
 
 	@Override
 	public void deleteSecSysGrpIncBySysGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecSysGrpId )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argSecSysGrpId )
 	{
 		CFSecBuffSecSysGrpIncBySysGrpIdxKey key = (CFSecBuffSecSysGrpIncBySysGrpIdxKey)schema.getCFSecBuffFactory().getFactorySecSysGrpInc().newBySysGrpIdxKey();
 		key.setRequiredSecSysGrpId( argSecSysGrpId );
@@ -686,7 +686,7 @@ public class CFSecRamSecSysGrpIncTable
 
 	@Override
 	public void deleteSecSysGrpIncByNameIdx( ICFSecAuthorization Authorization,
-		String argInclName )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argInclName )
 	{
 		CFSecBuffSecSysGrpIncByNameIdxKey key = (CFSecBuffSecSysGrpIncByNameIdxKey)schema.getCFSecBuffFactory().getFactorySecSysGrpInc().newByNameIdxKey();
 		key.setRequiredInclName( argInclName );

@@ -50,21 +50,21 @@ public class CFSecRamSecClusGrpTable
 	implements ICFSecSecClusGrpTable
 {
 	private ICFSecSchema schema;
-	private Map< ICFLibKeyHash256,
+	private Map< $implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffSecClusGrp > dictByPKey
-		= new HashMap< ICFLibKeyHash256,
+		= new HashMap< $implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffSecClusGrp >();
 	private Map< CFSecBuffSecClusGrpByClusterIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecClusGrp >> dictByClusterIdx
 		= new HashMap< CFSecBuffSecClusGrpByClusterIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecClusGrp >>();
 	private Map< CFSecBuffSecClusGrpByNameIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecClusGrp >> dictByNameIdx
 		= new HashMap< CFSecBuffSecClusGrpByNameIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecClusGrp >>();
 	private Map< CFSecBuffSecClusGrpByUNameIdxKey,
 			CFSecBuffSecClusGrp > dictByUNameIdx
@@ -86,7 +86,7 @@ public class CFSecRamSecClusGrpTable
 		final String S_ProcName = "createSecClusGrp";
 		
 		CFSecBuffSecClusGrp Buff = (CFSecBuffSecClusGrp)ensureRec(iBuff);
-		ICFLibKeyHash256 pkey;
+		$implCommaIJavaOptAtomType empty empty )$ pkey;
 		pkey = schema.nextSecClusGrpIdGen();
 		Buff.setRequiredSecClusGrpId( pkey );
 		CFSecBuffSecClusGrpByClusterIdxKey keyClusterIdx = (CFSecBuffSecClusGrpByClusterIdxKey)schema.getCFSecBuffFactory().getFactorySecClusGrp().newByClusterIdxKey();
@@ -159,22 +159,22 @@ public class CFSecRamSecClusGrpTable
 
 		dictByPKey.put( pkey, Buff );
 
-		Map< ICFLibKeyHash256, CFSecBuffSecClusGrp > subdictClusterIdx;
+		Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecClusGrp > subdictClusterIdx;
 		if( dictByClusterIdx.containsKey( keyClusterIdx ) ) {
 			subdictClusterIdx = dictByClusterIdx.get( keyClusterIdx );
 		}
 		else {
-			subdictClusterIdx = new HashMap< ICFLibKeyHash256, CFSecBuffSecClusGrp >();
+			subdictClusterIdx = new HashMap< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecClusGrp >();
 			dictByClusterIdx.put( keyClusterIdx, subdictClusterIdx );
 		}
 		subdictClusterIdx.put( pkey, Buff );
 
-		Map< ICFLibKeyHash256, CFSecBuffSecClusGrp > subdictNameIdx;
+		Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecClusGrp > subdictNameIdx;
 		if( dictByNameIdx.containsKey( keyNameIdx ) ) {
 			subdictNameIdx = dictByNameIdx.get( keyNameIdx );
 		}
 		else {
-			subdictNameIdx = new HashMap< ICFLibKeyHash256, CFSecBuffSecClusGrp >();
+			subdictNameIdx = new HashMap< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecClusGrp >();
 			dictByNameIdx.put( keyNameIdx, subdictNameIdx );
 		}
 		subdictNameIdx.put( pkey, Buff );
@@ -199,7 +199,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public ICFSecSecClusGrp readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrp.readDerived";
 		ICFSecSecClusGrp buff;
@@ -217,7 +217,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public ICFSecSecClusGrp lockDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrp.lockDerived";
 		ICFSecSecClusGrp buff;
@@ -244,7 +244,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public ICFSecSecClusGrp[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId )
+		$implIJavaAtomType$ ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrp.readDerivedByClusterIdx";
 		CFSecBuffSecClusGrpByClusterIdxKey key = (CFSecBuffSecClusGrpByClusterIdxKey)schema.getCFSecBuffFactory().getFactorySecClusGrp().newByClusterIdxKey();
@@ -252,7 +252,7 @@ public class CFSecRamSecClusGrpTable
 		key.setRequiredClusterId( ClusterId );
 		ICFSecSecClusGrp[] recArray;
 		if( dictByClusterIdx.containsKey( key ) ) {
-			Map< ICFLibKeyHash256, CFSecBuffSecClusGrp > subdictClusterIdx
+			Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecClusGrp > subdictClusterIdx
 				= dictByClusterIdx.get( key );
 			recArray = new ICFSecSecClusGrp[ subdictClusterIdx.size() ];
 			Iterator< CFSecBuffSecClusGrp > iter = subdictClusterIdx.values().iterator();
@@ -262,8 +262,8 @@ public class CFSecRamSecClusGrpTable
 			}
 		}
 		else {
-			Map< ICFLibKeyHash256, CFSecBuffSecClusGrp > subdictClusterIdx
-				= new HashMap< ICFLibKeyHash256, CFSecBuffSecClusGrp >();
+			Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecClusGrp > subdictClusterIdx
+				= new HashMap< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecClusGrp >();
 			dictByClusterIdx.put( key, subdictClusterIdx );
 			recArray = new ICFSecSecClusGrp[0];
 		}
@@ -272,7 +272,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public ICFSecSecClusGrp[] readDerivedByNameIdx( ICFSecAuthorization Authorization,
-		String Name )
+		$implIJavaAtomType$ Name )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrp.readDerivedByNameIdx";
 		CFSecBuffSecClusGrpByNameIdxKey key = (CFSecBuffSecClusGrpByNameIdxKey)schema.getCFSecBuffFactory().getFactorySecClusGrp().newByNameIdxKey();
@@ -280,7 +280,7 @@ public class CFSecRamSecClusGrpTable
 		key.setRequiredName( Name );
 		ICFSecSecClusGrp[] recArray;
 		if( dictByNameIdx.containsKey( key ) ) {
-			Map< ICFLibKeyHash256, CFSecBuffSecClusGrp > subdictNameIdx
+			Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecClusGrp > subdictNameIdx
 				= dictByNameIdx.get( key );
 			recArray = new ICFSecSecClusGrp[ subdictNameIdx.size() ];
 			Iterator< CFSecBuffSecClusGrp > iter = subdictNameIdx.values().iterator();
@@ -290,8 +290,8 @@ public class CFSecRamSecClusGrpTable
 			}
 		}
 		else {
-			Map< ICFLibKeyHash256, CFSecBuffSecClusGrp > subdictNameIdx
-				= new HashMap< ICFLibKeyHash256, CFSecBuffSecClusGrp >();
+			Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecClusGrp > subdictNameIdx
+				= new HashMap< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecClusGrp >();
 			dictByNameIdx.put( key, subdictNameIdx );
 			recArray = new ICFSecSecClusGrp[0];
 		}
@@ -300,8 +300,8 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public ICFSecSecClusGrp readDerivedByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
-		String Name )
+		$implIJavaAtomType$ ClusterId,
+		$implIJavaAtomType$ Name )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrp.readDerivedByUNameIdx";
 		CFSecBuffSecClusGrpByUNameIdxKey key = (CFSecBuffSecClusGrpByUNameIdxKey)schema.getCFSecBuffFactory().getFactorySecClusGrp().newByUNameIdxKey();
@@ -320,7 +320,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public ICFSecSecClusGrp readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecClusGrpId )
+		$implIJavaAtomType$ SecClusGrpId )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrp.readDerivedByIdIdx() ";
 		ICFSecSecClusGrp buff;
@@ -335,7 +335,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public ICFSecSecClusGrp readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrp.readRec";
 		ICFSecSecClusGrp buff = readDerived( Authorization, PKey );
@@ -347,7 +347,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public ICFSecSecClusGrp lockRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "lockRec";
 		ICFSecSecClusGrp buff = readDerived( Authorization, PKey );
@@ -375,7 +375,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public ICFSecSecClusGrp readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecClusGrpId )
+		$implIJavaAtomType$ SecClusGrpId )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrp.readRecByIdIdx() ";
 		ICFSecSecClusGrp buff = readDerivedByIdIdx( Authorization,
@@ -390,7 +390,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public ICFSecSecClusGrp[] readRecByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId )
+		$implIJavaAtomType$ ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrp.readRecByClusterIdx() ";
 		ICFSecSecClusGrp buff;
@@ -408,7 +408,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public ICFSecSecClusGrp[] readRecByNameIdx( ICFSecAuthorization Authorization,
-		String Name )
+		$implIJavaAtomType$ Name )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrp.readRecByNameIdx() ";
 		ICFSecSecClusGrp buff;
@@ -426,8 +426,8 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public ICFSecSecClusGrp readRecByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
-		String Name )
+		$implIJavaAtomType$ ClusterId,
+		$implIJavaAtomType$ Name )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrp.readRecByUNameIdx() ";
 		ICFSecSecClusGrp buff = readDerivedByUNameIdx( Authorization,
@@ -445,7 +445,7 @@ public class CFSecRamSecClusGrpTable
 		ICFSecSecClusGrp iBuff )
 	{
 		CFSecBuffSecClusGrp Buff = (CFSecBuffSecClusGrp)ensureRec(iBuff);
-		ICFLibKeyHash256 pkey = (ICFLibKeyHash256)Buff.getPKey();
+		$implCommaIJavaOptAtomType empty empty )$ pkey = ($implCommaIJavaOptAtomType empty empty )$)Buff.getPKey();
 		CFSecBuffSecClusGrp existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
@@ -538,7 +538,7 @@ public class CFSecRamSecClusGrpTable
 
 		// Update is valid
 
-		Map< ICFLibKeyHash256, CFSecBuffSecClusGrp > subdict;
+		Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecClusGrp > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -551,7 +551,7 @@ public class CFSecRamSecClusGrpTable
 			subdict = dictByClusterIdx.get( newKeyClusterIdx );
 		}
 		else {
-			subdict = new HashMap< ICFLibKeyHash256, CFSecBuffSecClusGrp >();
+			subdict = new HashMap< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecClusGrp >();
 			dictByClusterIdx.put( newKeyClusterIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -564,7 +564,7 @@ public class CFSecRamSecClusGrpTable
 			subdict = dictByNameIdx.get( newKeyNameIdx );
 		}
 		else {
-			subdict = new HashMap< ICFLibKeyHash256, CFSecBuffSecClusGrp >();
+			subdict = new HashMap< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecClusGrp >();
 			dictByNameIdx.put( newKeyNameIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -582,7 +582,7 @@ public class CFSecRamSecClusGrpTable
 		final String S_ProcName = "CFSecRamSecClusGrpTable.deleteSecClusGrp() ";
 		CFSecBuffSecClusGrp Buff = (CFSecBuffSecClusGrp)ensureRec(iBuff);
 		int classCode;
-		ICFLibKeyHash256 pkey = (ICFLibKeyHash256)(Buff.getPKey());
+		$implCommaIJavaOptAtomType empty empty )$ pkey = ($implCommaIJavaOptAtomType empty empty )$)(Buff.getPKey());
 		CFSecBuffSecClusGrp existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
@@ -608,7 +608,7 @@ public class CFSecRamSecClusGrpTable
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< ICFLibKeyHash256, CFSecBuffSecClusGrp > subdict;
+		Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecClusGrp > subdict;
 
 		dictByPKey.remove( pkey );
 
@@ -623,7 +623,7 @@ public class CFSecRamSecClusGrpTable
 	}
 	@Override
 	public void deleteSecClusGrpByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argKey )
+		$implCommaIJavaOptAtomType empty empty )$ argKey )
 	{
 		boolean anyNotNull = false;
 		anyNotNull = true;
@@ -650,7 +650,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public void deleteSecClusGrpByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId )
+		$implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argClusterId )
 	{
 		CFSecBuffSecClusGrpByClusterIdxKey key = (CFSecBuffSecClusGrpByClusterIdxKey)schema.getCFSecBuffFactory().getFactorySecClusGrp().newByClusterIdxKey();
 		key.setRequiredClusterId( argClusterId );
@@ -686,7 +686,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public void deleteSecClusGrpByNameIdx( ICFSecAuthorization Authorization,
-		String argName )
+		$implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argName )
 	{
 		CFSecBuffSecClusGrpByNameIdxKey key = (CFSecBuffSecClusGrpByNameIdxKey)schema.getCFSecBuffFactory().getFactorySecClusGrp().newByNameIdxKey();
 		key.setRequiredName( argName );
@@ -722,8 +722,8 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public void deleteSecClusGrpByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId,
-		String argName )
+		$implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argClusterId,
+		$implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argName )
 	{
 		CFSecBuffSecClusGrpByUNameIdxKey key = (CFSecBuffSecClusGrpByUNameIdxKey)schema.getCFSecBuffFactory().getFactorySecClusGrp().newByUNameIdxKey();
 		key.setRequiredClusterId( argClusterId );

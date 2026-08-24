@@ -167,15 +167,15 @@ public class CFSecRamISOCtryCcyTable
 
 	@Override
 	public ICFSecISOCtryCcy readDerived( ICFSecAuthorization Authorization,
-		short ISOCtryId,
-		short ISOCcyId )
+		$implIJavaAtomType$ ISOCtryId,
+		$implIJavaAtomType$ ISOCcyId )
 	{
-		{	Short testISOCtryId = ISOCtryId;
+		{	$implCommaIJavaOptAtomType empty empty )$ testISOCtryId = ISOCtryId;
 			if (testISOCtryId == null) {
 				return( null );
 			}
 		}
-		{	Short testISOCcyId = ISOCcyId;
+		{	$implCommaIJavaOptAtomType empty empty )$ testISOCcyId = ISOCcyId;
 			if (testISOCcyId == null) {
 				return( null );
 			}
@@ -235,7 +235,7 @@ public class CFSecRamISOCtryCcyTable
 
 	@Override
 	public ICFSecISOCtryCcy[] readDerivedByCtryIdx( ICFSecAuthorization Authorization,
-		short ISOCtryId )
+		$implIJavaAtomType$ ISOCtryId )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcy.readDerivedByCtryIdx";
 		CFSecBuffISOCtryCcyByCtryIdxKey key = (CFSecBuffISOCtryCcyByCtryIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newByCtryIdxKey();
@@ -263,7 +263,7 @@ public class CFSecRamISOCtryCcyTable
 
 	@Override
 	public ICFSecISOCtryCcy[] readDerivedByCcyIdx( ICFSecAuthorization Authorization,
-		short ISOCcyId )
+		$implIJavaAtomType$ ISOCcyId )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcy.readDerivedByCcyIdx";
 		CFSecBuffISOCtryCcyByCcyIdxKey key = (CFSecBuffISOCtryCcyByCcyIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newByCcyIdxKey();
@@ -291,8 +291,8 @@ public class CFSecRamISOCtryCcyTable
 
 	@Override
 	public ICFSecISOCtryCcy readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		short ISOCtryId,
-		short ISOCcyId )
+		$implIJavaAtomType$ ISOCtryId,
+		$implIJavaAtomType$ ISOCcyId )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcy.readDerivedByIdIdx() ";
 		CFSecBuffISOCtryCcyPKey key = (CFSecBuffISOCtryCcyPKey)(schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newPKey());
@@ -310,8 +310,8 @@ public class CFSecRamISOCtryCcyTable
 
 	@Override
 	public ICFSecISOCtryCcy readRec( ICFSecAuthorization Authorization,
-		short ISOCtryId,
-		short ISOCcyId )
+		$implIJavaAtomType$ ISOCtryId,
+		$implIJavaAtomType$ ISOCcyId )
 	{
 		CFSecBuffISOCtryCcyPKey key = (CFSecBuffISOCtryCcyPKey)(schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newPKey());
 		key.setRequiredISOCtryId( ISOCtryId );
@@ -361,8 +361,8 @@ public class CFSecRamISOCtryCcyTable
 
 	@Override
 	public ICFSecISOCtryCcy readRecByIdIdx( ICFSecAuthorization Authorization,
-		short ISOCtryId,
-		short ISOCcyId )
+		$implIJavaAtomType$ ISOCtryId,
+		$implIJavaAtomType$ ISOCcyId )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcy.readRecByIdIdx() ";
 		ICFSecISOCtryCcy buff = readDerivedByIdIdx( Authorization,
@@ -378,7 +378,7 @@ public class CFSecRamISOCtryCcyTable
 
 	@Override
 	public ICFSecISOCtryCcy[] readRecByCtryIdx( ICFSecAuthorization Authorization,
-		short ISOCtryId )
+		$implIJavaAtomType$ ISOCtryId )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcy.readRecByCtryIdx() ";
 		ICFSecISOCtryCcy buff;
@@ -396,7 +396,7 @@ public class CFSecRamISOCtryCcyTable
 
 	@Override
 	public ICFSecISOCtryCcy[] readRecByCcyIdx( ICFSecAuthorization Authorization,
-		short ISOCcyId )
+		$implIJavaAtomType$ ISOCcyId )
 	{
 		final String S_ProcName = "CFSecRamISOCtryCcy.readRecByCcyIdx() ";
 		ICFSecISOCtryCcy buff;
@@ -547,8 +547,8 @@ public class CFSecRamISOCtryCcyTable
 	}
 	@Override
 	public void deleteISOCtryCcyByIdIdx( ICFSecAuthorization Authorization,
-		short ISOCtryId,
-		short ISOCcyId )
+		$implIJavaAtomType$ ISOCtryId,
+		$implIJavaAtomType$ ISOCcyId )
 	{
 		CFSecBuffISOCtryCcyPKey key = (CFSecBuffISOCtryCcyPKey)(schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newPKey());
 		key.setRequiredISOCtryId( ISOCtryId );
@@ -591,7 +591,7 @@ public class CFSecRamISOCtryCcyTable
 
 	@Override
 	public void deleteISOCtryCcyByCtryIdx( ICFSecAuthorization Authorization,
-		short argISOCtryId )
+		$implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argISOCtryId )
 	{
 		CFSecBuffISOCtryCcyByCtryIdxKey key = (CFSecBuffISOCtryCcyByCtryIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newByCtryIdxKey();
 		key.setRequiredISOCtryId( argISOCtryId );
@@ -628,7 +628,7 @@ public class CFSecRamISOCtryCcyTable
 
 	@Override
 	public void deleteISOCtryCcyByCcyIdx( ICFSecAuthorization Authorization,
-		short argISOCcyId )
+		$implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argISOCcyId )
 	{
 		CFSecBuffISOCtryCcyByCcyIdxKey key = (CFSecBuffISOCtryCcyByCcyIdxKey)schema.getCFSecBuffFactory().getFactoryISOCtryCcy().newByCcyIdxKey();
 		key.setRequiredISOCcyId( argISOCcyId );

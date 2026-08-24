@@ -50,31 +50,31 @@ public class CFSecRamSecSessionTable
 	implements ICFSecSecSessionTable
 {
 	private ICFSecSchema schema;
-	private Map< ICFLibKeyHash256,
+	private Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffSecSession > dictByPKey
-		= new HashMap< ICFLibKeyHash256,
+		= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffSecSession >();
 	private Map< CFSecBuffSecSessionBySecUserIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecSession >> dictBySecUserIdx
 		= new HashMap< CFSecBuffSecSessionBySecUserIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecSession >>();
 	private Map< CFSecBuffSecSessionByStartIdxKey,
 			CFSecBuffSecSession > dictByStartIdx
 		= new HashMap< CFSecBuffSecSessionByStartIdxKey,
 			CFSecBuffSecSession >();
 	private Map< CFSecBuffSecSessionByFinishIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecSession >> dictByFinishIdx
 		= new HashMap< CFSecBuffSecSessionByFinishIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecSession >>();
 	private Map< CFSecBuffSecSessionBySecProxyIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecSession >> dictBySecProxyIdx
 		= new HashMap< CFSecBuffSecSessionBySecProxyIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecSession >>();
 
 	public CFSecRamSecSessionTable( ICFSecSchema argSchema ) {
@@ -92,7 +92,7 @@ public class CFSecRamSecSessionTable
 		final String S_ProcName = "createSecSession";
 		
 		CFSecBuffSecSession Buff = (CFSecBuffSecSession)ensureRec(iBuff);
-		ICFLibKeyHash256 pkey;
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey;
 		pkey = schema.nextSecSessionIdGen();
 		Buff.setRequiredSecSessionId( pkey );
 		CFSecBuffSecSessionBySecUserIdxKey keySecUserIdx = (CFSecBuffSecSessionBySecUserIdxKey)schema.getCFSecBuffFactory().getFactorySecSession().newBySecUserIdxKey();
@@ -149,34 +149,34 @@ public class CFSecRamSecSessionTable
 
 		dictByPKey.put( pkey, Buff );
 
-		Map< ICFLibKeyHash256, CFSecBuffSecSession > subdictSecUserIdx;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession > subdictSecUserIdx;
 		if( dictBySecUserIdx.containsKey( keySecUserIdx ) ) {
 			subdictSecUserIdx = dictBySecUserIdx.get( keySecUserIdx );
 		}
 		else {
-			subdictSecUserIdx = new HashMap< ICFLibKeyHash256, CFSecBuffSecSession >();
+			subdictSecUserIdx = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession >();
 			dictBySecUserIdx.put( keySecUserIdx, subdictSecUserIdx );
 		}
 		subdictSecUserIdx.put( pkey, Buff );
 
 		dictByStartIdx.put( keyStartIdx, Buff );
 
-		Map< ICFLibKeyHash256, CFSecBuffSecSession > subdictFinishIdx;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession > subdictFinishIdx;
 		if( dictByFinishIdx.containsKey( keyFinishIdx ) ) {
 			subdictFinishIdx = dictByFinishIdx.get( keyFinishIdx );
 		}
 		else {
-			subdictFinishIdx = new HashMap< ICFLibKeyHash256, CFSecBuffSecSession >();
+			subdictFinishIdx = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession >();
 			dictByFinishIdx.put( keyFinishIdx, subdictFinishIdx );
 		}
 		subdictFinishIdx.put( pkey, Buff );
 
-		Map< ICFLibKeyHash256, CFSecBuffSecSession > subdictSecProxyIdx;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession > subdictSecProxyIdx;
 		if( dictBySecProxyIdx.containsKey( keySecProxyIdx ) ) {
 			subdictSecProxyIdx = dictBySecProxyIdx.get( keySecProxyIdx );
 		}
 		else {
-			subdictSecProxyIdx = new HashMap< ICFLibKeyHash256, CFSecBuffSecSession >();
+			subdictSecProxyIdx = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession >();
 			dictBySecProxyIdx.put( keySecProxyIdx, subdictSecProxyIdx );
 		}
 		subdictSecProxyIdx.put( pkey, Buff );
@@ -199,7 +199,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readDerived";
 		ICFSecSecSession buff;
@@ -217,7 +217,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession lockDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecSession.lockDerived";
 		ICFSecSecSession buff;
@@ -244,7 +244,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession[] readDerivedBySecUserIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		$implIJavaAtomType$ SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readDerivedBySecUserIdx";
 		CFSecBuffSecSessionBySecUserIdxKey key = (CFSecBuffSecSessionBySecUserIdxKey)schema.getCFSecBuffFactory().getFactorySecSession().newBySecUserIdxKey();
@@ -252,7 +252,7 @@ public class CFSecRamSecSessionTable
 		key.setRequiredSecUserId( SecUserId );
 		ICFSecSecSession[] recArray;
 		if( dictBySecUserIdx.containsKey( key ) ) {
-			Map< ICFLibKeyHash256, CFSecBuffSecSession > subdictSecUserIdx
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession > subdictSecUserIdx
 				= dictBySecUserIdx.get( key );
 			recArray = new ICFSecSecSession[ subdictSecUserIdx.size() ];
 			Iterator< CFSecBuffSecSession > iter = subdictSecUserIdx.values().iterator();
@@ -262,8 +262,8 @@ public class CFSecRamSecSessionTable
 			}
 		}
 		else {
-			Map< ICFLibKeyHash256, CFSecBuffSecSession > subdictSecUserIdx
-				= new HashMap< ICFLibKeyHash256, CFSecBuffSecSession >();
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession > subdictSecUserIdx
+				= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession >();
 			dictBySecUserIdx.put( key, subdictSecUserIdx );
 			recArray = new ICFSecSecSession[0];
 		}
@@ -272,8 +272,8 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession readDerivedByStartIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
-		LocalDateTime Start )
+		$implIJavaAtomType$ SecUserId,
+		$implIJavaAtomType$ Start )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readDerivedByStartIdx";
 		CFSecBuffSecSessionByStartIdxKey key = (CFSecBuffSecSessionByStartIdxKey)schema.getCFSecBuffFactory().getFactorySecSession().newByStartIdxKey();
@@ -292,8 +292,8 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession[] readDerivedByFinishIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
-		LocalDateTime Finish )
+		$implIJavaAtomType$ SecUserId,
+		$implIJavaAtomType$ Finish )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readDerivedByFinishIdx";
 		CFSecBuffSecSessionByFinishIdxKey key = (CFSecBuffSecSessionByFinishIdxKey)schema.getCFSecBuffFactory().getFactorySecSession().newByFinishIdxKey();
@@ -302,7 +302,7 @@ public class CFSecRamSecSessionTable
 		key.setOptionalFinish( Finish );
 		ICFSecSecSession[] recArray;
 		if( dictByFinishIdx.containsKey( key ) ) {
-			Map< ICFLibKeyHash256, CFSecBuffSecSession > subdictFinishIdx
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession > subdictFinishIdx
 				= dictByFinishIdx.get( key );
 			recArray = new ICFSecSecSession[ subdictFinishIdx.size() ];
 			Iterator< CFSecBuffSecSession > iter = subdictFinishIdx.values().iterator();
@@ -312,8 +312,8 @@ public class CFSecRamSecSessionTable
 			}
 		}
 		else {
-			Map< ICFLibKeyHash256, CFSecBuffSecSession > subdictFinishIdx
-				= new HashMap< ICFLibKeyHash256, CFSecBuffSecSession >();
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession > subdictFinishIdx
+				= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession >();
 			dictByFinishIdx.put( key, subdictFinishIdx );
 			recArray = new ICFSecSecSession[0];
 		}
@@ -322,7 +322,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession[] readDerivedBySecProxyIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecProxyId )
+		$implIJavaAtomType$ SecProxyId )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readDerivedBySecProxyIdx";
 		CFSecBuffSecSessionBySecProxyIdxKey key = (CFSecBuffSecSessionBySecProxyIdxKey)schema.getCFSecBuffFactory().getFactorySecSession().newBySecProxyIdxKey();
@@ -330,7 +330,7 @@ public class CFSecRamSecSessionTable
 		key.setOptionalSecProxyId( SecProxyId );
 		ICFSecSecSession[] recArray;
 		if( dictBySecProxyIdx.containsKey( key ) ) {
-			Map< ICFLibKeyHash256, CFSecBuffSecSession > subdictSecProxyIdx
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession > subdictSecProxyIdx
 				= dictBySecProxyIdx.get( key );
 			recArray = new ICFSecSecSession[ subdictSecProxyIdx.size() ];
 			Iterator< CFSecBuffSecSession > iter = subdictSecProxyIdx.values().iterator();
@@ -340,8 +340,8 @@ public class CFSecRamSecSessionTable
 			}
 		}
 		else {
-			Map< ICFLibKeyHash256, CFSecBuffSecSession > subdictSecProxyIdx
-				= new HashMap< ICFLibKeyHash256, CFSecBuffSecSession >();
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession > subdictSecProxyIdx
+				= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession >();
 			dictBySecProxyIdx.put( key, subdictSecProxyIdx );
 			recArray = new ICFSecSecSession[0];
 		}
@@ -350,7 +350,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSessionId )
+		$implIJavaAtomType$ SecSessionId )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readDerivedByIdIdx() ";
 		ICFSecSecSession buff;
@@ -365,7 +365,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readRec";
 		ICFSecSecSession buff = readDerived( Authorization, PKey );
@@ -377,7 +377,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession lockRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "lockRec";
 		ICFSecSecSession buff = readDerived( Authorization, PKey );
@@ -412,7 +412,7 @@ public class CFSecRamSecSessionTable
 	 */
 	@Override
 	public ICFSecSecSession[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecSessionId )
+		$implIJavaOptAtomType$ priorSecSessionId )
 	{
 		final String S_ProcName = "pageAllRec";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -420,7 +420,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSessionId )
+		$implIJavaAtomType$ SecSessionId )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readRecByIdIdx() ";
 		ICFSecSecSession buff = readDerivedByIdIdx( Authorization,
@@ -435,7 +435,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession[] readRecBySecUserIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		$implIJavaAtomType$ SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readRecBySecUserIdx() ";
 		ICFSecSecSession buff;
@@ -453,8 +453,8 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession readRecByStartIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
-		LocalDateTime Start )
+		$implIJavaAtomType$ SecUserId,
+		$implIJavaAtomType$ Start )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readRecByStartIdx() ";
 		ICFSecSecSession buff = readDerivedByStartIdx( Authorization,
@@ -470,8 +470,8 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession[] readRecByFinishIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
-		LocalDateTime Finish )
+		$implIJavaAtomType$ SecUserId,
+		$implIJavaAtomType$ Finish )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readRecByFinishIdx() ";
 		ICFSecSecSession buff;
@@ -490,7 +490,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession[] readRecBySecProxyIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecProxyId )
+		$implIJavaAtomType$ SecProxyId )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readRecBySecProxyIdx() ";
 		ICFSecSecSession buff;
@@ -519,8 +519,8 @@ public class CFSecRamSecSessionTable
 	 */
 	@Override
 	public ICFSecSecSession[] pageRecBySecUserIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
-		ICFLibKeyHash256 priorSecSessionId )
+		$implIJavaAtomType$ SecUserId,
+		$implIJavaOptAtomType$ priorSecSessionId )
 	{
 		final String S_ProcName = "pageRecBySecUserIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -541,9 +541,9 @@ public class CFSecRamSecSessionTable
 	 */
 	@Override
 	public ICFSecSecSession[] pageRecByFinishIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
-		LocalDateTime Finish,
-		ICFLibKeyHash256 priorSecSessionId )
+		$implIJavaAtomType$ SecUserId,
+		$implIJavaAtomType$ Finish,
+		$implIJavaOptAtomType$ priorSecSessionId )
 	{
 		final String S_ProcName = "pageRecByFinishIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -562,8 +562,8 @@ public class CFSecRamSecSessionTable
 	 */
 	@Override
 	public ICFSecSecSession[] pageRecBySecProxyIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecProxyId,
-		ICFLibKeyHash256 priorSecSessionId )
+		$implIJavaAtomType$ SecProxyId,
+		$implIJavaOptAtomType$ priorSecSessionId )
 	{
 		final String S_ProcName = "pageRecBySecProxyIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -573,7 +573,7 @@ public class CFSecRamSecSessionTable
 		ICFSecSecSession iBuff )
 	{
 		CFSecBuffSecSession Buff = (CFSecBuffSecSession)ensureRec(iBuff);
-		ICFLibKeyHash256 pkey = (ICFLibKeyHash256)Buff.getPKey();
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)Buff.getPKey();
 		CFSecBuffSecSession existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
@@ -654,7 +654,7 @@ public class CFSecRamSecSessionTable
 
 		// Update is valid
 
-		Map< ICFLibKeyHash256, CFSecBuffSecSession > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -667,7 +667,7 @@ public class CFSecRamSecSessionTable
 			subdict = dictBySecUserIdx.get( newKeySecUserIdx );
 		}
 		else {
-			subdict = new HashMap< ICFLibKeyHash256, CFSecBuffSecSession >();
+			subdict = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession >();
 			dictBySecUserIdx.put( newKeySecUserIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -683,7 +683,7 @@ public class CFSecRamSecSessionTable
 			subdict = dictByFinishIdx.get( newKeyFinishIdx );
 		}
 		else {
-			subdict = new HashMap< ICFLibKeyHash256, CFSecBuffSecSession >();
+			subdict = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession >();
 			dictByFinishIdx.put( newKeyFinishIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -696,7 +696,7 @@ public class CFSecRamSecSessionTable
 			subdict = dictBySecProxyIdx.get( newKeySecProxyIdx );
 		}
 		else {
-			subdict = new HashMap< ICFLibKeyHash256, CFSecBuffSecSession >();
+			subdict = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession >();
 			dictBySecProxyIdx.put( newKeySecProxyIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -711,7 +711,7 @@ public class CFSecRamSecSessionTable
 		final String S_ProcName = "CFSecRamSecSessionTable.deleteSecSession() ";
 		CFSecBuffSecSession Buff = (CFSecBuffSecSession)ensureRec(iBuff);
 		int classCode;
-		ICFLibKeyHash256 pkey = (ICFLibKeyHash256)(Buff.getPKey());
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)(Buff.getPKey());
 		CFSecBuffSecSession existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
@@ -739,7 +739,7 @@ public class CFSecRamSecSessionTable
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< ICFLibKeyHash256, CFSecBuffSecSession > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecSession > subdict;
 
 		dictByPKey.remove( pkey );
 
@@ -757,7 +757,7 @@ public class CFSecRamSecSessionTable
 	}
 	@Override
 	public void deleteSecSessionByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ argKey )
 	{
 		boolean anyNotNull = false;
 		anyNotNull = true;
@@ -784,7 +784,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public void deleteSecSessionBySecUserIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecUserId )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argSecUserId )
 	{
 		CFSecBuffSecSessionBySecUserIdxKey key = (CFSecBuffSecSessionBySecUserIdxKey)schema.getCFSecBuffFactory().getFactorySecSession().newBySecUserIdxKey();
 		key.setRequiredSecUserId( argSecUserId );
@@ -820,8 +820,8 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public void deleteSecSessionByStartIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecUserId,
-		LocalDateTime argStart )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argSecUserId,
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argStart )
 	{
 		CFSecBuffSecSessionByStartIdxKey key = (CFSecBuffSecSessionByStartIdxKey)schema.getCFSecBuffFactory().getFactorySecSession().newByStartIdxKey();
 		key.setRequiredSecUserId( argSecUserId );
@@ -859,8 +859,8 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public void deleteSecSessionByFinishIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecUserId,
-		LocalDateTime argFinish )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argSecUserId,
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argFinish )
 	{
 		CFSecBuffSecSessionByFinishIdxKey key = (CFSecBuffSecSessionByFinishIdxKey)schema.getCFSecBuffFactory().getFactorySecSession().newByFinishIdxKey();
 		key.setRequiredSecUserId( argSecUserId );
@@ -900,7 +900,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public void deleteSecSessionBySecProxyIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecProxyId )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argSecProxyId )
 	{
 		CFSecBuffSecSessionBySecProxyIdxKey key = (CFSecBuffSecSessionBySecProxyIdxKey)schema.getCFSecBuffFactory().getFactorySecSession().newBySecProxyIdxKey();
 		key.setOptionalSecProxyId( argSecProxyId );

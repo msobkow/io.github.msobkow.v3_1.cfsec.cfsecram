@@ -50,25 +50,25 @@ public class CFSecRamISOTZoneTable
 	implements ICFSecISOTZoneTable
 {
 	private ICFSecSchema schema;
-	private Map< Short,
+	private Map< $implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffISOTZone > dictByPKey
-		= new HashMap< Short,
+		= new HashMap< $implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffISOTZone >();
 	private Map< CFSecBuffISOTZoneByOffsetIdxKey,
-				Map< Short,
+				Map< $implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffISOTZone >> dictByOffsetIdx
 		= new HashMap< CFSecBuffISOTZoneByOffsetIdxKey,
-				Map< Short,
+				Map< $implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffISOTZone >>();
 	private Map< CFSecBuffISOTZoneByUTZNameIdxKey,
 			CFSecBuffISOTZone > dictByUTZNameIdx
 		= new HashMap< CFSecBuffISOTZoneByUTZNameIdxKey,
 			CFSecBuffISOTZone >();
 	private Map< CFSecBuffISOTZoneByIso8601IdxKey,
-				Map< Short,
+				Map< $implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffISOTZone >> dictByIso8601Idx
 		= new HashMap< CFSecBuffISOTZoneByIso8601IdxKey,
-				Map< Short,
+				Map< $implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffISOTZone >>();
 
 	public CFSecRamISOTZoneTable( ICFSecSchema argSchema ) {
@@ -86,7 +86,7 @@ public class CFSecRamISOTZoneTable
 		final String S_ProcName = "createISOTZone";
 		
 		CFSecBuffISOTZone Buff = (CFSecBuffISOTZone)ensureRec(iBuff);
-		Short pkey;
+		$implCommaIJavaOptAtomType empty empty )$ pkey;
 		pkey = schema.nextISOTZoneIdGen();
 		Buff.setRequiredISOTZoneId( pkey );
 		CFSecBuffISOTZoneByOffsetIdxKey keyOffsetIdx = (CFSecBuffISOTZoneByOffsetIdxKey)schema.getCFSecBuffFactory().getFactoryISOTZone().newByOffsetIdxKey();
@@ -119,24 +119,24 @@ public class CFSecRamISOTZoneTable
 
 		dictByPKey.put( pkey, Buff );
 
-		Map< Short, CFSecBuffISOTZone > subdictOffsetIdx;
+		Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOTZone > subdictOffsetIdx;
 		if( dictByOffsetIdx.containsKey( keyOffsetIdx ) ) {
 			subdictOffsetIdx = dictByOffsetIdx.get( keyOffsetIdx );
 		}
 		else {
-			subdictOffsetIdx = new HashMap< Short, CFSecBuffISOTZone >();
+			subdictOffsetIdx = new HashMap< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOTZone >();
 			dictByOffsetIdx.put( keyOffsetIdx, subdictOffsetIdx );
 		}
 		subdictOffsetIdx.put( pkey, Buff );
 
 		dictByUTZNameIdx.put( keyUTZNameIdx, Buff );
 
-		Map< Short, CFSecBuffISOTZone > subdictIso8601Idx;
+		Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOTZone > subdictIso8601Idx;
 		if( dictByIso8601Idx.containsKey( keyIso8601Idx ) ) {
 			subdictIso8601Idx = dictByIso8601Idx.get( keyIso8601Idx );
 		}
 		else {
-			subdictIso8601Idx = new HashMap< Short, CFSecBuffISOTZone >();
+			subdictIso8601Idx = new HashMap< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOTZone >();
 			dictByIso8601Idx.put( keyIso8601Idx, subdictIso8601Idx );
 		}
 		subdictIso8601Idx.put( pkey, Buff );
@@ -159,7 +159,7 @@ public class CFSecRamISOTZoneTable
 
 	@Override
 	public ICFSecISOTZone readDerived( ICFSecAuthorization Authorization,
-		Short PKey )
+		$implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamISOTZone.readDerived";
 		ICFSecISOTZone buff;
@@ -177,7 +177,7 @@ public class CFSecRamISOTZoneTable
 
 	@Override
 	public ICFSecISOTZone lockDerived( ICFSecAuthorization Authorization,
-		Short PKey )
+		$implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamISOTZone.lockDerived";
 		ICFSecISOTZone buff;
@@ -204,8 +204,8 @@ public class CFSecRamISOTZoneTable
 
 	@Override
 	public ICFSecISOTZone[] readDerivedByOffsetIdx( ICFSecAuthorization Authorization,
-		short TZHourOffset,
-		short TZMinOffset )
+		$implIJavaAtomType$ TZHourOffset,
+		$implIJavaAtomType$ TZMinOffset )
 	{
 		final String S_ProcName = "CFSecRamISOTZone.readDerivedByOffsetIdx";
 		CFSecBuffISOTZoneByOffsetIdxKey key = (CFSecBuffISOTZoneByOffsetIdxKey)schema.getCFSecBuffFactory().getFactoryISOTZone().newByOffsetIdxKey();
@@ -214,7 +214,7 @@ public class CFSecRamISOTZoneTable
 		key.setRequiredTZMinOffset( TZMinOffset );
 		ICFSecISOTZone[] recArray;
 		if( dictByOffsetIdx.containsKey( key ) ) {
-			Map< Short, CFSecBuffISOTZone > subdictOffsetIdx
+			Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOTZone > subdictOffsetIdx
 				= dictByOffsetIdx.get( key );
 			recArray = new ICFSecISOTZone[ subdictOffsetIdx.size() ];
 			Iterator< CFSecBuffISOTZone > iter = subdictOffsetIdx.values().iterator();
@@ -224,8 +224,8 @@ public class CFSecRamISOTZoneTable
 			}
 		}
 		else {
-			Map< Short, CFSecBuffISOTZone > subdictOffsetIdx
-				= new HashMap< Short, CFSecBuffISOTZone >();
+			Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOTZone > subdictOffsetIdx
+				= new HashMap< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOTZone >();
 			dictByOffsetIdx.put( key, subdictOffsetIdx );
 			recArray = new ICFSecISOTZone[0];
 		}
@@ -234,7 +234,7 @@ public class CFSecRamISOTZoneTable
 
 	@Override
 	public ICFSecISOTZone readDerivedByUTZNameIdx( ICFSecAuthorization Authorization,
-		String TZName )
+		$implIJavaAtomType$ TZName )
 	{
 		final String S_ProcName = "CFSecRamISOTZone.readDerivedByUTZNameIdx";
 		CFSecBuffISOTZoneByUTZNameIdxKey key = (CFSecBuffISOTZoneByUTZNameIdxKey)schema.getCFSecBuffFactory().getFactoryISOTZone().newByUTZNameIdxKey();
@@ -252,7 +252,7 @@ public class CFSecRamISOTZoneTable
 
 	@Override
 	public ICFSecISOTZone[] readDerivedByIso8601Idx( ICFSecAuthorization Authorization,
-		String Iso8601 )
+		$implIJavaAtomType$ Iso8601 )
 	{
 		final String S_ProcName = "CFSecRamISOTZone.readDerivedByIso8601Idx";
 		CFSecBuffISOTZoneByIso8601IdxKey key = (CFSecBuffISOTZoneByIso8601IdxKey)schema.getCFSecBuffFactory().getFactoryISOTZone().newByIso8601IdxKey();
@@ -260,7 +260,7 @@ public class CFSecRamISOTZoneTable
 		key.setRequiredIso8601( Iso8601 );
 		ICFSecISOTZone[] recArray;
 		if( dictByIso8601Idx.containsKey( key ) ) {
-			Map< Short, CFSecBuffISOTZone > subdictIso8601Idx
+			Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOTZone > subdictIso8601Idx
 				= dictByIso8601Idx.get( key );
 			recArray = new ICFSecISOTZone[ subdictIso8601Idx.size() ];
 			Iterator< CFSecBuffISOTZone > iter = subdictIso8601Idx.values().iterator();
@@ -270,8 +270,8 @@ public class CFSecRamISOTZoneTable
 			}
 		}
 		else {
-			Map< Short, CFSecBuffISOTZone > subdictIso8601Idx
-				= new HashMap< Short, CFSecBuffISOTZone >();
+			Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOTZone > subdictIso8601Idx
+				= new HashMap< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOTZone >();
 			dictByIso8601Idx.put( key, subdictIso8601Idx );
 			recArray = new ICFSecISOTZone[0];
 		}
@@ -280,7 +280,7 @@ public class CFSecRamISOTZoneTable
 
 	@Override
 	public ICFSecISOTZone readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		short ISOTZoneId )
+		$implIJavaAtomType$ ISOTZoneId )
 	{
 		final String S_ProcName = "CFSecRamISOTZone.readDerivedByIdIdx() ";
 		ICFSecISOTZone buff;
@@ -295,7 +295,7 @@ public class CFSecRamISOTZoneTable
 
 	@Override
 	public ICFSecISOTZone readRec( ICFSecAuthorization Authorization,
-		Short PKey )
+		$implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamISOTZone.readRec";
 		ICFSecISOTZone buff = readDerived( Authorization, PKey );
@@ -307,7 +307,7 @@ public class CFSecRamISOTZoneTable
 
 	@Override
 	public ICFSecISOTZone lockRec( ICFSecAuthorization Authorization,
-		Short PKey )
+		$implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "lockRec";
 		ICFSecISOTZone buff = readDerived( Authorization, PKey );
@@ -335,7 +335,7 @@ public class CFSecRamISOTZoneTable
 
 	@Override
 	public ICFSecISOTZone readRecByIdIdx( ICFSecAuthorization Authorization,
-		short ISOTZoneId )
+		$implIJavaAtomType$ ISOTZoneId )
 	{
 		final String S_ProcName = "CFSecRamISOTZone.readRecByIdIdx() ";
 		ICFSecISOTZone buff = readDerivedByIdIdx( Authorization,
@@ -350,8 +350,8 @@ public class CFSecRamISOTZoneTable
 
 	@Override
 	public ICFSecISOTZone[] readRecByOffsetIdx( ICFSecAuthorization Authorization,
-		short TZHourOffset,
-		short TZMinOffset )
+		$implIJavaAtomType$ TZHourOffset,
+		$implIJavaAtomType$ TZMinOffset )
 	{
 		final String S_ProcName = "CFSecRamISOTZone.readRecByOffsetIdx() ";
 		ICFSecISOTZone buff;
@@ -370,7 +370,7 @@ public class CFSecRamISOTZoneTable
 
 	@Override
 	public ICFSecISOTZone readRecByUTZNameIdx( ICFSecAuthorization Authorization,
-		String TZName )
+		$implIJavaAtomType$ TZName )
 	{
 		final String S_ProcName = "CFSecRamISOTZone.readRecByUTZNameIdx() ";
 		ICFSecISOTZone buff = readDerivedByUTZNameIdx( Authorization,
@@ -385,7 +385,7 @@ public class CFSecRamISOTZoneTable
 
 	@Override
 	public ICFSecISOTZone[] readRecByIso8601Idx( ICFSecAuthorization Authorization,
-		String Iso8601 )
+		$implIJavaAtomType$ Iso8601 )
 	{
 		final String S_ProcName = "CFSecRamISOTZone.readRecByIso8601Idx() ";
 		ICFSecISOTZone buff;
@@ -405,7 +405,7 @@ public class CFSecRamISOTZoneTable
 		ICFSecISOTZone iBuff )
 	{
 		CFSecBuffISOTZone Buff = (CFSecBuffISOTZone)ensureRec(iBuff);
-		Short pkey = (Short)Buff.getPKey();
+		$implCommaIJavaOptAtomType empty empty )$ pkey = ($implCommaIJavaOptAtomType empty empty )$)Buff.getPKey();
 		CFSecBuffISOTZone existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
@@ -458,7 +458,7 @@ public class CFSecRamISOTZoneTable
 
 		// Update is valid
 
-		Map< Short, CFSecBuffISOTZone > subdict;
+		Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOTZone > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -471,7 +471,7 @@ public class CFSecRamISOTZoneTable
 			subdict = dictByOffsetIdx.get( newKeyOffsetIdx );
 		}
 		else {
-			subdict = new HashMap< Short, CFSecBuffISOTZone >();
+			subdict = new HashMap< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOTZone >();
 			dictByOffsetIdx.put( newKeyOffsetIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -487,7 +487,7 @@ public class CFSecRamISOTZoneTable
 			subdict = dictByIso8601Idx.get( newKeyIso8601Idx );
 		}
 		else {
-			subdict = new HashMap< Short, CFSecBuffISOTZone >();
+			subdict = new HashMap< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOTZone >();
 			dictByIso8601Idx.put( newKeyIso8601Idx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -502,7 +502,7 @@ public class CFSecRamISOTZoneTable
 		final String S_ProcName = "CFSecRamISOTZoneTable.deleteISOTZone() ";
 		CFSecBuffISOTZone Buff = (CFSecBuffISOTZone)ensureRec(iBuff);
 		int classCode;
-		Short pkey = (Short)(Buff.getPKey());
+		$implCommaIJavaOptAtomType empty empty )$ pkey = ($implCommaIJavaOptAtomType empty empty )$)(Buff.getPKey());
 		CFSecBuffISOTZone existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
@@ -526,7 +526,7 @@ public class CFSecRamISOTZoneTable
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< Short, CFSecBuffISOTZone > subdict;
+		Map< $implCommaIJavaOptAtomType empty empty )$, CFSecBuffISOTZone > subdict;
 
 		dictByPKey.remove( pkey );
 
@@ -541,7 +541,7 @@ public class CFSecRamISOTZoneTable
 	}
 	@Override
 	public void deleteISOTZoneByIdIdx( ICFSecAuthorization Authorization,
-		Short argKey )
+		$implCommaIJavaOptAtomType empty empty )$ argKey )
 	{
 		boolean anyNotNull = false;
 		anyNotNull = true;
@@ -568,8 +568,8 @@ public class CFSecRamISOTZoneTable
 
 	@Override
 	public void deleteISOTZoneByOffsetIdx( ICFSecAuthorization Authorization,
-		short argTZHourOffset,
-		short argTZMinOffset )
+		$implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argTZHourOffset,
+		$implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argTZMinOffset )
 	{
 		CFSecBuffISOTZoneByOffsetIdxKey key = (CFSecBuffISOTZoneByOffsetIdxKey)schema.getCFSecBuffFactory().getFactoryISOTZone().newByOffsetIdxKey();
 		key.setRequiredTZHourOffset( argTZHourOffset );
@@ -607,7 +607,7 @@ public class CFSecRamISOTZoneTable
 
 	@Override
 	public void deleteISOTZoneByUTZNameIdx( ICFSecAuthorization Authorization,
-		String argTZName )
+		$implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argTZName )
 	{
 		CFSecBuffISOTZoneByUTZNameIdxKey key = (CFSecBuffISOTZoneByUTZNameIdxKey)schema.getCFSecBuffFactory().getFactoryISOTZone().newByUTZNameIdxKey();
 		key.setRequiredTZName( argTZName );
@@ -643,7 +643,7 @@ public class CFSecRamISOTZoneTable
 
 	@Override
 	public void deleteISOTZoneByIso8601Idx( ICFSecAuthorization Authorization,
-		String argIso8601 )
+		$implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argIso8601 )
 	{
 		CFSecBuffISOTZoneByIso8601IdxKey key = (CFSecBuffISOTZoneByIso8601IdxKey)schema.getCFSecBuffFactory().getFactoryISOTZone().newByIso8601IdxKey();
 		key.setRequiredIso8601( argIso8601 );

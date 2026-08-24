@@ -50,25 +50,25 @@ public class CFSecRamSecUserPWResetTable
 	implements ICFSecSecUserPWResetTable
 {
 	private ICFSecSchema schema;
-	private Map< ICFLibKeyHash256,
+	private Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffSecUserPWReset > dictByPKey
-		= new HashMap< ICFLibKeyHash256,
+		= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffSecUserPWReset >();
 	private Map< CFSecBuffSecUserPWResetByUUuid6IdxKey,
 			CFSecBuffSecUserPWReset > dictByUUuid6Idx
 		= new HashMap< CFSecBuffSecUserPWResetByUUuid6IdxKey,
 			CFSecBuffSecUserPWReset >();
 	private Map< CFSecBuffSecUserPWResetBySentEMAddrIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecUserPWReset >> dictBySentEMAddrIdx
 		= new HashMap< CFSecBuffSecUserPWResetBySentEMAddrIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecUserPWReset >>();
 	private Map< CFSecBuffSecUserPWResetByNewAcctIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecUserPWReset >> dictByNewAcctIdx
 		= new HashMap< CFSecBuffSecUserPWResetByNewAcctIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecUserPWReset >>();
 
 	public CFSecRamSecUserPWResetTable( ICFSecSchema argSchema ) {
@@ -86,7 +86,7 @@ public class CFSecRamSecUserPWResetTable
 		final String S_ProcName = "createSecUserPWReset";
 		
 		CFSecBuffSecUserPWReset Buff = (CFSecBuffSecUserPWReset)ensureRec(iBuff);
-		ICFLibKeyHash256 pkey;
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey;
 		pkey = Buff.getRequiredSecUserId();
 		pkey = Buff.getRequiredSecUserId();
 		Buff.setRequiredContainerUser( pkey );
@@ -142,22 +142,22 @@ public class CFSecRamSecUserPWResetTable
 
 		dictByUUuid6Idx.put( keyUUuid6Idx, Buff );
 
-		Map< ICFLibKeyHash256, CFSecBuffSecUserPWReset > subdictSentEMAddrIdx;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPWReset > subdictSentEMAddrIdx;
 		if( dictBySentEMAddrIdx.containsKey( keySentEMAddrIdx ) ) {
 			subdictSentEMAddrIdx = dictBySentEMAddrIdx.get( keySentEMAddrIdx );
 		}
 		else {
-			subdictSentEMAddrIdx = new HashMap< ICFLibKeyHash256, CFSecBuffSecUserPWReset >();
+			subdictSentEMAddrIdx = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPWReset >();
 			dictBySentEMAddrIdx.put( keySentEMAddrIdx, subdictSentEMAddrIdx );
 		}
 		subdictSentEMAddrIdx.put( pkey, Buff );
 
-		Map< ICFLibKeyHash256, CFSecBuffSecUserPWReset > subdictNewAcctIdx;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPWReset > subdictNewAcctIdx;
 		if( dictByNewAcctIdx.containsKey( keyNewAcctIdx ) ) {
 			subdictNewAcctIdx = dictByNewAcctIdx.get( keyNewAcctIdx );
 		}
 		else {
-			subdictNewAcctIdx = new HashMap< ICFLibKeyHash256, CFSecBuffSecUserPWReset >();
+			subdictNewAcctIdx = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPWReset >();
 			dictByNewAcctIdx.put( keyNewAcctIdx, subdictNewAcctIdx );
 		}
 		subdictNewAcctIdx.put( pkey, Buff );
@@ -180,7 +180,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public ICFSecSecUserPWReset readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWReset.readDerived";
 		ICFSecSecUserPWReset buff;
@@ -198,7 +198,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public ICFSecSecUserPWReset lockDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWReset.lockDerived";
 		ICFSecSecUserPWReset buff;
@@ -225,7 +225,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public ICFSecSecUserPWReset readDerivedByUUuid6Idx( ICFSecAuthorization Authorization,
-		ICFLibUuid6 PasswordResetUuid6 )
+		$implIJavaAtomType$ PasswordResetUuid6 )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWReset.readDerivedByUUuid6Idx";
 		CFSecBuffSecUserPWResetByUUuid6IdxKey key = (CFSecBuffSecUserPWResetByUUuid6IdxKey)schema.getCFSecBuffFactory().getFactorySecUserPWReset().newByUUuid6IdxKey();
@@ -243,7 +243,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public ICFSecSecUserPWReset[] readDerivedBySentEMAddrIdx( ICFSecAuthorization Authorization,
-		String SentToEMailAddr )
+		$implIJavaAtomType$ SentToEMailAddr )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWReset.readDerivedBySentEMAddrIdx";
 		CFSecBuffSecUserPWResetBySentEMAddrIdxKey key = (CFSecBuffSecUserPWResetBySentEMAddrIdxKey)schema.getCFSecBuffFactory().getFactorySecUserPWReset().newBySentEMAddrIdxKey();
@@ -251,7 +251,7 @@ public class CFSecRamSecUserPWResetTable
 		key.setRequiredSentToEMailAddr( SentToEMailAddr );
 		ICFSecSecUserPWReset[] recArray;
 		if( dictBySentEMAddrIdx.containsKey( key ) ) {
-			Map< ICFLibKeyHash256, CFSecBuffSecUserPWReset > subdictSentEMAddrIdx
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPWReset > subdictSentEMAddrIdx
 				= dictBySentEMAddrIdx.get( key );
 			recArray = new ICFSecSecUserPWReset[ subdictSentEMAddrIdx.size() ];
 			Iterator< CFSecBuffSecUserPWReset > iter = subdictSentEMAddrIdx.values().iterator();
@@ -261,8 +261,8 @@ public class CFSecRamSecUserPWResetTable
 			}
 		}
 		else {
-			Map< ICFLibKeyHash256, CFSecBuffSecUserPWReset > subdictSentEMAddrIdx
-				= new HashMap< ICFLibKeyHash256, CFSecBuffSecUserPWReset >();
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPWReset > subdictSentEMAddrIdx
+				= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPWReset >();
 			dictBySentEMAddrIdx.put( key, subdictSentEMAddrIdx );
 			recArray = new ICFSecSecUserPWReset[0];
 		}
@@ -271,7 +271,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public ICFSecSecUserPWReset[] readDerivedByNewAcctIdx( ICFSecAuthorization Authorization,
-		boolean NewAccount )
+		$implIJavaAtomType$ NewAccount )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWReset.readDerivedByNewAcctIdx";
 		CFSecBuffSecUserPWResetByNewAcctIdxKey key = (CFSecBuffSecUserPWResetByNewAcctIdxKey)schema.getCFSecBuffFactory().getFactorySecUserPWReset().newByNewAcctIdxKey();
@@ -279,7 +279,7 @@ public class CFSecRamSecUserPWResetTable
 		key.setRequiredNewAccount( NewAccount );
 		ICFSecSecUserPWReset[] recArray;
 		if( dictByNewAcctIdx.containsKey( key ) ) {
-			Map< ICFLibKeyHash256, CFSecBuffSecUserPWReset > subdictNewAcctIdx
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPWReset > subdictNewAcctIdx
 				= dictByNewAcctIdx.get( key );
 			recArray = new ICFSecSecUserPWReset[ subdictNewAcctIdx.size() ];
 			Iterator< CFSecBuffSecUserPWReset > iter = subdictNewAcctIdx.values().iterator();
@@ -289,8 +289,8 @@ public class CFSecRamSecUserPWResetTable
 			}
 		}
 		else {
-			Map< ICFLibKeyHash256, CFSecBuffSecUserPWReset > subdictNewAcctIdx
-				= new HashMap< ICFLibKeyHash256, CFSecBuffSecUserPWReset >();
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPWReset > subdictNewAcctIdx
+				= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPWReset >();
 			dictByNewAcctIdx.put( key, subdictNewAcctIdx );
 			recArray = new ICFSecSecUserPWReset[0];
 		}
@@ -299,7 +299,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public ICFSecSecUserPWReset readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		$implIJavaAtomType$ SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWReset.readDerivedByIdIdx() ";
 		ICFSecSecUserPWReset buff;
@@ -314,7 +314,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public ICFSecSecUserPWReset readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWReset.readRec";
 		ICFSecSecUserPWReset buff = readDerived( Authorization, PKey );
@@ -326,7 +326,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public ICFSecSecUserPWReset lockRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "lockRec";
 		ICFSecSecUserPWReset buff = readDerived( Authorization, PKey );
@@ -361,7 +361,7 @@ public class CFSecRamSecUserPWResetTable
 	 */
 	@Override
 	public ICFSecSecUserPWReset[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecUserId )
+		$implIJavaOptAtomType$ priorSecUserId )
 	{
 		final String S_ProcName = "pageAllRec";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -369,7 +369,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public ICFSecSecUserPWReset readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		$implIJavaAtomType$ SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWReset.readRecByIdIdx() ";
 		ICFSecSecUserPWReset buff = readDerivedByIdIdx( Authorization,
@@ -384,7 +384,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public ICFSecSecUserPWReset readRecByUUuid6Idx( ICFSecAuthorization Authorization,
-		ICFLibUuid6 PasswordResetUuid6 )
+		$implIJavaAtomType$ PasswordResetUuid6 )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWReset.readRecByUUuid6Idx() ";
 		ICFSecSecUserPWReset buff = readDerivedByUUuid6Idx( Authorization,
@@ -399,7 +399,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public ICFSecSecUserPWReset[] readRecBySentEMAddrIdx( ICFSecAuthorization Authorization,
-		String SentToEMailAddr )
+		$implIJavaAtomType$ SentToEMailAddr )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWReset.readRecBySentEMAddrIdx() ";
 		ICFSecSecUserPWReset buff;
@@ -417,7 +417,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public ICFSecSecUserPWReset[] readRecByNewAcctIdx( ICFSecAuthorization Authorization,
-		boolean NewAccount )
+		$implIJavaAtomType$ NewAccount )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWReset.readRecByNewAcctIdx() ";
 		ICFSecSecUserPWReset buff;
@@ -446,8 +446,8 @@ public class CFSecRamSecUserPWResetTable
 	 */
 	@Override
 	public ICFSecSecUserPWReset[] pageRecBySentEMAddrIdx( ICFSecAuthorization Authorization,
-		String SentToEMailAddr,
-		ICFLibKeyHash256 priorSecUserId )
+		$implIJavaAtomType$ SentToEMailAddr,
+		$implIJavaOptAtomType$ priorSecUserId )
 	{
 		final String S_ProcName = "pageRecBySentEMAddrIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -466,8 +466,8 @@ public class CFSecRamSecUserPWResetTable
 	 */
 	@Override
 	public ICFSecSecUserPWReset[] pageRecByNewAcctIdx( ICFSecAuthorization Authorization,
-		boolean NewAccount,
-		ICFLibKeyHash256 priorSecUserId )
+		$implIJavaAtomType$ NewAccount,
+		$implIJavaOptAtomType$ priorSecUserId )
 	{
 		final String S_ProcName = "pageRecByNewAcctIdx";
 		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
@@ -477,7 +477,7 @@ public class CFSecRamSecUserPWResetTable
 		ICFSecSecUserPWReset iBuff )
 	{
 		CFSecBuffSecUserPWReset Buff = (CFSecBuffSecUserPWReset)ensureRec(iBuff);
-		ICFLibKeyHash256 pkey = (ICFLibKeyHash256)Buff.getPKey();
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)Buff.getPKey();
 		CFSecBuffSecUserPWReset existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
@@ -548,7 +548,7 @@ public class CFSecRamSecUserPWResetTable
 
 		// Update is valid
 
-		Map< ICFLibKeyHash256, CFSecBuffSecUserPWReset > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPWReset > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -564,7 +564,7 @@ public class CFSecRamSecUserPWResetTable
 			subdict = dictBySentEMAddrIdx.get( newKeySentEMAddrIdx );
 		}
 		else {
-			subdict = new HashMap< ICFLibKeyHash256, CFSecBuffSecUserPWReset >();
+			subdict = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPWReset >();
 			dictBySentEMAddrIdx.put( newKeySentEMAddrIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -577,7 +577,7 @@ public class CFSecRamSecUserPWResetTable
 			subdict = dictByNewAcctIdx.get( newKeyNewAcctIdx );
 		}
 		else {
-			subdict = new HashMap< ICFLibKeyHash256, CFSecBuffSecUserPWReset >();
+			subdict = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPWReset >();
 			dictByNewAcctIdx.put( newKeyNewAcctIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -592,7 +592,7 @@ public class CFSecRamSecUserPWResetTable
 		final String S_ProcName = "CFSecRamSecUserPWResetTable.deleteSecUserPWReset() ";
 		CFSecBuffSecUserPWReset Buff = (CFSecBuffSecUserPWReset)ensureRec(iBuff);
 		int classCode;
-		ICFLibKeyHash256 pkey = (ICFLibKeyHash256)(Buff.getPKey());
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)(Buff.getPKey());
 		CFSecBuffSecUserPWReset existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
@@ -615,7 +615,7 @@ public class CFSecRamSecUserPWResetTable
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< ICFLibKeyHash256, CFSecBuffSecUserPWReset > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecUserPWReset > subdict;
 
 		dictByPKey.remove( pkey );
 
@@ -630,7 +630,7 @@ public class CFSecRamSecUserPWResetTable
 	}
 	@Override
 	public void deleteSecUserPWResetByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ argKey )
 	{
 		boolean anyNotNull = false;
 		anyNotNull = true;
@@ -657,7 +657,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public void deleteSecUserPWResetByUUuid6Idx( ICFSecAuthorization Authorization,
-		ICFLibUuid6 argPasswordResetUuid6 )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argPasswordResetUuid6 )
 	{
 		CFSecBuffSecUserPWResetByUUuid6IdxKey key = (CFSecBuffSecUserPWResetByUUuid6IdxKey)schema.getCFSecBuffFactory().getFactorySecUserPWReset().newByUUuid6IdxKey();
 		key.setRequiredPasswordResetUuid6( argPasswordResetUuid6 );
@@ -693,7 +693,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public void deleteSecUserPWResetBySentEMAddrIdx( ICFSecAuthorization Authorization,
-		String argSentToEMailAddr )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argSentToEMailAddr )
 	{
 		CFSecBuffSecUserPWResetBySentEMAddrIdxKey key = (CFSecBuffSecUserPWResetBySentEMAddrIdxKey)schema.getCFSecBuffFactory().getFactorySecUserPWReset().newBySentEMAddrIdxKey();
 		key.setRequiredSentToEMailAddr( argSentToEMailAddr );
@@ -729,7 +729,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public void deleteSecUserPWResetByNewAcctIdx( ICFSecAuthorization Authorization,
-		boolean argNewAccount )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argNewAccount )
 	{
 		CFSecBuffSecUserPWResetByNewAcctIdxKey key = (CFSecBuffSecUserPWResetByNewAcctIdxKey)schema.getCFSecBuffFactory().getFactorySecUserPWReset().newByNewAcctIdxKey();
 		key.setRequiredNewAccount( argNewAccount );

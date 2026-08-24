@@ -50,21 +50,21 @@ public class CFSecRamSecTentRoleTable
 	implements ICFSecSecTentRoleTable
 {
 	private ICFSecSchema schema;
-	private Map< ICFLibKeyHash256,
+	private Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffSecTentRole > dictByPKey
-		= new HashMap< ICFLibKeyHash256,
+		= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 				CFSecBuffSecTentRole >();
 	private Map< CFSecBuffSecTentRoleByTenantIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecTentRole >> dictByTenantIdx
 		= new HashMap< CFSecBuffSecTentRoleByTenantIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecTentRole >>();
 	private Map< CFSecBuffSecTentRoleByNameIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecTentRole >> dictByNameIdx
 		= new HashMap< CFSecBuffSecTentRoleByNameIdxKey,
-				Map< ICFLibKeyHash256,
+				Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$,
 					CFSecBuffSecTentRole >>();
 	private Map< CFSecBuffSecTentRoleByUNameIdxKey,
 			CFSecBuffSecTentRole > dictByUNameIdx
@@ -86,7 +86,7 @@ public class CFSecRamSecTentRoleTable
 		final String S_ProcName = "createSecTentRole";
 		
 		CFSecBuffSecTentRole Buff = (CFSecBuffSecTentRole)ensureRec(iBuff);
-		ICFLibKeyHash256 pkey;
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey;
 		pkey = schema.nextSecTentRoleIdGen();
 		Buff.setRequiredSecTentRoleId( pkey );
 		CFSecBuffSecTentRoleByTenantIdxKey keyTenantIdx = (CFSecBuffSecTentRoleByTenantIdxKey)schema.getCFSecBuffFactory().getFactorySecTentRole().newByTenantIdxKey();
@@ -159,22 +159,22 @@ public class CFSecRamSecTentRoleTable
 
 		dictByPKey.put( pkey, Buff );
 
-		Map< ICFLibKeyHash256, CFSecBuffSecTentRole > subdictTenantIdx;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentRole > subdictTenantIdx;
 		if( dictByTenantIdx.containsKey( keyTenantIdx ) ) {
 			subdictTenantIdx = dictByTenantIdx.get( keyTenantIdx );
 		}
 		else {
-			subdictTenantIdx = new HashMap< ICFLibKeyHash256, CFSecBuffSecTentRole >();
+			subdictTenantIdx = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentRole >();
 			dictByTenantIdx.put( keyTenantIdx, subdictTenantIdx );
 		}
 		subdictTenantIdx.put( pkey, Buff );
 
-		Map< ICFLibKeyHash256, CFSecBuffSecTentRole > subdictNameIdx;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentRole > subdictNameIdx;
 		if( dictByNameIdx.containsKey( keyNameIdx ) ) {
 			subdictNameIdx = dictByNameIdx.get( keyNameIdx );
 		}
 		else {
-			subdictNameIdx = new HashMap< ICFLibKeyHash256, CFSecBuffSecTentRole >();
+			subdictNameIdx = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentRole >();
 			dictByNameIdx.put( keyNameIdx, subdictNameIdx );
 		}
 		subdictNameIdx.put( pkey, Buff );
@@ -199,7 +199,7 @@ public class CFSecRamSecTentRoleTable
 
 	@Override
 	public ICFSecSecTentRole readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecTentRole.readDerived";
 		ICFSecSecTentRole buff;
@@ -217,7 +217,7 @@ public class CFSecRamSecTentRoleTable
 
 	@Override
 	public ICFSecSecTentRole lockDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecTentRole.lockDerived";
 		ICFSecSecTentRole buff;
@@ -244,7 +244,7 @@ public class CFSecRamSecTentRoleTable
 
 	@Override
 	public ICFSecSecTentRole[] readDerivedByTenantIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 TenantId )
+		$implIJavaAtomType$ TenantId )
 	{
 		final String S_ProcName = "CFSecRamSecTentRole.readDerivedByTenantIdx";
 		CFSecBuffSecTentRoleByTenantIdxKey key = (CFSecBuffSecTentRoleByTenantIdxKey)schema.getCFSecBuffFactory().getFactorySecTentRole().newByTenantIdxKey();
@@ -252,7 +252,7 @@ public class CFSecRamSecTentRoleTable
 		key.setRequiredTenantId( TenantId );
 		ICFSecSecTentRole[] recArray;
 		if( dictByTenantIdx.containsKey( key ) ) {
-			Map< ICFLibKeyHash256, CFSecBuffSecTentRole > subdictTenantIdx
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentRole > subdictTenantIdx
 				= dictByTenantIdx.get( key );
 			recArray = new ICFSecSecTentRole[ subdictTenantIdx.size() ];
 			Iterator< CFSecBuffSecTentRole > iter = subdictTenantIdx.values().iterator();
@@ -262,8 +262,8 @@ public class CFSecRamSecTentRoleTable
 			}
 		}
 		else {
-			Map< ICFLibKeyHash256, CFSecBuffSecTentRole > subdictTenantIdx
-				= new HashMap< ICFLibKeyHash256, CFSecBuffSecTentRole >();
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentRole > subdictTenantIdx
+				= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentRole >();
 			dictByTenantIdx.put( key, subdictTenantIdx );
 			recArray = new ICFSecSecTentRole[0];
 		}
@@ -272,7 +272,7 @@ public class CFSecRamSecTentRoleTable
 
 	@Override
 	public ICFSecSecTentRole[] readDerivedByNameIdx( ICFSecAuthorization Authorization,
-		String Name )
+		$implIJavaAtomType$ Name )
 	{
 		final String S_ProcName = "CFSecRamSecTentRole.readDerivedByNameIdx";
 		CFSecBuffSecTentRoleByNameIdxKey key = (CFSecBuffSecTentRoleByNameIdxKey)schema.getCFSecBuffFactory().getFactorySecTentRole().newByNameIdxKey();
@@ -280,7 +280,7 @@ public class CFSecRamSecTentRoleTable
 		key.setRequiredName( Name );
 		ICFSecSecTentRole[] recArray;
 		if( dictByNameIdx.containsKey( key ) ) {
-			Map< ICFLibKeyHash256, CFSecBuffSecTentRole > subdictNameIdx
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentRole > subdictNameIdx
 				= dictByNameIdx.get( key );
 			recArray = new ICFSecSecTentRole[ subdictNameIdx.size() ];
 			Iterator< CFSecBuffSecTentRole > iter = subdictNameIdx.values().iterator();
@@ -290,8 +290,8 @@ public class CFSecRamSecTentRoleTable
 			}
 		}
 		else {
-			Map< ICFLibKeyHash256, CFSecBuffSecTentRole > subdictNameIdx
-				= new HashMap< ICFLibKeyHash256, CFSecBuffSecTentRole >();
+			Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentRole > subdictNameIdx
+				= new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentRole >();
 			dictByNameIdx.put( key, subdictNameIdx );
 			recArray = new ICFSecSecTentRole[0];
 		}
@@ -300,8 +300,8 @@ public class CFSecRamSecTentRoleTable
 
 	@Override
 	public ICFSecSecTentRole readDerivedByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 TenantId,
-		String Name )
+		$implIJavaAtomType$ TenantId,
+		$implIJavaAtomType$ Name )
 	{
 		final String S_ProcName = "CFSecRamSecTentRole.readDerivedByUNameIdx";
 		CFSecBuffSecTentRoleByUNameIdxKey key = (CFSecBuffSecTentRoleByUNameIdxKey)schema.getCFSecBuffFactory().getFactorySecTentRole().newByUNameIdxKey();
@@ -320,7 +320,7 @@ public class CFSecRamSecTentRoleTable
 
 	@Override
 	public ICFSecSecTentRole readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecTentRoleId )
+		$implIJavaAtomType$ SecTentRoleId )
 	{
 		final String S_ProcName = "CFSecRamSecTentRole.readDerivedByIdIdx() ";
 		ICFSecSecTentRole buff;
@@ -335,7 +335,7 @@ public class CFSecRamSecTentRoleTable
 
 	@Override
 	public ICFSecSecTentRole readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "CFSecRamSecTentRole.readRec";
 		ICFSecSecTentRole buff = readDerived( Authorization, PKey );
@@ -347,7 +347,7 @@ public class CFSecRamSecTentRoleTable
 
 	@Override
 	public ICFSecSecTentRole lockRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 PKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ PKey )
 	{
 		final String S_ProcName = "lockRec";
 		ICFSecSecTentRole buff = readDerived( Authorization, PKey );
@@ -375,7 +375,7 @@ public class CFSecRamSecTentRoleTable
 
 	@Override
 	public ICFSecSecTentRole readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecTentRoleId )
+		$implIJavaAtomType$ SecTentRoleId )
 	{
 		final String S_ProcName = "CFSecRamSecTentRole.readRecByIdIdx() ";
 		ICFSecSecTentRole buff = readDerivedByIdIdx( Authorization,
@@ -390,7 +390,7 @@ public class CFSecRamSecTentRoleTable
 
 	@Override
 	public ICFSecSecTentRole[] readRecByTenantIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 TenantId )
+		$implIJavaAtomType$ TenantId )
 	{
 		final String S_ProcName = "CFSecRamSecTentRole.readRecByTenantIdx() ";
 		ICFSecSecTentRole buff;
@@ -408,7 +408,7 @@ public class CFSecRamSecTentRoleTable
 
 	@Override
 	public ICFSecSecTentRole[] readRecByNameIdx( ICFSecAuthorization Authorization,
-		String Name )
+		$implIJavaAtomType$ Name )
 	{
 		final String S_ProcName = "CFSecRamSecTentRole.readRecByNameIdx() ";
 		ICFSecSecTentRole buff;
@@ -426,8 +426,8 @@ public class CFSecRamSecTentRoleTable
 
 	@Override
 	public ICFSecSecTentRole readRecByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 TenantId,
-		String Name )
+		$implIJavaAtomType$ TenantId,
+		$implIJavaAtomType$ Name )
 	{
 		final String S_ProcName = "CFSecRamSecTentRole.readRecByUNameIdx() ";
 		ICFSecSecTentRole buff = readDerivedByUNameIdx( Authorization,
@@ -445,7 +445,7 @@ public class CFSecRamSecTentRoleTable
 		ICFSecSecTentRole iBuff )
 	{
 		CFSecBuffSecTentRole Buff = (CFSecBuffSecTentRole)ensureRec(iBuff);
-		ICFLibKeyHash256 pkey = (ICFLibKeyHash256)Buff.getPKey();
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)Buff.getPKey();
 		CFSecBuffSecTentRole existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			throw new CFLibStaleCacheDetectedException( getClass(),
@@ -538,7 +538,7 @@ public class CFSecRamSecTentRoleTable
 
 		// Update is valid
 
-		Map< ICFLibKeyHash256, CFSecBuffSecTentRole > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentRole > subdict;
 
 		dictByPKey.remove( pkey );
 		dictByPKey.put( pkey, Buff );
@@ -551,7 +551,7 @@ public class CFSecRamSecTentRoleTable
 			subdict = dictByTenantIdx.get( newKeyTenantIdx );
 		}
 		else {
-			subdict = new HashMap< ICFLibKeyHash256, CFSecBuffSecTentRole >();
+			subdict = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentRole >();
 			dictByTenantIdx.put( newKeyTenantIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -564,7 +564,7 @@ public class CFSecRamSecTentRoleTable
 			subdict = dictByNameIdx.get( newKeyNameIdx );
 		}
 		else {
-			subdict = new HashMap< ICFLibKeyHash256, CFSecBuffSecTentRole >();
+			subdict = new HashMap< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentRole >();
 			dictByNameIdx.put( newKeyNameIdx, subdict );
 		}
 		subdict.put( pkey, Buff );
@@ -582,7 +582,7 @@ public class CFSecRamSecTentRoleTable
 		final String S_ProcName = "CFSecRamSecTentRoleTable.deleteSecTentRole() ";
 		CFSecBuffSecTentRole Buff = (CFSecBuffSecTentRole)ensureRec(iBuff);
 		int classCode;
-		ICFLibKeyHash256 pkey = (ICFLibKeyHash256)(Buff.getPKey());
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ pkey = ($iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$)(Buff.getPKey());
 		CFSecBuffSecTentRole existing = dictByPKey.get( pkey );
 		if( existing == null ) {
 			return;
@@ -613,7 +613,7 @@ public class CFSecRamSecTentRoleTable
 		// Validate reverse foreign keys
 
 		// Delete is valid
-		Map< ICFLibKeyHash256, CFSecBuffSecTentRole > subdict;
+		Map< $iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$, CFSecBuffSecTentRole > subdict;
 
 		dictByPKey.remove( pkey );
 
@@ -628,7 +628,7 @@ public class CFSecRamSecTentRoleTable
 	}
 	@Override
 	public void deleteSecTentRoleByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argKey )
+		$iterate Columns ( lone implIJavaOptAtomType first implIJavaOptAtomType each implCommaIJavaOptAtomType empty empty )$ argKey )
 	{
 		boolean anyNotNull = false;
 		anyNotNull = true;
@@ -655,7 +655,7 @@ public class CFSecRamSecTentRoleTable
 
 	@Override
 	public void deleteSecTentRoleByTenantIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argTenantId )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argTenantId )
 	{
 		CFSecBuffSecTentRoleByTenantIdxKey key = (CFSecBuffSecTentRoleByTenantIdxKey)schema.getCFSecBuffFactory().getFactorySecTentRole().newByTenantIdxKey();
 		key.setRequiredTenantId( argTenantId );
@@ -691,7 +691,7 @@ public class CFSecRamSecTentRoleTable
 
 	@Override
 	public void deleteSecTentRoleByNameIdx( ICFSecAuthorization Authorization,
-		String argName )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argName )
 	{
 		CFSecBuffSecTentRoleByNameIdxKey key = (CFSecBuffSecTentRoleByNameIdxKey)schema.getCFSecBuffFactory().getFactorySecTentRole().newByNameIdxKey();
 		key.setRequiredName( argName );
@@ -727,8 +727,8 @@ public class CFSecRamSecTentRoleTable
 
 	@Override
 	public void deleteSecTentRoleByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argTenantId,
-		String argName )
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argTenantId,
+		$iterate Columns ( lone implIJavaAtomType first implIJavaAtomType each implCommaIJavaAtomType empty empty )$ argName )
 	{
 		CFSecBuffSecTentRoleByUNameIdxKey key = (CFSecBuffSecTentRoleByUNameIdxKey)schema.getCFSecBuffFactory().getFactorySecTentRole().newByUNameIdxKey();
 		key.setRequiredTenantId( argTenantId );
